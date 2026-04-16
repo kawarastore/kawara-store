@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Kawara Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#03060f; --surface:#090f1d; --card:#0f1726; --card2:#111e30;
+  --accent:#00d4ff; --accent2:#7c3aed; --accent3:#f59e0b; --accent4:#10b981;
+  --red:#ef4444; --text:#e2e8f0; --muted:#64748b; --border:rgba(0,212,255,0.15);
+  --glow:0 0 20px rgba(0,212,255,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;}
+
+/* LOGIN */
+#login-screen{
+  display:flex;align-items:center;justify-content:center;min-height:100vh;
+  background:radial-gradient(ellipse at center,rgba(124,58,237,0.12) 0%,transparent 70%);
+}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:40px;width:100%;max-width:380px;text-align:center;}
+.login-box h2{font-family:'Orbitron',sans-serif;color:var(--accent);font-size:1.2rem;margin-bottom:6px;letter-spacing:2px;}
+.login-box p{color:var(--muted);font-size:0.88rem;margin-bottom:28px;}
+.login-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  border-radius:10px;padding:11px 14px;color:var(--text);font-family:'Rajdhani',sans-serif;
+  font-size:1rem;outline:none;margin-bottom:12px;transition:border-color 0.2s;}
+.login-input:focus{border-color:var(--accent);}
+.login-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:10px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;cursor:pointer;letter-spacing:0.5px;margin-top:4px;}
+.login-btn:hover{opacity:0.9;}
+.login-err{color:var(--red);font-size:0.85rem;margin-top:8px;display:none;}
+
+/* ADMIN PANEL */
+#admin-panel{display:none;}
+header{background:rgba(3,6,15,0.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;}
+.header-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:900;color:var(--accent);letter-spacing:2px;}
+.logo span{color:var(--accent3);}
+.admin-tag{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);
+  color:var(--red);padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:1px;}
+.logout-btn{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+  color:var(--red);padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Rajdhani',sans-serif;
+  font-size:0.85rem;font-weight:700;transition:all 0.2s;}
+.logout-btn:hover{background:rgba(239,68,68,0.2);}
+
+/* NAV TABS */
+.admin-nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;}
+.admin-nav-inner{max-width:1200px;margin:auto;display:flex;gap:4px;overflow-x:auto;}
+.anav-btn{background:none;border:none;color:var(--muted);font-family:'Rajdhani',sans-serif;
+  font-size:0.9rem;font-weight:600;padding:12px 16px;cursor:pointer;white-space:nowrap;
+  border-bottom:2px solid transparent;transition:all 0.2s;}
+.anav-btn:hover{color:var(--text);}
+.anav-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+
+/* CONTENT */
+.admin-content{max-width:1200px;margin:auto;padding:24px 20px;}
+.apage{display:none;}
+.apage.active{display:block;animation:fadeIn 0.35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARDS & SECTIONS */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.sec-title{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:var(--accent3);letter-spacing:1.5px;}
+.add-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(16,185,129,0.1);
+  border:1px solid rgba(16,185,129,0.3);color:var(--accent4);border-radius:8px;
+  cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;transition:all 0.2s;}
+.add-btn:hover{background:rgba(16,185,129,0.2);}
+
+/* TABLE */
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:24px;background:var(--card);
+  border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.admin-table th{background:rgba(0,212,255,0.06);color:var(--accent);font-family:'Orbitron',sans-serif;
+  font-size:0.72rem;letter-spacing:1px;padding:10px 14px;text-align:left;}
+.admin-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.92rem;vertical-align:middle;}
+.admin-table tr:last-child td{border-bottom:none;}
+.admin-table tr:hover td{background:rgba(255,255,255,0.02);}
+.edit-input{background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:6px;
+  padding:5px 9px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.9rem;width:90px;outline:none;}
+.edit-input:focus{border-color:var(--accent);}
+.name-input{width:180px;}
+.icon-btn{background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:6px;
+  font-size:0.85rem;transition:all 0.2s;font-family:'Rajdhani',sans-serif;font-weight:700;}
+.icon-btn.save{color:var(--accent4);background:rgba(16,185,129,0.1);}
+.icon-btn.save:hover{background:rgba(16,185,129,0.25);}
+.icon-btn.del{color:var(--red);background:rgba(239,68,68,0.1);}
+.icon-btn.del:hover{background:rgba(239,68,68,0.25);}
+
+/* DISCORD SETUP */
+.discord-setup{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:24px;}
+.discord-setup h4{color:var(--accent);font-family:'Orbitron',sans-serif;font-size:0.9rem;margin-bottom:10px;}
+.discord-setup p{color:var(--muted);font-size:0.85rem;margin-bottom:12px;line-height:1.5;}
+.dsetup-row{display:flex;gap:10px;}
+.dsetup-input{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  border-radius:8px;padding:9px 12px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.9rem;outline:none;}
+.dsetup-input:focus{border-color:var(--accent);}
+.dsetup-btn{padding:9px 18px;background:linear-gradient(135deg,#5865F2,#7289da);
+  border:none;border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;
+  font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.dsetup-btn:hover{opacity:0.9;}
+
+/* TRANSAKSI */
+.trx-form{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:24px;}
+.trx-form h4{color:var(--accent);font-family:'Orbitron',sans-serif;font-size:0.9rem;margin-bottom:16px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-size:0.8rem;font-weight:600;color:var(--muted);letter-spacing:0.5px;}
+.form-input,.form-select{background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  border-radius:8px;padding:9px 12px;color:var(--text);font-family:'Rajdhani',sans-serif;
+  font-size:0.92rem;outline:none;transition:border-color 0.2s;}
+.form-input:focus,.form-select:focus{border-color:var(--accent);}
+.form-select option{background:var(--card);}
+.submit-trx{padding:10px 24px;background:linear-gradient(135deg,#5865F2,#7289da);
+  border:none;border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;
+  font-size:0.95rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.submit-trx:hover{opacity:0.9;transform:translateY(-1px);}
+
+/* TRX LIST */
+.trx-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:16px;margin-bottom:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.trx-info{}
+.trx-user{font-weight:700;font-size:1rem;margin-bottom:4px;}
+.trx-detail{color:var(--muted);font-size:0.85rem;line-height:1.6;}
+.trx-meta{text-align:right;}
+.trx-price{color:var(--accent3);font-family:'Orbitron',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:8px;}
+.trx-status{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:700;}
+.trx-status.pending{background:rgba(245,158,11,0.15);color:var(--accent3);}
+.trx-status.done{background:rgba(16,185,129,0.15);color:var(--accent4);}
+.trx-actions{display:flex;gap:6px;margin-top:8px;justify-content:flex-end;}
+.trx-done-btn{padding:5px 12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);
+  color:var(--accent4);border-radius:6px;cursor:pointer;font-family:'Rajdhani',sans-serif;
+  font-size:0.8rem;font-weight:700;transition:all 0.2s;}
+.trx-done-btn:hover{background:rgba(16,185,129,0.25);}
+.trx-del-btn{padding:5px 12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+  color:var(--red);border-radius:6px;cursor:pointer;font-family:'Rajdhani',sans-serif;
+  font-size:0.8rem;font-weight:700;transition:all 0.2s;}
+.trx-del-btn:hover{background:rgba(239,68,68,0.25);}
+.trx-time{font-size:0.75rem;color:var(--muted);margin-top:4px;}
+.empty-msg{text-align:center;color:var(--muted);padding:32px;font-size:0.9rem;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--accent);
+  color:var(--text);padding:12px 20px;border-radius:10px;font-weight:600;font-size:0.9rem;
+  transform:translateY(80px);opacity:0;transition:all 0.3s;z-index:999;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.err{border-color:var(--red);color:var(--red);}
+
+/* MODAL ADD ITEM */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(8px);z-index:200;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:28px;max-width:420px;width:100%;position:relative;animation:popIn 0.3s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.08);
+  border:none;color:var(--muted);width:30px;height:30px;border-radius:8px;
+  cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{color:var(--text);}
+.modal h3{font-family:'Orbitron',sans-serif;font-size:1rem;color:var(--accent);margin-bottom:20px;}
+.modal-action{width:100%;padding:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:10px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;cursor:pointer;margin-top:8px;}
+.modal-action:hover{opacity:0.9;}
+
+@media(max-width:600px){
+  .form-grid{grid-template-columns:1fr;}
+  .dsetup-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h2>🔐 ADMIN PANEL</h2>
+    <p>Kawara Store — Akses Admin</p>
+    <input class="login-input" id="inp-user" type="text" placeholder="Username" autocomplete="off">
+    <input class="login-input" id="inp-pass" type="password" placeholder="Password" autocomplete="off">
+    <button class="login-btn" onclick="doLogin()">Masuk</button>
+    <div class="login-err" id="login-err">❌ Username atau password salah!</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <header>
+    <div class="header-inner">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="logo">KAWARA<span>STORE</span></div>
+        <div class="admin-tag">ADMIN</div>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </header>
+  <div class="admin-nav">
+    <div class="admin-nav-inner">
+      <button class="anav-btn active" onclick="showAdminPage('trx',this)">📋 Transaksi</button>
+      <button class="anav-btn" onclick="showAdminPage('robux',this)">💎 Robux</button>
+      <button class="anav-btn" onclick="showAdminPage('fishit',this)">🎣 Fish It</button>
+      <button class="anav-btn" onclick="showAdminPage('forge',this)">⚒️ The Forge</button>
+      <button class="anav-btn" onclick="showAdminPage('discord',this)">🔧 Discord</button>
+    </div>
+  </div>
+
+  <div class="admin-content">
+
+    <!-- TRANSAKSI -->
+    <div class="apage active" id="apage-trx">
+      <div class="trx-form">
+        <h4>➕ Tambah Transaksi Baru</h4>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label">USERNAME ROBLOX PEMBELI</label>
+            <input class="form-input" id="trx-user" placeholder="Username...">
+          </div>
+          <div class="form-field">
+            <label class="form-label">KATEGORI PEMBELIAN</label>
+            <input class="form-input" id="trx-category" placeholder="misal: Fish It VIP + LUCK">
+          </div>
+          <div class="form-field">
+            <label class="form-label">TOTAL HARGA</label>
+            <input class="form-input" id="trx-price" placeholder="misal: 45K">
+          </div>
+          <div class="form-field">
+            <label class="form-label">STATUS</label>
+            <select class="form-select" id="trx-status">
+              <option value="pending">Pending</option>
+              <option value="done">Selesai</option>
+            </select>
+          </div>
+        </div>
+        <button class="submit-trx" onclick="addTransaction()">📤 Kirim ke Discord & Simpan</button>
+      </div>
+      <div class="section-header"><div class="sec-title">📋 RIWAYAT TRANSAKSI</div></div>
+      <div id="trx-list"></div>
+    </div>
+
+    <!-- ROBUX -->
+    <div class="apage" id="apage-robux">
+      <div class="section-header">
+        <div class="sec-title">💎 ROBUX VIA GAMEPASS</div>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>ROBUX</th><th>HARGA</th><th>GAMEPASS ID</th><th>STOK</th><th>AKSI</th></tr></thead>
+        <tbody id="admin-robux-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- FISH IT -->
+    <div class="apage" id="apage-fishit">
+      <div class="section-header">
+        <div class="sec-title">🎣 FISH IT — ITEM SHOP</div>
+        <button class="add-btn" onclick="openAddModal('fishit_shop')">+ Tambah Item</button>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>NAMA ITEM</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr></thead>
+        <tbody id="admin-fishit-shop"></tbody>
+      </table>
+      <div class="section-header">
+        <div class="sec-title">🎰 FISH IT — GACHA SKIN CRATES</div>
+        <button class="add-btn" onclick="openAddModal('fishit_gacha')">+ Tambah</button>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>NAMA ITEM</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr></thead>
+        <tbody id="admin-fishit-gacha"></tbody>
+      </table>
+      <div class="section-header">
+        <div class="sec-title">😂 FISH IT — EMOTE CRATES</div>
+        <button class="add-btn" onclick="openAddModal('fishit_emote')">+ Tambah</button>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>NAMA ITEM</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr></thead>
+        <tbody id="admin-fishit-emote"></tbody>
+      </table>
+    </div>
+
+    <!-- THE FORGE -->
+    <div class="apage" id="apage-forge">
+      <div class="section-header">
+        <div class="sec-title">⚒️ THE FORGE — PASSES</div>
+        <button class="add-btn" onclick="openAddModal('forge_passes')">+ Tambah</button>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>NAMA ITEM</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr></thead>
+        <tbody id="admin-forge-passes"></tbody>
+      </table>
+      <div class="section-header">
+        <div class="sec-title">🗿 THE FORGE — TOTEMS</div>
+        <button class="add-btn" onclick="openAddModal('forge_totems')">+ Tambah</button>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>NAMA ITEM</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr></thead>
+        <tbody id="admin-forge-totems"></tbody>
+      </table>
+      <div class="section-header">
+        <div class="sec-title">🔄 THE FORGE — REROLLS</div>
+        <button class="add-btn" onclick="openAddModal('forge_rerolls')">+ Tambah</button>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>NAMA ITEM</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr></thead>
+        <tbody id="admin-forge-rerolls"></tbody>
+      </table>
+    </div>
+
+    <!-- DISCORD SETUP -->
+    <div class="apage" id="apage-discord">
+      <div class="discord-setup">
+        <h4>🔧 Discord Webhook URL</h4>
+        <p>Masukkan URL webhook Discord kamu agar transaksi otomatis terkirim ke channel Discord.<br>
+        Cara buat: Discord → Edit Channel → Integrations → Webhooks → New Webhook → Copy Webhook URL</p>
+        <div class="dsetup-row">
+          <input class="dsetup-input" id="webhook-input" placeholder="https://discord.com/api/webhooks/...">
+          <button class="dsetup-btn" onclick="saveWebhook()">💾 Simpan</button>
+        </div>
+        <div id="webhook-status" style="color:var(--muted);font-size:0.82rem;margin-top:8px;"></div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;">
+        <h4 style="color:var(--accent);font-family:'Orbitron',sans-serif;font-size:0.9rem;margin-bottom:12px;">📖 Panduan</h4>
+        <ol style="color:var(--muted);font-size:0.88rem;line-height:2;padding-left:18px;">
+          <li>Pergi ke server Discord kamu</li>
+          <li>Klik kanan channel yang dituju → <strong style="color:var(--text)">Edit Channel</strong></li>
+          <li>Klik <strong style="color:var(--text)">Integrations</strong> → <strong style="color:var(--text)">Webhooks</strong></li>
+          <li>Klik <strong style="color:var(--text)">New Webhook</strong> → beri nama → <strong style="color:var(--text)">Copy Webhook URL</strong></li>
+          <li>Paste URL di kotak di atas → Simpan</li>
+          <li>Sekarang setiap transaksi baru akan otomatis terkirim ke Discord!</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL ADD ITEM -->
+<div class="modal-overlay" id="add-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAddModal()">✕</button>
+    <h3>➕ TAMBAH ITEM BARU</h3>
+    <input type="hidden" id="add-category">
+    <label class="form-label" style="display:block;margin-bottom:6px;">NAMA ITEM</label>
+    <input class="form-input" id="add-name" placeholder="Nama item..." style="width:100%;margin-bottom:12px;">
+    <label class="form-label" style="display:block;margin-bottom:6px;">HARGA</label>
+    <input class="form-input" id="add-harga" placeholder="misal: 45K" style="width:100%;margin-bottom:12px;">
+    <label class="form-label" style="display:block;margin-bottom:6px;">STOK</label>
+    <input class="form-input" id="add-stock" type="number" placeholder="10" style="width:100%;margin-bottom:12px;">
+    <button class="modal-action" onclick="submitAdd()">✅ Tambah Item</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ========== AUTH ==========
+const CREDS = { user:'kawarastore', pass:'Hanz1247rrr*' };
+
+function doLogin() {
+  const u = document.getElementById('inp-user').value;
+  const p = document.getElementById('inp-pass').value;
+  if (u === CREDS.user && p === CREDS.pass) {
+    sessionStorage.setItem('kw_admin','1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    initAdmin();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+document.getElementById('inp-pass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+document.getElementById('inp-user').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+function doLogout() {
+  sessionStorage.removeItem('kw_admin');
+  location.reload();
+}
+if (sessionStorage.getItem('kw_admin') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-panel').style.display = 'block';
+}
+
+// ========== DATA ==========
+const DEFAULT_DATA = {
+  robux:[
+    {id:'r1',robux:50,harga:'4k',gamepass:'72',stock:99},
+    {id:'r2',robux:100,harga:'9k',gamepass:'143',stock:99},
+    {id:'r3',robux:200,harga:'18k',gamepass:'286',stock:99},
+    {id:'r4',robux:300,harga:'28k',gamepass:'429',stock:99},
+    {id:'r5',robux:400,harga:'38k',gamepass:'572',stock:99},
+    {id:'r6',robux:500,harga:'48k',gamepass:'715',stock:99},
+    {id:'r7',robux:600,harga:'58k',gamepass:'858',stock:99},
+    {id:'r8',robux:700,harga:'68k',gamepass:'1000',stock:99},
+    {id:'r9',robux:800,harga:'78k',gamepass:'1143',stock:99},
+    {id:'r10',robux:900,harga:'88k',gamepass:'1286',stock:99},
+    {id:'r11',robux:1000,harga:'98k',gamepass:'1430',stock:99},
+  ],
+  fishit_shop:[
+    {id:'fs1',name:'Rod Skin: Bunny Staff',harga:'85K',stock:10},
+    {id:'fs2',name:'Rod Skin: Easter Parasol',harga:'85K',stock:10},
+    {id:'fs3',name:'Rod Skin: Lighting Pack',harga:'—',stock:10},
+    {id:'fs4',name:'Easter Pack',harga:'25K',stock:10},
+    {id:'fs5',name:'VIP + LUCK',harga:'45K',stock:10},
+    {id:'fs6',name:'+ Mutations',harga:'25K',stock:10},
+    {id:'fs7',name:'Advanced Luck',harga:'50K',stock:10},
+    {id:'fs8',name:'Extra Luck',harga:'25K',stock:10},
+    {id:'fs9',name:'Double XP',harga:'18K',stock:10},
+    {id:'fs10',name:'Mini Hoverboard',harga:'20K',stock:10},
+    {id:'fs11',name:'Sell Anywhere',harga:'30K',stock:10},
+    {id:'fs12',name:'Small Luck',harga:'5K',stock:10},
+    {id:'fs13',name:'Hyper Boat Pack',harga:'95K',stock:10},
+  ],
+  fishit_gacha:[
+    {id:'fg1',name:'Azure Crates — 1x Spin',harga:'11K',stock:99},
+    {id:'fg2',name:'Azure Crates — 5x Spin',harga:'53K',stock:99},
+    {id:'fg3',name:'Pirate — 1x Spin',harga:'11K',stock:99},
+    {id:'fg4',name:'Pirate — 5x Spin',harga:'53K',stock:99},
+    {id:'fg5',name:'Elderwood — 1x Spin',harga:'10K',stock:99},
+    {id:'fg6',name:'Elderwood — 5x Spin',harga:'48K',stock:99},
+    {id:'fg7',name:'Luxury — 1x Spin',harga:'10K',stock:99},
+    {id:'fg8',name:'Luxury — 5x Spin',harga:'48K',stock:99},
+  ],
+  fishit_emote:[
+    {id:'fe1',name:'Emote Crates — 1x Spin',harga:'5K',stock:99},
+    {id:'fe2',name:'Emote Crates — 5x Spin',harga:'23K',stock:99},
+  ],
+  forge_passes:[
+    {id:'fp1',name:'Fast Forge',harga:'10K',stock:10},
+    {id:'fp2',name:'Supporter',harga:'15K',stock:10},
+    {id:'fp3',name:'Forge Anywhere',harga:'20K',stock:10},
+    {id:'fp4',name:'Better Forge',harga:'170K',stock:10},
+    {id:'fp5',name:'Sell Anywhere',harga:'13K',stock:10},
+    {id:'fp6',name:'Double Storage',harga:'8K',stock:10},
+  ],
+  forge_totems:[
+    {id:'ft1',name:'XP Totem x3',harga:'5K',stock:10},
+    {id:'ft2',name:'Luck Totem x3',harga:'6K',stock:10},
+    {id:'ft3',name:'Miner Totem x3',harga:'6K',stock:10},
+    {id:'ft4',name:'Warrior Totem x3',harga:'6K',stock:10},
+    {id:'ft5',name:'Vitality x3',harga:'6K',stock:10},
+  ],
+  forge_rerolls:[
+    {id:'fr1',name:'Buy 1 Reroll',harga:'3K',stock:99},
+    {id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},
+    {id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99},
+  ],
+};
+
+function getData() {
+  try { const d=localStorage.getItem('kawara_data'); if(d) return JSON.parse(d); } catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+function saveData(data) { localStorage.setItem('kawara_data', JSON.stringify(data)); }
+function getTrx() { try{ const d=localStorage.getItem('kawara_trx'); if(d) return JSON.parse(d); }catch(e){} return []; }
+function saveTrx(arr) { localStorage.setItem('kawara_trx', JSON.stringify(arr)); }
+function getWebhook() { return localStorage.getItem('kawara_webhook')||''; }
+function saveWebhookUrl(url) { localStorage.setItem('kawara_webhook',url); }
+
+// ========== INIT ==========
+function initAdmin() {
+  const wh = getWebhook();
+  if(wh) {
+    document.getElementById('webhook-input').value = wh;
+    document.getElementById('webhook-status').textContent = '✅ Webhook tersimpan: ' + wh.substring(0,40) + '...';
+  }
+  renderAdminAll();
+}
+
+function renderAdminAll() {
+  const data = getData();
+  renderAdminRobux(data.robux);
+  renderAdminItems('admin-fishit-shop', data.fishit_shop, 'fishit_shop');
+  renderAdminItems('admin-fishit-gacha', data.fishit_gacha, 'fishit_gacha');
+  renderAdminItems('admin-fishit-emote', data.fishit_emote, 'fishit_emote');
+  renderAdminItems('admin-forge-passes', data.forge_passes, 'forge_passes');
+  renderAdminItems('admin-forge-totems', data.forge_totems, 'forge_totems');
+  renderAdminItems('admin-forge-rerolls', data.forge_rerolls, 'forge_rerolls');
+  renderTrxList();
+}
+
+function renderAdminRobux(items) {
+  const tbody = document.getElementById('admin-robux-tbody');
+  tbody.innerHTML = items.map(item => `
+    <tr>
+      <td><strong>${item.robux} Robux</strong></td>
+      <td><input class="edit-input" id="rh-${item.id}" value="${item.harga}"></td>
+      <td><input class="edit-input" id="rgp-${item.id}" value="${item.gamepass}"></td>
+      <td><input class="edit-input" id="rs-${item.id}" type="number" value="${item.stock}" style="width:70px;"></td>
+      <td>
+        <button class="icon-btn save" onclick="saveRobux('${item.id}')">💾 Simpan</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function saveRobux(id) {
+  const data = getData();
+  const idx = data.robux.findIndex(r=>r.id===id);
+  if(idx===-1) return;
+  data.robux[idx].harga = document.getElementById('rh-'+id).value.trim();
+  data.robux[idx].gamepass = document.getElementById('rgp-'+id).value.trim();
+  data.robux[idx].stock = parseInt(document.getElementById('rs-'+id).value)||0;
+  saveData(data);
+  showToast('✅ Data robux disimpan!');
+}
+
+function renderAdminItems(tbodyId, items, category) {
+  const tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = items.map(item => `
+    <tr>
+      <td><input class="edit-input name-input" id="n-${item.id}" value="${item.name}"></td>
+      <td><input class="edit-input" id="h-${item.id}" value="${item.harga}"></td>
+      <td><input class="edit-input" id="s-${item.id}" type="number" value="${item.stock}" style="width:70px;"></td>
+      <td>
+        <button class="icon-btn save" onclick="saveItem('${category}','${item.id}')">💾</button>
+        <button class="icon-btn del" onclick="deleteItem('${category}','${item.id}')">🗑️</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function saveItem(category, id) {
+  const data = getData();
+  const arr = data[category];
+  const idx = arr.findIndex(i=>i.id===id);
+  if(idx===-1) return;
+  arr[idx].name = document.getElementById('n-'+id).value.trim();
+  arr[idx].harga = document.getElementById('h-'+id).value.trim();
+  arr[idx].stock = parseInt(document.getElementById('s-'+id).value)||0;
+  data[category] = arr;
+  saveData(data);
+  showToast('✅ Item disimpan!');
+}
+
+function deleteItem(category, id) {
+  if(!confirm('Hapus item ini?')) return;
+  const data = getData();
+  data[category] = data[category].filter(i=>i.id!==id);
+  saveData(data);
+  renderAdminAll();
+  showToast('🗑️ Item dihapus!');
+}
+
+// ========== ADD ITEM MODAL ==========
+function openAddModal(category) {
+  document.getElementById('add-category').value = category;
+  document.getElementById('add-name').value = '';
+  document.getElementById('add-harga').value = '';
+  document.getElementById('add-stock').value = '10';
+  document.getElementById('add-modal').classList.add('open');
+}
+function closeAddModal() { document.getElementById('add-modal').classList.remove('open'); }
+function submitAdd() {
+  const cat = document.getElementById('add-category').value;
+  const name = document.getElementById('add-name').value.trim();
+  const harga = document.getElementById('add-harga').value.trim();
+  const stock = parseInt(document.getElementById('add-stock').value)||0;
+  if(!name||!harga) { showToast('❌ Isi nama dan harga!', true); return; }
+  const data = getData();
+  const newId = cat+'_'+Date.now();
+  data[cat].push({id:newId, name, harga, stock});
+  saveData(data);
+  closeAddModal();
+  renderAdminAll();
+  showToast('✅ Item ditambahkan!');
+}
+
+// ========== WEBHOOK ==========
+function saveWebhook() {
+  const url = document.getElementById('webhook-input').value.trim();
+  if(!url) { showToast('❌ Masukkan URL webhook!', true); return; }
+  saveWebhookUrl(url);
+  document.getElementById('webhook-status').textContent = '✅ Webhook tersimpan: ' + url.substring(0,40) + '...';
+  showToast('✅ Webhook Discord disimpan!');
+}
+
+// ========== DISCORD SEND ==========
+async function sendToDiscord(trx) {
+  const webhookUrl = getWebhook();
+  if(!webhookUrl) { showToast('⚠️ Webhook Discord belum diset! Transaksi disimpan lokal.', true); return; }
+  const embed = {
+    embeds:[{
+      title:'🛒 Transaksi Baru — Kawara Store',
+      color:0x00d4ff,
+      fields:[
+        {name:'👤 Username Roblox',value:trx.username,inline:true},
+        {name:'📦 Kategori',value:trx.category,inline:true},
+        {name:'💰 Total Harga',value:trx.price,inline:true},
+        {name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},
+        {name:'🕐 Waktu',value:trx.time,inline:false},
+      ],
+      footer:{text:'Kawara Store Admin Panel'},
+    }]
+  };
+  try {
+    const r = await fetch(webhookUrl, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(embed)});
+    if(r.ok) { showToast('✅ Terkirim ke Discord!'); }
+    else { showToast('⚠️ Gagal kirim ke Discord. Cek webhook URL.', true); }
+  } catch(e) {
+    showToast('⚠️ Gagal kirim ke Discord: '+e.message, true);
+  }
+}
+
+async function deleteFromDiscord(trx) {
+  // Discord webhook tidak support delete pesan melalui webhook biasa.
+  // User harus hapus manual di Discord, atau gunakan bot token.
+  showToast('ℹ️ Pesan Discord harus dihapus manual di channel Discord.', true);
+}
+
+// ========== TRANSAKSI ==========
+async function addTransaction() {
+  const username = document.getElementById('trx-user').value.trim();
+  const category = document.getElementById('trx-category').value.trim();
+  const price = document.getElementById('trx-price').value.trim();
+  const status = document.getElementById('trx-status').value;
+  if(!username||!category||!price) { showToast('❌ Isi semua field transaksi!', true); return; }
+  const trx = {
+    id: 'trx_'+Date.now(),
+    username, category, price, status,
+    time: new Date().toLocaleString('id-ID'),
+    discordSent: false,
+  };
+  const arr = getTrx();
+  arr.unshift(trx);
+  saveTrx(arr);
+  document.getElementById('trx-user').value='';
+  document.getElementById('trx-category').value='';
+  document.getElementById('trx-price').value='';
+  document.getElementById('trx-status').value='pending';
+  await sendToDiscord(trx);
+  renderTrxList();
+}
+
+function updateTrxStatus(id, status) {
+  const arr = getTrx();
+  const idx = arr.findIndex(t=>t.id===id);
+  if(idx===-1) return;
+  arr[idx].status = status;
+  saveTrx(arr);
+  renderTrxList();
+  showToast('✅ Status transaksi diupdate!');
+}
+
+function deleteTrx(id) {
+  if(!confirm('Hapus transaksi ini?')) return;
+  const arr = getTrx();
+  const trx = arr.find(t=>t.id===id);
+  const newArr = arr.filter(t=>t.id!==id);
+  saveTrx(newArr);
+  renderTrxList();
+  if(trx) deleteFromDiscord(trx);
+  showToast('🗑️ Transaksi dihapus!');
+}
+
+function renderTrxList() {
+  const arr = getTrx();
+  const el = document.getElementById('trx-list');
+  if(!arr.length) { el.innerHTML='<div class="empty-msg">Belum ada transaksi.</div>'; return; }
+  el.innerHTML = arr.map(t => `
+    <div class="trx-card">
+      <div class="trx-info">
+        <div class="trx-user">👤 ${t.username}</div>
+        <div class="trx-detail">📦 ${t.category}<br>🕐 ${t.time}</div>
+      </div>
+      <div class="trx-meta">
+        <div class="trx-price">${t.price}</div>
+        <span class="trx-status ${t.status}">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span>
+        <div class="trx-actions">
+          ${t.status!=='done'?`<button class="trx-done-btn" onclick="updateTrxStatus('${t.id}','done')">✅ Selesai</button>`:''}
+          <button class="trx-del-btn" onclick="deleteTrx('${t.id}')">🗑️ Hapus</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ========== NAV ==========
+function showAdminPage(page, btn) {
+  document.querySelectorAll('.apage').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.anav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('apage-'+page).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ========== TOAST ==========
+function showToast(msg, isErr=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isErr?' err':'');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+// ========== MODAL CLOSE ON BG ==========
+document.getElementById('add-modal').addEventListener('click', function(e){
+  if(e.target===this) closeAddModal();
+});
+
+// ========== INIT IF ALREADY LOGGED ==========
+if (sessionStorage.getItem('kw_admin')==='1') initAdmin();
+</script>
+</body>
+</html>
