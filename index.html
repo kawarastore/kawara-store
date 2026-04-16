@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kawara Store 🎮</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#050810; --surface:#0d1120; --card:#111827; --card2:#0f1a2e;
+  --accent:#00d4ff; --accent2:#7c3aed; --accent3:#f59e0b; --accent4:#10b981;
+  --red:#ef4444; --text:#e2e8f0; --muted:#64748b; --border:rgba(0,212,255,0.15);
+  --glow:0 0 20px rgba(0,212,255,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:radial-gradient(ellipse at 20% 50%,rgba(124,58,237,0.08) 0%,transparent 50%),
+  radial-gradient(ellipse at 80% 20%,rgba(0,212,255,0.06) 0%,transparent 50%);
+  pointer-events:none;z-index:0;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:0 16px;}
+.nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px;flex-wrap:wrap;}
+.logo{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:900;color:var(--accent);letter-spacing:2px;text-shadow:var(--glow);white-space:nowrap;}
+.logo span{color:var(--accent3);}
+.tabs{display:flex;gap:2px;flex-wrap:wrap;}
+.tab-btn{background:none;border:none;color:var(--muted);font-family:'Rajdhani',sans-serif;
+  font-size:0.9rem;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;
+  transition:all 0.25s;letter-spacing:0.5px;position:relative;}
+.tab-btn:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+.tab-btn.active{color:var(--accent);background:rgba(0,212,255,0.08);}
+.tab-btn.active::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:60%;height:2px;background:var(--accent);border-radius:2px;}
+
+/* MAIN */
+main{max-width:1100px;margin:auto;padding:28px 16px;position:relative;z-index:1;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn 0.4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero{text-align:center;padding:48px 20px 36px;}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:2.4rem;font-weight:900;line-height:1.1;margin-bottom:12px;}
+.hero h1 span{color:var(--accent);text-shadow:var(--glow);}
+.hero p{color:var(--muted);font-size:1.05rem;max-width:480px;margin:0 auto 28px;}
+.hero-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;}
+.badge{display:flex;align-items:center;gap:8px;padding:8px 16px;
+  background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:0.9rem;font-weight:600;}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent4);box-shadow:0 0 8px var(--accent4);}
+
+/* DISCORD BTN */
+.discord-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;
+  background:linear-gradient(135deg,#5865F2,#7289da);color:#fff;
+  border:none;border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;
+  cursor:pointer;text-decoration:none;letter-spacing:0.5px;
+  transition:all 0.25s;box-shadow:0 4px 20px rgba(88,101,242,0.4);}
+.discord-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(88,101,242,0.6);}
+.discord-btn svg{width:22px;height:22px;}
+
+/* SECTION TITLE */
+.sec-title{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent3);
+  letter-spacing:2px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(245,158,11,0.2);}
+.subsec-title{font-family:'Orbitron',sans-serif;font-size:0.85rem;font-weight:700;color:var(--accent2);
+  letter-spacing:1.5px;margin:20px 0 10px;padding:6px 12px;background:rgba(124,58,237,0.1);
+  border-left:3px solid var(--accent2);border-radius:0 6px 6px 0;}
+
+/* GRID ITEMS */
+.items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:28px;}
+.item-card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:16px;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;
+}
+.item-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent));opacity:0;transition:opacity 0.25s;}
+.item-card:hover{border-color:rgba(0,212,255,0.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.item-card:hover::before{opacity:1;}
+.item-name{font-weight:700;font-size:1rem;margin-bottom:6px;line-height:1.3;}
+.item-price{color:var(--accent3);font-family:'Orbitron',sans-serif;font-size:0.85rem;font-weight:700;}
+.item-stock{font-size:0.78rem;color:var(--muted);margin-top:4px;}
+.item-stock.low{color:#f87171;}
+.item-stock.out{color:var(--red);}
+.stock-badge{display:inline-flex;align-items:center;gap:4px;}
+.stock-dot{width:6px;height:6px;border-radius:50%;background:var(--accent4);}
+.stock-dot.low{background:#f87171;}
+.stock-dot.out{background:var(--red);}
+.buy-btn{margin-top:12px;width:100%;padding:8px;background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(124,58,237,0.1));
+  border:1px solid rgba(0,212,255,0.3);border-radius:8px;color:var(--accent);
+  font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;
+  transition:all 0.2s;letter-spacing:0.5px;}
+.buy-btn:hover{background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(124,58,237,0.2));border-color:var(--accent);}
+.buy-btn:disabled{opacity:0.4;cursor:not-allowed;}
+
+/* ROBUX TABLE */
+.robux-table{width:100%;border-collapse:collapse;margin-bottom:12px;}
+.robux-table th{background:rgba(0,212,255,0.08);color:var(--accent);font-family:'Orbitron',sans-serif;
+  font-size:0.75rem;letter-spacing:1px;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+.robux-table td{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.95rem;}
+.robux-table tr:hover td{background:rgba(255,255,255,0.02);}
+.robux-table tr:hover td:first-child{color:var(--accent);}
+.robux-table .price-col{color:var(--accent3);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85rem;}
+.robux-table .gp-col{color:var(--muted);font-size:0.85rem;}
+.row-buy{cursor:pointer;transition:all 0.2s;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(8px);z-index:200;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:28px;max-width:460px;width:100%;position:relative;animation:popIn 0.3s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.08);
+  border:none;color:var(--muted);width:32px;height:32px;border-radius:8px;
+  cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{color:var(--text);background:rgba(255,255,255,0.14);}
+.modal h3{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.modal-item-name{color:var(--text);font-size:1.05rem;font-weight:600;margin-bottom:4px;}
+.modal-price{color:var(--accent3);font-family:'Orbitron',sans-serif;font-size:0.9rem;margin-bottom:20px;}
+.input-label{font-size:0.85rem;font-weight:600;color:var(--muted);margin-bottom:6px;display:block;letter-spacing:0.5px;}
+.input-field{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px;color:var(--text);font-family:'Rajdhani',sans-serif;
+  font-size:1rem;outline:none;margin-bottom:16px;transition:border-color 0.2s;}
+.input-field:focus{border-color:var(--accent);}
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.pay-btn{padding:12px;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  border-radius:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.95rem;
+  font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.pay-btn:hover,.pay-btn.selected{background:rgba(0,212,255,0.1);border-color:var(--accent);color:var(--accent);}
+.modal-action{width:100%;padding:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:10px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;}
+.modal-action:hover{opacity:0.9;transform:translateY(-1px);}
+.modal-action:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.wa-btn{width:100%;padding:13px;background:linear-gradient(135deg,#25d366,#128c7e);
+  border:none;border-radius:10px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;
+  display:flex;align-items:center;justify-content:center;gap:10px;}
+.wa-btn:hover{opacity:0.9;transform:translateY(-1px);}
+.confirm-summary{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;
+  padding:16px;margin-bottom:20px;}
+.confirm-row{display:flex;justify-content:space-between;align-items:center;
+  padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.9rem;}
+.confirm-row:last-child{border-bottom:none;}
+.confirm-row .label{color:var(--muted);}
+.confirm-row .value{color:var(--text);font-weight:600;}
+
+/* INFO BOX */
+.info-box{background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);
+  border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:0.9rem;color:var(--muted);line-height:1.6;}
+.info-box strong{color:var(--accent);}
+
+/* FOOTER */
+footer{text-align:center;padding:32px 16px;color:var(--muted);font-size:0.85rem;
+  border-top:1px solid var(--border);margin-top:40px;position:relative;z-index:1;}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero h1{font-size:1.7rem;}
+  .tabs{gap:0;}
+  .tab-btn{padding:6px 10px;font-size:0.82rem;}
+  .logo{font-size:1rem;}
+  .items-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">KAWARA<span>STORE</span></div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showPage('beranda',this)">🏠 Beranda</button>
+      <button class="tab-btn" onclick="showPage('robux',this)">💎 Robux</button>
+      <button class="tab-btn" onclick="showPage('fishit',this)">🎣 Fish It</button>
+      <button class="tab-btn" onclick="showPage('forge',this)">⚒️ The Forge</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===== BERANDA ===== -->
+  <div class="page active" id="page-beranda">
+    <div class="hero">
+      <h1>Selamat Datang di<br><span>Kawara Store</span></h1>
+      <p>Jual beli item Roblox terpercaya. Robux, Fish It, The Forge — semua ada di sini!</p>
+      <div class="hero-badges">
+        <div class="badge"><span class="dot"></span> Terpercaya</div>
+        <div class="badge"><span class="dot"></span> Harga Terjangkau</div>
+        <div class="badge"><span class="dot"></span> Respon Cepat</div>
+      </div>
+      <a href="https://discord.gg/AJBXUbwdhZ" target="_blank" class="discord-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        Gabung Discord Kami
+      </a>
+    </div>
+    <div class="info-box">
+      💡 <strong>Cara Beli:</strong> Klik item yang ingin dibeli → Isi username Roblox → Pilih metode pembayaran → Hubungi admin via WhatsApp untuk proses pesanan.
+    </div>
+  </div>
+
+  <!-- ===== ROBUX ===== -->
+  <div class="page" id="page-robux">
+    <div class="sec-title">💎 ROBUX VIA GAMEPASS</div>
+    <div class="info-box">
+      Pembelian Robux dilakukan via <strong>Gamepass Roblox</strong>. Klik baris sesuai nominal yang diinginkan untuk memesan.
+    </div>
+    <table class="robux-table">
+      <thead>
+        <tr>
+          <th>ROBUX</th>
+          <th>HARGA</th>
+          <th>GAMEPASS ID</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="robux-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- ===== FISH IT ===== -->
+  <div class="page" id="page-fishit">
+    <div class="sec-title">🎣 FISH IT</div>
+    <div class="subsec-title">📦 ITEM SHOP</div>
+    <div class="items-grid" id="fishit-shop-grid"></div>
+    <div class="subsec-title">🎰 GACHA — SKIN CRATES</div>
+    <div class="items-grid" id="fishit-gacha-grid"></div>
+    <div class="subsec-title">😂 GACHA — EMOTE CRATES</div>
+    <div class="items-grid" id="fishit-emote-grid"></div>
+  </div>
+
+  <!-- ===== THE FORGE ===== -->
+  <div class="page" id="page-forge">
+    <div class="sec-title">⚒️ THE FORGE</div>
+    <div class="subsec-title">🎫 PASSES</div>
+    <div class="items-grid" id="forge-passes-grid"></div>
+    <div class="subsec-title">🗿 TOTEMS</div>
+    <div class="items-grid" id="forge-totems-grid"></div>
+    <div class="subsec-title">🔄 REROLLS</div>
+    <div class="items-grid" id="forge-rerolls-grid"></div>
+  </div>
+
+</main>
+
+<!-- MODAL STEP 1: Username -->
+<div class="modal-overlay" id="modal-step1">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAllModals()">✕</button>
+    <h3>🛒 BELI ITEM</h3>
+    <div class="modal-item-name" id="m1-name"></div>
+    <div class="modal-price" id="m1-price"></div>
+    <label class="input-label">USERNAME ROBLOX KAMU</label>
+    <input class="input-field" id="m1-username" type="text" placeholder="Masukkan username Roblox...">
+    <button class="modal-action" onclick="goStep2()">Lanjut Pilih Pembayaran →</button>
+  </div>
+</div>
+
+<!-- MODAL STEP 2: Pembayaran -->
+<div class="modal-overlay" id="modal-step2">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAllModals()">✕</button>
+    <h3>💳 PILIH PEMBAYARAN</h3>
+    <div class="modal-item-name" id="m2-name"></div>
+    <div class="modal-price" id="m2-price"></div>
+    <br>
+    <div class="pay-methods">
+      <button class="pay-btn" onclick="selectPay(this,'SeaBank')">🏦 SeaBank</button>
+      <button class="pay-btn" onclick="selectPay(this,'DANA')">💙 DANA</button>
+      <button class="pay-btn" onclick="selectPay(this,'GoPay')">💚 GoPay</button>
+      <button class="pay-btn" onclick="selectPay(this,'QRIS')">📱 QRIS</button>
+    </div>
+    <button class="modal-action" id="btn-step2-next" onclick="goStep3()" disabled>Konfirmasi Pesanan →</button>
+  </div>
+</div>
+
+<!-- MODAL STEP 3: Konfirmasi + WA -->
+<div class="modal-overlay" id="modal-step3">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAllModals()">✕</button>
+    <h3>✅ KONFIRMASI PESANAN</h3>
+    <br>
+    <div class="confirm-summary" id="m3-summary"></div>
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.5;">
+      Klik tombol di bawah untuk menghubungi admin via WhatsApp. Pesanan akan diproses setelah konfirmasi pembayaran.
+    </p>
+    <button class="wa-btn" onclick="openWhatsApp()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hubungi Admin via WhatsApp
+    </button>
+  </div>
+</div>
+
+<footer>
+  © 2025 Kawara Store — Jual Beli Item Roblox Terpercaya &nbsp;|&nbsp;
+  <a href="https://discord.gg/AJBXUbwdhZ" target="_blank" style="color:var(--accent);text-decoration:none;">Discord</a>
+</footer>
+
+<script>
+// ========== DATA STORE (baca dari localStorage, fallback default) ==========
+const DEFAULT_DATA = {
+  robux: [
+    {id:'r1',robux:50,harga:'4k',gamepass:'72',stock:99},
+    {id:'r2',robux:100,harga:'9k',gamepass:'143',stock:99},
+    {id:'r3',robux:200,harga:'18k',gamepass:'286',stock:99},
+    {id:'r4',robux:300,harga:'28k',gamepass:'429',stock:99},
+    {id:'r5',robux:400,harga:'38k',gamepass:'572',stock:99},
+    {id:'r6',robux:500,harga:'48k',gamepass:'715',stock:99},
+    {id:'r7',robux:600,harga:'58k',gamepass:'858',stock:99},
+    {id:'r8',robux:700,harga:'68k',gamepass:'1000',stock:99},
+    {id:'r9',robux:800,harga:'78k',gamepass:'1143',stock:99},
+    {id:'r10',robux:900,harga:'88k',gamepass:'1286',stock:99},
+    {id:'r11',robux:1000,harga:'98k',gamepass:'1430',stock:99},
+  ],
+  fishit_shop: [
+    {id:'fs1',name:'Rod Skin: Bunny Staff',harga:'85K',stock:10},
+    {id:'fs2',name:'Rod Skin: Easter Parasol',harga:'85K',stock:10},
+    {id:'fs3',name:'Rod Skin: Lighting Pack',harga:'—',stock:10},
+    {id:'fs4',name:'Easter Pack',harga:'25K',stock:10},
+    {id:'fs5',name:'VIP + LUCK',harga:'45K',stock:10},
+    {id:'fs6',name:'+ Mutations',harga:'25K',stock:10},
+    {id:'fs7',name:'Advanced Luck',harga:'50K',stock:10},
+    {id:'fs8',name:'Extra Luck',harga:'25K',stock:10},
+    {id:'fs9',name:'Double XP',harga:'18K',stock:10},
+    {id:'fs10',name:'Mini Hoverboard',harga:'20K',stock:10},
+    {id:'fs11',name:'Sell Anywhere',harga:'30K',stock:10},
+    {id:'fs12',name:'Small Luck',harga:'5K',stock:10},
+    {id:'fs13',name:'Hyper Boat Pack',harga:'95K',stock:10},
+  ],
+  fishit_gacha: [
+    {id:'fg1',name:'Azure Crates — 1x Spin',harga:'11K',stock:99},
+    {id:'fg2',name:'Azure Crates — 5x Spin',harga:'53K',stock:99},
+    {id:'fg3',name:'Pirate — 1x Spin',harga:'11K',stock:99},
+    {id:'fg4',name:'Pirate — 5x Spin',harga:'53K',stock:99},
+    {id:'fg5',name:'Elderwood — 1x Spin',harga:'10K',stock:99},
+    {id:'fg6',name:'Elderwood — 5x Spin',harga:'48K',stock:99},
+    {id:'fg7',name:'Luxury — 1x Spin',harga:'10K',stock:99},
+    {id:'fg8',name:'Luxury — 5x Spin',harga:'48K',stock:99},
+  ],
+  fishit_emote: [
+    {id:'fe1',name:'Emote Crates — 1x Spin',harga:'5K',stock:99},
+    {id:'fe2',name:'Emote Crates — 5x Spin',harga:'23K',stock:99},
+  ],
+  forge_passes: [
+    {id:'fp1',name:'Fast Forge',harga:'10K',stock:10},
+    {id:'fp2',name:'Supporter',harga:'15K',stock:10},
+    {id:'fp3',name:'Forge Anywhere',harga:'20K',stock:10},
+    {id:'fp4',name:'Better Forge',harga:'170K',stock:10},
+    {id:'fp5',name:'Sell Anywhere',harga:'13K',stock:10},
+    {id:'fp6',name:'Double Storage',harga:'8K',stock:10},
+  ],
+  forge_totems: [
+    {id:'ft1',name:'XP Totem x3',harga:'5K',stock:10},
+    {id:'ft2',name:'Luck Totem x3',harga:'6K',stock:10},
+    {id:'ft3',name:'Miner Totem x3',harga:'6K',stock:10},
+    {id:'ft4',name:'Warrior Totem x3',harga:'6K',stock:10},
+    {id:'ft5',name:'Vitality x3',harga:'6K',stock:10},
+  ],
+  forge_rerolls: [
+    {id:'fr1',name:'Buy 1 Reroll',harga:'3K',stock:99},
+    {id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},
+    {id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99},
+  ],
+};
+
+function getData() {
+  try {
+    const d = localStorage.getItem('kawara_data');
+    if (d) return JSON.parse(d);
+  } catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+
+// ========== STATE ORDER ==========
+let currentItem = null;
+let currentUsername = '';
+let currentPay = '';
+
+// ========== RENDER ==========
+function renderAll() {
+  const data = getData();
+  renderRobux(data.robux);
+  renderGrid('fishit-shop-grid', data.fishit_shop, 'Fish It');
+  renderGrid('fishit-gacha-grid', data.fishit_gacha, 'Fish It');
+  renderGrid('fishit-emote-grid', data.fishit_emote, 'Fish It');
+  renderGrid('forge-passes-grid', data.forge_passes, 'The Forge');
+  renderGrid('forge-totems-grid', data.forge_totems, 'The Forge');
+  renderGrid('forge-rerolls-grid', data.forge_rerolls, 'The Forge');
+}
+
+function renderRobux(items) {
+  const tbody = document.getElementById('robux-tbody');
+  tbody.innerHTML = items.map(item => {
+    const isOut = item.stock <= 0;
+    return `<tr class="row-buy" onclick="${isOut ? '' : `openOrder({id:'${item.id}',name:'${item.robux} Robux',harga:'${item.harga}',category:'Robux Via Gamepass'})`}">
+      <td><strong>${item.robux} Robux</strong></td>
+      <td class="price-col">${item.harga}</td>
+      <td class="gp-col">${item.gamepass}</td>
+      <td>${isOut ? '<span style="color:var(--red);font-size:0.8rem;">Habis</span>' : `<span style="background:rgba(0,212,255,0.1);color:var(--accent);padding:4px 10px;border-radius:6px;font-size:0.82rem;font-weight:700;cursor:pointer;">Beli</span>`}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderGrid(containerId, items, category) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map(item => {
+    const isOut = item.stock <= 0;
+    const isLow = item.stock > 0 && item.stock <= 3;
+    let stockClass = 'stock-dot';
+    let stockText = `Stok: ${item.stock}`;
+    if (isOut) { stockClass += ' out'; stockText = 'Habis'; }
+    else if (isLow) { stockClass += ' low'; }
+    return `<div class="item-card">
+      <div class="item-name">${item.name}</div>
+      <div class="item-price">${item.harga}</div>
+      <div class="item-stock ${isOut?'out':isLow?'low':''}">
+        <span class="stock-badge"><span class="${stockClass}"></span> ${stockText}</span>
+      </div>
+      <button class="buy-btn" ${isOut?'disabled':''} onclick="openOrder(${JSON.stringify({id:item.id,name:item.name,harga:item.harga,category})})">
+        ${isOut ? 'Stok Habis' : '🛒 Beli Sekarang'}
+      </button>
+    </div>`;
+  }).join('');
+}
+
+// ========== TABS ==========
+function showPage(page, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ========== ORDER FLOW ==========
+function openOrder(item) {
+  currentItem = item;
+  currentUsername = '';
+  currentPay = '';
+  document.getElementById('m1-name').textContent = item.name;
+  document.getElementById('m1-price').textContent = 'Harga: ' + item.harga;
+  document.getElementById('m1-username').value = '';
+  document.getElementById('modal-step1').classList.add('open');
+}
+
+function goStep2() {
+  const u = document.getElementById('m1-username').value.trim();
+  if (!u) { alert('Masukkan username Roblox kamu dulu!'); return; }
+  currentUsername = u;
+  document.getElementById('modal-step1').classList.remove('open');
+  document.getElementById('m2-name').textContent = currentItem.name;
+  document.getElementById('m2-price').textContent = 'Harga: ' + currentItem.harga;
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('btn-step2-next').disabled = true;
+  currentPay = '';
+  document.getElementById('modal-step2').classList.add('open');
+}
+
+function selectPay(btn, method) {
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  currentPay = method;
+  document.getElementById('btn-step2-next').disabled = false;
+}
+
+function goStep3() {
+  document.getElementById('modal-step2').classList.remove('open');
+  const summary = document.getElementById('m3-summary');
+  summary.innerHTML = `
+    <div class="confirm-row"><span class="label">Username Roblox</span><span class="value">${currentUsername}</span></div>
+    <div class="confirm-row"><span class="label">Kategori</span><span class="value">${currentItem.category}</span></div>
+    <div class="confirm-row"><span class="label">Item</span><span class="value">${currentItem.name}</span></div>
+    <div class="confirm-row"><span class="label">Total Harga</span><span class="value" style="color:var(--accent3)">${currentItem.harga}</span></div>
+    <div class="confirm-row"><span class="label">Pembayaran via</span><span class="value">${currentPay}</span></div>
+  `;
+  document.getElementById('modal-step3').classList.add('open');
+}
+
+function openWhatsApp() {
+  const msg = `Halo Kawara Store, saya ingin memesan:\n\n` +
+    `👤 Username Roblox: ${currentUsername}\n` +
+    `🎮 Kategori Pembelian: ${currentItem.category}\n` +
+    `📦 Item: ${currentItem.name}\n` +
+    `💰 Total Harga: ${currentItem.harga}\n` +
+    `💳 Pembayaran Lewat: ${currentPay}\n\n` +
+    `Mohon diproses, terima kasih! 🙏`;
+  const url = `https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+function closeAllModals() {
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+}
+
+// Tutup modal kalau klik backdrop
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) closeAllModals();
+  });
+});
+
+// ========== INIT ==========
+renderAll();
+
+// Reload data setiap kali tab aktif (supaya update dari admin keliatan)
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) renderAll();
+});
+</script>
+</body>
+</html>
