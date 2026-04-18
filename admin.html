@@ -201,6 +201,46 @@ header {
 }
 .form-submit:hover { opacity:0.9; transform:translateY(-1px); }
 
+/* ===== FOTO BUKTI ===== */
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  background: rgba(255,255,255,0.02);
+  position: relative;
+}
+.upload-zone:hover, .upload-zone.drag-over {
+  border-color: rgba(232,41,74,0.5);
+  background: rgba(232,41,74,0.05);
+}
+.upload-zone input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+}
+.upload-icon { font-size: 1.8rem; margin-bottom: 6px; }
+.upload-label { font-size: 0.82rem; color: var(--muted); }
+.upload-label span { color: var(--red); font-weight: 700; }
+
+/* Preview di form */
+.img-preview-wrap {
+  position: relative; display: inline-block; margin-top: 10px;
+}
+.img-preview {
+  max-width: 100%; max-height: 180px; border-radius: 8px;
+  border: 1px solid var(--border); display: block;
+}
+.img-remove {
+  position: absolute; top: -8px; right: -8px;
+  background: var(--red); border: none; color: #fff;
+  width: 22px; height: 22px; border-radius: 50%;
+  font-size: 0.75rem; cursor: pointer; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1; transition: all 0.2s;
+}
+.img-remove:hover { transform: scale(1.15); }
+
 /* TRX CARDS */
 .trx-card {
   background:var(--card); border:1px solid var(--border);
@@ -238,6 +278,23 @@ header {
 .t-del:hover { background:rgba(232,41,74,0.18); }
 .trx-time { font-size:0.72rem; color:var(--muted); margin-top:3px; }
 .empty { text-align:center; color:var(--muted); padding:28px; font-size:0.88rem; }
+
+/* Thumbnail bukti di kartu transaksi */
+.trx-bukti-thumb {
+  width: 60px; height: 60px; border-radius: 7px;
+  object-fit: cover; border: 1px solid var(--border);
+  cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+}
+.trx-bukti-thumb:hover { border-color: rgba(232,41,74,0.5); transform: scale(1.05); }
+.trx-bukti-label {
+  font-size: 0.7rem; color: var(--muted); margin-top: 4px; text-align: center;
+}
+.no-bukti {
+  width: 60px; height: 60px; border-radius: 7px;
+  border: 1px dashed rgba(180,40,100,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 1.2rem; flex-shrink: 0;
+}
 
 /* DISCORD */
 .drow { display:flex; gap:8px; }
@@ -281,6 +338,20 @@ header {
   font-size:0.92rem; font-weight:700; cursor:pointer; margin-top:6px;
 }
 .modal-action:hover { opacity:0.9; }
+
+/* Modal lightbox untuk bukti */
+#lightbox-modal .modal {
+  max-width: 90vw; max-height: 90vh;
+  padding: 16px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+#lightbox-img {
+  max-width: 100%; max-height: 75vh;
+  border-radius: 10px; object-fit: contain; display: block;
+}
+#lightbox-caption {
+  font-size: 0.82rem; color: var(--muted); text-align: center;
+}
 
 /* TOAST */
 .toast {
@@ -355,6 +426,25 @@ header {
             </select>
           </div>
         </div>
+
+        <!-- Upload Bukti -->
+        <div class="ff" style="margin-bottom:14px;">
+          <label class="flbl">📸 Foto Bukti Transaksi <span style="color:var(--muted);font-weight:400;text-transform:none;">(opsional)</span></label>
+          <div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <input type="file" id="t-bukti-input" accept="image/*" onchange="handleFileSelect(event)">
+            <div class="upload-icon">🖼️</div>
+            <div class="upload-label">Drag & drop atau <span>klik untuk pilih</span> foto bukti</div>
+            <div style="font-size:0.72rem;color:var(--muted);margin-top:4px;">JPG, PNG, WEBP — maks. 5MB</div>
+          </div>
+          <div id="bukti-preview-wrap" style="display:none;">
+            <div class="img-preview-wrap">
+              <img id="bukti-preview" class="img-preview" src="" alt="Preview">
+              <button class="img-remove" onclick="removeBukti()" title="Hapus foto">✕</button>
+            </div>
+            <div style="font-size:0.72rem;color:var(--green);margin-top:4px;" id="bukti-filename"></div>
+          </div>
+        </div>
+
         <button class="form-submit" onclick="addTrx()">📤 Simpan & Kirim ke Discord</button>
       </div>
       <div id="trx-list"></div>
@@ -475,6 +565,15 @@ header {
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="overlay" id="lightbox-modal">
+  <div class="modal" style="max-width:90vw;">
+    <button class="mx" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="Bukti Transaksi">
+    <div id="lightbox-caption"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -501,6 +600,61 @@ if(sessionStorage.getItem('kwa')==='1') {
   document.getElementById('login-screen').style.display='none';
   document.getElementById('admin-panel').style.display='block';
 }
+
+// ===== BUKTI UPLOAD =====
+let buktiBase64 = null;
+
+function handleDragOver(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.add('drag-over');
+}
+function handleDragLeave(e) {
+  document.getElementById('upload-zone').classList.remove('drag-over');
+}
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) processFile(file);
+}
+function handleFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) processFile(file);
+}
+function processFile(file) {
+  if (!file.type.startsWith('image/')) { toast('❌ File harus berupa gambar!', true); return; }
+  if (file.size > 5 * 1024 * 1024) { toast('❌ Ukuran file maks. 5MB!', true); return; }
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    buktiBase64 = e.target.result;
+    document.getElementById('bukti-preview').src = buktiBase64;
+    document.getElementById('bukti-filename').textContent = '✅ ' + file.name + ' (' + (file.size/1024).toFixed(0) + ' KB)';
+    document.getElementById('bukti-preview-wrap').style.display = 'block';
+    document.getElementById('upload-zone').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+function removeBukti() {
+  buktiBase64 = null;
+  document.getElementById('bukti-preview').src = '';
+  document.getElementById('bukti-preview-wrap').style.display = 'none';
+  document.getElementById('upload-zone').style.display = 'block';
+  document.getElementById('t-bukti-input').value = '';
+}
+
+// ===== LIGHTBOX =====
+function openLightbox(src, caption) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = caption || '';
+  document.getElementById('lightbox-modal').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox-modal').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
+}
+document.getElementById('lightbox-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('lightbox-modal')) closeLightbox();
+});
 
 // ===== DATA =====
 const DEFAULT = {
@@ -680,6 +834,7 @@ async function sendDiscord(trx) {
       {name:'📦 Kategori',value:trx.category,inline:true},
       {name:'💰 Harga',value:trx.price,inline:true},
       {name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},
+      {name:'📸 Bukti',value:trx.bukti?'✅ Ada foto bukti':'❌ Tidak ada',inline:true},
       {name:'🕐 Waktu',value:trx.time,inline:false},
     ],
     footer:{text:'Kawara Store Admin'},
@@ -698,11 +853,21 @@ async function addTrx() {
   const price=document.getElementById('t-price').value.trim();
   const status=document.getElementById('t-status').value;
   if(!username||!category||!price) { toast('❌ Isi semua field!',true); return; }
-  const trx={id:'trx_'+Date.now(),username,category,price,status,time:new Date().toLocaleString('id-ID')};
+
+  const trx={
+    id:'trx_'+Date.now(),
+    username, category, price, status,
+    time: new Date().toLocaleString('id-ID'),
+    bukti: buktiBase64 || null
+  };
+
   const arr=getTrx(); arr.unshift(trx); saveTrx(arr);
   ['t-user','t-cat','t-price'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('t-status').value='pending';
-  await sendDiscord(trx); renderTrxList();
+  removeBukti();
+
+  await sendDiscord(trx);
+  renderTrxList();
 }
 
 function updateTrx(id, status) {
@@ -720,10 +885,18 @@ function renderTrxList() {
   if(!arr.length) { el.innerHTML='<div class="empty">Belum ada transaksi.</div>'; return; }
   el.innerHTML = arr.map(t=>`
     <div class="trx-card">
-      <div>
+      <div style="flex:1;min-width:0;">
         <div class="trx-user">👤 ${t.username}</div>
         <div class="trx-detail">📦 ${t.category}</div>
         <div class="trx-time">🕐 ${t.time}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        ${t.bukti
+          ? `<img class="trx-bukti-thumb" src="${t.bukti}" alt="Bukti" onclick="openLightbox('${t.bukti}','Bukti transaksi: ${t.username} — ${t.category}')">
+             <div class="trx-bukti-label">Lihat Bukti</div>`
+          : `<div class="no-bukti" title="Tidak ada bukti">🖼️</div>
+             <div class="trx-bukti-label" style="color:var(--muted);">Tanpa bukti</div>`
+        }
       </div>
       <div style="text-align:right;">
         <div class="trx-price">${t.price}</div>
