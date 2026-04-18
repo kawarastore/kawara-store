@@ -826,7 +826,8 @@ function saveWH() {
 // ===== DISCORD =====
 async function sendDiscord(trx) {
   const wh=getWH(); if(!wh) { toast('⚠️ Webhook belum diset!',true); return; }
-  const body={embeds:[{
+
+  const embed = {
     title:'🛒 Transaksi Baru — Kawara Store',
     color:0xe8294a,
     fields:[
@@ -834,15 +835,46 @@ async function sendDiscord(trx) {
       {name:'📦 Kategori',value:trx.category,inline:true},
       {name:'💰 Harga',value:trx.price,inline:true},
       {name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},
-      {name:'📸 Bukti',value:trx.bukti?'✅ Ada foto bukti':'❌ Tidak ada',inline:true},
       {name:'🕐 Waktu',value:trx.time,inline:false},
     ],
     footer:{text:'Kawara Store Admin'},
-  }]};
+  };
+
   try {
-    const r=await fetch(wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    let r;
+    if (trx.bukti) {
+      // Konversi base64 → Blob lalu kirim sebagai multipart/form-data
+      const base64Data = trx.bukti.split(',')[1];
+      const mime = trx.bukti.split(';')[0].split(':')[1] || 'image/png';
+      const ext = mime.split('/')[1] || 'png';
+      const byteChars = atob(base64Data);
+      const byteArr = new Uint8Array(byteChars.length);
+      for (let i=0;i<byteChars.length;i++) byteArr[i]=byteChars.charCodeAt(i);
+      const blob = new Blob([byteArr], {type: mime});
+      const filename = `bukti_${trx.id}.${ext}`;
+
+      // Arahkan embed image ke attachment
+      embed.image = { url: `attachment://${filename}` };
+
+      const form = new FormData();
+      form.append('file', blob, filename);
+      form.append('payload_json', JSON.stringify({embeds:[embed]}));
+
+      r = await fetch(wh, {method:'POST', body: form});
+    } else {
+      r = await fetch(wh, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({embeds:[embed]})
+      });
+    }
+
     if(r.ok) toast('✅ Terkirim ke Discord!');
-    else toast('⚠️ Gagal kirim ke Discord.',true);
+    else {
+      const errText = await r.text().catch(()=>'');
+      console.error('Discord error:', r.status, errText);
+      toast('⚠️ Gagal kirim ke Discord. ('+r.status+')',true);
+    }
   } catch(e) { toast('⚠️ '+e.message,true); }
 }
 
