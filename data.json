@@ -470,6 +470,15 @@
       "harga": "Rp100.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496132099168796732/image.png?ex=69e8c519&is=69e77399&hm=c5ecce09f3f1fd92724dc8a542a9e928e8b8215d22ff4974ff8dcf5ee07ee1cd&=&format=webp&quality=lossless&width=1554&height=874",
       "stock": 9999
+    },
+    {
+      "id": "sys_1776791911862",
+      "name": "Animation 18+",
+      "desc": "• 10 Animasi Keren Siap Pakai\n• Sudah Include Gaya Cowok & Cewek",
+      "tags": "AnimationPack",
+      "harga": "Rp150.000",
+      "thumb": "",
+      "stock": 9999
     }
   ]
 }
