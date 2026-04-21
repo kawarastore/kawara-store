@@ -15,6 +15,7 @@
   --grad-soft: linear-gradient(135deg, rgba(245,196,0,0.12), rgba(255,140,0,0.12));
   --text: #f5f0e8; --muted: rgba(245,240,232,0.45);
   --green: #10b981; --red: #e74c3c; --amber: #f59e0b;
+  --tiktok: #ff0050;
   --nav-h: 50px; --subnav-h: 42px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -183,6 +184,22 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
 .thumb-status{font-size:0.68rem;margin-top:5px;min-height:14px;}
 .thumb-status.ok{color:var(--green);}
 .thumb-status.err{color:var(--red);}
+
+/* ===== TIKTOK FIELD ===== */
+.tiktok-field-wrap{display:flex;gap:8px;align-items:center;}
+.tiktok-url-input{flex:1;background:rgba(255,0,80,0.06);border:1px solid rgba(255,0,80,0.22);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.8rem;outline:none;transition:border-color 0.2s;}
+.tiktok-url-input:focus{border-color:rgba(255,0,80,0.5);}
+.tiktok-url-input::placeholder{color:var(--muted);font-size:0.74rem;}
+.tiktok-test-btn{padding:8px 12px;background:rgba(255,0,80,0.12);border:1px solid rgba(255,0,80,0.3);border-radius:8px;color:var(--tiktok);font-family:'Outfit',sans-serif;font-size:0.74rem;font-weight:700;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:all 0.2s;}
+.tiktok-test-btn:active{background:rgba(255,0,80,0.22);}
+.tiktok-status{font-size:0.68rem;margin-top:5px;min-height:14px;}
+.tiktok-status.ok{color:var(--green);}
+.tiktok-status.err{color:var(--tiktok);}
+.tiktok-hint{font-size:0.68rem;color:var(--muted);margin-top:4px;line-height:1.5;}
+.tiktok-hint a{color:rgba(255,0,80,0.8);text-decoration:none;}
+/* TikTok Icon SVG inline */
+.tt-icon{display:inline-flex;align-items:center;gap:4px;}
+.tt-icon svg{width:11px;height:11px;fill:currentColor;}
 
 /* DIGITAL */
 .digital-admin-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;backdrop-filter:blur(12px);}
@@ -366,7 +383,6 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
             </select>
           </div>
         </div>
-        <!-- Preview stok item yang dipilih -->
         <div class="item-preview-bar" id="item-preview-bar">
           <div>
             <div class="item-preview-name" id="preview-name"></div>
@@ -374,7 +390,6 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
           </div>
           <div class="item-preview-stock" id="preview-stock"></div>
         </div>
-        <!-- Info otomatis kurang stok -->
         <div class="stock-deduct-info" id="stock-deduct-info">
           ✅ Stok akan otomatis berkurang 1 saat transaksi disimpan & langsung push ke GitHub.
         </div>
@@ -617,7 +632,7 @@ const DEFAULT_DATA = {
   forge_totems:[{id:'ft1',name:'XP Totem x3',harga:'5K',stock:10},{id:'ft2',name:'Luck Totem x3',harga:'6K',stock:10},{id:'ft3',name:'Miner Totem x3',harga:'6K',stock:10},{id:'ft4',name:'Warrior Totem x3',harga:'6K',stock:10},{id:'ft5',name:'Vitality x3',harga:'6K',stock:10}],
   forge_rerolls:[{id:'fr1',name:'Buy 1 Reroll',harga:'3K',stock:99},{id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},{id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99}],
   roblox_system:[
-    {id:'sys1',name:'Admin System',desc:'Sistem admin panel lengkap.',tags:'Admin,Panel,Tools',harga:'Rp50.000',thumb:'',stock:99},
+    {id:'sys1',name:'Admin System',desc:'Sistem admin panel lengkap.',tags:'Admin,Panel,Tools',harga:'Rp50.000',thumb:'',tiktok_url:'',stock:99},
   ],
   digital:[
     {id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF.',prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]},
@@ -639,10 +654,9 @@ function saveTrx(a){localStorage.setItem('kawara_trx',JSON.stringify(a));}
 function getWH(){return localStorage.getItem('kawara_webhook')||'';}
 
 // =====================================================
-// ITEM CATALOG — untuk dropdown transaksi
+// ITEM CATALOG
 // =====================================================
-// Map dari "itemId" ke {cat, idx} supaya bisa kurangi stok
-let _itemCatalog = []; // [{id, cat, name, harga, stock}]
+let _itemCatalog = [];
 
 function buildItemCatalog() {
   const d = getData();
@@ -660,12 +674,8 @@ function buildItemCatalog() {
   CATS.forEach(cat => {
     (d[cat.key] || []).forEach(item => {
       _itemCatalog.push({
-        id: item.id,
-        cat: cat.key,
-        catLabel: cat.label,
-        name: cat.getName(item),
-        harga: item.harga,
-        stock: item.stock
+        id: item.id, cat: cat.key, catLabel: cat.label,
+        name: cat.getName(item), harga: item.harga, stock: item.stock
       });
     });
   });
@@ -675,14 +685,11 @@ function populateItemDropdown() {
   buildItemCatalog();
   const sel = document.getElementById('t-cat');
   const prev = sel.value;
-
-  // Group by catLabel
   const groups = {};
   _itemCatalog.forEach(item => {
     if (!groups[item.catLabel]) groups[item.catLabel] = [];
     groups[item.catLabel].push(item);
   });
-
   let html = '<option value="">— Pilih item —</option>';
   Object.entries(groups).forEach(([label, items]) => {
     html += `<optgroup label="${label}">`;
@@ -693,7 +700,7 @@ function populateItemDropdown() {
     html += '</optgroup>';
   });
   sel.innerHTML = html;
-  onItemSelect(); // refresh preview
+  onItemSelect();
 }
 
 function onItemSelect() {
@@ -701,35 +708,17 @@ function onItemSelect() {
   const id = sel.value;
   const bar = document.getElementById('item-preview-bar');
   const info = document.getElementById('stock-deduct-info');
-
-  if (!id) {
-    bar.classList.remove('visible');
-    info.classList.remove('visible');
-    return;
-  }
-
+  if (!id) { bar.classList.remove('visible'); info.classList.remove('visible'); return; }
   const item = _itemCatalog.find(i => i.id === id);
   if (!item) { bar.classList.remove('visible'); return; }
-
   document.getElementById('preview-name').textContent = item.name;
   document.getElementById('preview-harga').textContent = item.harga;
-
   const stockEl = document.getElementById('preview-stock');
-  if (item.stock <= 0) {
-    stockEl.textContent = '⛔ Stok Habis';
-    stockEl.className = 'item-preview-stock out';
-  } else if (item.stock <= 3) {
-    stockEl.textContent = `⚠️ Stok: ${item.stock} (sedikit!)`;
-    stockEl.className = 'item-preview-stock low';
-  } else {
-    stockEl.textContent = `✅ Stok: ${item.stock}`;
-    stockEl.className = 'item-preview-stock';
-  }
-
-  // Auto-fill harga
+  if (item.stock <= 0) { stockEl.textContent = '⛔ Stok Habis'; stockEl.className = 'item-preview-stock out'; }
+  else if (item.stock <= 3) { stockEl.textContent = `⚠️ Stok: ${item.stock} (sedikit!)`; stockEl.className = 'item-preview-stock low'; }
+  else { stockEl.textContent = `✅ Stok: ${item.stock}`; stockEl.className = 'item-preview-stock'; }
   const hargaInput = document.getElementById('t-price');
   if (!hargaInput.value) hargaInput.value = item.harga;
-
   bar.classList.add('visible');
   info.classList.add('visible');
 }
@@ -750,47 +739,35 @@ function setSaveStatus(state, msg) {
 }
 async function saveToGitHub() {
   const cfg = getGHConfig();
-  if(!cfg.token) {
-    toast('❌ Set GitHub Token dulu di tab Pengaturan!', true);
-    showAPage('discord', document.querySelectorAll('.atab')[4]);
-    return;
-  }
+  if(!cfg.token) { toast('❌ Set GitHub Token dulu di tab Pengaturan!', true); showAPage('discord', document.querySelectorAll('.atab')[4]); return; }
   const btn = document.getElementById('save-all-btn');
-  btn.disabled = true;
-  btn.textContent = '⏳ Menyimpan...';
+  btn.disabled = true; btn.textContent = '⏳ Menyimpan...';
   setSaveStatus('saving', 'Menyimpan ke GitHub...');
   try {
     const d = getData();
     if(d.roblox_system) {
       d.roblox_system = d.roblox_system.map(s => ({
         ...s,
-        thumb: (s.thumb && !s.thumb.startsWith('data:')) ? s.thumb : ''
+        thumb: (s.thumb && !s.thumb.startsWith('data:')) ? s.thumb : '',
+        tiktok_url: s.tiktok_url || ''
       }));
     }
     const apiUrl = `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/data.json`;
-    const getRes = await fetch(apiUrl, {
-      headers: { 'Authorization': `token ${cfg.token}`, 'Accept': 'application/vnd.github.v3+json' }
-    });
+    const getRes = await fetch(apiUrl, { headers: { 'Authorization': `token ${cfg.token}`, 'Accept': 'application/vnd.github.v3+json' } });
     let sha = null;
     if(getRes.ok) { const existing = await getRes.json(); sha = existing.sha; }
     else if(getRes.status === 401) { throw new Error('Token tidak valid atau kadaluarsa.'); }
     else if(getRes.status !== 404) { throw new Error('Gagal cek file: HTTP ' + getRes.status); }
-
     const jsonStr = JSON.stringify(d, null, 2);
     const content = btoa(unescape(encodeURIComponent(jsonStr)));
     const body = { message: '🛒 Update data produk - ' + new Date().toLocaleString('id-ID'), content };
     if(sha) body.sha = sha;
-
-    const putRes = await fetch(apiUrl, {
-      method: 'PUT',
-      headers: { 'Authorization': `token ${cfg.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
-      body: JSON.stringify(body)
-    });
+    const putRes = await fetch(apiUrl, { method: 'PUT', headers: { 'Authorization': `token ${cfg.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' }, body: JSON.stringify(body) });
     if(putRes.ok) {
       _hasChanges = false;
       setSaveStatus('ok', '✅ Tersimpan ke GitHub — store update dalam ~1 menit');
       toast('✅ Data berhasil dipublish ke GitHub!', 'ok');
-      populateItemDropdown(); // refresh dropdown dengan stok terbaru
+      populateItemDropdown();
     } else {
       const err = await putRes.json();
       throw new Error(err.message || 'Gagal simpan: HTTP ' + putRes.status);
@@ -806,7 +783,7 @@ async function saveToGitHub() {
 }
 
 // =====================================================
-// STOCK DEDUCT — kurangi stok item tertentu
+// STOCK DEDUCT
 // =====================================================
 function deductStock(itemId) {
   if (!itemId) return false;
@@ -817,11 +794,8 @@ function deductStock(itemId) {
     if (!d[cat]) continue;
     const idx = d[cat].findIndex(i => i.id === itemId);
     if (idx !== -1) {
-      if (d[cat][idx].stock > 0) {
-        d[cat][idx].stock -= 1;
-      }
+      if (d[cat][idx].stock > 0) d[cat][idx].stock -= 1;
       found = true;
-      // Update catalog local juga
       const catItem = _itemCatalog.find(i => i.id === itemId);
       if (catItem) catItem.stock = d[cat][idx].stock;
       break;
@@ -859,7 +833,6 @@ function removeBukti(){
   document.getElementById('t-bukti-input').value='';
 }
 
-// LIGHTBOX
 function openLightbox(src,caption){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-caption').textContent=caption||'';document.getElementById('lightbox-modal').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox-modal').classList.remove('open');document.getElementById('lightbox-img').src='';}
 document.getElementById('lightbox-modal').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox-modal'))closeLightbox();});
@@ -908,16 +881,8 @@ function filterTrxByPeriod(arr,period){
     return true;
   });
 }
-function setFilter(period,btn){
-  dashFilter=period;
-  document.querySelectorAll('#apage-dashboard .filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');renderDashboard();
-}
-function setTrxFilter(period,btn){
-  trxFilter=period;
-  document.querySelectorAll('#apage-trx .filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');renderTrxList();
-}
+function setFilter(period,btn){dashFilter=period;document.querySelectorAll('#apage-dashboard .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderDashboard();}
+function setTrxFilter(period,btn){trxFilter=period;document.querySelectorAll('#apage-trx .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderTrxList();}
 function renderDashboard(){
   const allTrx=getTrx();const filtered=filterTrxByPeriod(allTrx,dashFilter);
   const done=filtered.filter(t=>t.status==='done');const pending=filtered.filter(t=>t.status==='pending');
@@ -944,12 +909,8 @@ function renderRobux(items){
 function saveAllRobux(){
   const d=getData();
   d.robux.forEach(i=>{
-    const h=document.getElementById('rh-'+i.id);
-    const gp=document.getElementById('rgp-'+i.id);
-    const s=document.getElementById('rs-'+i.id);
-    if(h)i.harga=h.value.trim();
-    if(gp)i.gamepass=gp.value.trim();
-    if(s)i.stock=parseInt(s.value)||0;
+    const h=document.getElementById('rh-'+i.id);const gp=document.getElementById('rgp-'+i.id);const s=document.getElementById('rs-'+i.id);
+    if(h)i.harga=h.value.trim();if(gp)i.gamepass=gp.value.trim();if(s)i.stock=parseInt(s.value)||0;
   });
   saveLocalData(d);populateItemDropdown();toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
@@ -964,12 +925,8 @@ function saveAllFishIt(){
   const d=getData();
   ['fishit_shop','fishit_gacha','fishit_emote'].forEach(cat=>{
     (d[cat]||[]).forEach(i=>{
-      const n=document.getElementById('n-'+i.id);
-      const h=document.getElementById('h-'+i.id);
-      const s=document.getElementById('s-'+i.id);
-      if(n)i.name=n.value.trim();
-      if(h)i.harga=h.value.trim();
-      if(s)i.stock=parseInt(s.value)||0;
+      const n=document.getElementById('n-'+i.id);const h=document.getElementById('h-'+i.id);const s=document.getElementById('s-'+i.id);
+      if(n)i.name=n.value.trim();if(h)i.harga=h.value.trim();if(s)i.stock=parseInt(s.value)||0;
     });
   });
   saveLocalData(d);populateItemDropdown();toast('✅ Fish It disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
@@ -978,12 +935,8 @@ function saveAllForge(){
   const d=getData();
   ['forge_passes','forge_totems','forge_rerolls'].forEach(cat=>{
     (d[cat]||[]).forEach(i=>{
-      const n=document.getElementById('n-'+i.id);
-      const h=document.getElementById('h-'+i.id);
-      const s=document.getElementById('s-'+i.id);
-      if(n)i.name=n.value.trim();
-      if(h)i.harga=h.value.trim();
-      if(s)i.stock=parseInt(s.value)||0;
+      const n=document.getElementById('n-'+i.id);const h=document.getElementById('h-'+i.id);const s=document.getElementById('s-'+i.id);
+      if(n)i.name=n.value.trim();if(h)i.harga=h.value.trim();if(s)i.stock=parseInt(s.value)||0;
     });
   });
   saveLocalData(d);populateItemDropdown();toast('✅ The Forge disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
@@ -992,8 +945,6 @@ function delItem(cat,id){
   if(!confirm('Hapus item ini?'))return;
   const d=getData();d[cat]=d[cat].filter(i=>i.id!==id);saveLocalData(d);renderAll();populateItemDropdown();toast('🗑️ Dihapus!');
 }
-
-// ADD MODAL
 function openAdd(cat){
   document.getElementById('add-cat').value=cat;
   ['add-name','add-harga'].forEach(id=>document.getElementById(id).value='');
@@ -1013,12 +964,40 @@ function submitAdd(){
 document.getElementById('add-modal').addEventListener('click',e=>{if(e.target===document.getElementById('add-modal'))closeAdd();});
 
 // =====================================================
-// ROBLOX SYSTEM
+// TIKTOK HELPER
+// =====================================================
+function extractTikTokVideoId(url) {
+  if (!url) return null;
+  // Format: https://www.tiktok.com/@user/video/1234567890
+  const match = url.match(/tiktok\.com\/@[\w.]+\/video\/(\d+)/);
+  if (match) return match[1];
+  // Format: https://vm.tiktok.com/XXXXXX/ (short link - tidak bisa di-embed langsung)
+  return null;
+}
+
+function testTikTokUrl(id) {
+  const urlInput = document.getElementById('stiktok-' + id);
+  const statusEl = document.getElementById('stiktok-status-' + id);
+  const url = urlInput.value.trim();
+  if (!url) { statusEl.className = 'tiktok-status err'; statusEl.textContent = '❌ URL kosong'; return; }
+  const videoId = extractTikTokVideoId(url);
+  if (!videoId) {
+    statusEl.className = 'tiktok-status err';
+    statusEl.textContent = '❌ Format URL tidak valid. Gunakan link lengkap: tiktok.com/@user/video/ID';
+    return;
+  }
+  statusEl.className = 'tiktok-status ok';
+  statusEl.textContent = `✅ Video ID: ${videoId} — URL valid!`;
+}
+
+// =====================================================
+// ROBLOX SYSTEM ADMIN
 // =====================================================
 function renderSystemAdmin(items){
   const c=document.getElementById('system-admin-list');
   c.innerHTML=items.map(item=>{
     const thumbUrl = (item.thumb && !item.thumb.startsWith('data:')) ? item.thumb : '';
+    const tiktokUrl = item.tiktok_url || '';
     return `<div class="system-admin-card" id="sac-${item.id}">
       <div class="sac-thumb-area">
         ${thumbUrl
@@ -1032,6 +1011,7 @@ function renderSystemAdmin(items){
           <div class="ff"><label class="flbl">Nama System</label><input class="finput" id="sname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama..."></div>
           <div class="ff"><label class="flbl">Harga</label><input class="finput" id="sharga-${item.id}" value="${item.harga}" placeholder="Rp0"></div>
           <div class="ff"><label class="flbl">Stok</label><input class="finput" id="sstock-${item.id}" type="number" value="${item.stock||99}" inputmode="numeric"></div>
+
           <div class="ff sac-full">
             <label class="flbl">🖼️ URL Gambar Thumbnail</label>
             <div class="thumb-url-wrap">
@@ -1040,6 +1020,26 @@ function renderSystemAdmin(items){
             </div>
             <div class="thumb-status" id="sthumb-status-${item.id}"></div>
           </div>
+
+          <!-- ===== TIKTOK FIELD ===== -->
+          <div class="ff sac-full">
+            <label class="flbl" style="display:flex;align-items:center;gap:6px;">
+              <svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:#ff0050;flex-shrink:0;"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+              Link Video TikTok Preview <span style="color:var(--muted);font-weight:400;text-transform:none;">(opsional)</span>
+            </label>
+            <div class="tiktok-field-wrap">
+              <input class="tiktok-url-input" id="stiktok-${item.id}" value="${tiktokUrl}" placeholder="https://www.tiktok.com/@user/video/1234567890">
+              <button class="tiktok-test-btn" onclick="testTikTokUrl('${item.id}')">🔍 Cek</button>
+            </div>
+            <div class="tiktok-status" id="stiktok-status-${item.id}"></div>
+            <div class="tiktok-hint">
+              Buka TikTok → video kamu → Salin link → paste di sini.<br>
+              Harus format: <code style="color:rgba(255,0,80,0.8);font-size:0.65rem;">tiktok.com/@username/video/ANGKA</code><br>
+              ⚠️ Link pendek (vm.tiktok.com) <strong>tidak bisa di-embed</strong>, harus link penuh.
+            </div>
+          </div>
+          <!-- ===== END TIKTOK FIELD ===== -->
+
           <div class="ff sac-full"><label class="flbl">Deskripsi</label><textarea class="ftextarea" id="sdesc-${item.id}" style="min-height:52px;">${item.desc}</textarea></div>
           <div class="ff sac-full"><label class="flbl">Tags (pisah koma)</label><input class="sac-tags-input" id="stags-${item.id}" value="${item.tags||''}" placeholder="Admin,Panel,Tools"></div>
         </div>
@@ -1051,6 +1051,7 @@ function renderSystemAdmin(items){
     </div>`;
   }).join('');
 }
+
 function previewThumb(id){
   const url=document.getElementById('sthumb-'+id).value.trim();
   const statusEl=document.getElementById('sthumb-status-'+id);
@@ -1061,18 +1062,21 @@ function previewThumb(id){
     onload="document.getElementById('sthumb-status-${id}').className='thumb-status ok';document.getElementById('sthumb-status-${id}').textContent='✅ Gambar berhasil dimuat!';"
     onerror="document.getElementById('sthumb-status-${id}').className='thumb-status err';document.getElementById('sthumb-status-${id}').textContent='❌ Gagal memuat gambar.';">`;
 }
+
 function saveSystem(id){
   const d=getData();
   if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
   const idx=d.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;
   const thumbUrl=document.getElementById('sthumb-'+id).value.trim();
   if(thumbUrl&&thumbUrl.startsWith('data:')){toast('❌ Gunakan URL link gambar!',true);return;}
+  const tiktokUrl=document.getElementById('stiktok-'+id).value.trim();
   d.roblox_system[idx].name=document.getElementById('sname-'+id).value.trim();
   d.roblox_system[idx].harga=document.getElementById('sharga-'+id).value.trim();
   d.roblox_system[idx].stock=parseInt(document.getElementById('sstock-'+id).value)||99;
   d.roblox_system[idx].desc=document.getElementById('sdesc-'+id).value.trim();
   d.roblox_system[idx].tags=document.getElementById('stags-'+id).value.trim();
   d.roblox_system[idx].thumb=thumbUrl;
+  d.roblox_system[idx].tiktok_url=tiktokUrl;
   saveLocalData(d);populateItemDropdown();toast('✅ Disimpan lokal! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 function delSystem(id){
@@ -1085,7 +1089,7 @@ function delSystem(id){
 function addSystemCard(){
   const d=getData();
   if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
-  const n={id:'sys_'+Date.now(),name:'System Baru',desc:'Deskripsi system...',tags:'',harga:'Mulai Rp0',thumb:'',stock:99};
+  const n={id:'sys_'+Date.now(),name:'System Baru',desc:'Deskripsi system...',tags:'',harga:'Mulai Rp0',thumb:'',tiktok_url:'',stock:99};
   d.roblox_system.push(n);saveLocalData(d);renderAll();populateItemDropdown();
   setTimeout(()=>{const el=document.getElementById('sac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
   toast('✅ Ditambahkan!','ok');
@@ -1135,20 +1139,12 @@ function delPriceRow(id,pi){const d=getData();if(!d.digital)d.digital=JSON.parse
 function saveWH(){const url=document.getElementById('wh-input').value.trim();if(!url){toast('❌ Masukkan URL webhook!',true);return;}localStorage.setItem('kawara_webhook',url);document.getElementById('wh-status').textContent='✅ Webhook aktif';toast('✅ Webhook disimpan!','ok');}
 async function sendDiscord(trx){
   const wh=getWH();if(!wh)return;
-  const embed={
-    title:'🛒 Transaksi Baru — Kawara Store',
-    color:0xf5c400,
-    fields:[
-      {name:'👤 Username',   value:trx.username,                                        inline:true},
-      {name:'📦 Item',       value:trx.category,                                        inline:true},
-      {name:'💰 Harga',      value:trx.price,                                           inline:true},
-      {name:'📊 Status',     value:trx.status==='done'?'✅ Selesai':'⏳ Pending',       inline:true},
-      {name:'📉 Sisa Stok',  value:String(trx.remainingStock ?? '—'),                  inline:true},
-      {name:'\u200b',        value:'\u200b',                                            inline:true},
-      {name:'🕐 Waktu',      value:trx.time,                                            inline:false},
-    ],
-    footer:{text:'Kawara Store Admin'}
-  };
+  const embed={title:'🛒 Transaksi Baru — Kawara Store',color:0xf5c400,fields:[
+    {name:'👤 Username',value:trx.username,inline:true},{name:'📦 Item',value:trx.category,inline:true},
+    {name:'💰 Harga',value:trx.price,inline:true},{name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},
+    {name:'📉 Sisa Stok',value:String(trx.remainingStock??'—'),inline:true},{name:'\u200b',value:'\u200b',inline:true},
+    {name:'🕐 Waktu',value:trx.time,inline:false},
+  ],footer:{text:'Kawara Store Admin'}};
   try{
     let r;
     if(trx.bukti){
@@ -1164,69 +1160,33 @@ async function sendDiscord(trx){
 }
 
 // =====================================================
-// TRANSAKSI — dengan auto deduct stok
+// TRANSAKSI
 // =====================================================
 async function addTrx(){
   const username=document.getElementById('t-user').value.trim();
   const itemId=document.getElementById('t-cat').value;
   const price=document.getElementById('t-price').value.trim();
   const status=document.getElementById('t-status').value;
-
   if(!username){toast('❌ Isi username!',true);return;}
   if(!itemId){toast('❌ Pilih item dari dropdown!',true);return;}
   if(!price){toast('❌ Isi total harga!',true);return;}
-
-  // Ambil info item dari catalog
   const catalogItem = _itemCatalog.find(i => i.id === itemId);
   const categoryName = catalogItem ? `${catalogItem.catLabel} — ${catalogItem.name}` : itemId;
-
-  // Cek stok
-  if(catalogItem && catalogItem.stock <= 0) {
-    if(!confirm(`⚠️ Stok "${catalogItem.name}" sudah habis! Tetap catat transaksi?`)) return;
-  }
-
-  // Kurangi stok
+  if(catalogItem && catalogItem.stock <= 0) { if(!confirm(`⚠️ Stok "${catalogItem.name}" sudah habis! Tetap catat transaksi?`)) return; }
   deductStock(itemId);
-
-  // Ambil sisa stok setelah dikurangi
   const updatedItem = _itemCatalog.find(i => i.id === itemId);
   const remainingStock = updatedItem ? updatedItem.stock : null;
-
-  const trx = {
-    id: 'trx_'+Date.now(),
-    username,
-    category: categoryName,
-    itemId,
-    price,
-    status,
-    time: new Date().toLocaleString('id-ID'),
-    bukti: buktiBase64||null,
-    remainingStock
-  };
-
+  const trx = { id:'trx_'+Date.now(), username, category:categoryName, itemId, price, status, time:new Date().toLocaleString('id-ID'), bukti:buktiBase64||null, remainingStock };
   const arr=getTrx();arr.unshift(trx);saveTrx(arr);
-
-  // Reset form
-  document.getElementById('t-user').value='';
-  document.getElementById('t-cat').value='';
-  document.getElementById('t-price').value='';
-  document.getElementById('t-status').value='pending';
-  document.getElementById('item-preview-bar').classList.remove('visible');
-  document.getElementById('stock-deduct-info').classList.remove('visible');
+  document.getElementById('t-user').value='';document.getElementById('t-cat').value='';document.getElementById('t-price').value='';document.getElementById('t-status').value='pending';
+  document.getElementById('item-preview-bar').classList.remove('visible');document.getElementById('stock-deduct-info').classList.remove('visible');
   removeBukti();
-
-  // Push stok ke GitHub otomatis
   toast('⏳ Menyimpan & push stok ke GitHub...','ok');
   await saveToGitHub();
-
-  // Kirim ke Discord
   await sendDiscord(trx);
-
-  renderAll();
-  populateItemDropdown();
-  toast(`✅ Transaksi dicatat! Stok ${catalogItem ? '"'+catalogItem.name+'"' : ''} sisa: ${remainingStock}`, 'ok');
+  renderAll();populateItemDropdown();
+  toast(`✅ Transaksi dicatat! Stok ${catalogItem?'"'+catalogItem.name+'"':''} sisa: ${remainingStock}`,'ok');
 }
-
 function updateTrx(id,status){const arr=getTrx(),idx=arr.findIndex(t=>t.id===id);if(idx===-1)return;arr[idx].status=status;saveTrx(arr);renderAll();toast('✅ Status diupdate!','ok');}
 function delTrx(id){if(!confirm('Hapus transaksi ini?'))return;saveTrx(getTrx().filter(t=>t.id!==id));renderAll();toast('🗑️ Dihapus!');}
 function renderTrxList(){
@@ -1254,10 +1214,8 @@ function showRobloxSub(sub,btn){
   btn.classList.add('active');window.scrollTo(0,0);
 }
 
-// TOAST
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast';if(type===true||type==='err')t.classList.add('err');else if(type==='ok')t.classList.add('ok');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
 
-// ENTRY POINT
 if(sessionStorage.getItem('kwa')==='1'){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('admin-panel').style.display='block';
