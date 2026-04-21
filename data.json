@@ -5,70 +5,70 @@
       "robux": 50,
       "harga": "5k",
       "gamepass": "72",
-      "stock": 50
+      "stock": 30
     },
     {
       "id": "r2",
       "robux": 100,
       "harga": "10k",
       "gamepass": "143",
-      "stock": 50
+      "stock": 15
     },
     {
       "id": "r3",
       "robux": 200,
       "harga": "19k",
       "gamepass": "286",
-      "stock": 50
+      "stock": 15
     },
     {
       "id": "r4",
       "robux": 300,
       "harga": "28k",
       "gamepass": "429",
-      "stock": 39
+      "stock": 8
     },
     {
       "id": "r5",
       "robux": 400,
       "harga": "37k",
       "gamepass": "572",
-      "stock": 40
+      "stock": 5
     },
     {
       "id": "r6",
       "robux": 500,
       "harga": "47k",
       "gamepass": "715",
-      "stock": 30
+      "stock": 4
     },
     {
       "id": "r7",
       "robux": 600,
       "harga": "57k",
       "gamepass": "858",
-      "stock": 30
+      "stock": 5
     },
     {
       "id": "r8",
       "robux": 700,
       "harga": "67k",
       "gamepass": "1000",
-      "stock": 25
+      "stock": 7
     },
     {
       "id": "r9",
       "robux": 800,
       "harga": "77k",
       "gamepass": "1143",
-      "stock": 25
+      "stock": 8
     },
     {
       "id": "r10",
       "robux": 900,
       "harga": "87k",
       "gamepass": "1286",
-      "stock": 15
+      "stock": 7
     },
     {
       "id": "r11",
