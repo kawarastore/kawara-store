@@ -549,9 +549,8 @@ footer a { color: var(--gold); text-decoration: none; }
 const GITHUB_USER = 'kawarastore';
 const GITHUB_REPO = 'kawara-store';
 const DATA_FILE   = 'data.json';
-// URL raw untuk baca data (tanpa auth, public)
-const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${DATA_FILE}`;
-// Tambah cache buster supaya tidak kena cache browser
+// Pakai GitHub API langsung biar tidak kena CDN cache
+const RAW_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${DATA_FILE}`;
 const dataUrl = () => `${RAW_URL}?t=${Date.now()}`;
 // =====================================================
 
@@ -655,7 +654,10 @@ async function fetchData(manual = false) {
   setSyncStatus('loading', manual ? 'Memuat ulang...' : 'Memuat data...');
 
   try {
-    const res = await fetch(dataUrl(), { cache: 'no-store' });
+    const res = await fetch(dataUrl(), {
+  cache: 'no-store',
+  headers: { 'Accept': 'application/vnd.github.v3.raw' }
+});
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
     // Merge dengan DEFAULT — kalau field kosong pakai default
