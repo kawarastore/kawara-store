@@ -8,588 +8,231 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #060400;
-  --surface: #0e0900;
-  --card: rgba(14,9,0,0.88);
-  --card-solid: #0e0900;
-  --border: rgba(245,196,0,0.18);
-  --border-soft: rgba(245,196,0,0.08);
-  --gold: #f5c400;
-  --gold-dim: rgba(245,196,0,0.15);
-  --gold-soft: rgba(245,196,0,0.07);
-  --orange: #ff8c00;
-  --grad: linear-gradient(135deg, #f5c400, #ff8c00);
+  --bg: #060400; --surface: #0e0900; --card: rgba(14,9,0,0.88); --card-solid: #0e0900;
+  --border: rgba(245,196,0,0.18); --border-soft: rgba(245,196,0,0.08);
+  --gold: #f5c400; --gold-dim: rgba(245,196,0,0.15); --gold-soft: rgba(245,196,0,0.07);
+  --orange: #ff8c00; --grad: linear-gradient(135deg, #f5c400, #ff8c00);
   --grad-soft: linear-gradient(135deg, rgba(245,196,0,0.12), rgba(255,140,0,0.12));
-  --text: #f5f0e8;
-  --muted: rgba(245,240,232,0.45);
-  --green: #10b981;
-  --red: #e74c3c;
-  --amber: #f59e0b;
-  --nav-h: 50px;
-  --subnav-h: 42px;
+  --text: #f5f0e8; --muted: rgba(245,240,232,0.45);
+  --green: #10b981; --red: #e74c3c; --amber: #f59e0b;
+  --nav-h: 50px; --subnav-h: 42px;
 }
-*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
-html { -webkit-text-size-adjust:100%; }
-body {
-  background:var(--bg); color:var(--text);
-  font-family:'Outfit',sans-serif; min-height:100vh;
-  overflow-x:hidden; width:100%;
-}
-.bg-layer {
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 10%, rgba(140,90,0,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 45% at 85% 85%, rgba(80,45,0,0.28) 0%, transparent 55%),
-    linear-gradient(160deg, #0e0900 0%, #130b00 40%, #090600 70%, #040300 100%);
-}
-.bg-grid {
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  background-image:linear-gradient(rgba(245,196,0,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245,196,0,0.02) 1px, transparent 1px);
-  background-size:48px 48px;
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;width:100%;}
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(140,90,0,0.22) 0%,transparent 60%),radial-gradient(ellipse 55% 45% at 85% 85%,rgba(80,45,0,0.28) 0%,transparent 55%),linear-gradient(160deg,#0e0900 0%,#130b00 40%,#090600 70%,#040300 100%);}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(245,196,0,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(245,196,0,0.02) 1px,transparent 1px);background-size:48px 48px;}
 
 /* LOGIN */
-#login-screen {
-  display:flex; align-items:center; justify-content:center;
-  min-height:100vh; position:relative; z-index:1; padding:20px;
-}
-.login-box {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:18px; padding:28px 22px; width:100%; max-width:360px;
-  backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
-  box-shadow:0 0 0 1px rgba(245,196,0,0.05), 0 24px 60px rgba(0,0,0,0.7);
-}
-.login-logo-wrap { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
-.login-logo-img {
-  width:36px; height:36px; object-fit:contain;
-  filter:drop-shadow(0 0 8px rgba(245,196,0,0.5));
-}
-.login-logo {
-  font-family:'Rajdhani',sans-serif; font-size:1.35rem; font-weight:700;
-  letter-spacing:3px; text-transform:uppercase;
-  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.login-sub { color:var(--muted); font-size:0.77rem; margin-bottom:22px; letter-spacing:0.5px; }
-.l-input {
-  width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:10px; padding:12px 14px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:1rem;
-  outline:none; margin-bottom:10px; transition:border-color 0.2s;
-  -webkit-appearance:none; appearance:none;
-}
-.l-input:focus { border-color:rgba(245,196,0,0.5); }
-.l-btn {
-  width:100%; padding:13px; background:var(--grad); border:none;
-  border-radius:10px; color:#000; font-family:'Outfit',sans-serif;
-  font-size:0.95rem; font-weight:700; cursor:pointer; margin-top:4px;
-  box-shadow:0 4px 18px rgba(245,196,0,0.25); transition:all 0.2s; letter-spacing:0.5px;
-  -webkit-tap-highlight-color:transparent; min-height:48px;
-}
-.l-btn:active { opacity:0.9; transform:scale(0.98); }
-.l-err { color:var(--red); font-size:0.8rem; margin-top:8px; display:none; }
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;z-index:1;padding:20px;}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 22px;width:100%;max-width:360px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(245,196,0,0.05),0 24px 60px rgba(0,0,0,0.7);}
+.login-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.login-logo-img{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(245,196,0,0.5));}
+.login-logo{font-family:'Rajdhani',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.login-sub{color:var(--muted);font-size:0.77rem;margin-bottom:22px;letter-spacing:0.5px;}
+.l-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-family:'Outfit',sans-serif;font-size:1rem;outline:none;margin-bottom:10px;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;}
+.l-input:focus{border-color:rgba(245,196,0,0.5);}
+.l-btn{width:100%;padding:13px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;margin-top:4px;box-shadow:0 4px 18px rgba(245,196,0,0.25);transition:all 0.2s;letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;min-height:48px;}
+.l-btn:active{opacity:0.9;transform:scale(0.98);}
+.l-err{color:var(--red);font-size:0.8rem;margin-top:8px;display:none;}
 
-/* ADMIN PANEL */
-#admin-panel { display:none; position:relative; z-index:1; }
+/* ADMIN */
+#admin-panel{display:none;position:relative;z-index:1;}
+header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;width:100%;}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);padding:0 14px;}
+.h-logo-wrap{display:flex;align-items:center;gap:8px;}
+.h-logo-img{width:28px;height:28px;object-fit:contain;filter:drop-shadow(0 0 5px rgba(245,196,0,0.45));}
+.h-logo{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-right{display:flex;align-items:center;gap:8px;}
+.admin-badge{padding:3px 9px;border-radius:20px;font-size:0.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--gold-dim);border:1px solid rgba(245,196,0,0.3);color:var(--gold);}
+.logout{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:600;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
 
-/* HEADER */
-header {
-  background:rgba(6,4,0,0.97); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border); position:sticky; top:0; z-index:200; width:100%;
-}
-.header-inner {
-  max-width:1200px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  height:var(--nav-h); padding:0 14px;
-}
-.h-logo-wrap { display:flex; align-items:center; gap:8px; }
-.h-logo-img {
-  width:28px; height:28px; object-fit:contain;
-  filter:drop-shadow(0 0 5px rgba(245,196,0,0.45));
-}
-.h-logo {
-  font-family:'Rajdhani',sans-serif; font-size:1.05rem; font-weight:700;
-  letter-spacing:2px; text-transform:uppercase;
-  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.h-right { display:flex; align-items:center; gap:8px; }
-.admin-badge {
-  padding:3px 9px; border-radius:20px; font-size:0.6rem; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase;
-  background:var(--gold-dim); border:1px solid rgba(245,196,0,0.3); color:var(--gold);
-}
-.logout {
-  background:transparent; border:1px solid var(--border); color:var(--muted);
-  padding:6px 12px; border-radius:7px; cursor:pointer;
-  font-family:'Outfit',sans-serif; font-size:0.76rem; font-weight:600; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent;
-}
+/* SAVE STATUS BAR */
+.save-bar{background:rgba(6,4,0,0.97);border-bottom:1px solid rgba(245,196,0,0.1);padding:7px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:var(--nav-h);z-index:199;}
+.save-status{display:flex;align-items:center;gap:7px;font-size:0.76rem;color:var(--muted);}
+.save-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0;transition:background 0.3s;}
+.save-dot.ok{background:var(--green);}
+.save-dot.saving{background:var(--amber);animation:blink 0.8s ease-in-out infinite;}
+.save-dot.err{background:var(--red);}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.save-all-btn{padding:6px 14px;background:var(--grad);border:none;border-radius:8px;color:#000;font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:700;cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;white-space:nowrap;}
+.save-all-btn:disabled{opacity:0.4;cursor:not-allowed;}
+.save-all-btn:active{opacity:0.85;}
 
-/* MAIN TAB NAV */
-.anav {
-  background:rgba(6,4,0,0.95); border-bottom:1px solid var(--border);
-  position:sticky; top:var(--nav-h); z-index:199;
-  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-}
-.anav-inner {
-  max-width:1200px; margin:0 auto;
-  display:flex; padding:0 4px;
-  overflow-x:auto; -webkit-overflow-scrolling:touch;
-  scrollbar-width:none; -ms-overflow-style:none;
-}
-.anav-inner::-webkit-scrollbar { display:none; }
-.atab {
-  background:none; border:none; border-bottom:2px solid transparent;
-  color:var(--muted); font-family:'Outfit',sans-serif;
-  font-size:0.79rem; font-weight:600; padding:11px 14px;
-  cursor:pointer; white-space:nowrap; transition:all 0.2s; flex-shrink:0;
-  -webkit-tap-highlight-color:transparent;
-}
-.atab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.anav{background:rgba(6,4,0,0.95);border-bottom:1px solid var(--border);position:sticky;top:calc(var(--nav-h) + 38px);z-index:198;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+.anav-inner{max-width:1200px;margin:0 auto;display:flex;padding:0 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.anav-inner::-webkit-scrollbar{display:none;}
+.atab{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.79rem;font-weight:600;padding:11px 14px;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
+.atab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.roblox-subnav{background:rgba(8,5,0,0.95);border-bottom:1px solid rgba(245,196,0,0.08);position:sticky;top:calc(var(--nav-h) + 38px + var(--subnav-h));z-index:197;backdrop-filter:blur(16px);display:none;}
+.roblox-subnav.visible{display:block;}
+.roblox-subnav-inner{max-width:1200px;margin:0 auto;display:flex;padding:0 4px;overflow-x:auto;scrollbar-width:none;}
+.roblox-subnav-inner::-webkit-scrollbar{display:none;}
+.roblox-subtab{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:600;padding:9px 14px;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
+.roblox-subtab.active{color:var(--gold);border-bottom-color:var(--gold);}
 
-/* ROBLOX SUB NAV */
-.roblox-subnav {
-  background:rgba(8,5,0,0.95); border-bottom:1px solid rgba(245,196,0,0.08);
-  position:sticky; top:calc(var(--nav-h) + var(--subnav-h)); z-index:198;
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  display:none;
-}
-.roblox-subnav.visible { display:block; }
-.roblox-subnav-inner {
-  max-width:1200px; margin:0 auto;
-  display:flex; padding:0 4px;
-  overflow-x:auto; -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-}
-.roblox-subnav-inner::-webkit-scrollbar { display:none; }
-.roblox-subtab {
-  background:none; border:none; border-bottom:2px solid transparent;
-  color:var(--muted); font-family:'Outfit',sans-serif;
-  font-size:0.76rem; font-weight:600; padding:9px 14px;
-  cursor:pointer; white-space:nowrap; transition:all 0.2s; flex-shrink:0;
-  -webkit-tap-highlight-color:transparent;
-}
-.roblox-subtab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.acontent{max-width:1200px;margin:0 auto;padding:16px;width:100%;}
+.apage{display:none;}
+.apage.active{display:block;animation:fadeUp 0.3s ease;}
+.roblox-subpage{display:none;}
+.roblox-subpage.active{display:block;animation:fadeUp 0.25s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-family:'Rajdhani',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.sec-ttl{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.subsec-lbl{display:flex;align-items:center;gap:10px;font-size:0.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:18px 0 10px;}
+.subsec-lbl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+.panel h4{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
 
-/* CONTENT */
-.acontent { max-width:1200px; margin:0 auto; padding:16px; width:100%; }
-.apage { display:none; }
-.apage.active { display:block; animation:fadeUp 0.3s ease; }
-.roblox-subpage { display:none; }
-.roblox-subpage.active { display:block; animation:fadeUp 0.25s ease; }
+/* GITHUB CONFIG BOX */
+.gh-config{background:rgba(245,196,0,0.04);border:1px solid rgba(245,196,0,0.2);border-radius:12px;padding:16px;margin-bottom:16px;}
+.gh-config h4{font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.gh-fields{display:grid;grid-template-columns:1fr;gap:8px;}
+@media(min-width:480px){.gh-fields{grid-template-columns:1fr 1fr;}}
+.gh-note{font-size:0.72rem;color:var(--muted);line-height:1.6;margin-top:8px;}
+.gh-note a{color:var(--gold);text-decoration:none;}
 
-@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-/* SECTION */
-.sec-label {
-  font-family:'Rajdhani',sans-serif; font-size:0.62rem; font-weight:700;
-  letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:3px;
-}
-.sec-ttl { font-family:'Rajdhani',sans-serif; font-size:1.2rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:14px; }
-.subsec-lbl {
-  display:flex; align-items:center; gap:10px;
-  font-size:0.6rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
-  color:var(--muted); margin:18px 0 10px;
-}
-.subsec-lbl::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, var(--border), transparent); }
-.sec-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:8px; }
-
-/* PANEL */
-.panel {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:16px; margin-bottom:14px;
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-}
-.panel h4 {
-  font-family:'Rajdhani',sans-serif; font-size:0.85rem; font-weight:700;
-  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:12px;
-}
-
-/* ===================== DASHBOARD ===================== */
-.dash-grid {
-  display:grid; grid-template-columns: repeat(2, 1fr);
-  gap:10px; margin-bottom:16px;
-}
-.dash-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:16px;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-}
-.dash-icon { font-size:1.4rem; margin-bottom:8px; }
-.dash-val {
-  font-family:'Rajdhani',sans-serif; font-size:1.5rem; font-weight:700;
-  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text; line-height:1.1;
-}
-.dash-lbl { font-size:0.72rem; color:var(--muted); margin-top:3px; font-weight:500; }
-
-.history-filter {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:14px; margin-bottom:14px;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
-}
-.filter-lbl { font-size:0.66rem; font-weight:700; letter-spacing:1px; color:var(--muted); text-transform:uppercase; flex-shrink:0; }
-.filter-btn {
-  padding:5px 12px; background:rgba(255,255,255,0.03);
-  border:1px solid var(--border); border-radius:20px;
-  color:var(--muted); font-family:'Outfit',sans-serif;
-  font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.filter-btn.active { background:var(--gold-dim); border-color:rgba(245,196,0,0.4); color:var(--text); }
-
-.revenue-chart {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:16px; margin-bottom:14px;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-}
-.revenue-chart h4 {
-  font-family:'Rajdhani',sans-serif; font-size:0.82rem; font-weight:700;
-  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:12px;
-}
-.chart-bars {
-  display:flex; align-items:flex-end; gap:4px;
-  height:80px; overflow-x:auto; padding-bottom:4px;
-}
-.chart-bar-wrap { display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; min-width:28px; }
-.chart-bar {
-  width:100%; border-radius:3px 3px 0 0;
-  background:var(--grad); min-height:2px; transition:height 0.3s;
-}
-.chart-bar-lbl { font-size:0.56rem; color:var(--muted); white-space:nowrap; }
-
-.recent-list { display:flex; flex-direction:column; gap:8px; }
-.recent-item {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:10px 12px; background:rgba(255,255,255,0.02);
-  border:1px solid var(--border-soft); border-radius:9px; gap:10px;
-}
-.ri-info { flex:1; min-width:0; }
-.ri-name { font-weight:600; font-size:0.83rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.ri-detail { font-size:0.72rem; color:var(--muted); margin-top:2px; }
-.ri-price {
-  font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:700;
-  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text; white-space:nowrap; flex-shrink:0;
-}
+/* DASHBOARD */
+.dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
+.dash-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.dash-icon{font-size:1.4rem;margin-bottom:8px;}
+.dash-val{font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;}
+.dash-lbl{font-size:0.72rem;color:var(--muted);margin-top:3px;font-weight:500;}
+.history-filter{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.filter-lbl{font-size:0.66rem;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;flex-shrink:0;}
+.filter-btn{padding:5px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:20px;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:600;cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.filter-btn.active{background:var(--gold-dim);border-color:rgba(245,196,0,0.4);color:var(--text);}
+.revenue-chart{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;backdrop-filter:blur(12px);}
+.revenue-chart h4{font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.chart-bars{display:flex;align-items:flex-end;gap:4px;height:80px;overflow-x:auto;padding-bottom:4px;}
+.chart-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;min-width:28px;}
+.chart-bar{width:100%;border-radius:3px 3px 0 0;background:var(--grad);min-height:2px;transition:height 0.3s;}
+.chart-bar-lbl{font-size:0.56rem;color:var(--muted);white-space:nowrap;}
+.recent-list{display:flex;flex-direction:column;gap:8px;}
+.recent-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(255,255,255,0.02);border:1px solid var(--border-soft);border-radius:9px;gap:10px;}
+.ri-info{flex:1;min-width:0;}
+.ri-name{font-weight:600;font-size:0.83rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ri-detail{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+.ri-price{font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;flex-shrink:0;}
 
 /* BUTTONS */
-.add-btn {
-  display:inline-flex; align-items:center; gap:5px;
-  padding:7px 12px; background:rgba(16,185,129,0.1);
-  border:1px solid rgba(16,185,129,0.3); border-radius:8px;
-  color:var(--green); font-family:'Outfit',sans-serif;
-  font-size:0.76rem; font-weight:700; cursor:pointer; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.form-submit {
-  width:100%; padding:12px; background:var(--grad); border:none;
-  border-radius:10px; color:#000; font-family:'Outfit',sans-serif;
-  font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.2s;
-  box-shadow:0 4px 16px rgba(245,196,0,0.22); letter-spacing:0.5px;
-  -webkit-tap-highlight-color:transparent; min-height:46px;
-}
-.form-submit:active { opacity:0.9; transform:scale(0.99); }
+.add-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;color:var(--green);font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:700;cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.form-submit{width:100%;padding:12px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px rgba(245,196,0,0.22);letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;min-height:46px;}
 
 /* TABLE */
-.tbl-wrap {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; overflow:hidden; margin-bottom:6px;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-}
-.atable { width:100%; border-collapse:collapse; }
-.atable th {
-  padding:9px 12px; text-align:left;
-  font-size:0.59rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
-  color:var(--muted); border-bottom:1px solid var(--border); white-space:nowrap;
-}
-.atable td {
-  padding:9px 12px; border-bottom:1px solid rgba(245,196,0,0.04);
-  font-size:0.83rem; vertical-align:middle;
-}
-.atable tr:last-child td { border-bottom:none; }
-.tbl-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:6px;backdrop-filter:blur(12px);}
+.atable{width:100%;border-collapse:collapse;}
+.atable th{padding:9px 12px;text-align:left;font-size:0.59rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
+.atable td{padding:9px 12px;border-bottom:1px solid rgba(245,196,0,0.04);font-size:0.83rem;vertical-align:middle;}
+.atable tr:last-child td{border-bottom:none;}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.e-input{background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:7px;padding:6px 8px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.8rem;width:80px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+.e-input.wide{width:160px;}
+.e-input.xwide{width:100%;min-width:100px;}
+.e-input:focus{border-color:rgba(245,196,0,0.5);}
+.ibtn{background:none;border:none;cursor:pointer;padding:5px 9px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:0.73rem;font-weight:700;transition:all 0.2s;-webkit-tap-highlight-color:transparent;min-height:32px;}
+.ibtn.save{color:var(--green);background:rgba(16,185,129,0.1);}
+.ibtn.del{color:var(--red);background:rgba(231,76,60,0.1);}
 
-.e-input {
-  background:rgba(255,255,255,0.05); border:1px solid var(--border);
-  border-radius:7px; padding:6px 8px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.8rem; width:80px;
-  outline:none; transition:border-color 0.2s; -webkit-appearance:none;
-}
-.e-input.wide { width:160px; }
-.e-input.xwide { width:100%; min-width:100px; }
-.e-input:focus { border-color:rgba(245,196,0,0.5); }
+.form-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:14px;}
+@media(min-width:480px){.form-grid{grid-template-columns:1fr 1fr;}}
+.ff{display:flex;flex-direction:column;gap:5px;}
+.flbl{font-size:0.64rem;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
+.finput,.fselect,.ftextarea{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:11px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:rgba(245,196,0,0.5);}
+.fselect option{background:var(--card-solid);}
+.ftextarea{resize:vertical;min-height:60px;}
 
-.ibtn {
-  background:none; border:none; cursor:pointer;
-  padding:5px 9px; border-radius:6px;
-  font-family:'Outfit',sans-serif; font-size:0.73rem; font-weight:700; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent; min-height:32px;
-}
-.ibtn.save { color:var(--green); background:rgba(16,185,129,0.1); }
-.ibtn.del { color:var(--red); background:rgba(231,76,60,0.1); }
+/* SYSTEM */
+.system-admin-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;backdrop-filter:blur(12px);}
+.sac-thumb-area{width:100%;height:120px;background:rgba(245,196,0,0.04);position:relative;overflow:hidden;cursor:pointer;}
+.sac-thumb-area img{width:100%;height:100%;object-fit:cover;}
+.sac-thumb-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+.sac-thumb-placeholder span:first-child{font-size:2rem;opacity:0.3;}
+.sac-thumb-placeholder span:last-child{font-size:0.7rem;color:var(--muted);}
+.sac-thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;font-size:0.75rem;font-weight:700;color:var(--gold);gap:6px;}
+.sac-thumb-area:hover .sac-thumb-overlay{opacity:1;}
+.sac-thumb-input{display:none;}
+.sac-body{padding:14px;}
+.sac-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.sac-full{grid-column:1/-1;}
+.sac-tags-input{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.84rem;outline:none;transition:border-color 0.2s;width:100%;}
+.sac-tags-input:focus{border-color:rgba(245,196,0,0.5);}
+.sac-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px;}
 
-/* FORM */
-.form-grid { display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:14px; }
-@media(min-width:480px) { .form-grid { grid-template-columns:1fr 1fr; } }
-.ff { display:flex; flex-direction:column; gap:5px; }
-.flbl { font-size:0.64rem; font-weight:700; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
-.finput, .fselect, .ftextarea {
-  background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:8px; padding:11px 12px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.88rem; outline:none;
-  transition:border-color 0.2s; -webkit-appearance:none; appearance:none;
-}
-.finput:focus, .fselect:focus, .ftextarea:focus { border-color:rgba(245,196,0,0.5); }
-.fselect option { background:var(--card-solid); }
-.ftextarea { resize:vertical; min-height:60px; }
-
-/* SYSTEM ADMIN */
-.system-admin-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; margin-bottom:12px; overflow:hidden;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-}
-.sac-thumb-area {
-  width:100%; height:120px; background:rgba(245,196,0,0.04);
-  position:relative; overflow:hidden; cursor:pointer;
-}
-.sac-thumb-area img { width:100%; height:100%; object-fit:cover; }
-.sac-thumb-placeholder {
-  width:100%; height:100%;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:6px;
-}
-.sac-thumb-placeholder span:first-child { font-size:2rem; opacity:0.3; }
-.sac-thumb-placeholder span:last-child { font-size:0.7rem; color:var(--muted); }
-.sac-thumb-overlay {
-  position:absolute; inset:0; background:rgba(0,0,0,0.6);
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; transition:opacity 0.2s;
-  font-size:0.75rem; font-weight:700; color:var(--gold); gap:6px;
-}
-.sac-thumb-area:hover .sac-thumb-overlay { opacity:1; }
-.sac-thumb-input { display:none; }
-.sac-body { padding:14px; }
-.sac-fields { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
-.sac-full { grid-column:1/-1; }
-.sac-tags-input {
-  background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:8px; padding:10px 12px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.84rem; outline:none;
-  transition:border-color 0.2s; width:100%;
-}
-.sac-tags-input:focus { border-color:rgba(245,196,0,0.5); }
-.sac-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:10px; }
-
-/* DIGITAL ADMIN */
-.digital-admin-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:14px; margin-bottom:10px;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-}
-.dac-header { display:flex; flex-direction:column; gap:10px; margin-bottom:10px; }
-.dac-title-row { display:flex; gap:8px; align-items:center; }
-.dac-icon-edit {
-  background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:8px; padding:6px 8px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.88rem; outline:none; width:48px;
-  text-align:center; flex-shrink:0;
-}
-.dac-name-edit { flex:1; }
-.dac-actions { display:flex; gap:6px; }
-.dac-desc-edit { width:100%; margin-bottom:10px; }
-.dac-prices { display:flex; flex-direction:column; gap:6px; }
-.dac-price-row { display:flex; gap:6px; align-items:center; }
-.dac-price-label-edit, .dac-price-val-edit {
-  background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:7px; padding:7px 9px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.8rem; outline:none;
-  transition:border-color 0.2s; flex:1; min-width:0;
-  -webkit-appearance:none;
-}
-.dac-price-label-edit:focus,.dac-price-val-edit:focus { border-color:rgba(245,196,0,0.5); }
-.add-price-btn {
-  width:100%; padding:8px; background:rgba(245,196,0,0.08);
-  border:1px dashed rgba(245,196,0,0.25);
-  border-radius:7px; color:var(--gold); font-family:'Outfit',sans-serif;
-  font-size:0.73rem; font-weight:700; cursor:pointer; transition:all 0.2s; margin-top:6px;
-  -webkit-tap-highlight-color:transparent;
-}
-.del-price-btn {
-  padding:7px 9px; background:rgba(231,76,60,0.08); border:none;
-  border-radius:6px; color:var(--red); cursor:pointer; font-size:0.8rem;
-  transition:all 0.2s; flex-shrink:0; min-width:32px; min-height:32px;
-  -webkit-tap-highlight-color:transparent;
-}
+/* DIGITAL */
+.digital-admin-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;backdrop-filter:blur(12px);}
+.dac-header{display:flex;flex-direction:column;gap:10px;margin-bottom:10px;}
+.dac-title-row{display:flex;gap:8px;align-items:center;}
+.dac-icon-edit{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:6px 8px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;width:48px;text-align:center;flex-shrink:0;}
+.dac-name-edit{flex:1;}
+.dac-actions{display:flex;gap:6px;}
+.dac-desc-edit{width:100%;margin-bottom:10px;}
+.dac-prices{display:flex;flex-direction:column;gap:6px;}
+.dac-price-row{display:flex;gap:6px;align-items:center;}
+.dac-price-label-edit,.dac-price-val-edit{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:7px;padding:7px 9px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.8rem;outline:none;transition:border-color 0.2s;flex:1;min-width:0;-webkit-appearance:none;}
+.dac-price-label-edit:focus,.dac-price-val-edit:focus{border-color:rgba(245,196,0,0.5);}
+.add-price-btn{width:100%;padding:8px;background:rgba(245,196,0,0.08);border:1px dashed rgba(245,196,0,0.25);border-radius:7px;color:var(--gold);font-family:'Outfit',sans-serif;font-size:0.73rem;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:6px;-webkit-tap-highlight-color:transparent;}
+.del-price-btn{padding:7px 9px;background:rgba(231,76,60,0.08);border:none;border-radius:6px;color:var(--red);cursor:pointer;font-size:0.8rem;transition:all 0.2s;flex-shrink:0;min-width:32px;min-height:32px;}
 
 /* UPLOAD */
-.upload-zone {
-  border:2px dashed var(--border); border-radius:10px; padding:18px 14px;
-  text-align:center; cursor:pointer; transition:all 0.25s;
-  background:rgba(255,255,255,0.02); position:relative;
-}
-.upload-zone input[type="file"] {
-  position:absolute; inset:0; opacity:0; cursor:pointer;
-  width:100%; height:100%;
-}
-.upload-icon { font-size:1.5rem; margin-bottom:5px; }
-.upload-label { font-size:0.76rem; color:var(--muted); }
-.upload-label span { color:var(--gold); font-weight:700; }
-.img-preview-wrap { position:relative; display:inline-block; margin-top:10px; }
-.img-preview { max-width:100%; max-height:140px; border-radius:8px; border:1px solid var(--border); display:block; }
-.img-remove {
-  position:absolute; top:-8px; right:-8px;
-  background:var(--red); border:none; color:#fff;
-  width:22px; height:22px; border-radius:50%;
-  font-size:0.7rem; cursor:pointer; font-weight:700;
-  display:flex; align-items:center; justify-content:center;
-  -webkit-tap-highlight-color:transparent;
-}
+.upload-zone{border:2px dashed var(--border);border-radius:10px;padding:18px 14px;text-align:center;cursor:pointer;transition:all 0.25s;background:rgba(255,255,255,0.02);position:relative;}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-icon{font-size:1.5rem;margin-bottom:5px;}
+.upload-label{font-size:0.76rem;color:var(--muted);}
+.upload-label span{color:var(--gold);font-weight:700;}
+.img-preview-wrap{position:relative;display:inline-block;margin-top:10px;}
+.img-preview{max-width:100%;max-height:140px;border-radius:8px;border:1px solid var(--border);display:block;}
+.img-remove{position:absolute;top:-8px;right:-8px;background:var(--red);border:none;color:#fff;width:22px;height:22px;border-radius:50%;font-size:0.7rem;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;}
 
 /* TRX */
-.trx-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:10px; padding:13px; margin-bottom:8px;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-}
-.trx-top { display:flex; gap:10px; justify-content:space-between; align-items:flex-start; }
-.trx-info { flex:1; min-width:0; }
-.trx-user { font-weight:700; font-size:0.88rem; margin-bottom:2px; }
-.trx-detail { color:var(--muted); font-size:0.74rem; line-height:1.6; }
-.trx-time { font-size:0.67rem; color:var(--muted); margin-top:3px; }
-.trx-price {
-  font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:700;
-  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text; margin-bottom:5px; white-space:nowrap;
-}
-.trx-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
-.status-badge {
-  display:inline-block; padding:2px 8px; border-radius:20px;
-  font-size:0.66rem; font-weight:700; white-space:nowrap;
-}
-.status-badge.pending { background:rgba(245,158,11,0.12); color:var(--amber); border:1px solid rgba(245,158,11,0.2); }
-.status-badge.done { background:rgba(16,185,129,0.12); color:var(--green); border:1px solid rgba(16,185,129,0.2); }
-.trx-bottom {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-top:10px; padding-top:10px; border-top:1px solid rgba(245,196,0,0.06);
-  flex-wrap:wrap; gap:8px;
-}
-.trx-actions { display:flex; gap:6px; }
-.t-done {
-  padding:5px 11px; background:rgba(16,185,129,0.1);
-  border:1px solid rgba(16,185,129,0.3); border-radius:7px;
-  color:var(--green); cursor:pointer; font-family:'Outfit',sans-serif;
-  font-size:0.73rem; font-weight:700; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent; min-height:32px;
-}
-.t-del {
-  padding:5px 11px; background:rgba(231,76,60,0.08);
-  border:1px solid rgba(231,76,60,0.25); border-radius:7px;
-  color:var(--red); cursor:pointer; font-family:'Outfit',sans-serif;
-  font-size:0.73rem; font-weight:700; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent; min-height:32px;
-}
-.trx-bukti-thumb {
-  width:48px; height:48px; border-radius:7px;
-  object-fit:cover; border:1px solid var(--border);
-  cursor:pointer; flex-shrink:0;
-}
-.no-bukti {
-  width:48px; height:48px; border-radius:7px;
-  border:1px dashed var(--border-soft);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--muted); font-size:1rem; flex-shrink:0;
-}
-.empty { text-align:center; color:var(--muted); padding:28px; font-size:0.83rem; }
+.trx-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px;margin-bottom:8px;backdrop-filter:blur(12px);}
+.trx-top{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;}
+.trx-info{flex:1;min-width:0;}
+.trx-user{font-weight:700;font-size:0.88rem;margin-bottom:2px;}
+.trx-detail{color:var(--muted);font-size:0.74rem;line-height:1.6;}
+.trx-time{font-size:0.67rem;color:var(--muted);margin-top:3px;}
+.trx-price{font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:5px;white-space:nowrap;}
+.trx-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+.status-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:0.66rem;font-weight:700;white-space:nowrap;}
+.status-badge.pending{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.2);}
+.status-badge.done{background:rgba(16,185,129,0.12);color:var(--green);border:1px solid rgba(16,185,129,0.2);}
+.trx-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid rgba(245,196,0,0.06);flex-wrap:wrap;gap:8px;}
+.trx-actions{display:flex;gap:6px;}
+.t-done{padding:5px 11px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:7px;color:var(--green);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.73rem;font-weight:700;transition:all 0.2s;-webkit-tap-highlight-color:transparent;min-height:32px;}
+.t-del{padding:5px 11px;background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.25);border-radius:7px;color:var(--red);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.73rem;font-weight:700;transition:all 0.2s;-webkit-tap-highlight-color:transparent;min-height:32px;}
+.trx-bukti-thumb{width:48px;height:48px;border-radius:7px;object-fit:cover;border:1px solid var(--border);cursor:pointer;flex-shrink:0;}
+.no-bukti{width:48px;height:48px;border-radius:7px;border:1px dashed var(--border-soft);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1rem;flex-shrink:0;}
+.empty{text-align:center;color:var(--muted);padding:28px;font-size:0.83rem;}
 
-/* DISCORD */
-.dinput {
-  width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:8px; padding:11px 12px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.84rem; outline:none;
-  transition:border-color 0.2s; -webkit-appearance:none; margin-bottom:10px;
-}
-.dinput:focus { border-color:rgba(245,196,0,0.5); }
-.d-save {
-  width:100%; padding:12px; background:var(--grad); border:none;
-  border-radius:8px; color:#000; font-family:'Outfit',sans-serif;
-  font-size:0.88rem; font-weight:700; cursor:pointer; letter-spacing:0.5px;
-  -webkit-tap-highlight-color:transparent; min-height:46px;
-}
-#wh-status { color:var(--muted); font-size:0.74rem; margin-top:8px; line-height:1.5; word-break:break-all; }
-
-/* OVERLAY/MODAL */
-.overlay {
-  display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8);
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  z-index:400; align-items:flex-end; justify-content:center;
-}
-.overlay.open { display:flex; }
-.modal {
-  background:#0e0900; border:1px solid var(--border);
-  border-radius:20px 20px 0 0; padding:22px 18px 32px;
-  width:100%; max-width:500px; position:relative;
-  animation:slideUp 0.28s cubic-bezier(0.16,1,0.3,1);
-  box-shadow:0 -8px 40px rgba(0,0,0,0.5);
-  max-height:88vh; overflow-y:auto; -webkit-overflow-scrolling:touch;
-}
-@keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-.modal::before {
-  content:''; display:block; width:36px; height:4px; border-radius:2px;
-  background:rgba(245,196,0,0.25); margin:0 auto 16px;
-}
-.mx {
-  position:absolute; top:16px; right:14px;
-  background:rgba(255,255,255,0.05); border:1px solid var(--border-soft);
-  color:var(--muted); width:28px; height:28px;
-  border-radius:7px; cursor:pointer; font-size:0.88rem;
-  display:flex; align-items:center; justify-content:center;
-  -webkit-tap-highlight-color:transparent;
-}
-.modal h3 {
-  font-family:'Rajdhani',sans-serif; font-size:0.95rem; font-weight:700;
-  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:14px;
-}
-.modal-action {
-  width:100%; padding:13px; background:var(--grad); border:none;
-  border-radius:10px; color:#000; font-family:'Outfit',sans-serif;
-  font-size:0.9rem; font-weight:700; cursor:pointer; margin-top:6px; letter-spacing:0.5px;
-  -webkit-tap-highlight-color:transparent; min-height:48px;
-}
+/* OVERLAY */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:400;align-items:flex-end;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:#0e0900;border:1px solid var(--border);border-radius:20px 20px 0 0;padding:22px 18px 32px;width:100%;max-width:500px;position:relative;animation:slideUp 0.28s cubic-bezier(0.16,1,0.3,1);box-shadow:0 -8px 40px rgba(0,0,0,0.5);max-height:88vh;overflow-y:auto;}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal::before{content:'';display:block;width:36px;height:4px;border-radius:2px;background:rgba(245,196,0,0.25);margin:0 auto 16px;}
+.mx{position:absolute;top:16px;right:14px;background:rgba(255,255,255,0.05);border:1px solid var(--border-soft);color:var(--muted);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:0.88rem;display:flex;align-items:center;justify-content:center;}
+.modal h3{font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.modal-action{width:100%;padding:13px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:6px;letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;min-height:48px;}
 
 /* Lightbox */
-#lightbox-modal .modal { align-items:center; gap:12px; display:flex; flex-direction:column; }
-#lightbox-img { max-width:100%; max-height:65vh; border-radius:10px; object-fit:contain; display:block; }
-#lightbox-caption { font-size:0.76rem; color:var(--muted); text-align:center; }
+#lightbox-img{max-width:100%;max-height:65vh;border-radius:10px;object-fit:contain;display:block;}
+#lightbox-caption{font-size:0.76rem;color:var(--muted);text-align:center;}
+
+/* DISCORD */
+.dinput{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:11px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.84rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;margin-bottom:10px;}
+.dinput:focus{border-color:rgba(245,196,0,0.5);}
+.d-save{width:100%;padding:12px;background:var(--grad);border:none;border-radius:8px;color:#000;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;min-height:46px;}
 
 /* TOAST */
-.toast {
-  position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(80px);
-  background:var(--card); border:1px solid var(--border);
-  color:var(--text); padding:10px 18px; border-radius:10px;
-  font-size:0.8rem; font-weight:600; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  opacity:0; transition:all 0.28s; z-index:999; pointer-events:none;
-  white-space:nowrap; max-width:calc(100% - 32px);
-}
-.toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
-.toast.err { border-color:rgba(231,76,60,0.5); color:var(--red); }
-.toast.ok { border-color:rgba(16,185,129,0.4); color:var(--green); }
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:10px;font-size:0.8rem;font-weight:600;backdrop-filter:blur(16px);opacity:0;transition:all 0.28s;z-index:999;pointer-events:none;white-space:nowrap;max-width:calc(100% - 32px);}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast.err{border-color:rgba(231,76,60,0.5);color:var(--red);}
+.toast.ok{border-color:rgba(16,185,129,0.4);color:var(--green);}
 
-@media(min-width:600px) {
-  .overlay { align-items:center; padding:20px; }
-  .modal { border-radius:18px; }
-  .modal::before { display:none; }
-  .acontent { padding:18px 20px; }
-  .dash-grid { grid-template-columns:repeat(4,1fr); }
-  .sac-fields { grid-template-columns:1fr 1fr; }
-}
-@media(min-width:900px) {
-  .sac-fields { grid-template-columns:1fr 1fr 1fr; }
-}
+@media(min-width:600px){.overlay{align-items:center;padding:20px;}.modal{border-radius:18px;}.modal::before{display:none;}.acontent{padding:18px 20px;}.dash-grid{grid-template-columns:repeat(4,1fr);}.sac-fields{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.sac-fields{grid-template-columns:1fr 1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -600,7 +243,7 @@ header {
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo-wrap">
-      <img class="login-logo-img" src="https://raw.githubusercontent.com/kawara-store/kawara-store.github.io/main/logo.png" onerror="this.style.display='none'" alt="logo">
+      <img class="login-logo-img" src="https://raw.githubusercontent.com/kawarastore/kawara-store/main/logo.png" onerror="this.style.display='none'" alt="logo">
       <div class="login-logo">Kawara Store</div>
     </div>
     <div class="login-sub">Admin Panel — Akses Terbatas</div>
@@ -616,7 +259,7 @@ header {
   <header>
     <div class="header-inner">
       <div class="h-logo-wrap">
-        <img class="h-logo-img" src="https://raw.githubusercontent.com/kawara-store/kawara-store.github.io/main/logo.png" onerror="this.style.display='none'" alt="logo">
+        <img class="h-logo-img" src="https://raw.githubusercontent.com/kawarastore/kawara-store/main/logo.png" onerror="this.style.display='none'" alt="logo">
         <div class="h-logo">Kawara Admin</div>
       </div>
       <div class="h-right">
@@ -626,17 +269,25 @@ header {
     </div>
   </header>
 
+  <!-- SAVE STATUS BAR -->
+  <div class="save-bar">
+    <div class="save-status">
+      <span class="save-dot" id="save-dot"></span>
+      <span id="save-text">Belum ada perubahan</span>
+    </div>
+    <button class="save-all-btn" id="save-all-btn" onclick="saveToGitHub()" disabled>💾 Simpan ke GitHub</button>
+  </div>
+
   <div class="anav">
     <div class="anav-inner">
       <button class="atab active" onclick="showAPage('dashboard',this)">📊 Dashboard</button>
       <button class="atab" onclick="showAPage('trx',this)">📋 Transaksi</button>
       <button class="atab" onclick="showAPage('roblox',this)">🎮 Roblox</button>
       <button class="atab" onclick="showAPage('digital',this)">💼 Digital</button>
-      <button class="atab" onclick="showAPage('discord',this)">🔧 Discord</button>
+      <button class="atab" onclick="showAPage('discord',this)">🔧 Pengaturan</button>
     </div>
   </div>
 
-  <!-- Roblox sub-nav -->
   <div class="roblox-subnav" id="a-roblox-subnav">
     <div class="roblox-subnav-inner">
       <button class="roblox-subtab active" onclick="showRobloxSub('topup',this)">💎 Robux Top Up</button>
@@ -650,85 +301,45 @@ header {
     <div class="apage active" id="apage-dashboard">
       <div class="sec-label">Overview</div>
       <div class="sec-ttl">📊 Dashboard</div>
-
-      <!-- Stats -->
       <div class="dash-grid">
-        <div class="dash-card">
-          <div class="dash-icon">💰</div>
-          <div class="dash-val" id="d-total-rev">—</div>
-          <div class="dash-lbl">Total Penjualan</div>
-        </div>
-        <div class="dash-card">
-          <div class="dash-icon">📦</div>
-          <div class="dash-val" id="d-total-trx">0</div>
-          <div class="dash-lbl">Total Transaksi</div>
-        </div>
-        <div class="dash-card">
-          <div class="dash-icon">✅</div>
-          <div class="dash-val" id="d-done-trx">0</div>
-          <div class="dash-lbl">Selesai</div>
-        </div>
-        <div class="dash-card">
-          <div class="dash-icon">⏳</div>
-          <div class="dash-val" id="d-pending-trx">0</div>
-          <div class="dash-lbl">Pending</div>
-        </div>
+        <div class="dash-card"><div class="dash-icon">💰</div><div class="dash-val" id="d-total-rev">—</div><div class="dash-lbl">Total Penjualan</div></div>
+        <div class="dash-card"><div class="dash-icon">📦</div><div class="dash-val" id="d-total-trx">0</div><div class="dash-lbl">Total Transaksi</div></div>
+        <div class="dash-card"><div class="dash-icon">✅</div><div class="dash-val" id="d-done-trx">0</div><div class="dash-lbl">Selesai</div></div>
+        <div class="dash-card"><div class="dash-icon">⏳</div><div class="dash-val" id="d-pending-trx">0</div><div class="dash-lbl">Pending</div></div>
       </div>
-
-      <!-- Filter -->
       <div class="history-filter">
         <span class="filter-lbl">Filter:</span>
         <button class="filter-btn active" onclick="setFilter('all',this)">Semua</button>
         <button class="filter-btn" onclick="setFilter('today',this)">Hari Ini</button>
         <button class="filter-btn" onclick="setFilter('week',this)">Minggu Ini</button>
         <button class="filter-btn" onclick="setFilter('month',this)">Bulan Ini</button>
-        <button class="filter-btn" onclick="setFilter('year',this)">Tahun Ini</button>
       </div>
-
-      <!-- Chart -->
-      <div class="revenue-chart">
-        <h4>📈 Aktivitas Transaksi</h4>
-        <div class="chart-bars" id="chart-bars"></div>
-      </div>
-
-      <!-- Recent -->
-      <div class="panel">
-        <h4>🕐 Transaksi Terbaru</h4>
-        <div class="recent-list" id="recent-list"></div>
-      </div>
+      <div class="revenue-chart"><h4>📈 Aktivitas Transaksi</h4><div class="chart-bars" id="chart-bars"></div></div>
+      <div class="panel"><h4>🕐 Transaksi Terbaru</h4><div class="recent-list" id="recent-list"></div></div>
     </div>
 
     <!-- TRANSAKSI -->
     <div class="apage" id="apage-trx">
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">📋 Transaksi</div>
-
-      <!-- Filter bar -->
       <div class="history-filter" style="margin-bottom:12px;">
         <span class="filter-lbl">Filter:</span>
-        <button class="filter-btn active" id="trx-filter-all" onclick="setTrxFilter('all',this)">Semua</button>
+        <button class="filter-btn active" onclick="setTrxFilter('all',this)">Semua</button>
         <button class="filter-btn" onclick="setTrxFilter('today',this)">Hari Ini</button>
         <button class="filter-btn" onclick="setTrxFilter('week',this)">Minggu Ini</button>
         <button class="filter-btn" onclick="setTrxFilter('month',this)">Bulan Ini</button>
-        <button class="filter-btn" onclick="setTrxFilter('year',this)">Tahun Ini</button>
       </div>
-
       <div class="panel">
         <h4>➕ Tambah Transaksi</h4>
         <div class="form-grid">
           <div class="ff"><label class="flbl">Username / Nama</label><input class="finput" id="t-user" placeholder="Username..."></div>
           <div class="ff"><label class="flbl">Kategori / Item</label><input class="finput" id="t-cat" placeholder="misal: Fish It VIP"></div>
           <div class="ff"><label class="flbl">Total Harga</label><input class="finput" id="t-price" placeholder="misal: 45K"></div>
-          <div class="ff"><label class="flbl">Status</label>
-            <select class="fselect" id="t-status">
-              <option value="pending">Pending</option>
-              <option value="done">Selesai</option>
-            </select>
-          </div>
+          <div class="ff"><label class="flbl">Status</label><select class="fselect" id="t-status"><option value="pending">Pending</option><option value="done">Selesai</option></select></div>
         </div>
         <div class="ff" style="margin-bottom:14px;">
           <label class="flbl">📸 Foto Bukti <span style="color:var(--muted);font-weight:400;text-transform:none;">(opsional)</span></label>
-          <div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+          <div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
             <input type="file" id="t-bukti-input" accept="image/*" onchange="handleFileSelect(event)">
             <div class="upload-icon">🖼️</div>
             <div class="upload-label">Tap atau <span>drag foto</span> ke sini</div>
@@ -743,75 +354,35 @@ header {
         </div>
         <button class="form-submit" onclick="addTrx()">📤 Simpan &amp; Kirim ke Discord</button>
       </div>
-
       <div id="trx-list"></div>
     </div>
 
     <!-- ROBLOX -->
     <div class="apage" id="apage-roblox">
-      <!-- TOP UP sub-page -->
       <div class="roblox-subpage active" id="a-roblox-sub-topup">
         <div class="sec-label">Kelola</div>
         <div class="sec-ttl">💎 Robux Top Up</div>
-
-        <!-- Robux table -->
         <div class="subsec-lbl" style="margin-top:0;">Robux via Gamepass</div>
-        <div class="tbl-scroll"><div class="tbl-wrap">
-          <table class="atable">
-            <thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th>Aksi</th></tr></thead>
-            <tbody id="a-robux-tbody"></tbody>
-          </table>
-        </div></div>
-
-        <!-- Fish It -->
-        <div class="sec-head" style="margin-top:16px;">
-          <div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Item Shop</div>
-          <button class="add-btn" onclick="openAdd('fishit_shop')">+ Tambah</button>
-        </div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-robux-tbody"></tbody></table></div></div>
+        <div class="sec-head" style="margin-top:16px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Item Shop</div><button class="add-btn" onclick="openAdd('fishit_shop')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-shop"></tbody></table></div></div>
-
-        <div class="sec-head" style="margin-top:14px;">
-          <div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Gacha Skin</div>
-          <button class="add-btn" onclick="openAdd('fishit_gacha')">+ Tambah</button>
-        </div>
+        <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Gacha Skin</div><button class="add-btn" onclick="openAdd('fishit_gacha')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-gacha"></tbody></table></div></div>
-
-        <div class="sec-head" style="margin-top:14px;">
-          <div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Emote Crates</div>
-          <button class="add-btn" onclick="openAdd('fishit_emote')">+ Tambah</button>
-        </div>
+        <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Emote Crates</div><button class="add-btn" onclick="openAdd('fishit_emote')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-emote"></tbody></table></div></div>
-
-        <!-- Forge -->
-        <div class="sec-head" style="margin-top:14px;">
-          <div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Passes</div>
-          <button class="add-btn" onclick="openAdd('forge_passes')">+ Tambah</button>
-        </div>
+        <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Passes</div><button class="add-btn" onclick="openAdd('forge_passes')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-passes"></tbody></table></div></div>
-
-        <div class="sec-head" style="margin-top:14px;">
-          <div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Totems</div>
-          <button class="add-btn" onclick="openAdd('forge_totems')">+ Tambah</button>
-        </div>
+        <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Totems</div><button class="add-btn" onclick="openAdd('forge_totems')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-totems"></tbody></table></div></div>
-
-        <div class="sec-head" style="margin-top:14px;">
-          <div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Rerolls</div>
-          <button class="add-btn" onclick="openAdd('forge_rerolls')">+ Tambah</button>
-        </div>
+        <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Rerolls</div><button class="add-btn" onclick="openAdd('forge_rerolls')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-rerolls"></tbody></table></div></div>
       </div>
-
-      <!-- ROBLOX SYSTEM sub-page -->
       <div class="roblox-subpage" id="a-roblox-sub-system">
         <div class="sec-head">
-          <div>
-            <div class="sec-label">Kelola</div>
-            <div class="sec-ttl" style="margin-bottom:0;">⚙️ Roblox System</div>
-          </div>
+          <div><div class="sec-label">Kelola</div><div class="sec-ttl" style="margin-bottom:0;">⚙️ Roblox System</div></div>
           <button class="add-btn" onclick="addSystemCard()">+ Tambah System</button>
         </div>
-        <p style="font-size:0.78rem;color:var(--muted);margin-bottom:14px;">Klik thumbnail untuk ganti gambar preview. Isi field lalu klik Simpan.</p>
+        <p style="font-size:0.78rem;color:var(--muted);margin-bottom:14px;">Edit lalu klik <strong style="color:var(--gold);">💾 Simpan ke GitHub</strong> di atas untuk publish perubahan.</p>
         <div id="system-admin-list"></div>
       </div>
     </div>
@@ -821,30 +392,53 @@ header {
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">💼 Jasa Digital</div>
       <div class="sec-head" style="margin-bottom:14px;">
-        <p style="font-size:0.78rem;color:var(--muted);flex:1;">Edit langsung di kartu — ubah nama, deskripsi, ikon, dan harga.</p>
+        <p style="font-size:0.78rem;color:var(--muted);flex:1;">Edit kartu lalu klik <strong style="color:var(--gold);">💾 Simpan ke GitHub</strong> di atas.</p>
         <button class="add-btn" onclick="addDigitalCard()">+ Tambah</button>
       </div>
       <div id="digital-admin-list"></div>
     </div>
 
-    <!-- DISCORD -->
+    <!-- PENGATURAN -->
     <div class="apage" id="apage-discord">
       <div class="sec-label">Konfigurasi</div>
-      <div class="sec-ttl">🔧 Discord Webhook</div>
+      <div class="sec-ttl">🔧 Pengaturan</div>
+
+      <!-- GitHub Token Config -->
+      <div class="gh-config">
+        <h4>🔑 GitHub Personal Access Token</h4>
+        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:12px;line-height:1.6;">Token ini digunakan admin untuk menyimpan data produk ke GitHub. <strong style="color:var(--text);">Disimpan hanya di browser ini</strong>, tidak dikirim ke mana-mana selain GitHub API.</p>
+        <div class="gh-fields">
+          <div class="ff">
+            <label class="flbl">GitHub Username</label>
+            <input class="finput" id="gh-user" placeholder="kawarastore" value="kawarastore">
+          </div>
+          <div class="ff">
+            <label class="flbl">Nama Repository</label>
+            <input class="finput" id="gh-repo" placeholder="kawara-store" value="kawara-store">
+          </div>
+          <div class="ff" style="grid-column:1/-1;">
+            <label class="flbl">Personal Access Token</label>
+            <input class="finput" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+          </div>
+        </div>
+        <button class="d-save" onclick="saveGHConfig()" style="margin-top:10px;">💾 Simpan Konfigurasi</button>
+        <div class="gh-note">
+          Cara buat token: <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> → pilih scope <strong>repo</strong> → Generate. Token hanya perlu dibuat sekali dan disimpan di browser ini.
+        </div>
+      </div>
+
+      <!-- Discord Webhook -->
       <div class="panel">
-        <h4>URL Webhook</h4>
-        <p style="color:var(--muted);font-size:0.77rem;margin-bottom:14px;line-height:1.65;">
-          Setiap transaksi baru otomatis terkirim ke channel Discord kamu.<br>
-          Discord → Edit Channel → Integrations → Webhooks → New Webhook → Copy URL
-        </p>
+        <h4>📢 Discord Webhook</h4>
+        <p style="color:var(--muted);font-size:0.77rem;margin-bottom:14px;line-height:1.65;">Setiap transaksi baru otomatis terkirim ke channel Discord kamu.</p>
         <input class="dinput" id="wh-input" placeholder="https://discord.com/api/webhooks/...">
         <button class="d-save" onclick="saveWH()">💾 Simpan Webhook</button>
-        <div id="wh-status"></div>
+        <div id="wh-status" style="color:var(--muted);font-size:0.74rem;margin-top:8px;"></div>
       </div>
     </div>
 
-  </div><!-- /acontent -->
-</div><!-- /admin-panel -->
+  </div>
+</div>
 
 <!-- MODAL ADD ITEM -->
 <div class="overlay" id="add-modal">
@@ -874,7 +468,9 @@ header {
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== AUTH =====
+// =====================================================
+// AUTH
+// =====================================================
 const CREDS = { user:'kawarastore', pass:'Hanz1247rrr*' };
 function doLogin() {
   const u=document.getElementById('inp-u').value;
@@ -887,19 +483,161 @@ function doLogin() {
   } else { document.getElementById('l-err').style.display='block'; }
 }
 ['inp-u','inp-p'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();}));
-function doLogout() { sessionStorage.removeItem('kwa'); location.reload(); }
-if(sessionStorage.getItem('kwa')==='1') {
+function doLogout(){sessionStorage.removeItem('kwa');location.reload();}
+if(sessionStorage.getItem('kwa')==='1'){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('admin-panel').style.display='block';
 }
 
-// ===== UPLOAD =====
+// =====================================================
+// GITHUB CONFIG
+// =====================================================
+function getGHConfig() {
+  return {
+    user: localStorage.getItem('gh_user') || 'kawarastore',
+    repo: localStorage.getItem('gh_repo') || 'kawara-store',
+    token: localStorage.getItem('gh_token') || ''
+  };
+}
+function saveGHConfig() {
+  const u=document.getElementById('gh-user').value.trim();
+  const r=document.getElementById('gh-repo').value.trim();
+  const t=document.getElementById('gh-token').value.trim();
+  if(!t){toast('❌ Token tidak boleh kosong!',true);return;}
+  localStorage.setItem('gh_user',u);
+  localStorage.setItem('gh_repo',r);
+  localStorage.setItem('gh_token',t);
+  toast('✅ Konfigurasi GitHub disimpan!','ok');
+}
+
+// =====================================================
+// DATA — baca dari localStorage, fallback ke DEFAULT
+// =====================================================
+const DEFAULT_DATA = {
+  robux:[
+    {id:'r1',robux:50,harga:'4K',gamepass:'72',stock:99},
+    {id:'r2',robux:100,harga:'9K',gamepass:'143',stock:99},
+    {id:'r3',robux:200,harga:'18K',gamepass:'286',stock:99},
+    {id:'r4',robux:300,harga:'28K',gamepass:'429',stock:99},
+    {id:'r5',robux:400,harga:'38K',gamepass:'572',stock:99},
+    {id:'r6',robux:500,harga:'48K',gamepass:'715',stock:99},
+    {id:'r7',robux:600,harga:'58K',gamepass:'858',stock:99},
+    {id:'r8',robux:700,harga:'68K',gamepass:'1000',stock:99},
+    {id:'r9',robux:800,harga:'78K',gamepass:'1143',stock:99},
+    {id:'r10',robux:900,harga:'88K',gamepass:'1286',stock:99},
+    {id:'r11',robux:1000,harga:'98K',gamepass:'1430',stock:99},
+  ],
+  fishit_shop:[{id:'fs1',name:'Rod Skin: Bunny Staff',harga:'85K',stock:10},{id:'fs2',name:'Rod Skin: Easter Parasol',harga:'85K',stock:10},{id:'fs3',name:'VIP + LUCK',harga:'45K',stock:10},{id:'fs4',name:'Easter Pack',harga:'25K',stock:10},{id:'fs5',name:'Advanced Luck',harga:'50K',stock:10},{id:'fs6',name:'Extra Luck',harga:'25K',stock:10},{id:'fs7',name:'Double XP',harga:'18K',stock:10},{id:'fs8',name:'Mini Hoverboard',harga:'20K',stock:10},{id:'fs9',name:'Sell Anywhere',harga:'30K',stock:10},{id:'fs10',name:'Small Luck',harga:'5K',stock:10},{id:'fs11',name:'Hyper Boat Pack',harga:'95K',stock:10}],
+  fishit_gacha:[{id:'fg1',name:'Azure Crates — 1x Spin',harga:'11K',stock:99},{id:'fg2',name:'Azure Crates — 5x Spin',harga:'53K',stock:99},{id:'fg3',name:'Pirate — 1x Spin',harga:'11K',stock:99},{id:'fg4',name:'Pirate — 5x Spin',harga:'53K',stock:99},{id:'fg5',name:'Elderwood — 1x Spin',harga:'10K',stock:99},{id:'fg6',name:'Elderwood — 5x Spin',harga:'48K',stock:99},{id:'fg7',name:'Luxury — 1x Spin',harga:'10K',stock:99},{id:'fg8',name:'Luxury — 5x Spin',harga:'48K',stock:99}],
+  fishit_emote:[{id:'fe1',name:'Emote Crates — 1x Spin',harga:'5K',stock:99},{id:'fe2',name:'Emote Crates — 5x Spin',harga:'23K',stock:99}],
+  forge_passes:[{id:'fp1',name:'Fast Forge',harga:'10K',stock:10},{id:'fp2',name:'Supporter',harga:'15K',stock:10},{id:'fp3',name:'Forge Anywhere',harga:'20K',stock:10},{id:'fp4',name:'Better Forge',harga:'170K',stock:10},{id:'fp5',name:'Sell Anywhere',harga:'13K',stock:10},{id:'fp6',name:'Double Storage',harga:'8K',stock:10}],
+  forge_totems:[{id:'ft1',name:'XP Totem x3',harga:'5K',stock:10},{id:'ft2',name:'Luck Totem x3',harga:'6K',stock:10},{id:'ft3',name:'Miner Totem x3',harga:'6K',stock:10},{id:'ft4',name:'Warrior Totem x3',harga:'6K',stock:10},{id:'ft5',name:'Vitality x3',harga:'6K',stock:10}],
+  forge_rerolls:[{id:'fr1',name:'Buy 1 Reroll',harga:'3K',stock:99},{id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},{id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99}],
+  roblox_system:[
+    {id:'sys1',name:'Admin System',desc:'Sistem admin panel lengkap. Fitur ban, kick, teleport, dan log.',tags:'Admin,Panel,Tools',harga:'Rp50.000',thumb:'',stock:99},
+    {id:'sys2',name:'Anti Cheat System',desc:'Sistem anti cheat canggih yang mendeteksi exploit secara otomatis.',tags:'Security,AntiExploit',harga:'Rp75.000',thumb:'',stock:99},
+    {id:'sys3',name:'Data Store System',desc:'Sistem penyimpanan data pemain yang stabil dengan auto-save.',tags:'DataStore,Save',harga:'Rp40.000',thumb:'',stock:99},
+  ],
+  digital:[
+    {id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF.',prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]},
+    {id:'d2',icon:'⌨️',name:'Ketik & Rapihin Dokumen',desc:'Ketik dari foto, perbaikan typo, format tugas.',prices:[{label:'Ketik dari foto',val:'Rp2.000/hal'},{label:'Rapihin dokumen',val:'Rp2.000/hal'}]},
+    {id:'d3',icon:'🖼️',name:'Edit Foto Simple',desc:'Ganti background, resize, crop, perbaikan HD.',prices:[{label:'Ganti background',val:'Rp5.000/foto'},{label:'Resize & crop',val:'Rp3.000/foto'}]},
+    {id:'d4',icon:'✨',name:'Desain CV & Poster',desc:'Desain CV menarik siap pakai, plus desain poster.',prices:[{label:'CV Sederhana',val:'Rp15.000'},{label:'CV Profesional',val:'Rp25.000'}]},
+    {id:'d5',icon:'📊',name:'Edit PPT',desc:'Presentasi jadi rapi dan menarik.',prices:[{label:'Rapihin PPT',val:'Rp10.000–Rp15.000'},{label:'Desain Ulang',val:'Mulai Rp25.000'}]},
+    {id:'d6',icon:'🎁',name:'Paket Bundling',desc:'Hemat lebih dengan paket kombinasi layanan.',prices:[{label:'CV + Convert PDF',val:'Rp15.000'},{label:'CV + Edit Foto',val:'Rp20.000'}]},
+  ]
+};
+
+let _localData = null;
+let _hasChanges = false;
+
+function getData(){
+  try{const d=localStorage.getItem('kawara_data');if(d)return JSON.parse(d);}catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+function saveLocalData(d){
+  localStorage.setItem('kawara_data',JSON.stringify(d));
+  _localData=d;
+  markChanged();
+}
+function getTrx(){try{const d=localStorage.getItem('kawara_trx');if(d)return JSON.parse(d);}catch(e){}return[];}
+function saveTrx(a){localStorage.setItem('kawara_trx',JSON.stringify(a));}
+function getWH(){return localStorage.getItem('kawara_webhook')||'';}
+
+// =====================================================
+// GITHUB SAVE
+// =====================================================
+function markChanged() {
+  _hasChanges = true;
+  document.getElementById('save-dot').className = 'save-dot saving';
+  document.getElementById('save-text').textContent = 'Ada perubahan belum tersimpan';
+  document.getElementById('save-all-btn').disabled = false;
+}
+
+function setSaveStatus(state, msg) {
+  document.getElementById('save-dot').className = 'save-dot ' + state;
+  document.getElementById('save-text').textContent = msg;
+  if(state === 'ok') document.getElementById('save-all-btn').disabled = true;
+}
+
+async function saveToGitHub() {
+  const cfg = getGHConfig();
+  if(!cfg.token) {
+    toast('❌ Set GitHub Token dulu di tab Pengaturan!', true);
+    showAPage('discord', document.querySelectorAll('.atab')[4]);
+    return;
+  }
+  const btn = document.getElementById('save-all-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Menyimpan...';
+  setSaveStatus('saving', 'Menyimpan ke GitHub...');
+
+  try {
+    const d = getData();
+    // Ambil SHA file yang ada dulu (diperlukan GitHub API untuk update)
+    const apiUrl = `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/data.json`;
+    const getRes = await fetch(apiUrl, {
+      headers: { 'Authorization': `token ${cfg.token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    let sha = null;
+    if(getRes.ok) { const existing = await getRes.json(); sha = existing.sha; }
+
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(d, null, 2))));
+    const body = { message: '🛒 Update data produk - ' + new Date().toLocaleString('id-ID'), content };
+    if(sha) body.sha = sha;
+
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: { 'Authorization': `token ${cfg.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+      body: JSON.stringify(body)
+    });
+
+    if(putRes.ok) {
+      _hasChanges = false;
+      setSaveStatus('ok', '✅ Tersimpan ke GitHub — store akan update otomatis');
+      toast('✅ Data berhasil dipublish!', 'ok');
+    } else {
+      const err = await putRes.json();
+      throw new Error(err.message || 'Gagal simpan');
+    }
+  } catch(e) {
+    setSaveStatus('err', '❌ Gagal: ' + e.message);
+    toast('❌ ' + e.message, true);
+    btn.disabled = false;
+  } finally {
+    btn.textContent = '💾 Simpan ke GitHub';
+    if(_hasChanges) btn.disabled = false;
+  }
+}
+
+// =====================================================
+// UPLOAD
+// =====================================================
 let buktiBase64=null;
 function handleDragOver(e){e.preventDefault();}
-function handleDragLeave(){}
 function handleDrop(e){e.preventDefault();const f=e.dataTransfer.files[0];if(f)processFile(f);}
 function handleFileSelect(e){const f=e.target.files[0];if(f)processFile(f);}
-function processFile(file) {
+function processFile(file){
   if(!file.type.startsWith('image/')){toast('❌ File harus gambar!',true);return;}
   if(file.size>5*1024*1024){toast('❌ Maks. 5MB!',true);return;}
   const r=new FileReader();
@@ -920,269 +658,114 @@ function removeBukti(){
   document.getElementById('t-bukti-input').value='';
 }
 
-// ===== LIGHTBOX =====
-function openLightbox(src,caption){
-  document.getElementById('lightbox-img').src=src;
-  document.getElementById('lightbox-caption').textContent=caption||'';
-  document.getElementById('lightbox-modal').classList.add('open');
-}
-function closeLightbox(){
-  document.getElementById('lightbox-modal').classList.remove('open');
-  document.getElementById('lightbox-img').src='';
-}
+// LIGHTBOX
+function openLightbox(src,caption){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-caption').textContent=caption||'';document.getElementById('lightbox-modal').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox-modal').classList.remove('open');document.getElementById('lightbox-img').src='';}
 document.getElementById('lightbox-modal').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox-modal'))closeLightbox();});
 
-// ===== DATA =====
-const DEFAULT_DATA = {
-  robux:[
-    {id:'r1',robux:50,harga:'4K',gamepass:'72',stock:99},
-    {id:'r2',robux:100,harga:'9K',gamepass:'143',stock:99},
-    {id:'r3',robux:200,harga:'18K',gamepass:'286',stock:99},
-    {id:'r4',robux:300,harga:'28K',gamepass:'429',stock:99},
-    {id:'r5',robux:400,harga:'38K',gamepass:'572',stock:99},
-    {id:'r6',robux:500,harga:'48K',gamepass:'715',stock:99},
-    {id:'r7',robux:600,harga:'58K',gamepass:'858',stock:99},
-    {id:'r8',robux:700,harga:'68K',gamepass:'1000',stock:99},
-    {id:'r9',robux:800,harga:'78K',gamepass:'1143',stock:99},
-    {id:'r10',robux:900,harga:'88K',gamepass:'1286',stock:99},
-    {id:'r11',robux:1000,harga:'98K',gamepass:'1430',stock:99},
-  ],
-  fishit_shop:[
-    {id:'fs1',name:'Rod Skin: Bunny Staff',harga:'85K',stock:10},
-    {id:'fs2',name:'Rod Skin: Easter Parasol',harga:'85K',stock:10},
-    {id:'fs3',name:'Rod Skin: Lighting Pack',harga:'—',stock:10},
-    {id:'fs4',name:'Easter Pack',harga:'25K',stock:10},
-    {id:'fs5',name:'VIP + LUCK',harga:'45K',stock:10},
-    {id:'fs6',name:'+ Mutations',harga:'25K',stock:10},
-    {id:'fs7',name:'Advanced Luck',harga:'50K',stock:10},
-    {id:'fs8',name:'Extra Luck',harga:'25K',stock:10},
-    {id:'fs9',name:'Double XP',harga:'18K',stock:10},
-    {id:'fs10',name:'Mini Hoverboard',harga:'20K',stock:10},
-    {id:'fs11',name:'Sell Anywhere',harga:'30K',stock:10},
-    {id:'fs12',name:'Small Luck',harga:'5K',stock:10},
-    {id:'fs13',name:'Hyper Boat Pack',harga:'95K',stock:10},
-  ],
-  fishit_gacha:[
-    {id:'fg1',name:'Azure Crates — 1x Spin',harga:'11K',stock:99},
-    {id:'fg2',name:'Azure Crates — 5x Spin',harga:'53K',stock:99},
-    {id:'fg3',name:'Pirate — 1x Spin',harga:'11K',stock:99},
-    {id:'fg4',name:'Pirate — 5x Spin',harga:'53K',stock:99},
-    {id:'fg5',name:'Elderwood — 1x Spin',harga:'10K',stock:99},
-    {id:'fg6',name:'Elderwood — 5x Spin',harga:'48K',stock:99},
-    {id:'fg7',name:'Luxury — 1x Spin',harga:'10K',stock:99},
-    {id:'fg8',name:'Luxury — 5x Spin',harga:'48K',stock:99},
-  ],
-  fishit_emote:[
-    {id:'fe1',name:'Emote Crates — 1x Spin',harga:'5K',stock:99},
-    {id:'fe2',name:'Emote Crates — 5x Spin',harga:'23K',stock:99},
-  ],
-  forge_passes:[
-    {id:'fp1',name:'Fast Forge',harga:'10K',stock:10},
-    {id:'fp2',name:'Supporter',harga:'15K',stock:10},
-    {id:'fp3',name:'Forge Anywhere',harga:'20K',stock:10},
-    {id:'fp4',name:'Better Forge',harga:'170K',stock:10},
-    {id:'fp5',name:'Sell Anywhere',harga:'13K',stock:10},
-    {id:'fp6',name:'Double Storage',harga:'8K',stock:10},
-  ],
-  forge_totems:[
-    {id:'ft1',name:'XP Totem x3',harga:'5K',stock:10},
-    {id:'ft2',name:'Luck Totem x3',harga:'6K',stock:10},
-    {id:'ft3',name:'Miner Totem x3',harga:'6K',stock:10},
-    {id:'ft4',name:'Warrior Totem x3',harga:'6K',stock:10},
-    {id:'ft5',name:'Vitality x3',harga:'6K',stock:10},
-  ],
-  forge_rerolls:[
-    {id:'fr1',name:'Buy 1 Reroll',harga:'3K',stock:99},
-    {id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},
-    {id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99},
-  ],
-  roblox_system:[
-    {id:'sys1',name:'Admin System',desc:'Sistem admin panel lengkap. Fitur ban, kick, teleport, dan log aktivitas player.',tags:'Admin,Panel,Tools',harga:'Rp50.000',thumb:'',stock:99},
-    {id:'sys2',name:'Anti Cheat System',desc:'Sistem anti cheat canggih yang mendeteksi exploit, speed hack, dan noclip.',tags:'Security,AntiExploit',harga:'Rp75.000',thumb:'',stock:99},
-    {id:'sys3',name:'Data Store System',desc:'Sistem penyimpanan data pemain yang stabil dengan auto-save, backup, dan error handling.',tags:'DataStore,Save',harga:'Rp40.000',thumb:'',stock:99},
-  ],
-  digital:[
-    {id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF dengan cepat dan rapi.',
-      prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Gabung/Pisah PDF',val:'Rp3.000/file'},{label:'Compress PDF',val:'Rp3.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]},
-    {id:'d2',icon:'⌨️',name:'Ketik & Rapihin Dokumen',desc:'Ketik dari foto, perbaikan typo, format tugas — dokumen jadi rapi dan profesional.',
-      prices:[{label:'Ketik dari foto',val:'Rp2.000/hal'},{label:'Rapihin dokumen',val:'Rp2.000/hal'},{label:'Perbaikan typo',val:'Rp2.000/hal'},{label:'Format tugas',val:'Mulai Rp10.000'}]},
-    {id:'d3',icon:'🖼️',name:'Edit Foto Simple',desc:'Ganti background, resize, crop, perbaikan HD, dan paket foto lamaran.',
-      prices:[{label:'Ganti background',val:'Rp5.000/foto'},{label:'Resize & crop',val:'Rp3.000/foto'},{label:'Perbaikan HD',val:'Rp5.000/foto'},{label:'Paket foto lamaran',val:'Rp10.000'}]},
-    {id:'d4',icon:'✨',name:'Desain CV & Poster',desc:'Desain CV menarik siap pakai — sederhana hingga profesional, plus desain poster.',
-      prices:[{label:'CV Sederhana',val:'Rp15.000'},{label:'CV Profesional',val:'Rp25.000'},{label:'Edit CV Lama',val:'Rp10.000'},{label:'Poster',val:'Mulai Rp20.000'}]},
-    {id:'d5',icon:'📊',name:'Edit PPT',desc:'Presentasi jadi rapi dan menarik. Rapihin, ganti template, atau desain ulang.',
-      prices:[{label:'Rapihin PPT',val:'Rp10.000–Rp15.000'},{label:'Ganti Template',val:'Rp10.000'},{label:'Desain Ulang',val:'Mulai Rp25.000'}]},
-    {id:'d6',icon:'🎁',name:'Paket Bundling',desc:'Hemat lebih dengan paket kombinasi layanan sesuai kebutuhanmu.',
-      prices:[{label:'CV + Convert PDF',val:'Rp15.000'},{label:'CV + Edit Foto',val:'Rp20.000'},{label:'PPT + Rapihin Dok',val:'Rp30.000'}]},
-  ]
-};
-
-function getData(){try{const d=localStorage.getItem('kawara_data');if(d)return JSON.parse(d);}catch(e){}return JSON.parse(JSON.stringify(DEFAULT_DATA));}
-function saveData(d){localStorage.setItem('kawara_data',JSON.stringify(d));}
-function getTrx(){try{const d=localStorage.getItem('kawara_trx');if(d)return JSON.parse(d);}catch(e){}return[];}
-function saveTrx(a){localStorage.setItem('kawara_trx',JSON.stringify(a));}
-function getWH(){return localStorage.getItem('kawara_webhook')||'';}
-
-// ===== INIT =====
+// =====================================================
+// INIT
+// =====================================================
 function initAdmin(){
+  const cfg=getGHConfig();
+  if(cfg.user)document.getElementById('gh-user').value=cfg.user;
+  if(cfg.repo)document.getElementById('gh-repo').value=cfg.repo;
   const wh=getWH();
   if(wh){document.getElementById('wh-input').value=wh;document.getElementById('wh-status').textContent='✅ Webhook aktif';}
   renderAll();
+  setSaveStatus('ok','Sinkron dengan GitHub');
 }
 
 function renderAll(){
   const d=getData();
-  renderRobux(d.robux);
-  renderItems('a-fishit-shop',d.fishit_shop,'fishit_shop');
-  renderItems('a-fishit-gacha',d.fishit_gacha,'fishit_gacha');
-  renderItems('a-fishit-emote',d.fishit_emote,'fishit_emote');
-  renderItems('a-forge-passes',d.forge_passes,'forge_passes');
-  renderItems('a-forge-totems',d.forge_totems,'forge_totems');
-  renderItems('a-forge-rerolls',d.forge_rerolls,'forge_rerolls');
+  renderRobux(d.robux||DEFAULT_DATA.robux);
+  renderItems('a-fishit-shop',d.fishit_shop||DEFAULT_DATA.fishit_shop,'fishit_shop');
+  renderItems('a-fishit-gacha',d.fishit_gacha||DEFAULT_DATA.fishit_gacha,'fishit_gacha');
+  renderItems('a-fishit-emote',d.fishit_emote||DEFAULT_DATA.fishit_emote,'fishit_emote');
+  renderItems('a-forge-passes',d.forge_passes||DEFAULT_DATA.forge_passes,'forge_passes');
+  renderItems('a-forge-totems',d.forge_totems||DEFAULT_DATA.forge_totems,'forge_totems');
+  renderItems('a-forge-rerolls',d.forge_rerolls||DEFAULT_DATA.forge_rerolls,'forge_rerolls');
   renderSystemAdmin(d.roblox_system||DEFAULT_DATA.roblox_system);
   renderDigitalAdmin(d.digital||DEFAULT_DATA.digital);
   renderTrxList();
   renderDashboard();
 }
 
-// ===== DASHBOARD =====
-let dashFilter = 'all';
-let trxFilter = 'all';
-
-function filterTrxByPeriod(arr, period) {
-  const now = new Date();
-  return arr.filter(t => {
-    if(period === 'all') return true;
-    const d = new Date(t.time);
-    if(isNaN(d)) return period === 'all';
-    if(period === 'today') return d.toDateString() === now.toDateString();
-    if(period === 'week') {
-      const startOfWeek = new Date(now); startOfWeek.setDate(now.getDate()-now.getDay());
-      startOfWeek.setHours(0,0,0,0);
-      return d >= startOfWeek;
-    }
-    if(period === 'month') return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
-    if(period === 'year') return d.getFullYear()===now.getFullYear();
+// =====================================================
+// DASHBOARD
+// =====================================================
+let dashFilter='all', trxFilter='all';
+function filterTrxByPeriod(arr,period){
+  const now=new Date();
+  return arr.filter(t=>{
+    if(period==='all')return true;
+    const d=new Date(t.time);if(isNaN(d))return false;
+    if(period==='today')return d.toDateString()===now.toDateString();
+    if(period==='week'){const s=new Date(now);s.setDate(now.getDate()-now.getDay());s.setHours(0,0,0,0);return d>=s;}
+    if(period==='month')return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();
     return true;
   });
 }
-
-function setFilter(period, btn) {
-  dashFilter = period;
-  document.querySelectorAll('.history-filter .filter-btn').forEach(b => {
-    if(b.closest('#apage-dashboard')) b.classList.remove('active');
-  });
-  btn.classList.add('active');
-  renderDashboard();
+function setFilter(period,btn){
+  dashFilter=period;
+  document.querySelectorAll('#apage-dashboard .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderDashboard();
+}
+function setTrxFilter(period,btn){
+  trxFilter=period;
+  document.querySelectorAll('#apage-trx .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderTrxList();
+}
+function renderDashboard(){
+  const allTrx=getTrx();const filtered=filterTrxByPeriod(allTrx,dashFilter);
+  const done=filtered.filter(t=>t.status==='done');const pending=filtered.filter(t=>t.status==='pending');
+  document.getElementById('d-total-trx').textContent=filtered.length;
+  document.getElementById('d-done-trx').textContent=done.length;
+  document.getElementById('d-pending-trx').textContent=pending.length;
+  let rev=0;done.forEach(t=>{const n=parseFloat((t.price||'').replace(/[^0-9.,]/g,'').replace(',','.'));if(!isNaN(n)){if((t.price||'').toUpperCase().includes('K'))rev+=n*1000;else rev+=n;}});
+  document.getElementById('d-total-rev').textContent=rev>=1000000?(rev/1000000).toFixed(1)+'Jt':rev>=1000?(rev/1000).toFixed(0)+'K':rev>0?rev:'—';
+  const bars=document.getElementById('chart-bars');const now=new Date();const days=[];
+  for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);d.setHours(0,0,0,0);const next=new Date(d);next.setDate(d.getDate()+1);const count=allTrx.filter(t=>{const td=new Date(t.time);return !isNaN(td)&&td>=d&&td<next;}).length;days.push({label:d.getDate()+'/'+(d.getMonth()+1),count});}
+  const maxC=Math.max(...days.map(d=>d.count),1);
+  bars.innerHTML=days.map(d=>`<div class="chart-bar-wrap"><div class="chart-bar" style="height:${Math.max((d.count/maxC)*70,2)}px;"></div><div class="chart-bar-lbl">${d.label}</div></div>`).join('');
+  const recent=document.getElementById('recent-list');const show=allTrx.slice(0,5);
+  if(!show.length){recent.innerHTML='<div class="empty">Belum ada transaksi.</div>';return;}
+  recent.innerHTML=show.map(t=>`<div class="recent-item"><div class="ri-info"><div class="ri-name">👤 ${t.username}</div><div class="ri-detail">${t.category} · <span class="status-badge ${t.status}">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span></div></div><div class="ri-price">${t.price}</div></div>`).join('');
 }
 
-function setTrxFilter(period, btn) {
-  trxFilter = period;
-  const btns = document.querySelectorAll('#apage-trx .filter-btn');
-  btns.forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderTrxList();
-}
-
-function renderDashboard() {
-  const allTrx = getTrx();
-  const filtered = filterTrxByPeriod(allTrx, dashFilter);
-  const done = filtered.filter(t=>t.status==='done');
-  const pending = filtered.filter(t=>t.status==='pending');
-
-  document.getElementById('d-total-trx').textContent = filtered.length;
-  document.getElementById('d-done-trx').textContent = done.length;
-  document.getElementById('d-pending-trx').textContent = pending.length;
-
-  // Revenue estimate from price strings
-  let rev = 0;
-  done.forEach(t => {
-    const n = parseFloat((t.price||'').replace(/[^0-9.,]/g,'').replace(',','.'));
-    if(!isNaN(n)) {
-      if((t.price||'').toUpperCase().includes('K')) rev += n*1000;
-      else rev += n;
-    }
-  });
-  document.getElementById('d-total-rev').textContent = rev >= 1000000
-    ? (rev/1000000).toFixed(1)+'Jt'
-    : rev >= 1000 ? (rev/1000).toFixed(0)+'K' : rev > 0 ? rev : '—';
-
-  // Chart — last 7 days
-  const bars = document.getElementById('chart-bars');
-  const days = [];
-  const now = new Date();
-  for(let i=6;i>=0;i--) {
-    const d = new Date(now); d.setDate(now.getDate()-i); d.setHours(0,0,0,0);
-    const next = new Date(d); next.setDate(d.getDate()+1);
-    const count = allTrx.filter(t => { const td=new Date(t.time); return !isNaN(td)&&td>=d&&td<next; }).length;
-    days.push({ label: d.getDate()+'/'+(d.getMonth()+1), count });
-  }
-  const maxC = Math.max(...days.map(d=>d.count), 1);
-  bars.innerHTML = days.map(d => `
-    <div class="chart-bar-wrap">
-      <div class="chart-bar" style="height:${Math.max((d.count/maxC)*70,2)}px;" title="${d.count} transaksi"></div>
-      <div class="chart-bar-lbl">${d.label}</div>
-    </div>`).join('');
-
-  // Recent 5
-  const recent = document.getElementById('recent-list');
-  const show = allTrx.slice(0,5);
-  if(!show.length) { recent.innerHTML='<div class="empty">Belum ada transaksi.</div>'; return; }
-  recent.innerHTML = show.map(t=>`
-    <div class="recent-item">
-      <div class="ri-info">
-        <div class="ri-name">👤 ${t.username}</div>
-        <div class="ri-detail">${t.category} · <span class="status-badge ${t.status}" style="font-size:0.62rem;">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span></div>
-      </div>
-      <div class="ri-price">${t.price}</div>
-    </div>`).join('');
-}
-
-// ===== ROBUX TABLE =====
+// =====================================================
+// ROBUX TABLE
+// =====================================================
 function renderRobux(items){
-  document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`
-    <tr>
-      <td><strong>${i.robux} Rbx</strong></td>
-      <td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:62px;"></td>
-      <td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:65px;"></td>
-      <td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td>
-      <td><button class="ibtn save" onclick="saveRobux('${i.id}')">💾</button></td>
-    </tr>`).join('');
+  document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`<tr><td><strong>${i.robux} Rbx</strong></td><td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:65px;"></td><td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td><td><button class="ibtn save" onclick="saveRobux('${i.id}')">💾</button></td></tr>`).join('');
 }
 function saveRobux(id){
   const d=getData(),idx=d.robux.findIndex(r=>r.id===id);if(idx===-1)return;
   d.robux[idx].harga=document.getElementById('rh-'+id).value.trim();
   d.robux[idx].gamepass=document.getElementById('rgp-'+id).value.trim();
   d.robux[idx].stock=parseInt(document.getElementById('rs-'+id).value)||0;
-  saveData(d);toast('✅ Disimpan!','ok');
+  saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 
-// ===== ITEMS TABLE =====
+// =====================================================
+// ITEMS TABLE
+// =====================================================
 function renderItems(tbodyId,items,cat){
-  document.getElementById(tbodyId).innerHTML=items.map(i=>`
-    <tr>
-      <td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td>
-      <td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td>
-      <td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td>
-      <td style="white-space:nowrap;">
-        <button class="ibtn save" onclick="saveItem('${cat}','${i.id}')">💾</button>
-        <button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button>
-      </td>
-    </tr>`).join('');
+  document.getElementById(tbodyId).innerHTML=items.map(i=>`<tr><td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td><td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td><td style="white-space:nowrap;"><button class="ibtn save" onclick="saveItem('${cat}','${i.id}')">💾</button><button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button></td></tr>`).join('');
 }
 function saveItem(cat,id){
   const d=getData(),arr=d[cat],idx=arr.findIndex(i=>i.id===id);if(idx===-1)return;
   arr[idx].name=document.getElementById('n-'+id).value.trim();
   arr[idx].harga=document.getElementById('h-'+id).value.trim();
   arr[idx].stock=parseInt(document.getElementById('s-'+id).value)||0;
-  d[cat]=arr;saveData(d);toast('✅ Item disimpan!','ok');
+  d[cat]=arr;saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 function delItem(cat,id){
   if(!confirm('Hapus item ini?'))return;
-  const d=getData();d[cat]=d[cat].filter(i=>i.id!==id);saveData(d);renderAll();toast('🗑️ Dihapus!');
+  const d=getData();d[cat]=d[cat].filter(i=>i.id!==id);saveLocalData(d);renderAll();toast('🗑️ Dihapus!');
 }
 
-// ===== ADD MODAL =====
+// ADD MODAL
 function openAdd(cat){
   document.getElementById('add-cat').value=cat;
   ['add-name','add-harga'].forEach(id=>document.getElementById(id).value='');
@@ -1197,247 +780,130 @@ function submitAdd(){
   const stock=parseInt(document.getElementById('add-stock').value)||0;
   if(!name||!harga){toast('❌ Isi nama dan harga!',true);return;}
   const d=getData();d[cat].push({id:cat+'_'+Date.now(),name,harga,stock});
-  saveData(d);closeAdd();renderAll();toast('✅ Ditambahkan!','ok');
+  saveLocalData(d);closeAdd();renderAll();toast('✅ Ditambahkan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 document.getElementById('add-modal').addEventListener('click',e=>{if(e.target===document.getElementById('add-modal'))closeAdd();});
 
-// ===== ROBLOX SYSTEM ADMIN =====
+// =====================================================
+// ROBLOX SYSTEM
+// =====================================================
 function renderSystemAdmin(items){
   const c=document.getElementById('system-admin-list');
-  c.innerHTML=items.map(item=>`
-    <div class="system-admin-card" id="sac-${item.id}">
-      <div class="sac-thumb-area" onclick="triggerThumbUpload('${item.id}')">
-        <input type="file" class="sac-thumb-input" id="thumbinput-${item.id}" accept="image/*" onchange="handleThumbUpload('${item.id}',event)">
-        ${item.thumb
-          ? `<img src="${item.thumb}" alt="${item.name}" onerror="this.parentElement.innerHTML=defaultThumbPlaceholder();">`
-          : `<div class="sac-thumb-placeholder"><span>⚙️</span><span>Klik untuk upload thumbnail</span></div>`}
-        <div class="sac-thumb-overlay">📷 Ganti Gambar</div>
+  c.innerHTML=items.map(item=>`<div class="system-admin-card" id="sac-${item.id}">
+    <div class="sac-thumb-area" onclick="triggerThumbUpload('${item.id}')">
+      <input type="file" class="sac-thumb-input" id="thumbinput-${item.id}" accept="image/*" onchange="handleThumbUpload('${item.id}',event)">
+      ${item.thumb?`<img src="${item.thumb}" alt="${item.name}" onerror="this.style.display='none';">`:``}
+      ${!item.thumb?`<div class="sac-thumb-placeholder"><span>⚙️</span><span>Klik untuk upload thumbnail</span></div>`:''}
+      <div class="sac-thumb-overlay">📷 Ganti Gambar</div>
+    </div>
+    <div class="sac-body">
+      <div class="sac-fields">
+        <div class="ff"><label class="flbl">Nama System</label><input class="finput" id="sname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama..."></div>
+        <div class="ff"><label class="flbl">Harga</label><input class="finput" id="sharga-${item.id}" value="${item.harga}" placeholder="Rp0"></div>
+        <div class="ff"><label class="flbl">Stok</label><input class="finput" id="sstock-${item.id}" type="number" value="${item.stock||99}" inputmode="numeric"></div>
+        <div class="ff sac-full"><label class="flbl">Deskripsi</label><textarea class="ftextarea" id="sdesc-${item.id}" style="min-height:52px;">${item.desc}</textarea></div>
+        <div class="ff sac-full"><label class="flbl">Tags (pisah koma)</label><input class="sac-tags-input" id="stags-${item.id}" value="${item.tags||''}" placeholder="Admin,Panel,Tools"></div>
       </div>
-      <div class="sac-body">
-        <div class="sac-fields">
-          <div class="ff">
-            <label class="flbl">Nama System</label>
-            <input class="finput" id="sname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama...">
-          </div>
-          <div class="ff">
-            <label class="flbl">Harga</label>
-            <input class="finput" id="sharga-${item.id}" value="${item.harga}" placeholder="Rp0">
-          </div>
-          <div class="ff">
-            <label class="flbl">Stok</label>
-            <input class="finput" id="sstock-${item.id}" type="number" value="${item.stock||99}" inputmode="numeric">
-          </div>
-          <div class="ff sac-full">
-            <label class="flbl">Deskripsi</label>
-            <textarea class="ftextarea" id="sdesc-${item.id}" style="min-height:52px;">${item.desc}</textarea>
-          </div>
-          <div class="ff sac-full">
-            <label class="flbl">Tags (pisah koma)</label>
-            <input class="sac-tags-input" id="stags-${item.id}" value="${item.tags||''}" placeholder="Admin,Panel,Tools">
-          </div>
-        </div>
-        <div class="sac-actions">
-          <button class="ibtn save" onclick="saveSystem('${item.id}')">💾 Simpan</button>
-          <button class="ibtn del" onclick="delSystem('${item.id}')">🗑️ Hapus</button>
-        </div>
+      <div class="sac-actions">
+        <button class="ibtn save" onclick="saveSystem('${item.id}')">💾 Simpan</button>
+        <button class="ibtn del" onclick="delSystem('${item.id}')">🗑️ Hapus</button>
       </div>
-    </div>`).join('');
+    </div>
+  </div>`).join('');
 }
-
-function defaultThumbPlaceholder(){
-  return `<div class="sac-thumb-placeholder"><span>⚙️</span><span>Klik untuk upload thumbnail</span></div><div class="sac-thumb-overlay">📷 Ganti Gambar</div>`;
-}
-
-function triggerThumbUpload(id){
-  document.getElementById('thumbinput-'+id).click();
-}
+function triggerThumbUpload(id){document.getElementById('thumbinput-'+id).click();}
 function handleThumbUpload(id,event){
-  const file=event.target.files[0]; if(!file||!file.type.startsWith('image/'))return;
+  const file=event.target.files[0];if(!file||!file.type.startsWith('image/'))return;
   if(file.size>3*1024*1024){toast('❌ Maks. 3MB!',true);return;}
   const r=new FileReader();
-  r.onload=e=>{
-    const d=getData();
-    if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
-    const idx=d.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;
-    d.roblox_system[idx].thumb=e.target.result;
-    saveData(d);renderSystemAdmin(d.roblox_system);toast('✅ Thumbnail diupload!','ok');
-  };
+  r.onload=e=>{const d=getData();if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));const idx=d.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;d.roblox_system[idx].thumb=e.target.result;saveLocalData(d);renderSystemAdmin(d.roblox_system);toast('✅ Thumbnail diupload!','ok');};
   r.readAsDataURL(file);
 }
-
 function saveSystem(id){
-  const d=getData();
-  if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
+  const d=getData();if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
   const idx=d.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;
   d.roblox_system[idx].name=document.getElementById('sname-'+id).value.trim();
   d.roblox_system[idx].harga=document.getElementById('sharga-'+id).value.trim();
   d.roblox_system[idx].stock=parseInt(document.getElementById('sstock-'+id).value)||99;
   d.roblox_system[idx].desc=document.getElementById('sdesc-'+id).value.trim();
   d.roblox_system[idx].tags=document.getElementById('stags-'+id).value.trim();
-  saveData(d);toast('✅ System disimpan!','ok');
+  saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
-
 function delSystem(id){
   if(!confirm('Hapus system ini?'))return;
-  const d=getData();
-  if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
-  d.roblox_system=d.roblox_system.filter(i=>i.id!==id);
-  saveData(d);renderAll();toast('🗑️ Dihapus!');
+  const d=getData();if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
+  d.roblox_system=d.roblox_system.filter(i=>i.id!==id);saveLocalData(d);renderAll();toast('🗑️ Dihapus!');
 }
-
 function addSystemCard(){
-  const d=getData();
-  if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
-  const newItem={id:'sys_'+Date.now(),name:'System Baru',desc:'Deskripsi system...',tags:'',harga:'Mulai Rp0',thumb:'',stock:99};
-  d.roblox_system.push(newItem);
-  saveData(d);renderAll();
-  setTimeout(()=>{const el=document.getElementById('sac-'+newItem.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+  const d=getData();if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
+  const n={id:'sys_'+Date.now(),name:'System Baru',desc:'Deskripsi system...',tags:'',harga:'Mulai Rp0',thumb:'',stock:99};
+  d.roblox_system.push(n);saveLocalData(d);renderAll();
+  setTimeout(()=>{const el=document.getElementById('sac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
   toast('✅ Ditambahkan!','ok');
 }
 
-// ===== DIGITAL ADMIN =====
+// =====================================================
+// DIGITAL
+// =====================================================
 function renderDigitalAdmin(items){
   const c=document.getElementById('digital-admin-list');
-  c.innerHTML=items.map(item=>`
-    <div class="digital-admin-card" id="dac-${item.id}">
-      <div class="dac-header">
-        <div class="dac-title-row">
-          <input class="dac-icon-edit" id="dic-${item.id}" value="${item.icon}" title="Ikon">
-          <input class="finput dac-name-edit" id="dname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama layanan..." style="margin-bottom:0;">
-        </div>
-        <div class="dac-actions">
-          <button class="ibtn save" onclick="saveDigitalCard('${item.id}')">💾 Simpan</button>
-          <button class="ibtn del" onclick="delDigitalCard('${item.id}')">🗑️</button>
-        </div>
+  c.innerHTML=items.map(item=>`<div class="digital-admin-card" id="dac-${item.id}">
+    <div class="dac-header">
+      <div class="dac-title-row">
+        <input class="dac-icon-edit" id="dic-${item.id}" value="${item.icon}" title="Ikon">
+        <input class="finput dac-name-edit" id="dname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama layanan..." style="margin-bottom:0;">
       </div>
-      <textarea class="ftextarea dac-desc-edit" id="ddesc-${item.id}" placeholder="Deskripsi..." style="margin-bottom:10px;width:100%;">${item.desc}</textarea>
-      <div class="dac-prices" id="dprices-${item.id}">
-        ${item.prices.map((p,pi)=>`
-          <div class="dac-price-row" id="dpr-${item.id}-${pi}">
-            <input class="dac-price-label-edit" id="dpl-${item.id}-${pi}" value="${p.label}" placeholder="Label...">
-            <input class="dac-price-val-edit" id="dpv-${item.id}-${pi}" value="${p.val}" placeholder="Harga...">
-            <button class="del-price-btn" onclick="delPriceRow('${item.id}',${pi})">✕</button>
-          </div>`).join('')}
+      <div class="dac-actions">
+        <button class="ibtn save" onclick="saveDigitalCard('${item.id}')">💾 Simpan</button>
+        <button class="ibtn del" onclick="delDigitalCard('${item.id}')">🗑️</button>
       </div>
-      <button class="add-price-btn" onclick="addPriceRow('${item.id}')">+ Tambah Baris Harga</button>
-    </div>`).join('');
+    </div>
+    <textarea class="ftextarea dac-desc-edit" id="ddesc-${item.id}" placeholder="Deskripsi..." style="margin-bottom:10px;width:100%;">${item.desc}</textarea>
+    <div class="dac-prices" id="dprices-${item.id}">
+      ${item.prices.map((p,pi)=>`<div class="dac-price-row" id="dpr-${item.id}-${pi}"><input class="dac-price-label-edit" id="dpl-${item.id}-${pi}" value="${p.label}" placeholder="Label..."><input class="dac-price-val-edit" id="dpv-${item.id}-${pi}" value="${p.val}" placeholder="Harga..."><button class="del-price-btn" onclick="delPriceRow('${item.id}',${pi})">✕</button></div>`).join('')}
+    </div>
+    <button class="add-price-btn" onclick="addPriceRow('${item.id}')">+ Tambah Baris Harga</button>
+  </div>`).join('');
 }
-
-function saveDigitalCard(id){
-  const d=getData();
-  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+function _collectDigitalCard(id,d){
   const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
   d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
   d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
   d.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();
-  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
-  const prices=[];
-  priceRows.forEach((row,pi)=>{
-    const lbl=document.getElementById(`dpl-${id}-${pi}`);
-    const val=document.getElementById(`dpv-${id}-${pi}`);
-    if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});
-  });
+  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);const prices=[];
+  priceRows.forEach((row,pi)=>{const lbl=document.getElementById(`dpl-${id}-${pi}`);const val=document.getElementById(`dpv-${id}-${pi}`);if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});});
   d.digital[idx].prices=prices;
-  saveData(d);toast('✅ Layanan disimpan!','ok');
 }
+function saveDigitalCard(id){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');}
+function delDigitalCard(id){if(!confirm('Hapus layanan ini?'))return;const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));d.digital=d.digital.filter(i=>i.id!==id);saveLocalData(d);renderAll();toast('🗑️ Dihapus!');}
+function addDigitalCard(){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));const n={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi layanan baru.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};d.digital.push(n);saveLocalData(d);renderAll();setTimeout(()=>{const el=document.getElementById('dac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);toast('✅ Ditambahkan!','ok');}
+function addPriceRow(id){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);const idx=d.digital.findIndex(i=>i.id===id);d.digital[idx].prices.push({label:'Label baru',val:'Rp0'});saveLocalData(d);renderAll();}
+function delPriceRow(id,pi){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);const idx=d.digital.findIndex(i=>i.id===id);d.digital[idx].prices.splice(pi,1);saveLocalData(d);renderAll();}
 
-function delDigitalCard(id){
-  if(!confirm('Hapus layanan ini?'))return;
-  const d=getData();
-  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
-  d.digital=d.digital.filter(i=>i.id!==id);
-  saveData(d);renderAll();toast('🗑️ Dihapus!');
-}
-
-function addDigitalCard(){
-  const d=getData();
-  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
-  const n={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi layanan baru.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};
-  d.digital.push(n);saveData(d);renderAll();
-  setTimeout(()=>{const el=document.getElementById('dac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
-  toast('✅ Ditambahkan!','ok');
-}
-
-function addPriceRow(id){
-  const d=getData();
-  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
-  const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
-  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
-  const prices=[];
-  priceRows.forEach((row,pi)=>{
-    const lbl=document.getElementById(`dpl-${id}-${pi}`);
-    const val=document.getElementById(`dpv-${id}-${pi}`);
-    if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});
-  });
-  prices.push({label:'Label baru',val:'Rp0'});
-  d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
-  d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
-  d.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();
-  d.digital[idx].prices=prices;
-  saveData(d);renderAll();toast('✅ Baris ditambahkan!','ok');
-}
-
-function delPriceRow(id,pi){
-  const d=getData();
-  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
-  const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
-  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
-  const prices=[];
-  priceRows.forEach((row,i)=>{
-    const lbl=document.getElementById(`dpl-${id}-${i}`);
-    const val=document.getElementById(`dpv-${id}-${i}`);
-    if(i!==pi&&lbl&&val)prices.push({label:lbl.value.trim(),val:val.value.trim()});
-  });
-  d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
-  d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
-  d.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();
-  d.digital[idx].prices=prices;
-  saveData(d);renderAll();
-}
-
-// ===== DISCORD =====
-function saveWH(){
-  const url=document.getElementById('wh-input').value.trim();
-  if(!url){toast('❌ Masukkan URL webhook!',true);return;}
-  localStorage.setItem('kawara_webhook',url);
-  document.getElementById('wh-status').textContent='✅ Webhook aktif';
-  toast('✅ Webhook disimpan!','ok');
-}
-
+// =====================================================
+// DISCORD
+// =====================================================
+function saveWH(){const url=document.getElementById('wh-input').value.trim();if(!url){toast('❌ Masukkan URL webhook!',true);return;}localStorage.setItem('kawara_webhook',url);document.getElementById('wh-status').textContent='✅ Webhook aktif';toast('✅ Webhook disimpan!','ok');}
 async function sendDiscord(trx){
   const wh=getWH();if(!wh){toast('⚠️ Webhook belum diset!',true);return;}
-  const embed={
-    title:'🛒 Transaksi Baru — Kawara Store',color:0xf5c400,
-    fields:[
-      {name:'👤 Username',value:trx.username,inline:true},
-      {name:'📦 Item',value:trx.category,inline:true},
-      {name:'💰 Harga',value:trx.price,inline:true},
-      {name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},
-      {name:'🕐 Waktu',value:trx.time,inline:false},
-    ],
-    footer:{text:'Kawara Store Admin'},
-  };
-  try {
+  const embed={title:'🛒 Transaksi Baru — Kawara Store',color:0xf5c400,fields:[{name:'👤 Username',value:trx.username,inline:true},{name:'📦 Item',value:trx.category,inline:true},{name:'💰 Harga',value:trx.price,inline:true},{name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},{name:'🕐 Waktu',value:trx.time,inline:false}],footer:{text:'Kawara Store Admin'}};
+  try{
     let r;
     if(trx.bukti){
-      const base64Data=trx.bukti.split(',')[1];
-      const mime=trx.bukti.split(';')[0].split(':')[1]||'image/png';
-      const ext=mime.split('/')[1]||'png';
-      const byteChars=atob(base64Data);const byteArr=new Uint8Array(byteChars.length);
-      for(let i=0;i<byteChars.length;i++)byteArr[i]=byteChars.charCodeAt(i);
+      const base64Data=trx.bukti.split(',')[1];const mime=trx.bukti.split(';')[0].split(':')[1]||'image/png';const ext=mime.split('/')[1]||'png';
+      const byteChars=atob(base64Data);const byteArr=new Uint8Array(byteChars.length);for(let i=0;i<byteChars.length;i++)byteArr[i]=byteChars.charCodeAt(i);
       const blob=new Blob([byteArr],{type:mime});const filename=`bukti_${trx.id}.${ext}`;
       embed.image={url:`attachment://${filename}`};
       const form=new FormData();form.append('file',blob,filename);form.append('payload_json',JSON.stringify({embeds:[embed]}));
       r=await fetch(wh,{method:'POST',body:form});
-    } else {
-      r=await fetch(wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({embeds:[embed]})});
-    }
-    if(r.ok)toast('✅ Terkirim ke Discord!','ok');
-    else toast('⚠️ Gagal kirim ('+r.status+')',true);
-  } catch(e){ toast('⚠️ '+e.message,true); }
+    }else{r=await fetch(wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({embeds:[embed]})});}
+    if(r.ok)toast('✅ Terkirim ke Discord!','ok');else toast('⚠️ Gagal kirim ('+r.status+')',true);
+  }catch(e){toast('⚠️ '+e.message,true);}
 }
 
-// ===== TRANSAKSI =====
+// =====================================================
+// TRANSAKSI
+// =====================================================
 async function addTrx(){
   const username=document.getElementById('t-user').value.trim();
   const category=document.getElementById('t-cat').value.trim();
@@ -1450,78 +916,38 @@ async function addTrx(){
   document.getElementById('t-status').value='pending';removeBukti();
   await sendDiscord(trx);renderAll();
 }
-
-function updateTrx(id,status){
-  const arr=getTrx(),idx=arr.findIndex(t=>t.id===id);if(idx===-1)return;
-  arr[idx].status=status;saveTrx(arr);renderAll();toast('✅ Status diupdate!','ok');
-}
-function delTrx(id){
-  if(!confirm('Hapus transaksi ini?'))return;
-  saveTrx(getTrx().filter(t=>t.id!==id));renderAll();toast('🗑️ Dihapus!');
-}
-
+function updateTrx(id,status){const arr=getTrx(),idx=arr.findIndex(t=>t.id===id);if(idx===-1)return;arr[idx].status=status;saveTrx(arr);renderAll();toast('✅ Status diupdate!','ok');}
+function delTrx(id){if(!confirm('Hapus transaksi ini?'))return;saveTrx(getTrx().filter(t=>t.id!==id));renderAll();toast('🗑️ Dihapus!');}
 function renderTrxList(){
-  const allArr=getTrx();
-  const arr = filterTrxByPeriod(allArr, trxFilter);
+  const allArr=getTrx();const arr=filterTrxByPeriod(allArr,trxFilter);
   const el=document.getElementById('trx-list');
   if(!arr.length){el.innerHTML='<div class="empty">Belum ada transaksi.</div>';return;}
-  el.innerHTML=arr.map(t=>`
-    <div class="trx-card">
-      <div class="trx-top">
-        <div class="trx-info">
-          <div class="trx-user">👤 ${t.username}</div>
-          <div class="trx-detail">📦 ${t.category}</div>
-          <div class="trx-time">🕐 ${t.time}</div>
-        </div>
-        ${t.bukti
-          ?`<img class="trx-bukti-thumb" src="${t.bukti}" alt="Bukti" onclick="openLightbox('${t.bukti}','Bukti: ${t.username}')">`
-          :`<div class="no-bukti">🖼️</div>`}
-      </div>
-      <div class="trx-bottom">
-        <div>
-          <div class="trx-price">${t.price}</div>
-          <span class="status-badge ${t.status}">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span>
-        </div>
-        <div class="trx-actions">
-          ${t.status!=='done'?`<button class="t-done" onclick="updateTrx('${t.id}','done')">✅ Selesai</button>`:''}
-          <button class="t-del" onclick="delTrx('${t.id}')">Hapus</button>
-        </div>
-      </div>
-    </div>`).join('');
+  el.innerHTML=arr.map(t=>`<div class="trx-card"><div class="trx-top"><div class="trx-info"><div class="trx-user">👤 ${t.username}</div><div class="trx-detail">📦 ${t.category}</div><div class="trx-time">🕐 ${t.time}</div></div>${t.bukti?`<img class="trx-bukti-thumb" src="${t.bukti}" alt="Bukti" onclick="openLightbox('${t.bukti}','Bukti: ${t.username}')">`:``}</div><div class="trx-bottom"><div><div class="trx-price">${t.price}</div><span class="status-badge ${t.status}">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span></div><div class="trx-actions">${t.status!=='done'?`<button class="t-done" onclick="updateTrx('${t.id}','done')">✅ Selesai</button>`:''}<button class="t-del" onclick="delTrx('${t.id}')">Hapus</button></div></div></div>`).join('');
 }
 
-// ===== NAV =====
-function showAPage(page, btn) {
+// =====================================================
+// NAV
+// =====================================================
+function showAPage(page,btn){
   document.querySelectorAll('.apage').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.atab').forEach(b=>b.classList.remove('active'));
   document.getElementById('apage-'+page).classList.add('active');
   btn.classList.add('active');
-  // show roblox subnav
-  const subnav = document.getElementById('a-roblox-subnav');
-  subnav.classList.toggle('visible', page === 'roblox');
+  document.getElementById('a-roblox-subnav').classList.toggle('visible',page==='roblox');
   window.scrollTo(0,0);
 }
-
-function showRobloxSub(sub, btn) {
+function showRobloxSub(sub,btn){
   document.querySelectorAll('.roblox-subpage').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.roblox-subtab').forEach(b=>b.classList.remove('active'));
   document.getElementById('a-roblox-sub-'+sub).classList.add('active');
-  btn.classList.add('active');
-  window.scrollTo(0,0);
+  btn.classList.add('active');window.scrollTo(0,0);
 }
 
-// ===== TOAST =====
-function toast(msg,type=''){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.className='toast';
-  if(type===true||type==='err')t.classList.add('err');
-  else if(type==='ok')t.classList.add('ok');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
-}
+// TOAST
+function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast';if(type===true||type==='err')t.classList.add('err');else if(type==='ok')t.classList.add('ok');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
-// ===== INIT =====
-if(sessionStorage.getItem('kwa')==='1') initAdmin();
+// INIT
+if(sessionStorage.getItem('kwa')==='1')initAdmin();
 </script>
 </body>
 </html>
