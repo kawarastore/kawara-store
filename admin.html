@@ -25,6 +25,8 @@
   --green: #10b981;
   --red: #e74c3c;
   --amber: #f59e0b;
+  --nav-h: 50px;
+  --subnav-h: 42px;
 }
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 html { -webkit-text-size-adjust:100%; }
@@ -33,7 +35,6 @@ body {
   font-family:'Outfit',sans-serif; min-height:100vh;
   overflow-x:hidden; width:100%;
 }
-
 .bg-layer {
   position:fixed; inset:0; z-index:0; pointer-events:none;
   background:
@@ -55,17 +56,22 @@ body {
 }
 .login-box {
   background:var(--card); border:1px solid var(--border);
-  border-radius:18px; padding:28px 24px; width:100%; max-width:360px;
+  border-radius:18px; padding:28px 22px; width:100%; max-width:360px;
   backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
   box-shadow:0 0 0 1px rgba(245,196,0,0.05), 0 24px 60px rgba(0,0,0,0.7);
 }
+.login-logo-wrap { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+.login-logo-img {
+  width:36px; height:36px; object-fit:contain;
+  filter:drop-shadow(0 0 8px rgba(245,196,0,0.5));
+}
 .login-logo {
-  font-family:'Rajdhani',sans-serif; font-size:1.4rem; font-weight:700;
+  font-family:'Rajdhani',sans-serif; font-size:1.35rem; font-weight:700;
   letter-spacing:3px; text-transform:uppercase;
   background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text; margin-bottom:3px;
+  background-clip:text;
 }
-.login-sub { color:var(--muted); font-size:0.78rem; margin-bottom:24px; letter-spacing:0.5px; }
+.login-sub { color:var(--muted); font-size:0.77rem; margin-bottom:22px; letter-spacing:0.5px; }
 .l-input {
   width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:10px; padding:12px 14px; color:var(--text);
@@ -89,41 +95,46 @@ body {
 
 /* HEADER */
 header {
-  background:rgba(6,4,0,0.95); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; width:100%;
+  background:rgba(6,4,0,0.97); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border); position:sticky; top:0; z-index:200; width:100%;
 }
 .header-inner {
-  max-width:1140px; margin:0 auto;
+  max-width:1200px; margin:0 auto;
   display:flex; align-items:center; justify-content:space-between;
-  height:50px; padding:0 16px;
+  height:var(--nav-h); padding:0 14px;
+}
+.h-logo-wrap { display:flex; align-items:center; gap:8px; }
+.h-logo-img {
+  width:28px; height:28px; object-fit:contain;
+  filter:drop-shadow(0 0 5px rgba(245,196,0,0.45));
 }
 .h-logo {
-  font-family:'Rajdhani',sans-serif; font-size:1.1rem; font-weight:700;
-  letter-spacing:2.5px; text-transform:uppercase;
+  font-family:'Rajdhani',sans-serif; font-size:1.05rem; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
   background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
   background-clip:text;
 }
 .h-right { display:flex; align-items:center; gap:8px; }
 .admin-badge {
-  padding:3px 9px; border-radius:20px; font-size:0.62rem; font-weight:700;
+  padding:3px 9px; border-radius:20px; font-size:0.6rem; font-weight:700;
   letter-spacing:1.5px; text-transform:uppercase;
   background:var(--gold-dim); border:1px solid rgba(245,196,0,0.3); color:var(--gold);
 }
 .logout {
   background:transparent; border:1px solid var(--border); color:var(--muted);
   padding:6px 12px; border-radius:7px; cursor:pointer;
-  font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:600; transition:all 0.2s;
+  font-family:'Outfit',sans-serif; font-size:0.76rem; font-weight:600; transition:all 0.2s;
   -webkit-tap-highlight-color:transparent;
 }
 
-/* TAB NAV */
+/* MAIN TAB NAV */
 .anav {
-  background:rgba(6,4,0,0.85); border-bottom:1px solid var(--border);
-  position:sticky; top:50px; z-index:99;
+  background:rgba(6,4,0,0.95); border-bottom:1px solid var(--border);
+  position:sticky; top:var(--nav-h); z-index:199;
   backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
 }
 .anav-inner {
-  max-width:1140px; margin:0 auto;
+  max-width:1200px; margin:0 auto;
   display:flex; padding:0 4px;
   overflow-x:auto; -webkit-overflow-scrolling:touch;
   scrollbar-width:none; -ms-overflow-style:none;
@@ -132,28 +143,55 @@ header {
 .atab {
   background:none; border:none; border-bottom:2px solid transparent;
   color:var(--muted); font-family:'Outfit',sans-serif;
-  font-size:0.8rem; font-weight:600; padding:12px 14px;
+  font-size:0.79rem; font-weight:600; padding:11px 14px;
   cursor:pointer; white-space:nowrap; transition:all 0.2s; flex-shrink:0;
   -webkit-tap-highlight-color:transparent;
 }
 .atab.active { color:var(--gold); border-bottom-color:var(--gold); }
 
+/* ROBLOX SUB NAV */
+.roblox-subnav {
+  background:rgba(8,5,0,0.95); border-bottom:1px solid rgba(245,196,0,0.08);
+  position:sticky; top:calc(var(--nav-h) + var(--subnav-h)); z-index:198;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  display:none;
+}
+.roblox-subnav.visible { display:block; }
+.roblox-subnav-inner {
+  max-width:1200px; margin:0 auto;
+  display:flex; padding:0 4px;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.roblox-subnav-inner::-webkit-scrollbar { display:none; }
+.roblox-subtab {
+  background:none; border:none; border-bottom:2px solid transparent;
+  color:var(--muted); font-family:'Outfit',sans-serif;
+  font-size:0.76rem; font-weight:600; padding:9px 14px;
+  cursor:pointer; white-space:nowrap; transition:all 0.2s; flex-shrink:0;
+  -webkit-tap-highlight-color:transparent;
+}
+.roblox-subtab.active { color:var(--gold); border-bottom-color:var(--gold); }
+
 /* CONTENT */
-.acontent { max-width:1140px; margin:0 auto; padding:16px; width:100%; }
+.acontent { max-width:1200px; margin:0 auto; padding:16px; width:100%; }
 .apage { display:none; }
 .apage.active { display:block; animation:fadeUp 0.3s ease; }
+.roblox-subpage { display:none; }
+.roblox-subpage.active { display:block; animation:fadeUp 0.25s ease; }
+
 @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
 /* SECTION */
 .sec-label {
-  font-family:'Rajdhani',sans-serif; font-size:0.63rem; font-weight:700;
+  font-family:'Rajdhani',sans-serif; font-size:0.62rem; font-weight:700;
   letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:3px;
 }
-.sec-ttl { font-family:'Rajdhani',sans-serif; font-size:1.25rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:14px; }
+.sec-ttl { font-family:'Rajdhani',sans-serif; font-size:1.2rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:14px; }
 .subsec-lbl {
   display:flex; align-items:center; gap:10px;
-  font-size:0.62rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
-  color:var(--muted); margin:20px 0 10px;
+  font-size:0.6rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted); margin:18px 0 10px;
 }
 .subsec-lbl::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, var(--border), transparent); }
 .sec-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:8px; }
@@ -161,27 +199,96 @@ header {
 /* PANEL */
 .panel {
   background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:16px; margin-bottom:16px;
+  border-radius:12px; padding:16px; margin-bottom:14px;
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
 }
 .panel h4 {
-  font-family:'Rajdhani',sans-serif; font-size:0.88rem; font-weight:700;
+  font-family:'Rajdhani',sans-serif; font-size:0.85rem; font-weight:700;
   letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:12px;
+}
+
+/* ===================== DASHBOARD ===================== */
+.dash-grid {
+  display:grid; grid-template-columns: repeat(2, 1fr);
+  gap:10px; margin-bottom:16px;
+}
+.dash-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:16px;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+}
+.dash-icon { font-size:1.4rem; margin-bottom:8px; }
+.dash-val {
+  font-family:'Rajdhani',sans-serif; font-size:1.5rem; font-weight:700;
+  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text; line-height:1.1;
+}
+.dash-lbl { font-size:0.72rem; color:var(--muted); margin-top:3px; font-weight:500; }
+
+.history-filter {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:14px; margin-bottom:14px;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+}
+.filter-lbl { font-size:0.66rem; font-weight:700; letter-spacing:1px; color:var(--muted); text-transform:uppercase; flex-shrink:0; }
+.filter-btn {
+  padding:5px 12px; background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); border-radius:20px;
+  color:var(--muted); font-family:'Outfit',sans-serif;
+  font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.filter-btn.active { background:var(--gold-dim); border-color:rgba(245,196,0,0.4); color:var(--text); }
+
+.revenue-chart {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:16px; margin-bottom:14px;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+}
+.revenue-chart h4 {
+  font-family:'Rajdhani',sans-serif; font-size:0.82rem; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:12px;
+}
+.chart-bars {
+  display:flex; align-items:flex-end; gap:4px;
+  height:80px; overflow-x:auto; padding-bottom:4px;
+}
+.chart-bar-wrap { display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; min-width:28px; }
+.chart-bar {
+  width:100%; border-radius:3px 3px 0 0;
+  background:var(--grad); min-height:2px; transition:height 0.3s;
+}
+.chart-bar-lbl { font-size:0.56rem; color:var(--muted); white-space:nowrap; }
+
+.recent-list { display:flex; flex-direction:column; gap:8px; }
+.recent-item {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 12px; background:rgba(255,255,255,0.02);
+  border:1px solid var(--border-soft); border-radius:9px; gap:10px;
+}
+.ri-info { flex:1; min-width:0; }
+.ri-name { font-weight:600; font-size:0.83rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ri-detail { font-size:0.72rem; color:var(--muted); margin-top:2px; }
+.ri-price {
+  font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:700;
+  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text; white-space:nowrap; flex-shrink:0;
 }
 
 /* BUTTONS */
 .add-btn {
   display:inline-flex; align-items:center; gap:5px;
-  padding:7px 13px; background:rgba(16,185,129,0.1);
+  padding:7px 12px; background:rgba(16,185,129,0.1);
   border:1px solid rgba(16,185,129,0.3); border-radius:8px;
   color:var(--green); font-family:'Outfit',sans-serif;
-  font-size:0.78rem; font-weight:700; cursor:pointer; transition:all 0.2s;
+  font-size:0.76rem; font-weight:700; cursor:pointer; transition:all 0.2s;
   -webkit-tap-highlight-color:transparent;
 }
 .form-submit {
   width:100%; padding:12px; background:var(--grad); border:none;
   border-radius:10px; color:#000; font-family:'Outfit',sans-serif;
-  font-size:0.9rem; font-weight:700; cursor:pointer; transition:all 0.2s;
+  font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.2s;
   box-shadow:0 4px 16px rgba(245,196,0,0.22); letter-spacing:0.5px;
   -webkit-tap-highlight-color:transparent; min-height:46px;
 }
@@ -196,12 +303,12 @@ header {
 .atable { width:100%; border-collapse:collapse; }
 .atable th {
   padding:9px 12px; text-align:left;
-  font-size:0.6rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  font-size:0.59rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
   color:var(--muted); border-bottom:1px solid var(--border); white-space:nowrap;
 }
 .atable td {
   padding:9px 12px; border-bottom:1px solid rgba(245,196,0,0.04);
-  font-size:0.84rem; vertical-align:middle;
+  font-size:0.83rem; vertical-align:middle;
 }
 .atable tr:last-child td { border-bottom:none; }
 .tbl-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
@@ -209,49 +316,87 @@ header {
 .e-input {
   background:rgba(255,255,255,0.05); border:1px solid var(--border);
   border-radius:7px; padding:6px 8px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.82rem; width:80px;
+  font-family:'Outfit',sans-serif; font-size:0.8rem; width:80px;
   outline:none; transition:border-color 0.2s; -webkit-appearance:none;
 }
 .e-input.wide { width:160px; }
-.e-input.xwide { width:100%; min-width:120px; }
+.e-input.xwide { width:100%; min-width:100px; }
 .e-input:focus { border-color:rgba(245,196,0,0.5); }
 
 .ibtn {
   background:none; border:none; cursor:pointer;
   padding:5px 9px; border-radius:6px;
-  font-family:'Outfit',sans-serif; font-size:0.75rem; font-weight:700; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent; min-height:34px;
+  font-family:'Outfit',sans-serif; font-size:0.73rem; font-weight:700; transition:all 0.2s;
+  -webkit-tap-highlight-color:transparent; min-height:32px;
 }
 .ibtn.save { color:var(--green); background:rgba(16,185,129,0.1); }
 .ibtn.del { color:var(--red); background:rgba(231,76,60,0.1); }
 
-/* FORM GRID */
+/* FORM */
 .form-grid { display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:14px; }
 @media(min-width:480px) { .form-grid { grid-template-columns:1fr 1fr; } }
 .ff { display:flex; flex-direction:column; gap:5px; }
-.flbl { font-size:0.66rem; font-weight:700; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
+.flbl { font-size:0.64rem; font-weight:700; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
 .finput, .fselect, .ftextarea {
   background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:8px; padding:11px 12px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.9rem; outline:none;
+  font-family:'Outfit',sans-serif; font-size:0.88rem; outline:none;
   transition:border-color 0.2s; -webkit-appearance:none; appearance:none;
 }
 .finput:focus, .fselect:focus, .ftextarea:focus { border-color:rgba(245,196,0,0.5); }
 .fselect option { background:var(--card-solid); }
 .ftextarea { resize:vertical; min-height:60px; }
 
-/* DIGITAL CARD ADMIN */
-.digital-admin-card {
+/* SYSTEM ADMIN */
+.system-admin-card {
   background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:16px; margin-bottom:10px;
+  border-radius:12px; margin-bottom:12px; overflow:hidden;
   backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
 }
-.dac-header { display:flex; flex-direction:column; gap:10px; margin-bottom:12px; }
+.sac-thumb-area {
+  width:100%; height:120px; background:rgba(245,196,0,0.04);
+  position:relative; overflow:hidden; cursor:pointer;
+}
+.sac-thumb-area img { width:100%; height:100%; object-fit:cover; }
+.sac-thumb-placeholder {
+  width:100%; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px;
+}
+.sac-thumb-placeholder span:first-child { font-size:2rem; opacity:0.3; }
+.sac-thumb-placeholder span:last-child { font-size:0.7rem; color:var(--muted); }
+.sac-thumb-overlay {
+  position:absolute; inset:0; background:rgba(0,0,0,0.6);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transition:opacity 0.2s;
+  font-size:0.75rem; font-weight:700; color:var(--gold); gap:6px;
+}
+.sac-thumb-area:hover .sac-thumb-overlay { opacity:1; }
+.sac-thumb-input { display:none; }
+.sac-body { padding:14px; }
+.sac-fields { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.sac-full { grid-column:1/-1; }
+.sac-tags-input {
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:8px; padding:10px 12px; color:var(--text);
+  font-family:'Outfit',sans-serif; font-size:0.84rem; outline:none;
+  transition:border-color 0.2s; width:100%;
+}
+.sac-tags-input:focus { border-color:rgba(245,196,0,0.5); }
+.sac-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:10px; }
+
+/* DIGITAL ADMIN */
+.digital-admin-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:14px; margin-bottom:10px;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+}
+.dac-header { display:flex; flex-direction:column; gap:10px; margin-bottom:10px; }
 .dac-title-row { display:flex; gap:8px; align-items:center; }
 .dac-icon-edit {
   background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:8px; padding:6px 8px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.9rem; outline:none; width:50px;
+  font-family:'Outfit',sans-serif; font-size:0.88rem; outline:none; width:48px;
   text-align:center; flex-shrink:0;
 }
 .dac-name-edit { flex:1; }
@@ -262,7 +407,7 @@ header {
 .dac-price-label-edit, .dac-price-val-edit {
   background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:7px; padding:7px 9px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.82rem; outline:none;
+  font-family:'Outfit',sans-serif; font-size:0.8rem; outline:none;
   transition:border-color 0.2s; flex:1; min-width:0;
   -webkit-appearance:none;
 }
@@ -271,19 +416,19 @@ header {
   width:100%; padding:8px; background:rgba(245,196,0,0.08);
   border:1px dashed rgba(245,196,0,0.25);
   border-radius:7px; color:var(--gold); font-family:'Outfit',sans-serif;
-  font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s; margin-top:6px;
+  font-size:0.73rem; font-weight:700; cursor:pointer; transition:all 0.2s; margin-top:6px;
   -webkit-tap-highlight-color:transparent;
 }
 .del-price-btn {
   padding:7px 9px; background:rgba(231,76,60,0.08); border:none;
-  border-radius:6px; color:var(--red); cursor:pointer; font-size:0.82rem;
-  transition:all 0.2s; flex-shrink:0; min-width:34px; min-height:34px;
+  border-radius:6px; color:var(--red); cursor:pointer; font-size:0.8rem;
+  transition:all 0.2s; flex-shrink:0; min-width:32px; min-height:32px;
   -webkit-tap-highlight-color:transparent;
 }
 
 /* UPLOAD */
 .upload-zone {
-  border:2px dashed var(--border); border-radius:10px; padding:20px 16px;
+  border:2px dashed var(--border); border-radius:10px; padding:18px 14px;
   text-align:center; cursor:pointer; transition:all 0.25s;
   background:rgba(255,255,255,0.02); position:relative;
 }
@@ -291,16 +436,16 @@ header {
   position:absolute; inset:0; opacity:0; cursor:pointer;
   width:100%; height:100%;
 }
-.upload-icon { font-size:1.6rem; margin-bottom:5px; }
-.upload-label { font-size:0.78rem; color:var(--muted); }
+.upload-icon { font-size:1.5rem; margin-bottom:5px; }
+.upload-label { font-size:0.76rem; color:var(--muted); }
 .upload-label span { color:var(--gold); font-weight:700; }
 .img-preview-wrap { position:relative; display:inline-block; margin-top:10px; }
-.img-preview { max-width:100%; max-height:160px; border-radius:8px; border:1px solid var(--border); display:block; }
+.img-preview { max-width:100%; max-height:140px; border-radius:8px; border:1px solid var(--border); display:block; }
 .img-remove {
   position:absolute; top:-8px; right:-8px;
   background:var(--red); border:none; color:#fff;
-  width:24px; height:24px; border-radius:50%;
-  font-size:0.75rem; cursor:pointer; font-weight:700;
+  width:22px; height:22px; border-radius:50%;
+  font-size:0.7rem; cursor:pointer; font-weight:700;
   display:flex; align-items:center; justify-content:center;
   -webkit-tap-highlight-color:transparent;
 }
@@ -308,81 +453,85 @@ header {
 /* TRX */
 .trx-card {
   background:var(--card); border:1px solid var(--border);
-  border-radius:10px; padding:14px; margin-bottom:8px;
+  border-radius:10px; padding:13px; margin-bottom:8px;
   backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
 }
 .trx-top { display:flex; gap:10px; justify-content:space-between; align-items:flex-start; }
 .trx-info { flex:1; min-width:0; }
-.trx-user { font-weight:700; font-size:0.9rem; margin-bottom:2px; }
-.trx-detail { color:var(--muted); font-size:0.76rem; line-height:1.6; }
-.trx-time { font-size:0.68rem; color:var(--muted); margin-top:3px; }
+.trx-user { font-weight:700; font-size:0.88rem; margin-bottom:2px; }
+.trx-detail { color:var(--muted); font-size:0.74rem; line-height:1.6; }
+.trx-time { font-size:0.67rem; color:var(--muted); margin-top:3px; }
 .trx-price {
-  font-family:'Rajdhani',sans-serif; font-size:0.92rem; font-weight:700;
+  font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:700;
   background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
   background-clip:text; margin-bottom:5px; white-space:nowrap;
 }
 .trx-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
 .status-badge {
   display:inline-block; padding:2px 8px; border-radius:20px;
-  font-size:0.68rem; font-weight:700; white-space:nowrap;
+  font-size:0.66rem; font-weight:700; white-space:nowrap;
 }
 .status-badge.pending { background:rgba(245,158,11,0.12); color:var(--amber); border:1px solid rgba(245,158,11,0.2); }
 .status-badge.done { background:rgba(16,185,129,0.12); color:var(--green); border:1px solid rgba(16,185,129,0.2); }
-.trx-bottom { display:flex; align-items:center; justify-content:space-between; margin-top:10px; padding-top:10px; border-top:1px solid rgba(245,196,0,0.06); flex-wrap:wrap; gap:8px; }
+.trx-bottom {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:10px; padding-top:10px; border-top:1px solid rgba(245,196,0,0.06);
+  flex-wrap:wrap; gap:8px;
+}
 .trx-actions { display:flex; gap:6px; }
 .t-done {
-  padding:6px 12px; background:rgba(16,185,129,0.1);
+  padding:5px 11px; background:rgba(16,185,129,0.1);
   border:1px solid rgba(16,185,129,0.3); border-radius:7px;
   color:var(--green); cursor:pointer; font-family:'Outfit',sans-serif;
-  font-size:0.75rem; font-weight:700; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent; min-height:34px;
+  font-size:0.73rem; font-weight:700; transition:all 0.2s;
+  -webkit-tap-highlight-color:transparent; min-height:32px;
 }
 .t-del {
-  padding:6px 12px; background:rgba(231,76,60,0.08);
+  padding:5px 11px; background:rgba(231,76,60,0.08);
   border:1px solid rgba(231,76,60,0.25); border-radius:7px;
   color:var(--red); cursor:pointer; font-family:'Outfit',sans-serif;
-  font-size:0.75rem; font-weight:700; transition:all 0.2s;
-  -webkit-tap-highlight-color:transparent; min-height:34px;
+  font-size:0.73rem; font-weight:700; transition:all 0.2s;
+  -webkit-tap-highlight-color:transparent; min-height:32px;
 }
 .trx-bukti-thumb {
-  width:50px; height:50px; border-radius:7px;
+  width:48px; height:48px; border-radius:7px;
   object-fit:cover; border:1px solid var(--border);
   cursor:pointer; flex-shrink:0;
 }
 .no-bukti {
-  width:50px; height:50px; border-radius:7px;
+  width:48px; height:48px; border-radius:7px;
   border:1px dashed var(--border-soft);
   display:flex; align-items:center; justify-content:center;
-  color:var(--muted); font-size:1.1rem; flex-shrink:0;
+  color:var(--muted); font-size:1rem; flex-shrink:0;
 }
-.empty { text-align:center; color:var(--muted); padding:28px; font-size:0.84rem; }
+.empty { text-align:center; color:var(--muted); padding:28px; font-size:0.83rem; }
 
 /* DISCORD */
 .dinput {
   width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:8px; padding:11px 12px; color:var(--text);
-  font-family:'Outfit',sans-serif; font-size:0.85rem; outline:none;
+  font-family:'Outfit',sans-serif; font-size:0.84rem; outline:none;
   transition:border-color 0.2s; -webkit-appearance:none; margin-bottom:10px;
 }
 .dinput:focus { border-color:rgba(245,196,0,0.5); }
 .d-save {
   width:100%; padding:12px; background:var(--grad); border:none;
   border-radius:8px; color:#000; font-family:'Outfit',sans-serif;
-  font-size:0.9rem; font-weight:700; cursor:pointer; letter-spacing:0.5px;
+  font-size:0.88rem; font-weight:700; cursor:pointer; letter-spacing:0.5px;
   -webkit-tap-highlight-color:transparent; min-height:46px;
 }
-#wh-status { color:var(--muted); font-size:0.75rem; margin-top:8px; line-height:1.5; word-break:break-all; }
+#wh-status { color:var(--muted); font-size:0.74rem; margin-top:8px; line-height:1.5; word-break:break-all; }
 
-/* OVERLAY / MODAL — sheet from bottom */
+/* OVERLAY/MODAL */
 .overlay {
   display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8);
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  z-index:300; align-items:flex-end; justify-content:center;
+  z-index:400; align-items:flex-end; justify-content:center;
 }
 .overlay.open { display:flex; }
 .modal {
   background:#0e0900; border:1px solid var(--border);
-  border-radius:20px 20px 0 0; padding:24px 18px 32px;
+  border-radius:20px 20px 0 0; padding:22px 18px 32px;
   width:100%; max-width:500px; position:relative;
   animation:slideUp 0.28s cubic-bezier(0.16,1,0.3,1);
   box-shadow:0 -8px 40px rgba(0,0,0,0.5);
@@ -391,38 +540,38 @@ header {
 @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
 .modal::before {
   content:''; display:block; width:36px; height:4px; border-radius:2px;
-  background:rgba(245,196,0,0.25); margin:0 auto 18px;
+  background:rgba(245,196,0,0.25); margin:0 auto 16px;
 }
 .mx {
-  position:absolute; top:18px; right:14px;
+  position:absolute; top:16px; right:14px;
   background:rgba(255,255,255,0.05); border:1px solid var(--border-soft);
-  color:var(--muted); width:30px; height:30px;
-  border-radius:7px; cursor:pointer; font-size:0.9rem;
+  color:var(--muted); width:28px; height:28px;
+  border-radius:7px; cursor:pointer; font-size:0.88rem;
   display:flex; align-items:center; justify-content:center;
   -webkit-tap-highlight-color:transparent;
 }
 .modal h3 {
-  font-family:'Rajdhani',sans-serif; font-size:0.98rem; font-weight:700;
-  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:16px;
+  font-family:'Rajdhani',sans-serif; font-size:0.95rem; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:14px;
 }
 .modal-action {
   width:100%; padding:13px; background:var(--grad); border:none;
   border-radius:10px; color:#000; font-family:'Outfit',sans-serif;
-  font-size:0.92rem; font-weight:700; cursor:pointer; margin-top:6px; letter-spacing:0.5px;
+  font-size:0.9rem; font-weight:700; cursor:pointer; margin-top:6px; letter-spacing:0.5px;
   -webkit-tap-highlight-color:transparent; min-height:48px;
 }
 
 /* Lightbox */
 #lightbox-modal .modal { align-items:center; gap:12px; display:flex; flex-direction:column; }
 #lightbox-img { max-width:100%; max-height:65vh; border-radius:10px; object-fit:contain; display:block; }
-#lightbox-caption { font-size:0.78rem; color:var(--muted); text-align:center; }
+#lightbox-caption { font-size:0.76rem; color:var(--muted); text-align:center; }
 
 /* TOAST */
 .toast {
   position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(80px);
   background:var(--card); border:1px solid var(--border);
   color:var(--text); padding:10px 18px; border-radius:10px;
-  font-size:0.82rem; font-weight:600; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  font-size:0.8rem; font-weight:600; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
   opacity:0; transition:all 0.28s; z-index:999; pointer-events:none;
   white-space:nowrap; max-width:calc(100% - 32px);
 }
@@ -431,10 +580,15 @@ header {
 .toast.ok { border-color:rgba(16,185,129,0.4); color:var(--green); }
 
 @media(min-width:600px) {
-  .overlay { align-items:center; }
+  .overlay { align-items:center; padding:20px; }
   .modal { border-radius:18px; }
   .modal::before { display:none; }
-  .acontent { padding:20px; }
+  .acontent { padding:18px 20px; }
+  .dash-grid { grid-template-columns:repeat(4,1fr); }
+  .sac-fields { grid-template-columns:1fr 1fr; }
+}
+@media(min-width:900px) {
+  .sac-fields { grid-template-columns:1fr 1fr 1fr; }
 }
 </style>
 </head>
@@ -445,7 +599,10 @@ header {
 <!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
-    <div class="login-logo">Kawara Store</div>
+    <div class="login-logo-wrap">
+      <img class="login-logo-img" src="https://raw.githubusercontent.com/kawara-store/kawara-store.github.io/main/logo.png" onerror="this.style.display='none'" alt="logo">
+      <div class="login-logo">Kawara Store</div>
+    </div>
     <div class="login-sub">Admin Panel — Akses Terbatas</div>
     <input class="l-input" id="inp-u" type="text" placeholder="Username" autocomplete="off" autocorrect="off" autocapitalize="none">
     <input class="l-input" id="inp-p" type="password" placeholder="Password" autocomplete="current-password">
@@ -458,7 +615,10 @@ header {
 <div id="admin-panel">
   <header>
     <div class="header-inner">
-      <div class="h-logo">Kawara Admin</div>
+      <div class="h-logo-wrap">
+        <img class="h-logo-img" src="https://raw.githubusercontent.com/kawara-store/kawara-store.github.io/main/logo.png" onerror="this.style.display='none'" alt="logo">
+        <div class="h-logo">Kawara Admin</div>
+      </div>
       <div class="h-right">
         <span class="admin-badge">ADMIN</span>
         <button class="logout" onclick="doLogout()">Keluar</button>
@@ -468,21 +628,91 @@ header {
 
   <div class="anav">
     <div class="anav-inner">
-      <button class="atab active" onclick="showAPage('trx',this)">📋 Transaksi</button>
-      <button class="atab" onclick="showAPage('robux',this)">💎 Robux</button>
-      <button class="atab" onclick="showAPage('fishit',this)">🎣 Fish It</button>
-      <button class="atab" onclick="showAPage('forge',this)">⚒️ Forge</button>
+      <button class="atab active" onclick="showAPage('dashboard',this)">📊 Dashboard</button>
+      <button class="atab" onclick="showAPage('trx',this)">📋 Transaksi</button>
+      <button class="atab" onclick="showAPage('roblox',this)">🎮 Roblox</button>
       <button class="atab" onclick="showAPage('digital',this)">💼 Digital</button>
       <button class="atab" onclick="showAPage('discord',this)">🔧 Discord</button>
     </div>
   </div>
 
+  <!-- Roblox sub-nav -->
+  <div class="roblox-subnav" id="a-roblox-subnav">
+    <div class="roblox-subnav-inner">
+      <button class="roblox-subtab active" onclick="showRobloxSub('topup',this)">💎 Robux Top Up</button>
+      <button class="roblox-subtab" onclick="showRobloxSub('system',this)">⚙️ Roblox System</button>
+    </div>
+  </div>
+
   <div class="acontent">
 
+    <!-- DASHBOARD -->
+    <div class="apage active" id="apage-dashboard">
+      <div class="sec-label">Overview</div>
+      <div class="sec-ttl">📊 Dashboard</div>
+
+      <!-- Stats -->
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-icon">💰</div>
+          <div class="dash-val" id="d-total-rev">—</div>
+          <div class="dash-lbl">Total Penjualan</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon">📦</div>
+          <div class="dash-val" id="d-total-trx">0</div>
+          <div class="dash-lbl">Total Transaksi</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon">✅</div>
+          <div class="dash-val" id="d-done-trx">0</div>
+          <div class="dash-lbl">Selesai</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon">⏳</div>
+          <div class="dash-val" id="d-pending-trx">0</div>
+          <div class="dash-lbl">Pending</div>
+        </div>
+      </div>
+
+      <!-- Filter -->
+      <div class="history-filter">
+        <span class="filter-lbl">Filter:</span>
+        <button class="filter-btn active" onclick="setFilter('all',this)">Semua</button>
+        <button class="filter-btn" onclick="setFilter('today',this)">Hari Ini</button>
+        <button class="filter-btn" onclick="setFilter('week',this)">Minggu Ini</button>
+        <button class="filter-btn" onclick="setFilter('month',this)">Bulan Ini</button>
+        <button class="filter-btn" onclick="setFilter('year',this)">Tahun Ini</button>
+      </div>
+
+      <!-- Chart -->
+      <div class="revenue-chart">
+        <h4>📈 Aktivitas Transaksi</h4>
+        <div class="chart-bars" id="chart-bars"></div>
+      </div>
+
+      <!-- Recent -->
+      <div class="panel">
+        <h4>🕐 Transaksi Terbaru</h4>
+        <div class="recent-list" id="recent-list"></div>
+      </div>
+    </div>
+
     <!-- TRANSAKSI -->
-    <div class="apage active" id="apage-trx">
+    <div class="apage" id="apage-trx">
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">📋 Transaksi</div>
+
+      <!-- Filter bar -->
+      <div class="history-filter" style="margin-bottom:12px;">
+        <span class="filter-lbl">Filter:</span>
+        <button class="filter-btn active" id="trx-filter-all" onclick="setTrxFilter('all',this)">Semua</button>
+        <button class="filter-btn" onclick="setTrxFilter('today',this)">Hari Ini</button>
+        <button class="filter-btn" onclick="setTrxFilter('week',this)">Minggu Ini</button>
+        <button class="filter-btn" onclick="setTrxFilter('month',this)">Bulan Ini</button>
+        <button class="filter-btn" onclick="setTrxFilter('year',this)">Tahun Ini</button>
+      </div>
+
       <div class="panel">
         <h4>➕ Tambah Transaksi</h4>
         <div class="form-grid">
@@ -502,73 +732,88 @@ header {
             <input type="file" id="t-bukti-input" accept="image/*" onchange="handleFileSelect(event)">
             <div class="upload-icon">🖼️</div>
             <div class="upload-label">Tap atau <span>drag foto</span> ke sini</div>
-            <div style="font-size:0.68rem;color:var(--muted);margin-top:2px;">JPG, PNG — maks. 5MB</div>
           </div>
           <div id="bukti-preview-wrap" style="display:none;text-align:center;">
             <div class="img-preview-wrap">
               <img id="bukti-preview" class="img-preview" src="" alt="Preview">
               <button class="img-remove" onclick="removeBukti()">✕</button>
             </div>
-            <div style="font-size:0.7rem;color:var(--green);margin-top:4px;" id="bukti-filename"></div>
+            <div style="font-size:0.68rem;color:var(--green);margin-top:4px;" id="bukti-filename"></div>
           </div>
         </div>
         <button class="form-submit" onclick="addTrx()">📤 Simpan &amp; Kirim ke Discord</button>
       </div>
+
       <div id="trx-list"></div>
     </div>
 
-    <!-- ROBUX -->
-    <div class="apage" id="apage-robux">
-      <div class="sec-label">Kelola</div>
-      <div class="sec-ttl">💎 Robux</div>
-      <div class="tbl-scroll"><div class="tbl-wrap">
-        <table class="atable">
-          <thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th>Aksi</th></tr></thead>
-          <tbody id="a-robux-tbody"></tbody>
-        </table>
-      </div></div>
-    </div>
+    <!-- ROBLOX -->
+    <div class="apage" id="apage-roblox">
+      <!-- TOP UP sub-page -->
+      <div class="roblox-subpage active" id="a-roblox-sub-topup">
+        <div class="sec-label">Kelola</div>
+        <div class="sec-ttl">💎 Robux Top Up</div>
 
-    <!-- FISH IT -->
-    <div class="apage" id="apage-fishit">
-      <div class="sec-label">Kelola</div>
-      <div class="sec-ttl">🎣 Fish It</div>
-      <div class="sec-head">
-        <div class="subsec-lbl" style="margin:0;flex:1;">Item Shop</div>
-        <button class="add-btn" onclick="openAdd('fishit_shop')">+ Tambah</button>
-      </div>
-      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-shop"></tbody></table></div></div>
-      <div class="sec-head" style="margin-top:16px;">
-        <div class="subsec-lbl" style="margin:0;flex:1;">Gacha Skin</div>
-        <button class="add-btn" onclick="openAdd('fishit_gacha')">+ Tambah</button>
-      </div>
-      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-gacha"></tbody></table></div></div>
-      <div class="sec-head" style="margin-top:16px;">
-        <div class="subsec-lbl" style="margin:0;flex:1;">Emote Crates</div>
-        <button class="add-btn" onclick="openAdd('fishit_emote')">+ Tambah</button>
-      </div>
-      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-emote"></tbody></table></div></div>
-    </div>
+        <!-- Robux table -->
+        <div class="subsec-lbl" style="margin-top:0;">Robux via Gamepass</div>
+        <div class="tbl-scroll"><div class="tbl-wrap">
+          <table class="atable">
+            <thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th>Aksi</th></tr></thead>
+            <tbody id="a-robux-tbody"></tbody>
+          </table>
+        </div></div>
 
-    <!-- THE FORGE -->
-    <div class="apage" id="apage-forge">
-      <div class="sec-label">Kelola</div>
-      <div class="sec-ttl">⚒️ The Forge</div>
-      <div class="sec-head">
-        <div class="subsec-lbl" style="margin:0;flex:1;">Passes</div>
-        <button class="add-btn" onclick="openAdd('forge_passes')">+ Tambah</button>
+        <!-- Fish It -->
+        <div class="sec-head" style="margin-top:16px;">
+          <div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Item Shop</div>
+          <button class="add-btn" onclick="openAdd('fishit_shop')">+ Tambah</button>
+        </div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-shop"></tbody></table></div></div>
+
+        <div class="sec-head" style="margin-top:14px;">
+          <div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Gacha Skin</div>
+          <button class="add-btn" onclick="openAdd('fishit_gacha')">+ Tambah</button>
+        </div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-gacha"></tbody></table></div></div>
+
+        <div class="sec-head" style="margin-top:14px;">
+          <div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Emote Crates</div>
+          <button class="add-btn" onclick="openAdd('fishit_emote')">+ Tambah</button>
+        </div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-emote"></tbody></table></div></div>
+
+        <!-- Forge -->
+        <div class="sec-head" style="margin-top:14px;">
+          <div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Passes</div>
+          <button class="add-btn" onclick="openAdd('forge_passes')">+ Tambah</button>
+        </div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-passes"></tbody></table></div></div>
+
+        <div class="sec-head" style="margin-top:14px;">
+          <div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Totems</div>
+          <button class="add-btn" onclick="openAdd('forge_totems')">+ Tambah</button>
+        </div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-totems"></tbody></table></div></div>
+
+        <div class="sec-head" style="margin-top:14px;">
+          <div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Rerolls</div>
+          <button class="add-btn" onclick="openAdd('forge_rerolls')">+ Tambah</button>
+        </div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-rerolls"></tbody></table></div></div>
       </div>
-      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-passes"></tbody></table></div></div>
-      <div class="sec-head" style="margin-top:16px;">
-        <div class="subsec-lbl" style="margin:0;flex:1;">Totems</div>
-        <button class="add-btn" onclick="openAdd('forge_totems')">+ Tambah</button>
+
+      <!-- ROBLOX SYSTEM sub-page -->
+      <div class="roblox-subpage" id="a-roblox-sub-system">
+        <div class="sec-head">
+          <div>
+            <div class="sec-label">Kelola</div>
+            <div class="sec-ttl" style="margin-bottom:0;">⚙️ Roblox System</div>
+          </div>
+          <button class="add-btn" onclick="addSystemCard()">+ Tambah System</button>
+        </div>
+        <p style="font-size:0.78rem;color:var(--muted);margin-bottom:14px;">Klik thumbnail untuk ganti gambar preview. Isi field lalu klik Simpan.</p>
+        <div id="system-admin-list"></div>
       </div>
-      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-totems"></tbody></table></div></div>
-      <div class="sec-head" style="margin-top:16px;">
-        <div class="subsec-lbl" style="margin:0;flex:1;">Rerolls</div>
-        <button class="add-btn" onclick="openAdd('forge_rerolls')">+ Tambah</button>
-      </div>
-      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-rerolls"></tbody></table></div></div>
     </div>
 
     <!-- DIGITAL -->
@@ -576,7 +821,7 @@ header {
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">💼 Jasa Digital</div>
       <div class="sec-head" style="margin-bottom:14px;">
-        <p style="font-size:0.8rem;color:var(--muted);flex:1;">Edit langsung di kartu — ubah nama, deskripsi, ikon, dan harga.</p>
+        <p style="font-size:0.78rem;color:var(--muted);flex:1;">Edit langsung di kartu — ubah nama, deskripsi, ikon, dan harga.</p>
         <button class="add-btn" onclick="addDigitalCard()">+ Tambah</button>
       </div>
       <div id="digital-admin-list"></div>
@@ -588,7 +833,7 @@ header {
       <div class="sec-ttl">🔧 Discord Webhook</div>
       <div class="panel">
         <h4>URL Webhook</h4>
-        <p style="color:var(--muted);font-size:0.78rem;margin-bottom:14px;line-height:1.65;">
+        <p style="color:var(--muted);font-size:0.77rem;margin-bottom:14px;line-height:1.65;">
           Setiap transaksi baru otomatis terkirim ke channel Discord kamu.<br>
           Discord → Edit Channel → Integrations → Webhooks → New Webhook → Copy URL
         </p>
@@ -598,10 +843,10 @@ header {
       </div>
     </div>
 
-  </div>
-</div>
+  </div><!-- /acontent -->
+</div><!-- /admin-panel -->
 
-<!-- MODAL ADD -->
+<!-- MODAL ADD ITEM -->
 <div class="overlay" id="add-modal">
   <div class="modal">
     <button class="mx" onclick="closeAdd()">✕</button>
@@ -621,7 +866,7 @@ header {
 <div class="overlay" id="lightbox-modal">
   <div class="modal">
     <button class="mx" onclick="closeLightbox()">✕</button>
-    <img id="lightbox-img" src="" alt="Bukti Transaksi">
+    <img id="lightbox-img" src="" alt="Bukti">
     <div id="lightbox-caption"></div>
   </div>
 </div>
@@ -751,6 +996,11 @@ const DEFAULT_DATA = {
     {id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},
     {id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99},
   ],
+  roblox_system:[
+    {id:'sys1',name:'Admin System',desc:'Sistem admin panel lengkap. Fitur ban, kick, teleport, dan log aktivitas player.',tags:'Admin,Panel,Tools',harga:'Rp50.000',thumb:'',stock:99},
+    {id:'sys2',name:'Anti Cheat System',desc:'Sistem anti cheat canggih yang mendeteksi exploit, speed hack, dan noclip.',tags:'Security,AntiExploit',harga:'Rp75.000',thumb:'',stock:99},
+    {id:'sys3',name:'Data Store System',desc:'Sistem penyimpanan data pemain yang stabil dengan auto-save, backup, dan error handling.',tags:'DataStore,Save',harga:'Rp40.000',thumb:'',stock:99},
+  ],
   digital:[
     {id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF dengan cepat dan rapi.',
       prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Gabung/Pisah PDF',val:'Rp3.000/file'},{label:'Compress PDF',val:'Rp3.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]},
@@ -773,6 +1023,7 @@ function getTrx(){try{const d=localStorage.getItem('kawara_trx');if(d)return JSO
 function saveTrx(a){localStorage.setItem('kawara_trx',JSON.stringify(a));}
 function getWH(){return localStorage.getItem('kawara_webhook')||'';}
 
+// ===== INIT =====
 function initAdmin(){
   const wh=getWH();
   if(wh){document.getElementById('wh-input').value=wh;document.getElementById('wh-status').textContent='✅ Webhook aktif';}
@@ -788,17 +1039,113 @@ function renderAll(){
   renderItems('a-forge-passes',d.forge_passes,'forge_passes');
   renderItems('a-forge-totems',d.forge_totems,'forge_totems');
   renderItems('a-forge-rerolls',d.forge_rerolls,'forge_rerolls');
+  renderSystemAdmin(d.roblox_system||DEFAULT_DATA.roblox_system);
   renderDigitalAdmin(d.digital||DEFAULT_DATA.digital);
+  renderTrxList();
+  renderDashboard();
+}
+
+// ===== DASHBOARD =====
+let dashFilter = 'all';
+let trxFilter = 'all';
+
+function filterTrxByPeriod(arr, period) {
+  const now = new Date();
+  return arr.filter(t => {
+    if(period === 'all') return true;
+    const d = new Date(t.time);
+    if(isNaN(d)) return period === 'all';
+    if(period === 'today') return d.toDateString() === now.toDateString();
+    if(period === 'week') {
+      const startOfWeek = new Date(now); startOfWeek.setDate(now.getDate()-now.getDay());
+      startOfWeek.setHours(0,0,0,0);
+      return d >= startOfWeek;
+    }
+    if(period === 'month') return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
+    if(period === 'year') return d.getFullYear()===now.getFullYear();
+    return true;
+  });
+}
+
+function setFilter(period, btn) {
+  dashFilter = period;
+  document.querySelectorAll('.history-filter .filter-btn').forEach(b => {
+    if(b.closest('#apage-dashboard')) b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  renderDashboard();
+}
+
+function setTrxFilter(period, btn) {
+  trxFilter = period;
+  const btns = document.querySelectorAll('#apage-trx .filter-btn');
+  btns.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
   renderTrxList();
 }
 
+function renderDashboard() {
+  const allTrx = getTrx();
+  const filtered = filterTrxByPeriod(allTrx, dashFilter);
+  const done = filtered.filter(t=>t.status==='done');
+  const pending = filtered.filter(t=>t.status==='pending');
+
+  document.getElementById('d-total-trx').textContent = filtered.length;
+  document.getElementById('d-done-trx').textContent = done.length;
+  document.getElementById('d-pending-trx').textContent = pending.length;
+
+  // Revenue estimate from price strings
+  let rev = 0;
+  done.forEach(t => {
+    const n = parseFloat((t.price||'').replace(/[^0-9.,]/g,'').replace(',','.'));
+    if(!isNaN(n)) {
+      if((t.price||'').toUpperCase().includes('K')) rev += n*1000;
+      else rev += n;
+    }
+  });
+  document.getElementById('d-total-rev').textContent = rev >= 1000000
+    ? (rev/1000000).toFixed(1)+'Jt'
+    : rev >= 1000 ? (rev/1000).toFixed(0)+'K' : rev > 0 ? rev : '—';
+
+  // Chart — last 7 days
+  const bars = document.getElementById('chart-bars');
+  const days = [];
+  const now = new Date();
+  for(let i=6;i>=0;i--) {
+    const d = new Date(now); d.setDate(now.getDate()-i); d.setHours(0,0,0,0);
+    const next = new Date(d); next.setDate(d.getDate()+1);
+    const count = allTrx.filter(t => { const td=new Date(t.time); return !isNaN(td)&&td>=d&&td<next; }).length;
+    days.push({ label: d.getDate()+'/'+(d.getMonth()+1), count });
+  }
+  const maxC = Math.max(...days.map(d=>d.count), 1);
+  bars.innerHTML = days.map(d => `
+    <div class="chart-bar-wrap">
+      <div class="chart-bar" style="height:${Math.max((d.count/maxC)*70,2)}px;" title="${d.count} transaksi"></div>
+      <div class="chart-bar-lbl">${d.label}</div>
+    </div>`).join('');
+
+  // Recent 5
+  const recent = document.getElementById('recent-list');
+  const show = allTrx.slice(0,5);
+  if(!show.length) { recent.innerHTML='<div class="empty">Belum ada transaksi.</div>'; return; }
+  recent.innerHTML = show.map(t=>`
+    <div class="recent-item">
+      <div class="ri-info">
+        <div class="ri-name">👤 ${t.username}</div>
+        <div class="ri-detail">${t.category} · <span class="status-badge ${t.status}" style="font-size:0.62rem;">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span></div>
+      </div>
+      <div class="ri-price">${t.price}</div>
+    </div>`).join('');
+}
+
+// ===== ROBUX TABLE =====
 function renderRobux(items){
   document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`
     <tr>
       <td><strong>${i.robux} Rbx</strong></td>
-      <td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:70px;"></td>
-      <td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:70px;"></td>
-      <td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:55px;" inputmode="numeric"></td>
+      <td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:62px;"></td>
+      <td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:65px;"></td>
+      <td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td>
       <td><button class="ibtn save" onclick="saveRobux('${i.id}')">💾</button></td>
     </tr>`).join('');
 }
@@ -807,15 +1154,16 @@ function saveRobux(id){
   d.robux[idx].harga=document.getElementById('rh-'+id).value.trim();
   d.robux[idx].gamepass=document.getElementById('rgp-'+id).value.trim();
   d.robux[idx].stock=parseInt(document.getElementById('rs-'+id).value)||0;
-  saveData(d);toast('✅ Robux disimpan!','ok');
+  saveData(d);toast('✅ Disimpan!','ok');
 }
 
+// ===== ITEMS TABLE =====
 function renderItems(tbodyId,items,cat){
   document.getElementById(tbodyId).innerHTML=items.map(i=>`
     <tr>
-      <td style="max-width:160px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name}"></td>
-      <td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:65px;"></td>
-      <td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td>
+      <td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td>
+      <td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td>
+      <td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td>
       <td style="white-space:nowrap;">
         <button class="ibtn save" onclick="saveItem('${cat}','${i.id}')">💾</button>
         <button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button>
@@ -831,10 +1179,10 @@ function saveItem(cat,id){
 }
 function delItem(cat,id){
   if(!confirm('Hapus item ini?'))return;
-  const d=getData();d[cat]=d[cat].filter(i=>i.id!==id);saveData(d);renderAll();toast('🗑️ Item dihapus!');
+  const d=getData();d[cat]=d[cat].filter(i=>i.id!==id);saveData(d);renderAll();toast('🗑️ Dihapus!');
 }
 
-// ADD MODAL
+// ===== ADD MODAL =====
 function openAdd(cat){
   document.getElementById('add-cat').value=cat;
   ['add-name','add-harga'].forEach(id=>document.getElementById(id).value='');
@@ -849,26 +1197,120 @@ function submitAdd(){
   const stock=parseInt(document.getElementById('add-stock').value)||0;
   if(!name||!harga){toast('❌ Isi nama dan harga!',true);return;}
   const d=getData();d[cat].push({id:cat+'_'+Date.now(),name,harga,stock});
-  saveData(d);closeAdd();renderAll();toast('✅ Item ditambahkan!','ok');
+  saveData(d);closeAdd();renderAll();toast('✅ Ditambahkan!','ok');
 }
 document.getElementById('add-modal').addEventListener('click',e=>{if(e.target===document.getElementById('add-modal'))closeAdd();});
 
-// DIGITAL ADMIN
+// ===== ROBLOX SYSTEM ADMIN =====
+function renderSystemAdmin(items){
+  const c=document.getElementById('system-admin-list');
+  c.innerHTML=items.map(item=>`
+    <div class="system-admin-card" id="sac-${item.id}">
+      <div class="sac-thumb-area" onclick="triggerThumbUpload('${item.id}')">
+        <input type="file" class="sac-thumb-input" id="thumbinput-${item.id}" accept="image/*" onchange="handleThumbUpload('${item.id}',event)">
+        ${item.thumb
+          ? `<img src="${item.thumb}" alt="${item.name}" onerror="this.parentElement.innerHTML=defaultThumbPlaceholder();">`
+          : `<div class="sac-thumb-placeholder"><span>⚙️</span><span>Klik untuk upload thumbnail</span></div>`}
+        <div class="sac-thumb-overlay">📷 Ganti Gambar</div>
+      </div>
+      <div class="sac-body">
+        <div class="sac-fields">
+          <div class="ff">
+            <label class="flbl">Nama System</label>
+            <input class="finput" id="sname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama...">
+          </div>
+          <div class="ff">
+            <label class="flbl">Harga</label>
+            <input class="finput" id="sharga-${item.id}" value="${item.harga}" placeholder="Rp0">
+          </div>
+          <div class="ff">
+            <label class="flbl">Stok</label>
+            <input class="finput" id="sstock-${item.id}" type="number" value="${item.stock||99}" inputmode="numeric">
+          </div>
+          <div class="ff sac-full">
+            <label class="flbl">Deskripsi</label>
+            <textarea class="ftextarea" id="sdesc-${item.id}" style="min-height:52px;">${item.desc}</textarea>
+          </div>
+          <div class="ff sac-full">
+            <label class="flbl">Tags (pisah koma)</label>
+            <input class="sac-tags-input" id="stags-${item.id}" value="${item.tags||''}" placeholder="Admin,Panel,Tools">
+          </div>
+        </div>
+        <div class="sac-actions">
+          <button class="ibtn save" onclick="saveSystem('${item.id}')">💾 Simpan</button>
+          <button class="ibtn del" onclick="delSystem('${item.id}')">🗑️ Hapus</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function defaultThumbPlaceholder(){
+  return `<div class="sac-thumb-placeholder"><span>⚙️</span><span>Klik untuk upload thumbnail</span></div><div class="sac-thumb-overlay">📷 Ganti Gambar</div>`;
+}
+
+function triggerThumbUpload(id){
+  document.getElementById('thumbinput-'+id).click();
+}
+function handleThumbUpload(id,event){
+  const file=event.target.files[0]; if(!file||!file.type.startsWith('image/'))return;
+  if(file.size>3*1024*1024){toast('❌ Maks. 3MB!',true);return;}
+  const r=new FileReader();
+  r.onload=e=>{
+    const d=getData();
+    if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
+    const idx=d.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;
+    d.roblox_system[idx].thumb=e.target.result;
+    saveData(d);renderSystemAdmin(d.roblox_system);toast('✅ Thumbnail diupload!','ok');
+  };
+  r.readAsDataURL(file);
+}
+
+function saveSystem(id){
+  const d=getData();
+  if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
+  const idx=d.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;
+  d.roblox_system[idx].name=document.getElementById('sname-'+id).value.trim();
+  d.roblox_system[idx].harga=document.getElementById('sharga-'+id).value.trim();
+  d.roblox_system[idx].stock=parseInt(document.getElementById('sstock-'+id).value)||99;
+  d.roblox_system[idx].desc=document.getElementById('sdesc-'+id).value.trim();
+  d.roblox_system[idx].tags=document.getElementById('stags-'+id).value.trim();
+  saveData(d);toast('✅ System disimpan!','ok');
+}
+
+function delSystem(id){
+  if(!confirm('Hapus system ini?'))return;
+  const d=getData();
+  if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
+  d.roblox_system=d.roblox_system.filter(i=>i.id!==id);
+  saveData(d);renderAll();toast('🗑️ Dihapus!');
+}
+
+function addSystemCard(){
+  const d=getData();
+  if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));
+  const newItem={id:'sys_'+Date.now(),name:'System Baru',desc:'Deskripsi system...',tags:'',harga:'Mulai Rp0',thumb:'',stock:99};
+  d.roblox_system.push(newItem);
+  saveData(d);renderAll();
+  setTimeout(()=>{const el=document.getElementById('sac-'+newItem.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+  toast('✅ Ditambahkan!','ok');
+}
+
+// ===== DIGITAL ADMIN =====
 function renderDigitalAdmin(items){
-  const container=document.getElementById('digital-admin-list');
-  container.innerHTML=items.map((item)=>`
+  const c=document.getElementById('digital-admin-list');
+  c.innerHTML=items.map(item=>`
     <div class="digital-admin-card" id="dac-${item.id}">
       <div class="dac-header">
         <div class="dac-title-row">
           <input class="dac-icon-edit" id="dic-${item.id}" value="${item.icon}" title="Ikon">
-          <input class="finput dac-name-edit" id="dname-${item.id}" value="${item.name}" placeholder="Nama layanan..." style="margin-bottom:0;">
+          <input class="finput dac-name-edit" id="dname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama layanan..." style="margin-bottom:0;">
         </div>
         <div class="dac-actions">
           <button class="ibtn save" onclick="saveDigitalCard('${item.id}')">💾 Simpan</button>
           <button class="ibtn del" onclick="delDigitalCard('${item.id}')">🗑️</button>
         </div>
       </div>
-      <textarea class="ftextarea dac-desc-edit" id="ddesc-${item.id}" placeholder="Deskripsi..." style="margin-bottom:10px;">${item.desc}</textarea>
+      <textarea class="ftextarea dac-desc-edit" id="ddesc-${item.id}" placeholder="Deskripsi..." style="margin-bottom:10px;width:100%;">${item.desc}</textarea>
       <div class="dac-prices" id="dprices-${item.id}">
         ${item.prices.map((p,pi)=>`
           <div class="dac-price-row" id="dpr-${item.id}-${pi}">
@@ -883,7 +1325,7 @@ function renderDigitalAdmin(items){
 
 function saveDigitalCard(id){
   const d=getData();
-  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
   const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
   d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
   d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
@@ -893,7 +1335,7 @@ function saveDigitalCard(id){
   priceRows.forEach((row,pi)=>{
     const lbl=document.getElementById(`dpl-${id}-${pi}`);
     const val=document.getElementById(`dpv-${id}-${pi}`);
-    if(lbl&&val&&lbl.value.trim()) prices.push({label:lbl.value.trim(),val:val.value.trim()});
+    if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});
   });
   d.digital[idx].prices=prices;
   saveData(d);toast('✅ Layanan disimpan!','ok');
@@ -902,30 +1344,30 @@ function saveDigitalCard(id){
 function delDigitalCard(id){
   if(!confirm('Hapus layanan ini?'))return;
   const d=getData();
-  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
   d.digital=d.digital.filter(i=>i.id!==id);
   saveData(d);renderAll();toast('🗑️ Dihapus!');
 }
 
 function addDigitalCard(){
   const d=getData();
-  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
-  const newItem={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi layanan baru.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};
-  d.digital.push(newItem);
-  saveData(d);renderAll();toast('✅ Ditambahkan!','ok');
-  setTimeout(()=>{const el=document.getElementById('dac-'+newItem.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  const n={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi layanan baru.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};
+  d.digital.push(n);saveData(d);renderAll();
+  setTimeout(()=>{const el=document.getElementById('dac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+  toast('✅ Ditambahkan!','ok');
 }
 
 function addPriceRow(id){
   const d=getData();
-  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
   const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
   const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
   const prices=[];
   priceRows.forEach((row,pi)=>{
     const lbl=document.getElementById(`dpl-${id}-${pi}`);
     const val=document.getElementById(`dpv-${id}-${pi}`);
-    if(lbl&&val&&lbl.value.trim()) prices.push({label:lbl.value.trim(),val:val.value.trim()});
+    if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});
   });
   prices.push({label:'Label baru',val:'Rp0'});
   d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
@@ -937,14 +1379,14 @@ function addPriceRow(id){
 
 function delPriceRow(id,pi){
   const d=getData();
-  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
   const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
   const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
   const prices=[];
   priceRows.forEach((row,i)=>{
     const lbl=document.getElementById(`dpl-${id}-${i}`);
     const val=document.getElementById(`dpv-${id}-${i}`);
-    if(i!==pi&&lbl&&val) prices.push({label:lbl.value.trim(),val:val.value.trim()});
+    if(i!==pi&&lbl&&val)prices.push({label:lbl.value.trim(),val:val.value.trim()});
   });
   d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
   d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
@@ -953,7 +1395,7 @@ function delPriceRow(id,pi){
   saveData(d);renderAll();
 }
 
-// DISCORD
+// ===== DISCORD =====
 function saveWH(){
   const url=document.getElementById('wh-input').value.trim();
   if(!url){toast('❌ Masukkan URL webhook!',true);return;}
@@ -990,12 +1432,12 @@ async function sendDiscord(trx){
     } else {
       r=await fetch(wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({embeds:[embed]})});
     }
-    if(r.ok) toast('✅ Terkirim ke Discord!','ok');
+    if(r.ok)toast('✅ Terkirim ke Discord!','ok');
     else toast('⚠️ Gagal kirim ('+r.status+')',true);
   } catch(e){ toast('⚠️ '+e.message,true); }
 }
 
-// TRANSAKSI
+// ===== TRANSAKSI =====
 async function addTrx(){
   const username=document.getElementById('t-user').value.trim();
   const category=document.getElementById('t-cat').value.trim();
@@ -1006,20 +1448,22 @@ async function addTrx(){
   const arr=getTrx();arr.unshift(trx);saveTrx(arr);
   ['t-user','t-cat','t-price'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('t-status').value='pending';removeBukti();
-  await sendDiscord(trx);renderTrxList();
+  await sendDiscord(trx);renderAll();
 }
 
 function updateTrx(id,status){
   const arr=getTrx(),idx=arr.findIndex(t=>t.id===id);if(idx===-1)return;
-  arr[idx].status=status;saveTrx(arr);renderTrxList();toast('✅ Status diupdate!','ok');
+  arr[idx].status=status;saveTrx(arr);renderAll();toast('✅ Status diupdate!','ok');
 }
 function delTrx(id){
   if(!confirm('Hapus transaksi ini?'))return;
-  saveTrx(getTrx().filter(t=>t.id!==id));renderTrxList();toast('🗑️ Dihapus!');
+  saveTrx(getTrx().filter(t=>t.id!==id));renderAll();toast('🗑️ Dihapus!');
 }
 
 function renderTrxList(){
-  const arr=getTrx(),el=document.getElementById('trx-list');
+  const allArr=getTrx();
+  const arr = filterTrxByPeriod(allArr, trxFilter);
+  const el=document.getElementById('trx-list');
   if(!arr.length){el.innerHTML='<div class="empty">Belum ada transaksi.</div>';return;}
   el.innerHTML=arr.map(t=>`
     <div class="trx-card">
@@ -1046,26 +1490,37 @@ function renderTrxList(){
     </div>`).join('');
 }
 
-// NAV
-function showAPage(page,btn){
+// ===== NAV =====
+function showAPage(page, btn) {
   document.querySelectorAll('.apage').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.atab').forEach(b=>b.classList.remove('active'));
   document.getElementById('apage-'+page).classList.add('active');
   btn.classList.add('active');
+  // show roblox subnav
+  const subnav = document.getElementById('a-roblox-subnav');
+  subnav.classList.toggle('visible', page === 'roblox');
   window.scrollTo(0,0);
 }
 
-// TOAST
+function showRobloxSub(sub, btn) {
+  document.querySelectorAll('.roblox-subpage').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.roblox-subtab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('a-roblox-sub-'+sub).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ===== TOAST =====
 function toast(msg,type=''){
   const t=document.getElementById('toast');
   t.textContent=msg; t.className='toast';
-  if(type===true||type==='err') t.classList.add('err');
-  else if(type==='ok') t.classList.add('ok');
+  if(type===true||type==='err')t.classList.add('err');
+  else if(type==='ok')t.classList.add('ok');
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// INIT
+// ===== INIT =====
 if(sessionStorage.getItem('kwa')==='1') initAdmin();
 </script>
 </body>
