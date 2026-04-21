@@ -484,9 +484,14 @@ function doLogin() {
 }
 ['inp-u','inp-p'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();}));
 function doLogout(){sessionStorage.removeItem('kwa');location.reload();}
+// SEBELUM (salah):
+if(sessionStorage.getItem('kwa')==='1')initAdmin();
+
+// SESUDAH (benar) — sudah ada, pastikan ini yang ada:
 if(sessionStorage.getItem('kwa')==='1'){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('admin-panel').style.display='block';
+  initAdmin(); // ← ini yang hilang
 }
 
 // =====================================================
