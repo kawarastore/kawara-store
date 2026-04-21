@@ -1135,7 +1135,20 @@ function delPriceRow(id,pi){const d=getData();if(!d.digital)d.digital=JSON.parse
 function saveWH(){const url=document.getElementById('wh-input').value.trim();if(!url){toast('❌ Masukkan URL webhook!',true);return;}localStorage.setItem('kawara_webhook',url);document.getElementById('wh-status').textContent='✅ Webhook aktif';toast('✅ Webhook disimpan!','ok');}
 async function sendDiscord(trx){
   const wh=getWH();if(!wh)return;
-  const embed={title:'🛒 Transaksi Baru — Kawara Store',color:0xf5c400,fields:[{name:'👤 Username',value:trx.username,inline:true},{name:'📦 Item',value:trx.category,inline:true},{name:'💰 Harga',value:trx.price,inline:true},{name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},{name:'📦 Sisa Stok Item',value:String(trx.remainingStock ?? '—'),inline:true},{name:'🕐 Waktu',value:trx.time,inline:false}],footer:{text:'Kawara Store Admin'}};
+  const embed={
+    title:'🛒 Transaksi Baru — Kawara Store',
+    color:0xf5c400,
+    fields:[
+      {name:'👤 Username',   value:trx.username,                                        inline:true},
+      {name:'📦 Item',       value:trx.category,                                        inline:true},
+      {name:'💰 Harga',      value:trx.price,                                           inline:true},
+      {name:'📊 Status',     value:trx.status==='done'?'✅ Selesai':'⏳ Pending',       inline:true},
+      {name:'📉 Sisa Stok',  value:String(trx.remainingStock ?? '—'),                  inline:true},
+      {name:'\u200b',        value:'\u200b',                                            inline:true},
+      {name:'🕐 Waktu',      value:trx.time,                                            inline:false},
+    ],
+    footer:{text:'Kawara Store Admin'}
+  };
   try{
     let r;
     if(trx.bukti){
