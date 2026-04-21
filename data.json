@@ -220,37 +220,37 @@
     {
       "id": "fp1",
       "name": "Fast Forge",
-      "harga": "10K",
+      "harga": "25K",
       "stock": 10
     },
     {
       "id": "fp2",
       "name": "Supporter",
-      "harga": "15K",
+      "harga": "35K",
       "stock": 10
     },
     {
       "id": "fp3",
       "name": "Forge Anywhere",
-      "harga": "20K",
+      "harga": "50K",
       "stock": 10
     },
     {
       "id": "fp4",
       "name": "Better Forge",
-      "harga": "170K",
+      "harga": "45K",
       "stock": 10
     },
     {
       "id": "fp5",
       "name": "Sell Anywhere",
-      "harga": "13K",
+      "harga": "35K",
       "stock": 10
     },
     {
       "id": "fp6",
       "name": "Double Storage",
-      "harga": "8K",
+      "harga": "20K",
       "stock": 10
     }
   ],
@@ -258,31 +258,31 @@
     {
       "id": "ft1",
       "name": "XP Totem x3",
-      "harga": "5K",
+      "harga": "10K",
       "stock": 10
     },
     {
       "id": "ft2",
       "name": "Luck Totem x3",
-      "harga": "6K",
+      "harga": "14K",
       "stock": 10
     },
     {
       "id": "ft3",
       "name": "Miner Totem x3",
-      "harga": "6K",
+      "harga": "14K",
       "stock": 10
     },
     {
       "id": "ft4",
       "name": "Warrior Totem x3",
-      "harga": "6K",
+      "harga": "14K",
       "stock": 10
     },
     {
       "id": "ft5",
       "name": "Vitality x3",
-      "harga": "6K",
+      "harga": "14K",
       "stock": 10
     }
   ],
@@ -290,20 +290,20 @@
     {
       "id": "fr1",
       "name": "Buy 1 Reroll",
-      "harga": "3K",
-      "stock": 99
+      "harga": "6K",
+      "stock": 15
     },
     {
       "id": "fr2",
       "name": "Buy 5 Reroll",
-      "harga": "12K",
-      "stock": 99
+      "harga": "28K",
+      "stock": 15
     },
     {
       "id": "fr3",
       "name": "Buy 10 Reroll",
-      "harga": "23K",
-      "stock": 99
+      "harga": "55K",
+      "stock": 20
     }
   ],
   "digital": [
