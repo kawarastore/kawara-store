@@ -4,296 +4,333 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin — Kawara Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0608;
-  --surface: #120b10;
-  --card: #1a0f18;
-  --border: rgba(180,40,100,0.18);
-  --red: #e8294a;
-  --purple: #8b2fc9;
-  --pink: #c2185b;
-  --grad: linear-gradient(135deg, #e8294a, #8b2fc9);
-  --grad-soft: linear-gradient(135deg, rgba(232,41,74,0.12), rgba(139,47,201,0.12));
+  --bg: #060400;
+  --surface: #0e0900;
+  --card: rgba(14,9,0,0.85);
+  --card-solid: #0e0900;
+  --border: rgba(245,196,0,0.18);
+  --border-soft: rgba(245,196,0,0.08);
+  --gold: #f5c400;
+  --gold-dim: rgba(245,196,0,0.15);
+  --gold-soft: rgba(245,196,0,0.07);
+  --orange: #ff8c00;
+  --grad: linear-gradient(135deg, #f5c400, #ff8c00);
+  --grad-soft: linear-gradient(135deg, rgba(245,196,0,0.12), rgba(255,140,0,0.12));
+  --text: #f5f0e8;
+  --muted: rgba(245,240,232,0.45);
   --green: #10b981;
-  --text: #f0e8ed;
-  --muted: #7a6070;
-  --glow: 0 0 24px rgba(232,41,74,0.2);
+  --red: #e74c3c;
+  --amber: #f59e0b;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:'Space Grotesk',sans-serif; min-height:100vh; }
+body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif; min-height:100vh; }
+
+.bg-layer {
+  position:fixed; inset:0; z-index:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 10%, rgba(140,90,0,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 85% 85%, rgba(80,45,0,0.28) 0%, transparent 55%),
+    linear-gradient(160deg, #0e0900 0%, #130b00 40%, #090600 70%, #040300 100%);
+}
+.bg-grid {
+  position:fixed; inset:0; z-index:0;
+  background-image:linear-gradient(rgba(245,196,0,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,196,0,0.02) 1px, transparent 1px);
+  background-size:48px 48px;
+}
 
 /* LOGIN */
 #login-screen {
   display:flex; align-items:center; justify-content:center; min-height:100vh;
-  background: radial-gradient(ellipse at 50% 40%, rgba(139,47,201,0.1) 0%, transparent 60%);
+  position:relative; z-index:1;
 }
 .login-box {
   background:var(--card); border:1px solid var(--border);
   border-radius:18px; padding:36px; width:100%; max-width:360px;
+  backdrop-filter:blur(24px);
+  box-shadow:0 0 0 1px rgba(245,196,0,0.05), 0 24px 60px rgba(0,0,0,0.7);
 }
 .login-logo {
-  font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800;
+  font-family:'Rajdhani',sans-serif; font-size:1.5rem; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
   background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  margin-bottom:4px;
+  margin-bottom:3px;
 }
-.login-sub { color:var(--muted); font-size:0.82rem; margin-bottom:28px; }
+.login-sub { color:var(--muted); font-size:0.8rem; margin-bottom:28px; letter-spacing:0.5px; }
 .l-input {
   width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:9px; padding:10px 14px; color:var(--text);
-  font-family:'Space Grotesk',sans-serif; font-size:0.95rem;
+  font-family:'Outfit',sans-serif; font-size:0.92rem;
   outline:none; margin-bottom:10px; transition:border-color 0.2s;
 }
-.l-input:focus { border-color:rgba(232,41,74,0.5); }
+.l-input:focus { border-color:rgba(245,196,0,0.5); }
 .l-btn {
   width:100%; padding:11px; background:var(--grad); border:none;
-  border-radius:9px; color:#fff; font-family:'Space Grotesk',sans-serif;
-  font-size:0.95rem; font-weight:700; cursor:pointer; margin-top:4px;
-  box-shadow:0 4px 18px rgba(232,41,74,0.3); transition:all 0.2s;
+  border-radius:9px; color:#000; font-family:'Outfit',sans-serif;
+  font-size:0.92rem; font-weight:700; cursor:pointer; margin-top:4px;
+  box-shadow:0 4px 18px rgba(245,196,0,0.25); transition:all 0.2s; letter-spacing:0.5px;
 }
 .l-btn:hover { opacity:0.9; }
-.l-err { color:var(--red); font-size:0.82rem; margin-top:8px; display:none; }
+.l-err { color:var(--red); font-size:0.8rem; margin-top:8px; display:none; }
+
+/* ADMIN PANEL */
+#admin-panel { display:none; position:relative; z-index:1; }
 
 /* HEADER */
-#admin-panel { display:none; }
 header {
-  background:rgba(10,6,8,0.92); backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  position:sticky; top:0; z-index:100;
+  background:rgba(6,4,0,0.92); backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100;
 }
 .header-inner {
-  max-width:1100px; margin:auto;
+  max-width:1140px; margin:auto;
   display:flex; align-items:center; justify-content:space-between;
   height:56px; padding:0 20px;
 }
 .h-logo {
-  font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800;
+  font-family:'Rajdhani',sans-serif; font-size:1.15rem; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
   background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
 .h-right { display:flex; align-items:center; gap:10px; }
 .admin-badge {
-  padding:3px 10px; border-radius:20px; font-size:0.7rem; font-weight:700;
-  letter-spacing:1px; background:rgba(232,41,74,0.12);
-  border:1px solid rgba(232,41,74,0.3); color:var(--red);
+  padding:3px 10px; border-radius:20px; font-size:0.65rem; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase;
+  background:var(--gold-dim); border:1px solid rgba(245,196,0,0.3); color:var(--gold);
 }
 .logout {
   background:transparent; border:1px solid var(--border); color:var(--muted);
   padding:5px 12px; border-radius:7px; cursor:pointer;
-  font-family:'Space Grotesk',sans-serif; font-size:0.82rem; font-weight:600;
-  transition:all 0.2s;
+  font-family:'Outfit',sans-serif; font-size:0.8rem; font-weight:600; transition:all 0.2s;
 }
-.logout:hover { border-color:rgba(232,41,74,0.4); color:var(--red); }
+.logout:hover { border-color:rgba(245,196,0,0.4); color:var(--gold); }
 
 /* TABS */
-.anav {
-  background:var(--surface); border-bottom:1px solid var(--border);
-  overflow-x:auto;
-}
-.anav-inner { max-width:1100px; margin:auto; display:flex; padding:0 20px; gap:2px; }
+.anav { background:rgba(6,4,0,0.8); border-bottom:1px solid var(--border); overflow-x:auto; }
+.anav-inner { max-width:1140px; margin:auto; display:flex; padding:0 20px; gap:2px; }
 .atab {
   background:none; border:none; border-bottom:2px solid transparent;
-  color:var(--muted); font-family:'Space Grotesk',sans-serif;
-  font-size:0.85rem; font-weight:600; padding:11px 14px;
+  color:var(--muted); font-family:'Outfit',sans-serif;
+  font-size:0.85rem; font-weight:600; padding:12px 16px;
   cursor:pointer; white-space:nowrap; transition:all 0.2s;
 }
 .atab:hover { color:var(--text); }
-.atab.active { color:var(--red); border-bottom-color:var(--red); }
+.atab.active { color:var(--gold); border-bottom-color:var(--gold); }
 
 /* CONTENT */
-.acontent { max-width:1100px; margin:auto; padding:24px 20px; }
+.acontent { max-width:1140px; margin:auto; padding:24px 20px; }
 .apage { display:none; }
-.apage.active { display:block; animation:up 0.3s ease; }
-@keyframes up { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.apage.active { display:block; animation:fadeUp 0.3s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
-/* SECTION HEAD */
-.sec-head {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:12px; flex-wrap:wrap; gap:8px;
-}
+/* SECTION */
 .sec-label {
-  font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:700;
-  letter-spacing:2px; text-transform:uppercase; color:var(--red);
-  margin-bottom:2px;
+  font-family:'Rajdhani',sans-serif; font-size:0.65rem; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:3px;
 }
-.sec-ttl { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800; margin-bottom:16px; }
+.sec-ttl { font-family:'Rajdhani',sans-serif; font-size:1.3rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
 .subsec-lbl {
-  font-size:0.7rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
-  color:var(--muted); padding:3px 0; border-bottom:1px solid var(--border);
-  margin:24px 0 12px;
+  display:flex; align-items:center; gap:10px;
+  font-size:0.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted); margin:24px 0 12px;
+}
+.subsec-lbl::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, var(--border), transparent); }
+.sec-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px; }
+
+/* PANEL */
+.panel {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:20px; margin-bottom:18px;
+  backdrop-filter:blur(16px);
+}
+.panel h4 {
+  font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:14px;
 }
 
-/* ADD BTN */
+/* BUTTONS */
 .add-btn {
   display:inline-flex; align-items:center; gap:6px;
   padding:7px 14px; background:rgba(16,185,129,0.1);
   border:1px solid rgba(16,185,129,0.3); border-radius:8px;
-  color:var(--green); font-family:'Space Grotesk',sans-serif;
-  font-size:0.82rem; font-weight:700; cursor:pointer; transition:all 0.2s;
+  color:var(--green); font-family:'Outfit',sans-serif;
+  font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.2s;
 }
 .add-btn:hover { background:rgba(16,185,129,0.2); }
+.form-submit {
+  padding:10px 22px; background:var(--grad); border:none;
+  border-radius:9px; color:#000; font-family:'Outfit',sans-serif;
+  font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.2s;
+  box-shadow:0 4px 16px rgba(245,196,0,0.22); letter-spacing:0.5px;
+}
+.form-submit:hover { opacity:0.9; transform:translateY(-1px); }
 
 /* TABLE */
 .tbl-wrap {
   background:var(--card); border:1px solid var(--border);
   border-radius:12px; overflow:hidden; margin-bottom:8px;
+  backdrop-filter:blur(12px);
 }
-.atable { width:100%; border-collapse:collapse; }
+.atable { width:100%; border-collapse:collapse; min-width:360px; }
 .atable th {
   padding:10px 14px; text-align:left;
-  font-size:0.68rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  font-size:0.62rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
   color:var(--muted); border-bottom:1px solid var(--border);
 }
 .atable td {
-  padding:9px 14px; border-bottom:1px solid rgba(255,255,255,0.035);
-  font-size:0.88rem; vertical-align:middle;
+  padding:9px 14px; border-bottom:1px solid rgba(245,196,0,0.04);
+  font-size:0.86rem; vertical-align:middle;
 }
 .atable tr:last-child td { border-bottom:none; }
-.atable tbody tr:hover td { background:rgba(232,41,74,0.03); }
+.atable tbody tr:hover td { background:rgba(245,196,0,0.02); }
+.tbl-scroll { overflow-x:auto; }
 
 .e-input {
   background:rgba(255,255,255,0.05); border:1px solid var(--border);
   border-radius:7px; padding:5px 9px; color:var(--text);
-  font-family:'Space Grotesk',sans-serif; font-size:0.85rem;
-  width:85px; outline:none; transition:border-color 0.2s;
+  font-family:'Outfit',sans-serif; font-size:0.83rem; width:85px;
+  outline:none; transition:border-color 0.2s;
 }
 .e-input.wide { width:180px; }
-.e-input:focus { border-color:rgba(232,41,74,0.5); }
+.e-input.xwide { width:240px; }
+.e-input:focus { border-color:rgba(245,196,0,0.5); }
 
 .ibtn {
   background:none; border:none; cursor:pointer;
   padding:4px 9px; border-radius:6px;
-  font-family:'Space Grotesk',sans-serif; font-size:0.8rem; font-weight:700;
-  transition:all 0.2s;
+  font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:700; transition:all 0.2s;
 }
 .ibtn.save { color:var(--green); background:rgba(16,185,129,0.1); }
 .ibtn.save:hover { background:rgba(16,185,129,0.22); }
-.ibtn.del { color:var(--red); background:rgba(232,41,74,0.1); }
-.ibtn.del:hover { background:rgba(232,41,74,0.22); }
+.ibtn.del { color:var(--red); background:rgba(231,76,60,0.1); }
+.ibtn.del:hover { background:rgba(231,76,60,0.22); }
 
-/* CARD PANELS */
-.panel {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:20px; margin-bottom:20px;
-}
-.panel h4 {
-  font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700;
-  color:var(--red); margin-bottom:12px;
-}
-
-/* FORM */
+/* FORM GRID */
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
 .ff { display:flex; flex-direction:column; gap:5px; }
-.flbl { font-size:0.72rem; font-weight:700; letter-spacing:0.5px; color:var(--muted); text-transform:uppercase; }
-.finput, .fselect {
+.flbl { font-size:0.68rem; font-weight:700; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
+.finput, .fselect, .ftextarea {
   background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:8px; padding:9px 12px; color:var(--text);
-  font-family:'Space Grotesk',sans-serif; font-size:0.88rem;
-  outline:none; transition:border-color 0.2s;
+  font-family:'Outfit',sans-serif; font-size:0.88rem; outline:none; transition:border-color 0.2s;
 }
-.finput:focus, .fselect:focus { border-color:rgba(232,41,74,0.5); }
-.fselect option { background:var(--card); }
-.form-submit {
-  padding:10px 22px; background:var(--grad); border:none;
-  border-radius:8px; color:#fff; font-family:'Space Grotesk',sans-serif;
-  font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.2s;
-  box-shadow:0 4px 16px rgba(232,41,74,0.25);
-}
-.form-submit:hover { opacity:0.9; transform:translateY(-1px); }
+.finput:focus, .fselect:focus, .ftextarea:focus { border-color:rgba(245,196,0,0.5); }
+.fselect option { background:var(--card-solid); }
+.ftextarea { resize:vertical; min-height:60px; }
 
-/* ===== FOTO BUKTI ===== */
+/* DIGITAL CARD ADMIN */
+.digital-admin-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:18px; margin-bottom:10px;
+  backdrop-filter:blur(12px); transition:border-color 0.2s;
+}
+.digital-admin-card:hover { border-color:rgba(245,196,0,0.3); }
+.dac-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px; }
+.dac-title { display:flex; align-items:center; gap:10px; }
+.dac-icon-edit {
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:8px; padding:5px 9px; color:var(--text);
+  font-family:'Outfit',sans-serif; font-size:0.9rem; outline:none; width:50px;
+  text-align:center;
+}
+.dac-name-edit { flex:1; }
+.dac-desc-edit { width:100%; margin-bottom:10px; }
+.dac-prices { display:flex; flex-direction:column; gap:6px; }
+.dac-price-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.dac-price-label-edit, .dac-price-val-edit {
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:7px; padding:5px 9px; color:var(--text);
+  font-family:'Outfit',sans-serif; font-size:0.82rem; outline:none;
+  transition:border-color 0.2s;
+}
+.dac-price-label-edit { flex:1; min-width:120px; }
+.dac-price-val-edit { flex:1; min-width:100px; }
+.dac-price-label-edit:focus,.dac-price-val-edit:focus { border-color:rgba(245,196,0,0.5); }
+.dac-actions { display:flex; gap:6px; flex-wrap:wrap; }
+.add-price-btn {
+  padding:5px 12px; background:rgba(245,196,0,0.08); border:1px dashed rgba(245,196,0,0.25);
+  border-radius:7px; color:var(--gold); font-family:'Outfit',sans-serif;
+  font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s; margin-top:4px;
+}
+.add-price-btn:hover { background:rgba(245,196,0,0.16); }
+.del-price-btn {
+  padding:5px 8px; background:rgba(231,76,60,0.08); border:none;
+  border-radius:6px; color:var(--red); cursor:pointer; font-size:0.8rem; transition:all 0.2s; flex-shrink:0;
+}
+.del-price-btn:hover { background:rgba(231,76,60,0.18); }
+
+/* UPLOAD */
 .upload-zone {
-  border: 2px dashed var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.25s;
-  background: rgba(255,255,255,0.02);
-  position: relative;
+  border:2px dashed var(--border); border-radius:10px; padding:20px;
+  text-align:center; cursor:pointer; transition:all 0.25s;
+  background:rgba(255,255,255,0.02); position:relative;
 }
-.upload-zone:hover, .upload-zone.drag-over {
-  border-color: rgba(232,41,74,0.5);
-  background: rgba(232,41,74,0.05);
-}
-.upload-zone input[type="file"] {
-  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-}
-.upload-icon { font-size: 1.8rem; margin-bottom: 6px; }
-.upload-label { font-size: 0.82rem; color: var(--muted); }
-.upload-label span { color: var(--red); font-weight: 700; }
-
-/* Preview di form */
-.img-preview-wrap {
-  position: relative; display: inline-block; margin-top: 10px;
-}
-.img-preview {
-  max-width: 100%; max-height: 180px; border-radius: 8px;
-  border: 1px solid var(--border); display: block;
-}
+.upload-zone:hover { border-color:rgba(245,196,0,0.4); background:rgba(245,196,0,0.04); }
+.upload-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+.upload-icon { font-size:1.8rem; margin-bottom:6px; }
+.upload-label { font-size:0.8rem; color:var(--muted); }
+.upload-label span { color:var(--gold); font-weight:700; }
+.img-preview-wrap { position:relative; display:inline-block; margin-top:10px; }
+.img-preview { max-width:100%; max-height:180px; border-radius:8px; border:1px solid var(--border); display:block; }
 .img-remove {
-  position: absolute; top: -8px; right: -8px;
-  background: var(--red); border: none; color: #fff;
-  width: 22px; height: 22px; border-radius: 50%;
-  font-size: 0.75rem; cursor: pointer; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  line-height: 1; transition: all 0.2s;
+  position:absolute; top:-8px; right:-8px;
+  background:var(--red); border:none; color:#fff;
+  width:22px; height:22px; border-radius:50%;
+  font-size:0.75rem; cursor:pointer; font-weight:700;
+  display:flex; align-items:center; justify-content:center; transition:all 0.2s;
 }
-.img-remove:hover { transform: scale(1.15); }
+.img-remove:hover { transform:scale(1.15); }
 
-/* TRX CARDS */
+/* TRX */
 .trx-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:10px; padding:14px 16px; margin-bottom:8px;
   display:flex; align-items:flex-start; justify-content:space-between;
-  gap:10px; flex-wrap:wrap;
+  gap:12px; flex-wrap:wrap; backdrop-filter:blur(12px);
+  transition:border-color 0.2s;
 }
-.trx-user { font-weight:700; font-size:0.95rem; margin-bottom:3px; }
-.trx-detail { color:var(--muted); font-size:0.8rem; line-height:1.65; }
+.trx-card:hover { border-color:rgba(245,196,0,0.25); }
+.trx-user { font-weight:700; font-size:0.92rem; margin-bottom:3px; }
+.trx-detail { color:var(--muted); font-size:0.78rem; line-height:1.65; }
 .trx-price {
-  font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700;
+  font-family:'Rajdhani',sans-serif; font-size:0.92rem; font-weight:700;
   background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
   margin-bottom:6px;
 }
-.status-badge {
-  display:inline-block; padding:2px 9px; border-radius:20px;
-  font-size:0.72rem; font-weight:700;
-}
-.status-badge.pending { background:rgba(245,158,11,0.12); color:#f59e0b; border:1px solid rgba(245,158,11,0.2); }
+.status-badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:0.7rem; font-weight:700; }
+.status-badge.pending { background:rgba(245,158,11,0.12); color:var(--amber); border:1px solid rgba(245,158,11,0.2); }
 .status-badge.done { background:rgba(16,185,129,0.12); color:var(--green); border:1px solid rgba(16,185,129,0.2); }
 .trx-actions { display:flex; gap:6px; margin-top:8px; justify-content:flex-end; }
 .t-done {
   padding:4px 10px; background:rgba(16,185,129,0.1);
   border:1px solid rgba(16,185,129,0.3); border-radius:6px;
-  color:var(--green); cursor:pointer; font-family:'Space Grotesk',sans-serif;
-  font-size:0.75rem; font-weight:700; transition:all 0.2s;
+  color:var(--green); cursor:pointer; font-family:'Outfit',sans-serif;
+  font-size:0.72rem; font-weight:700; transition:all 0.2s;
 }
 .t-done:hover { background:rgba(16,185,129,0.22); }
 .t-del {
-  padding:4px 10px; background:rgba(232,41,74,0.08);
-  border:1px solid rgba(232,41,74,0.25); border-radius:6px;
-  color:var(--red); cursor:pointer; font-family:'Space Grotesk',sans-serif;
-  font-size:0.75rem; font-weight:700; transition:all 0.2s;
+  padding:4px 10px; background:rgba(231,76,60,0.08);
+  border:1px solid rgba(231,76,60,0.25); border-radius:6px;
+  color:var(--red); cursor:pointer; font-family:'Outfit',sans-serif;
+  font-size:0.72rem; font-weight:700; transition:all 0.2s;
 }
-.t-del:hover { background:rgba(232,41,74,0.18); }
-.trx-time { font-size:0.72rem; color:var(--muted); margin-top:3px; }
-.empty { text-align:center; color:var(--muted); padding:28px; font-size:0.88rem; }
-
-/* Thumbnail bukti di kartu transaksi */
+.t-del:hover { background:rgba(231,76,60,0.18); }
+.trx-time { font-size:0.7rem; color:var(--muted); margin-top:3px; }
+.empty { text-align:center; color:var(--muted); padding:32px; font-size:0.86rem; }
 .trx-bukti-thumb {
-  width: 60px; height: 60px; border-radius: 7px;
-  object-fit: cover; border: 1px solid var(--border);
-  cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+  width:58px; height:58px; border-radius:7px;
+  object-fit:cover; border:1px solid var(--border);
+  cursor:pointer; transition:all 0.2s; flex-shrink:0;
 }
-.trx-bukti-thumb:hover { border-color: rgba(232,41,74,0.5); transform: scale(1.05); }
-.trx-bukti-label {
-  font-size: 0.7rem; color: var(--muted); margin-top: 4px; text-align: center;
-}
+.trx-bukti-thumb:hover { border-color:rgba(245,196,0,0.4); transform:scale(1.05); }
 .no-bukti {
-  width: 60px; height: 60px; border-radius: 7px;
-  border: 1px dashed rgba(180,40,100,0.2);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--muted); font-size: 1.2rem; flex-shrink: 0;
+  width:58px; height:58px; border-radius:7px;
+  border:1px dashed var(--border-soft);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--muted); font-size:1.2rem; flex-shrink:0;
 }
 
 /* DISCORD */
@@ -301,77 +338,77 @@ header {
 .dinput {
   flex:1; background:rgba(255,255,255,0.04); border:1px solid var(--border);
   border-radius:8px; padding:9px 12px; color:var(--text);
-  font-family:'Space Grotesk',sans-serif; font-size:0.85rem; outline:none;
+  font-family:'Outfit',sans-serif; font-size:0.85rem; outline:none; transition:border-color 0.2s;
 }
-.dinput:focus { border-color:rgba(232,41,74,0.5); }
+.dinput:focus { border-color:rgba(245,196,0,0.5); }
 .d-save {
   padding:9px 16px; background:var(--grad); border:none;
-  border-radius:8px; color:#fff; font-family:'Space Grotesk',sans-serif;
-  font-size:0.85rem; font-weight:700; cursor:pointer;
+  border-radius:8px; color:#000; font-family:'Outfit',sans-serif;
+  font-size:0.85rem; font-weight:700; cursor:pointer; letter-spacing:0.5px;
 }
-#wh-status { color:var(--muted); font-size:0.78rem; margin-top:8px; }
+#wh-status { color:var(--muted); font-size:0.76rem; margin-top:8px; }
 
-/* MODAL */
+/* OVERLAY / MODAL */
 .overlay {
-  display:none; position:fixed; inset:0; background:rgba(0,0,0,0.72);
-  backdrop-filter:blur(10px); z-index:300;
+  display:none; position:fixed; inset:0; background:rgba(0,0,0,0.78);
+  backdrop-filter:blur(12px); z-index:300;
   align-items:center; justify-content:center; padding:20px;
 }
 .overlay.open { display:flex; }
 .modal {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:18px; padding:28px; max-width:400px; width:100%;
+  background:#0e0900; border:1px solid var(--border);
+  border-radius:16px; padding:26px; max-width:420px; width:100%;
   position:relative; animation:pop 0.25s ease;
+  box-shadow:0 0 0 1px rgba(245,196,0,0.05), 0 24px 60px rgba(0,0,0,0.7);
 }
 @keyframes pop { from{opacity:0;transform:scale(0.93)} to{opacity:1;transform:scale(1)} }
 .mx {
   position:absolute; top:14px; right:14px;
-  background:rgba(255,255,255,0.05); border:none; color:var(--muted);
-  width:28px; height:28px; border-radius:7px; cursor:pointer;
-  font-size:0.9rem; display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,0.05); border:1px solid var(--border-soft);
+  color:var(--muted); width:28px; height:28px;
+  border-radius:7px; cursor:pointer; font-size:0.9rem;
+  display:flex; align-items:center; justify-content:center; transition:all 0.15s;
 }
 .mx:hover { color:var(--text); }
-.modal h3 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; color:var(--red); margin-bottom:18px; }
+.modal h3 {
+  font-family:'Rajdhani',sans-serif; font-size:1rem; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:18px;
+}
 .modal-action {
   width:100%; padding:11px; background:var(--grad); border:none;
-  border-radius:9px; color:#fff; font-family:'Space Grotesk',sans-serif;
-  font-size:0.92rem; font-weight:700; cursor:pointer; margin-top:6px;
+  border-radius:9px; color:#000; font-family:'Outfit',sans-serif;
+  font-size:0.9rem; font-weight:700; cursor:pointer; margin-top:6px; letter-spacing:0.5px;
 }
 .modal-action:hover { opacity:0.9; }
 
-/* Modal lightbox untuk bukti */
-#lightbox-modal .modal {
-  max-width: 90vw; max-height: 90vh;
-  padding: 16px; overflow: hidden;
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-}
-#lightbox-img {
-  max-width: 100%; max-height: 75vh;
-  border-radius: 10px; object-fit: contain; display: block;
-}
-#lightbox-caption {
-  font-size: 0.82rem; color: var(--muted); text-align: center;
-}
+/* Lightbox */
+#lightbox-modal .modal { max-width:90vw; padding:16px; overflow:hidden; display:flex; flex-direction:column; align-items:center; gap:12px; }
+#lightbox-img { max-width:100%; max-height:75vh; border-radius:10px; object-fit:contain; display:block; }
+#lightbox-caption { font-size:0.8rem; color:var(--muted); text-align:center; }
 
 /* TOAST */
 .toast {
   position:fixed; bottom:20px; right:20px;
   background:var(--card); border:1px solid var(--border);
-  color:var(--text); padding:11px 18px; border-radius:9px;
-  font-size:0.85rem; font-weight:600;
+  color:var(--text); padding:10px 18px; border-radius:9px;
+  font-size:0.83rem; font-weight:600; backdrop-filter:blur(16px);
   transform:translateY(60px); opacity:0; transition:all 0.28s;
   z-index:999; pointer-events:none;
 }
 .toast.show { transform:translateY(0); opacity:1; }
-.toast.err { border-color:rgba(232,41,74,0.5); color:var(--red); }
+.toast.err { border-color:rgba(231,76,60,0.5); color:var(--red); }
+.toast.ok { border-color:rgba(16,185,129,0.4); }
 
-@media(max-width:600px){
+@media(max-width:600px) {
   .form-grid { grid-template-columns:1fr; }
   .drow { flex-direction:column; }
+  .dac-header { flex-direction:column; align-items:flex-start; }
 }
 </style>
 </head>
 <body>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
 
 <!-- LOGIN -->
 <div id="login-screen">
@@ -403,6 +440,7 @@ header {
       <button class="atab" onclick="showAPage('robux',this)">💎 Robux</button>
       <button class="atab" onclick="showAPage('fishit',this)">🎣 Fish It</button>
       <button class="atab" onclick="showAPage('forge',this)">⚒️ The Forge</button>
+      <button class="atab" onclick="showAPage('digital',this)">💼 Digital</button>
       <button class="atab" onclick="showAPage('discord',this)">🔧 Discord</button>
     </div>
   </div>
@@ -416,7 +454,7 @@ header {
       <div class="panel">
         <h4>➕ Tambah Transaksi</h4>
         <div class="form-grid">
-          <div class="ff"><label class="flbl">Username Roblox</label><input class="finput" id="t-user" placeholder="Username..."></div>
+          <div class="ff"><label class="flbl">Username / Nama</label><input class="finput" id="t-user" placeholder="Username..."></div>
           <div class="ff"><label class="flbl">Kategori / Item</label><input class="finput" id="t-cat" placeholder="misal: Fish It VIP"></div>
           <div class="ff"><label class="flbl">Total Harga</label><input class="finput" id="t-price" placeholder="misal: 45K"></div>
           <div class="ff"><label class="flbl">Status</label>
@@ -426,25 +464,22 @@ header {
             </select>
           </div>
         </div>
-
-        <!-- Upload Bukti -->
         <div class="ff" style="margin-bottom:14px;">
-          <label class="flbl">📸 Foto Bukti Transaksi <span style="color:var(--muted);font-weight:400;text-transform:none;">(opsional)</span></label>
+          <label class="flbl">📸 Foto Bukti <span style="color:var(--muted);font-weight:400;text-transform:none;">(opsional)</span></label>
           <div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
             <input type="file" id="t-bukti-input" accept="image/*" onchange="handleFileSelect(event)">
             <div class="upload-icon">🖼️</div>
-            <div class="upload-label">Drag & drop atau <span>klik untuk pilih</span> foto bukti</div>
-            <div style="font-size:0.72rem;color:var(--muted);margin-top:4px;">JPG, PNG, WEBP — maks. 5MB</div>
+            <div class="upload-label">Drag & drop atau <span>klik untuk pilih</span></div>
+            <div style="font-size:0.7rem;color:var(--muted);margin-top:3px;">JPG, PNG, WEBP — maks. 5MB</div>
           </div>
           <div id="bukti-preview-wrap" style="display:none;">
             <div class="img-preview-wrap">
               <img id="bukti-preview" class="img-preview" src="" alt="Preview">
-              <button class="img-remove" onclick="removeBukti()" title="Hapus foto">✕</button>
+              <button class="img-remove" onclick="removeBukti()">✕</button>
             </div>
-            <div style="font-size:0.72rem;color:var(--green);margin-top:4px;" id="bukti-filename"></div>
+            <div style="font-size:0.7rem;color:var(--green);margin-top:4px;" id="bukti-filename"></div>
           </div>
         </div>
-
         <button class="form-submit" onclick="addTrx()">📤 Simpan & Kirim ke Discord</button>
       </div>
       <div id="trx-list"></div>
@@ -454,78 +489,65 @@ header {
     <div class="apage" id="apage-robux">
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">💎 Robux</div>
-      <div class="tbl-wrap">
+      <div class="tbl-scroll"><div class="tbl-wrap">
         <table class="atable">
           <thead><tr><th>Robux</th><th>Harga</th><th>Gamepass ID</th><th>Stok</th><th>Aksi</th></tr></thead>
           <tbody id="a-robux-tbody"></tbody>
         </table>
-      </div>
+      </div></div>
     </div>
 
     <!-- FISH IT -->
     <div class="apage" id="apage-fishit">
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">🎣 Fish It</div>
-
       <div class="sec-head">
-        <div class="subsec-lbl" style="margin:0;">Item Shop</div>
+        <div class="subsec-lbl" style="margin:0;flex:1;">Item Shop</div>
         <button class="add-btn" onclick="openAdd('fishit_shop')">+ Tambah</button>
       </div>
-      <div class="tbl-wrap"><table class="atable">
-        <thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
-        <tbody id="a-fishit-shop"></tbody>
-      </table></div>
-
+      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-shop"></tbody></table></div></div>
       <div class="sec-head" style="margin-top:20px;">
-        <div class="subsec-lbl" style="margin:0;">Gacha Skin Crates</div>
+        <div class="subsec-lbl" style="margin:0;flex:1;">Gacha Skin Crates</div>
         <button class="add-btn" onclick="openAdd('fishit_gacha')">+ Tambah</button>
       </div>
-      <div class="tbl-wrap"><table class="atable">
-        <thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
-        <tbody id="a-fishit-gacha"></tbody>
-      </table></div>
-
+      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-gacha"></tbody></table></div></div>
       <div class="sec-head" style="margin-top:20px;">
-        <div class="subsec-lbl" style="margin:0;">Emote Crates</div>
+        <div class="subsec-lbl" style="margin:0;flex:1;">Emote Crates</div>
         <button class="add-btn" onclick="openAdd('fishit_emote')">+ Tambah</button>
       </div>
-      <div class="tbl-wrap"><table class="atable">
-        <thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
-        <tbody id="a-fishit-emote"></tbody>
-      </table></div>
+      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-emote"></tbody></table></div></div>
     </div>
 
     <!-- THE FORGE -->
     <div class="apage" id="apage-forge">
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">⚒️ The Forge</div>
-
       <div class="sec-head">
-        <div class="subsec-lbl" style="margin:0;">Passes</div>
+        <div class="subsec-lbl" style="margin:0;flex:1;">Passes</div>
         <button class="add-btn" onclick="openAdd('forge_passes')">+ Tambah</button>
       </div>
-      <div class="tbl-wrap"><table class="atable">
-        <thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
-        <tbody id="a-forge-passes"></tbody>
-      </table></div>
-
+      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-passes"></tbody></table></div></div>
       <div class="sec-head" style="margin-top:20px;">
-        <div class="subsec-lbl" style="margin:0;">Totems</div>
+        <div class="subsec-lbl" style="margin:0;flex:1;">Totems</div>
         <button class="add-btn" onclick="openAdd('forge_totems')">+ Tambah</button>
       </div>
-      <div class="tbl-wrap"><table class="atable">
-        <thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
-        <tbody id="a-forge-totems"></tbody>
-      </table></div>
-
+      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-totems"></tbody></table></div></div>
       <div class="sec-head" style="margin-top:20px;">
-        <div class="subsec-lbl" style="margin:0;">Rerolls</div>
+        <div class="subsec-lbl" style="margin:0;flex:1;">Rerolls</div>
         <button class="add-btn" onclick="openAdd('forge_rerolls')">+ Tambah</button>
       </div>
-      <div class="tbl-wrap"><table class="atable">
-        <thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
-        <tbody id="a-forge-rerolls"></tbody>
-      </table></div>
+      <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-rerolls"></tbody></table></div></div>
+    </div>
+
+    <!-- DIGITAL -->
+    <div class="apage" id="apage-digital">
+      <div class="sec-label">Kelola</div>
+      <div class="sec-ttl">💼 Jasa Digital</div>
+      <div class="sec-head" style="margin-bottom:16px;">
+        <p style="font-size:0.82rem;color:var(--muted);">Edit langsung di kartu — ubah nama, deskripsi, ikon, harga, dan label. Tambah atau hapus kartu layanan.</p>
+        <button class="add-btn" onclick="addDigitalCard()">+ Tambah Layanan</button>
+      </div>
+      <div id="digital-admin-list"></div>
     </div>
 
     <!-- DISCORD -->
@@ -534,7 +556,7 @@ header {
       <div class="sec-ttl">🔧 Discord Webhook</div>
       <div class="panel">
         <h4>URL Webhook</h4>
-        <p style="color:var(--muted);font-size:0.82rem;margin-bottom:12px;line-height:1.65;">
+        <p style="color:var(--muted);font-size:0.8rem;margin-bottom:14px;line-height:1.65;">
           Setiap transaksi baru akan otomatis terkirim ke channel Discord kamu.<br>
           Discord → Edit Channel → Integrations → Webhooks → New Webhook → Copy URL
         </p>
@@ -549,7 +571,7 @@ header {
   </div>
 </div>
 
-<!-- MODAL ADD -->
+<!-- MODAL ADD (Roblox items) -->
 <div class="overlay" id="add-modal">
   <div class="modal">
     <button class="mx" onclick="closeAdd()">✕</button>
@@ -560,7 +582,7 @@ header {
     <label class="flbl" style="display:block;margin-bottom:5px;">Harga</label>
     <input class="finput" id="add-harga" placeholder="misal: 45K" style="width:100%;margin-bottom:10px;">
     <label class="flbl" style="display:block;margin-bottom:5px;">Stok</label>
-    <input class="finput" id="add-stock" type="number" placeholder="10" style="width:100%;margin-bottom:10px;">
+    <input class="finput" id="add-stock" type="number" placeholder="10" style="width:100%;margin-bottom:14px;">
     <button class="modal-action" onclick="submitAdd()">✅ Tambah Item</button>
   </div>
 </div>
@@ -579,7 +601,6 @@ header {
 <script>
 // ===== AUTH =====
 const CREDS = { user:'kawarastore', pass:'Hanz1247rrr*' };
-
 function doLogin() {
   const u=document.getElementById('inp-u').value;
   const p=document.getElementById('inp-p').value;
@@ -588,76 +609,49 @@ function doLogin() {
     document.getElementById('login-screen').style.display='none';
     document.getElementById('admin-panel').style.display='block';
     initAdmin();
-  } else {
-    document.getElementById('l-err').style.display='block';
-  }
+  } else { document.getElementById('l-err').style.display='block'; }
 }
-['inp-u','inp-p'].forEach(id => {
-  document.getElementById(id).addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
-});
+['inp-u','inp-p'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();}));
 function doLogout() { sessionStorage.removeItem('kwa'); location.reload(); }
 if(sessionStorage.getItem('kwa')==='1') {
   document.getElementById('login-screen').style.display='none';
   document.getElementById('admin-panel').style.display='block';
 }
 
-// ===== BUKTI UPLOAD =====
-let buktiBase64 = null;
-
-function handleDragOver(e) {
-  e.preventDefault();
-  document.getElementById('upload-zone').classList.add('drag-over');
-}
-function handleDragLeave(e) {
-  document.getElementById('upload-zone').classList.remove('drag-over');
-}
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('upload-zone').classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file) processFile(file);
-}
-function handleFileSelect(e) {
-  const file = e.target.files[0];
-  if (file) processFile(file);
-}
+// ===== UPLOAD =====
+let buktiBase64=null;
+function handleDragOver(e){e.preventDefault();document.getElementById('upload-zone').classList.add('drag-over' );}
+function handleDragLeave(){document.getElementById('upload-zone').classList.remove('drag-over');}
+function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('drag-over');const f=e.dataTransfer.files[0];if(f)processFile(f);}
+function handleFileSelect(e){const f=e.target.files[0];if(f)processFile(f);}
 function processFile(file) {
-  if (!file.type.startsWith('image/')) { toast('❌ File harus berupa gambar!', true); return; }
-  if (file.size > 5 * 1024 * 1024) { toast('❌ Ukuran file maks. 5MB!', true); return; }
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    buktiBase64 = e.target.result;
-    document.getElementById('bukti-preview').src = buktiBase64;
-    document.getElementById('bukti-filename').textContent = '✅ ' + file.name + ' (' + (file.size/1024).toFixed(0) + ' KB)';
-    document.getElementById('bukti-preview-wrap').style.display = 'block';
-    document.getElementById('upload-zone').style.display = 'none';
+  if(!file.type.startsWith('image/')){toast('❌ File harus gambar!',true);return;}
+  if(file.size>5*1024*1024){toast('❌ Maks. 5MB!',true);return;}
+  const r=new FileReader();
+  r.onload=e=>{
+    buktiBase64=e.target.result;
+    document.getElementById('bukti-preview').src=buktiBase64;
+    document.getElementById('bukti-filename').textContent='✅ '+file.name+' ('+(file.size/1024).toFixed(0)+' KB)';
+    document.getElementById('bukti-preview-wrap').style.display='block';
+    document.getElementById('upload-zone').style.display='none';
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(file);
 }
-function removeBukti() {
-  buktiBase64 = null;
-  document.getElementById('bukti-preview').src = '';
-  document.getElementById('bukti-preview-wrap').style.display = 'none';
-  document.getElementById('upload-zone').style.display = 'block';
-  document.getElementById('t-bukti-input').value = '';
+function removeBukti(){
+  buktiBase64=null;
+  document.getElementById('bukti-preview').src='';
+  document.getElementById('bukti-preview-wrap').style.display='none';
+  document.getElementById('upload-zone').style.display='block';
+  document.getElementById('t-bukti-input').value='';
 }
 
 // ===== LIGHTBOX =====
-function openLightbox(src, caption) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox-caption').textContent = caption || '';
-  document.getElementById('lightbox-modal').classList.add('open');
-}
-function closeLightbox() {
-  document.getElementById('lightbox-modal').classList.remove('open');
-  document.getElementById('lightbox-img').src = '';
-}
-document.getElementById('lightbox-modal').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox-modal')) closeLightbox();
-});
+function openLightbox(src,caption){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-caption').textContent=caption||'';document.getElementById('lightbox-modal').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox-modal').classList.remove('open');document.getElementById('lightbox-img').src='';}
+document.getElementById('lightbox-modal').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox-modal'))closeLightbox();});
 
 // ===== DATA =====
-const DEFAULT = {
+const DEFAULT_DATA = {
   robux:[
     {id:'r1',robux:50,harga:'4K',gamepass:'72',stock:99},
     {id:'r2',robux:100,harga:'9K',gamepass:'143',stock:99},
@@ -720,25 +714,35 @@ const DEFAULT = {
     {id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},
     {id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99},
   ],
+  digital:[
+    {id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF dengan cepat dan rapi.',
+      prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Gabung/Pisah PDF',val:'Rp3.000/file'},{label:'Compress PDF',val:'Rp3.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]},
+    {id:'d2',icon:'⌨️',name:'Ketik & Rapihin Dokumen',desc:'Ketik dari foto, perbaikan typo, format tugas — dokumen jadi rapi dan profesional.',
+      prices:[{label:'Ketik dari foto',val:'Rp2.000/hal'},{label:'Rapihin dokumen',val:'Rp2.000/hal'},{label:'Perbaikan typo',val:'Rp2.000/hal'},{label:'Format tugas',val:'Mulai Rp10.000'}]},
+    {id:'d3',icon:'🖼️',name:'Edit Foto Simple',desc:'Ganti background, resize, crop, perbaikan HD, dan paket foto lamaran.',
+      prices:[{label:'Ganti background',val:'Rp5.000/foto'},{label:'Resize & crop',val:'Rp3.000/foto'},{label:'Perbaikan HD',val:'Rp5.000/foto'},{label:'Paket foto lamaran',val:'Rp10.000'}]},
+    {id:'d4',icon:'✨',name:'Desain CV & Poster',desc:'Desain CV menarik siap pakai — sederhana hingga profesional, plus desain poster.',
+      prices:[{label:'CV Sederhana',val:'Rp15.000'},{label:'CV Profesional',val:'Rp25.000'},{label:'Edit CV Lama',val:'Rp10.000'},{label:'Poster',val:'Mulai Rp20.000'}]},
+    {id:'d5',icon:'📊',name:'Edit PPT',desc:'Presentasi jadi rapi dan menarik. Rapihin, ganti template, atau desain ulang.',
+      prices:[{label:'Rapihin PPT',val:'Rp10.000–Rp15.000'},{label:'Ganti Template',val:'Rp10.000'},{label:'Desain Ulang',val:'Mulai Rp25.000'}]},
+    {id:'d6',icon:'🎁',name:'Paket Bundling',desc:'Hemat lebih dengan paket kombinasi layanan sesuai kebutuhanmu.',
+      prices:[{label:'CV + Convert PDF',val:'Rp15.000'},{label:'CV + Edit Foto',val:'Rp20.000'},{label:'PPT + Rapihin Dok',val:'Rp30.000'}]},
+  ]
 };
 
-function getData() { try{const d=localStorage.getItem('kawara_data');if(d)return JSON.parse(d);}catch(e){} return JSON.parse(JSON.stringify(DEFAULT)); }
-function saveData(d) { localStorage.setItem('kawara_data',JSON.stringify(d)); }
-function getTrx() { try{const d=localStorage.getItem('kawara_trx');if(d)return JSON.parse(d);}catch(e){} return []; }
-function saveTrx(a) { localStorage.setItem('kawara_trx',JSON.stringify(a)); }
-function getWH() { return localStorage.getItem('kawara_webhook')||''; }
+function getData(){try{const d=localStorage.getItem('kawara_data');if(d)return JSON.parse(d);}catch(e){}return JSON.parse(JSON.stringify(DEFAULT_DATA));}
+function saveData(d){localStorage.setItem('kawara_data',JSON.stringify(d));}
+function getTrx(){try{const d=localStorage.getItem('kawara_trx');if(d)return JSON.parse(d);}catch(e){}return[];}
+function saveTrx(a){localStorage.setItem('kawara_trx',JSON.stringify(a));}
+function getWH(){return localStorage.getItem('kawara_webhook')||'';}
 
-// ===== INIT =====
-function initAdmin() {
+function initAdmin(){
   const wh=getWH();
-  if(wh) {
-    document.getElementById('wh-input').value=wh;
-    document.getElementById('wh-status').textContent='✅ Webhook aktif: '+wh.substring(0,45)+'...';
-  }
+  if(wh){document.getElementById('wh-input').value=wh;document.getElementById('wh-status').textContent='✅ Webhook aktif: '+wh.substring(0,45)+'...';}
   renderAll();
 }
 
-function renderAll() {
+function renderAll(){
   const d=getData();
   renderRobux(d.robux);
   renderItems('a-fishit-shop',d.fishit_shop,'fishit_shop');
@@ -747,175 +751,241 @@ function renderAll() {
   renderItems('a-forge-passes',d.forge_passes,'forge_passes');
   renderItems('a-forge-totems',d.forge_totems,'forge_totems');
   renderItems('a-forge-rerolls',d.forge_rerolls,'forge_rerolls');
+  renderDigitalAdmin(d.digital||DEFAULT_DATA.digital);
   renderTrxList();
 }
 
-function renderRobux(items) {
-  document.getElementById('a-robux-tbody').innerHTML = items.map(i=>`
+function renderRobux(items){
+  document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`
     <tr>
       <td><strong>${i.robux} Robux</strong></td>
       <td><input class="e-input" id="rh-${i.id}" value="${i.harga}"></td>
       <td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}"></td>
-      <td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:65px;"></td>
+      <td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:60px;"></td>
       <td><button class="ibtn save" onclick="saveRobux('${i.id}')">💾 Simpan</button></td>
     </tr>`).join('');
 }
-
-function saveRobux(id) {
-  const d=getData(), idx=d.robux.findIndex(r=>r.id===id); if(idx===-1) return;
+function saveRobux(id){
+  const d=getData(),idx=d.robux.findIndex(r=>r.id===id);if(idx===-1)return;
   d.robux[idx].harga=document.getElementById('rh-'+id).value.trim();
   d.robux[idx].gamepass=document.getElementById('rgp-'+id).value.trim();
   d.robux[idx].stock=parseInt(document.getElementById('rs-'+id).value)||0;
-  saveData(d); toast('✅ Robux disimpan!');
+  saveData(d);toast('✅ Robux disimpan!','ok');
 }
-
-function renderItems(tbodyId, items, cat) {
-  document.getElementById(tbodyId).innerHTML = items.map(i=>`
+function renderItems(tbodyId,items,cat){
+  document.getElementById(tbodyId).innerHTML=items.map(i=>`
     <tr>
-      <td><input class="e-input wide" id="n-${i.id}" value="${i.name}"></td>
+      <td><input class="e-input xwide" id="n-${i.id}" value="${i.name}"></td>
       <td><input class="e-input" id="h-${i.id}" value="${i.harga}"></td>
-      <td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:65px;"></td>
+      <td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:60px;"></td>
       <td>
         <button class="ibtn save" onclick="saveItem('${cat}','${i.id}')">💾</button>
         <button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button>
       </td>
     </tr>`).join('');
 }
-
-function saveItem(cat, id) {
-  const d=getData(), arr=d[cat], idx=arr.findIndex(i=>i.id===id); if(idx===-1) return;
+function saveItem(cat,id){
+  const d=getData(),arr=d[cat],idx=arr.findIndex(i=>i.id===id);if(idx===-1)return;
   arr[idx].name=document.getElementById('n-'+id).value.trim();
   arr[idx].harga=document.getElementById('h-'+id).value.trim();
   arr[idx].stock=parseInt(document.getElementById('s-'+id).value)||0;
-  d[cat]=arr; saveData(d); toast('✅ Item disimpan!');
+  d[cat]=arr;saveData(d);toast('✅ Item disimpan!','ok');
 }
-
-function delItem(cat, id) {
-  if(!confirm('Hapus item ini?')) return;
-  const d=getData(); d[cat]=d[cat].filter(i=>i.id!==id); saveData(d); renderAll(); toast('🗑️ Item dihapus!');
+function delItem(cat,id){
+  if(!confirm('Hapus item ini?'))return;
+  const d=getData();d[cat]=d[cat].filter(i=>i.id!==id);saveData(d);renderAll();toast('🗑️ Item dihapus!');
 }
 
 // ===== ADD MODAL =====
-function openAdd(cat) {
+function openAdd(cat){
   document.getElementById('add-cat').value=cat;
   ['add-name','add-harga'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('add-stock').value='10';
   document.getElementById('add-modal').classList.add('open');
 }
-function closeAdd() { document.getElementById('add-modal').classList.remove('open'); }
-function submitAdd() {
+function closeAdd(){document.getElementById('add-modal').classList.remove('open');}
+function submitAdd(){
   const cat=document.getElementById('add-cat').value;
   const name=document.getElementById('add-name').value.trim();
   const harga=document.getElementById('add-harga').value.trim();
   const stock=parseInt(document.getElementById('add-stock').value)||0;
-  if(!name||!harga) { toast('❌ Isi nama dan harga!',true); return; }
-  const d=getData(); d[cat].push({id:cat+'_'+Date.now(),name,harga,stock});
-  saveData(d); closeAdd(); renderAll(); toast('✅ Item ditambahkan!');
+  if(!name||!harga){toast('❌ Isi nama dan harga!',true);return;}
+  const d=getData();d[cat].push({id:cat+'_'+Date.now(),name,harga,stock});
+  saveData(d);closeAdd();renderAll();toast('✅ Item ditambahkan!','ok');
 }
 document.getElementById('add-modal').addEventListener('click',e=>{if(e.target===document.getElementById('add-modal'))closeAdd();});
 
-// ===== WEBHOOK =====
-function saveWH() {
-  const url=document.getElementById('wh-input').value.trim();
-  if(!url) { toast('❌ Masukkan URL webhook!',true); return; }
-  localStorage.setItem('kawara_webhook',url);
-  document.getElementById('wh-status').textContent='✅ Webhook aktif: '+url.substring(0,45)+'...';
-  toast('✅ Webhook disimpan!');
+// ===== DIGITAL ADMIN =====
+function renderDigitalAdmin(items){
+  const container=document.getElementById('digital-admin-list');
+  container.innerHTML=items.map((item,idx)=>`
+    <div class="digital-admin-card" id="dac-${item.id}">
+      <div class="dac-header">
+        <div class="dac-title" style="flex:1;flex-wrap:wrap;gap:8px;">
+          <input class="dac-icon-edit" id="dic-${item.id}" value="${item.icon}" title="Ikon (emoji)">
+          <input class="e-input xwide dac-name-edit" id="dname-${item.id}" value="${item.name}" placeholder="Nama layanan..." style="flex:1;min-width:160px;">
+        </div>
+        <div class="dac-actions">
+          <button class="ibtn save" onclick="saveDigitalCard('${item.id}')">💾 Simpan</button>
+          <button class="ibtn del" onclick="delDigitalCard('${item.id}')">🗑️ Hapus</button>
+        </div>
+      </div>
+      <textarea class="ftextarea dac-desc-edit" id="ddesc-${item.id}" placeholder="Deskripsi layanan...">${item.desc}</textarea>
+      <div class="dac-prices" id="dprices-${item.id}">
+        ${item.prices.map((p,pi)=>`
+          <div class="dac-price-row" id="dpr-${item.id}-${pi}">
+            <input class="dac-price-label-edit" id="dpl-${item.id}-${pi}" value="${p.label}" placeholder="Label...">
+            <input class="dac-price-val-edit" id="dpv-${item.id}-${pi}" value="${p.val}" placeholder="Harga...">
+            <button class="del-price-btn" onclick="delPriceRow('${item.id}',${pi})">✕</button>
+          </div>`).join('')}
+      </div>
+      <button class="add-price-btn" onclick="addPriceRow('${item.id}')">+ Tambah Baris Harga</button>
+    </div>`).join('');
+}
+
+function saveDigitalCard(id){
+  const d=getData();
+  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
+  d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
+  d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
+  d.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();
+  // collect prices from current DOM
+  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
+  const prices=[];
+  priceRows.forEach((row,pi)=>{
+    const lbl=document.getElementById(`dpl-${id}-${pi}`);
+    const val=document.getElementById(`dpv-${id}-${pi}`);
+    if(lbl&&val&&lbl.value.trim()) prices.push({label:lbl.value.trim(),val:val.value.trim()});
+  });
+  d.digital[idx].prices=prices;
+  saveData(d);toast('✅ Layanan digital disimpan!','ok');
+}
+
+function delDigitalCard(id){
+  if(!confirm('Hapus layanan ini?'))return;
+  const d=getData();
+  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  d.digital=d.digital.filter(i=>i.id!==id);
+  saveData(d);renderAll();toast('🗑️ Layanan dihapus!');
+}
+
+function addDigitalCard(){
+  const d=getData();
+  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  const newItem={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi layanan baru.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};
+  d.digital.push(newItem);
+  saveData(d);renderAll();toast('✅ Layanan ditambahkan!','ok');
+  setTimeout(()=>{const el=document.getElementById('dac-'+newItem.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+}
+
+function addPriceRow(id){
+  // save current state first, then add row
+  const d=getData();
+  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
+  // collect current
+  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
+  const prices=[];
+  priceRows.forEach((row,pi)=>{
+    const lbl=document.getElementById(`dpl-${id}-${pi}`);
+    const val=document.getElementById(`dpv-${id}-${pi}`);
+    if(lbl&&val&&lbl.value.trim()) prices.push({label:lbl.value.trim(),val:val.value.trim()});
+  });
+  prices.push({label:'Label baru',val:'Rp0'});
+  d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
+  d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
+  d.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();
+  d.digital[idx].prices=prices;
+  saveData(d);renderAll();toast('✅ Baris harga ditambahkan!','ok');
+}
+
+function delPriceRow(id,pi){
+  const d=getData();
+  if(!d.digital) d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));
+  const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;
+  // collect all current rows
+  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);
+  const prices=[];
+  priceRows.forEach((row,i)=>{
+    const lbl=document.getElementById(`dpl-${id}-${i}`);
+    const val=document.getElementById(`dpv-${id}-${i}`);
+    if(i!==pi && lbl&&val) prices.push({label:lbl.value.trim(),val:val.value.trim()});
+  });
+  d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
+  d.digital[idx].name=document.getElementById('dname-'+id).value.trim();
+  d.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();
+  d.digital[idx].prices=prices;
+  saveData(d);renderAll();
 }
 
 // ===== DISCORD =====
-async function sendDiscord(trx) {
-  const wh=getWH(); if(!wh) { toast('⚠️ Webhook belum diset!',true); return; }
+function saveWH(){
+  const url=document.getElementById('wh-input').value.trim();
+  if(!url){toast('❌ Masukkan URL webhook!',true);return;}
+  localStorage.setItem('kawara_webhook',url);
+  document.getElementById('wh-status').textContent='✅ Webhook aktif: '+url.substring(0,45)+'...';
+  toast('✅ Webhook disimpan!','ok');
+}
 
-  const embed = {
-    title:'🛒 Transaksi Baru — Kawara Store',
-    color:0xe8294a,
+async function sendDiscord(trx){
+  const wh=getWH();if(!wh){toast('⚠️ Webhook belum diset!',true);return;}
+  const embed={
+    title:'🛒 Transaksi Baru — Kawara Store',color:0xf5c400,
     fields:[
       {name:'👤 Username',value:trx.username,inline:true},
-      {name:'📦 Kategori',value:trx.category,inline:true},
+      {name:'📦 Item',value:trx.category,inline:true},
       {name:'💰 Harga',value:trx.price,inline:true},
       {name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},
       {name:'🕐 Waktu',value:trx.time,inline:false},
     ],
     footer:{text:'Kawara Store Admin'},
   };
-
   try {
     let r;
-    if (trx.bukti) {
-      // Konversi base64 → Blob lalu kirim sebagai multipart/form-data
-      const base64Data = trx.bukti.split(',')[1];
-      const mime = trx.bukti.split(';')[0].split(':')[1] || 'image/png';
-      const ext = mime.split('/')[1] || 'png';
-      const byteChars = atob(base64Data);
-      const byteArr = new Uint8Array(byteChars.length);
-      for (let i=0;i<byteChars.length;i++) byteArr[i]=byteChars.charCodeAt(i);
-      const blob = new Blob([byteArr], {type: mime});
-      const filename = `bukti_${trx.id}.${ext}`;
-
-      // Arahkan embed image ke attachment
-      embed.image = { url: `attachment://${filename}` };
-
-      const form = new FormData();
-      form.append('file', blob, filename);
-      form.append('payload_json', JSON.stringify({embeds:[embed]}));
-
-      r = await fetch(wh, {method:'POST', body: form});
+    if(trx.bukti){
+      const base64Data=trx.bukti.split(',')[1];
+      const mime=trx.bukti.split(';')[0].split(':')[1]||'image/png';
+      const ext=mime.split('/')[1]||'png';
+      const byteChars=atob(base64Data);const byteArr=new Uint8Array(byteChars.length);
+      for(let i=0;i<byteChars.length;i++)byteArr[i]=byteChars.charCodeAt(i);
+      const blob=new Blob([byteArr],{type:mime});const filename=`bukti_${trx.id}.${ext}`;
+      embed.image={url:`attachment://${filename}`};
+      const form=new FormData();form.append('file',blob,filename);form.append('payload_json',JSON.stringify({embeds:[embed]}));
+      r=await fetch(wh,{method:'POST',body:form});
     } else {
-      r = await fetch(wh, {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({embeds:[embed]})
-      });
+      r=await fetch(wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({embeds:[embed]})});
     }
-
-    if(r.ok) toast('✅ Terkirim ke Discord!');
-    else {
-      const errText = await r.text().catch(()=>'');
-      console.error('Discord error:', r.status, errText);
-      toast('⚠️ Gagal kirim ke Discord. ('+r.status+')',true);
-    }
-  } catch(e) { toast('⚠️ '+e.message,true); }
+    if(r.ok) toast('✅ Terkirim ke Discord!','ok');
+    else { const t=await r.text().catch(()=>'');toast('⚠️ Gagal kirim ('+r.status+')',true); }
+  } catch(e){ toast('⚠️ '+e.message,true); }
 }
 
 // ===== TRANSAKSI =====
-async function addTrx() {
+async function addTrx(){
   const username=document.getElementById('t-user').value.trim();
   const category=document.getElementById('t-cat').value.trim();
   const price=document.getElementById('t-price').value.trim();
   const status=document.getElementById('t-status').value;
-  if(!username||!category||!price) { toast('❌ Isi semua field!',true); return; }
-
-  const trx={
-    id:'trx_'+Date.now(),
-    username, category, price, status,
-    time: new Date().toLocaleString('id-ID'),
-    bukti: buktiBase64 || null
-  };
-
-  const arr=getTrx(); arr.unshift(trx); saveTrx(arr);
+  if(!username||!category||!price){toast('❌ Isi semua field!',true);return;}
+  const trx={id:'trx_'+Date.now(),username,category,price,status,time:new Date().toLocaleString('id-ID'),bukti:buktiBase64||null};
+  const arr=getTrx();arr.unshift(trx);saveTrx(arr);
   ['t-user','t-cat','t-price'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('t-status').value='pending';
-  removeBukti();
-
-  await sendDiscord(trx);
-  renderTrxList();
+  document.getElementById('t-status').value='pending';removeBukti();
+  await sendDiscord(trx);renderTrxList();
 }
-
-function updateTrx(id, status) {
-  const arr=getTrx(), idx=arr.findIndex(t=>t.id===id); if(idx===-1) return;
-  arr[idx].status=status; saveTrx(arr); renderTrxList(); toast('✅ Status diupdate!');
+function updateTrx(id,status){
+  const arr=getTrx(),idx=arr.findIndex(t=>t.id===id);if(idx===-1)return;
+  arr[idx].status=status;saveTrx(arr);renderTrxList();toast('✅ Status diupdate!','ok');
 }
-
-function delTrx(id) {
-  if(!confirm('Hapus transaksi ini?')) return;
-  saveTrx(getTrx().filter(t=>t.id!==id)); renderTrxList(); toast('🗑️ Transaksi dihapus!');
+function delTrx(id){
+  if(!confirm('Hapus transaksi ini?'))return;
+  saveTrx(getTrx().filter(t=>t.id!==id));renderTrxList();toast('🗑️ Transaksi dihapus!');
 }
-
-function renderTrxList() {
-  const arr=getTrx(), el=document.getElementById('trx-list');
-  if(!arr.length) { el.innerHTML='<div class="empty">Belum ada transaksi.</div>'; return; }
-  el.innerHTML = arr.map(t=>`
+function renderTrxList(){
+  const arr=getTrx(),el=document.getElementById('trx-list');
+  if(!arr.length){el.innerHTML='<div class="empty">Belum ada transaksi.</div>';return;}
+  el.innerHTML=arr.map(t=>`
     <div class="trx-card">
       <div style="flex:1;min-width:0;">
         <div class="trx-user">👤 ${t.username}</div>
@@ -924,13 +994,10 @@ function renderTrxList() {
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
         ${t.bukti
-          ? `<img class="trx-bukti-thumb" src="${t.bukti}" alt="Bukti" onclick="openLightbox('${t.bukti}','Bukti transaksi: ${t.username} — ${t.category}')">
-             <div class="trx-bukti-label">Lihat Bukti</div>`
-          : `<div class="no-bukti" title="Tidak ada bukti">🖼️</div>
-             <div class="trx-bukti-label" style="color:var(--muted);">Tanpa bukti</div>`
-        }
+          ?`<img class="trx-bukti-thumb" src="${t.bukti}" alt="Bukti" onclick="openLightbox('${t.bukti}','Bukti: ${t.username} — ${t.category}')"><div style="font-size:0.7rem;color:var(--muted);">Lihat</div>`
+          :`<div class="no-bukti">🖼️</div><div style="font-size:0.7rem;color:var(--muted);">No bukti</div>`}
       </div>
-      <div style="text-align:right;">
+      <div style="text-align:right;min-width:110px;">
         <div class="trx-price">${t.price}</div>
         <span class="status-badge ${t.status}">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span>
         <div class="trx-actions">
@@ -942,7 +1009,7 @@ function renderTrxList() {
 }
 
 // ===== NAV =====
-function showAPage(page, btn) {
+function showAPage(page,btn){
   document.querySelectorAll('.apage').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.atab').forEach(b=>b.classList.remove('active'));
   document.getElementById('apage-'+page).classList.add('active');
@@ -950,10 +1017,12 @@ function showAPage(page, btn) {
 }
 
 // ===== TOAST =====
-function toast(msg, isErr=false) {
+function toast(msg,type=''){
   const t=document.getElementById('toast');
-  t.textContent=msg; t.className='toast'+(isErr?' err':''); t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
+  t.textContent=msg;t.className='toast';
+  if(type===true||type==='err') t.classList.add('err');
+  else if(type==='ok') t.classList.add('ok');
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);
 }
 
 // ===== INIT =====
