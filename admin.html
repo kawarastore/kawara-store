@@ -785,28 +785,38 @@ function renderDashboard(){
 // ROBUX TABLE
 // =====================================================
 function renderRobux(items){
-  document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`<tr><td><strong>${i.robux} Rbx</strong></td><td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:65px;"></td><td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td><td><button class="ibtn save" onclick="saveRobux('${i.id}')">💾</button></td></tr>`).join('');
+  document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`<tr><td><strong>${i.robux} Rbx</strong></td><td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:65px;"></td><td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td></tr>`).join('');
 }
-function saveRobux(id){
-  const d=getData(),idx=d.robux.findIndex(r=>r.id===id);if(idx===-1)return;
-  d.robux[idx].harga=document.getElementById('rh-'+id).value.trim();
-  d.robux[idx].gamepass=document.getElementById('rgp-'+id).value.trim();
-  d.robux[idx].stock=parseInt(document.getElementById('rs-'+id).value)||0;
-  saveLocalData(d);toast('✅ Disimpan lokal! Klik "Simpan ke GitHub" untuk publish.','ok');
+function saveAllRobux(){
+  const d=getData();
+  d.robux.forEach(i=>{
+    const h=document.getElementById('rh-'+i.id);
+    const gp=document.getElementById('rgp-'+i.id);
+    const s=document.getElementById('rs-'+i.id);
+    if(h)i.harga=h.value.trim();
+    if(gp)i.gamepass=gp.value.trim();
+    if(s)i.stock=parseInt(s.value)||0;
+  });
+  saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 
 // =====================================================
 // ITEMS TABLE
 // =====================================================
 function renderItems(tbodyId,items,cat){
-  document.getElementById(tbodyId).innerHTML=items.map(i=>`<tr><td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td><td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td><td style="white-space:nowrap;"><button class="ibtn save" onclick="saveItem('${cat}','${i.id}')">💾</button><button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button></td></tr>`).join('');
+  document.getElementById(tbodyId).innerHTML=items.map(i=>`<tr><td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td><td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td><td><button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button></td></tr>`).join('');
 }
-function saveItem(cat,id){
-  const d=getData(),arr=d[cat],idx=arr.findIndex(i=>i.id===id);if(idx===-1)return;
-  arr[idx].name=document.getElementById('n-'+id).value.trim();
-  arr[idx].harga=document.getElementById('h-'+id).value.trim();
-  arr[idx].stock=parseInt(document.getElementById('s-'+id).value)||0;
-  d[cat]=arr;saveLocalData(d);toast('✅ Disimpan lokal! Klik "Simpan ke GitHub" untuk publish.','ok');
+function saveAllItems(cat){
+  const d=getData();
+  (d[cat]||[]).forEach(i=>{
+    const n=document.getElementById('n-'+i.id);
+    const h=document.getElementById('h-'+i.id);
+    const s=document.getElementById('s-'+i.id);
+    if(n)i.name=n.value.trim();
+    if(h)i.harga=h.value.trim();
+    if(s)i.stock=parseInt(s.value)||0;
+  });
+  saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 function delItem(cat,id){
   if(!confirm('Hapus item ini?'))return;
