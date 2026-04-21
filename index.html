@@ -103,7 +103,6 @@ nav {
   background-clip: text;
   white-space: nowrap;
 }
-/* Main tabs - scroll on mobile */
 .main-tabs {
   display: flex; gap: 2px;
   overflow-x: auto; -webkit-overflow-scrolling: touch;
@@ -123,7 +122,7 @@ nav {
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
 
-/* ===================== SUB-NAV (Roblox inner tabs) ===================== */
+/* ===================== SUB-NAV ===================== */
 .subnav-wrap {
   position: sticky;
   top: var(--nav-h);
@@ -163,7 +162,6 @@ main {
 }
 .page { display: none; }
 .page.active { display: block; animation: fadeUp 0.32s ease; }
-/* Roblox sub-pages */
 .roblox-subpage { display: none; }
 .roblox-subpage.active { display: block; animation: fadeUp 0.28s ease; }
 
@@ -880,9 +878,9 @@ footer a { color: var(--gold); text-decoration: none; }
 </footer>
 
 <script>
-const _IC = {};
-let _item=null, _user='', _pay='', _digitalItem=null, _digitalPay='', _systemItem=null, _systemPay='';
-
+// =========================================================
+// DATA — baca dari localStorage, fallback ke DEFAULT
+// =========================================================
 const DEFAULT = {
   robux:[
     {id:'r1',robux:50,harga:'4K',gamepass:'72',stock:99},
@@ -968,41 +966,77 @@ const DEFAULT = {
 };
 
 function getData() {
-  try { const d=localStorage.getItem('kawara_data'); if(d) return JSON.parse(d); } catch(e){}
+  try {
+    const raw = localStorage.getItem('kawara_data');
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
   return JSON.parse(JSON.stringify(DEFAULT));
 }
 
+// =========================================================
+// HELPERS — normalisasi tags agar selalu array
+// =========================================================
+
+/**
+ * Admin panel menyimpan tags sebagai string "Admin,Panel,Tools"
+ * Store butuh array ["Admin","Panel","Tools"]
+ * Fungsi ini handle keduanya.
+ */
+function normalizeTags(tags) {
+  if (!tags) return [];
+  if (Array.isArray(tags)) return tags;
+  // string: pisah koma, trim spasi, buang yang kosong
+  return String(tags).split(',').map(t => t.trim()).filter(Boolean);
+}
+
+// =========================================================
+// STATE
+// =========================================================
+const _IC = {};
+let _item = null, _user = '', _pay = '';
+let _digitalItem = null, _digitalPay = '';
+let _systemItem = null, _systemPay = '';
+
+// =========================================================
+// RENDER
+// =========================================================
 function renderAll() {
-  const d = getData();
-  renderRobux(d.robux);
-  renderGrid('fishit-shop-grid', d.fishit_shop, 'Fish It');
-  renderGrid('fishit-gacha-grid', d.fishit_gacha, 'Fish It');
-  renderGrid('fishit-emote-grid', d.fishit_emote, 'Fish It');
-  renderGrid('forge-passes-grid', d.forge_passes, 'The Forge');
-  renderGrid('forge-totems-grid', d.forge_totems, 'The Forge');
-  renderGrid('forge-rerolls-grid', d.forge_rerolls, 'The Forge');
-  renderSystem(d.roblox_system || DEFAULT.roblox_system);
-  renderDigital(d.digital || DEFAULT.digital);
-  const fi = (d.fishit_shop||[]).length+(d.fishit_gacha||[]).length+(d.fishit_emote||[]).length;
-  const fo = (d.forge_passes||[]).length+(d.forge_totems||[]).length+(d.forge_rerolls||[]).length;
-  const rc = document.getElementById('robux-count');
-  const fic = document.getElementById('fishit-count');
-  const foc = document.getElementById('forge-count');
-  if(rc) rc.textContent = (d.robux||[]).length+' item';
-  if(fic) fic.textContent = fi+' item';
-  if(foc) foc.textContent = fo+' item';
+  try {
+    const d = getData();
+    renderRobux(d.robux || DEFAULT.robux);
+    renderGrid('fishit-shop-grid',  d.fishit_shop  || DEFAULT.fishit_shop,  'Fish It');
+    renderGrid('fishit-gacha-grid', d.fishit_gacha || DEFAULT.fishit_gacha, 'Fish It');
+    renderGrid('fishit-emote-grid', d.fishit_emote || DEFAULT.fishit_emote, 'Fish It');
+    renderGrid('forge-passes-grid', d.forge_passes || DEFAULT.forge_passes, 'The Forge');
+    renderGrid('forge-totems-grid', d.forge_totems || DEFAULT.forge_totems, 'The Forge');
+    renderGrid('forge-rerolls-grid',d.forge_rerolls|| DEFAULT.forge_rerolls,'The Forge');
+    renderSystem(d.roblox_system   || DEFAULT.roblox_system);
+    renderDigital(d.digital        || DEFAULT.digital);
+
+    // Update count badges
+    const fi = (d.fishit_shop||[]).length + (d.fishit_gacha||[]).length + (d.fishit_emote||[]).length;
+    const fo = (d.forge_passes||[]).length + (d.forge_totems||[]).length + (d.forge_rerolls||[]).length;
+    const rc  = document.getElementById('robux-count');
+    const fic = document.getElementById('fishit-count');
+    const foc = document.getElementById('forge-count');
+    if (rc)  rc.textContent  = (d.robux||[]).length + ' item';
+    if (fic) fic.textContent = fi + ' item';
+    if (foc) foc.textContent = fo + ' item';
+  } catch(err) {
+    console.error('renderAll error:', err);
+  }
 }
 
 function renderRobux(items) {
   document.getElementById('robux-tbody').innerHTML = items.map(item => {
     const out = item.stock <= 0;
-    const key = '_ic_'+item.id;
-    _IC[key] = { id:item.id, name:item.robux+' Robux', harga:item.harga, category:'Robux Via Gamepass' };
-    return `<tr onclick="${out?'':` openOrder('${key}')`}">
+    const key = '_ic_' + item.id;
+    _IC[key] = { id: item.id, name: item.robux + ' Robux', harga: item.harga, category: 'Robux Via Gamepass' };
+    return `<tr onclick="${out ? '' : `openOrder('${key}')`}">
       <td><strong>${item.robux} Rbx</strong></td>
       <td class="price">${item.harga}</td>
       <td class="gp">${item.gamepass}</td>
-      <td><span class="rbadge${out?' out':''}">${out?'Habis':'Beli'}</span></td>
+      <td><span class="rbadge${out ? ' out' : ''}">${out ? 'Habis' : 'Beli'}</span></td>
     </tr>`;
   }).join('');
 }
@@ -1011,35 +1045,43 @@ function renderGrid(containerId, items, category) {
   document.getElementById(containerId).innerHTML = items.map(item => {
     const out = item.stock <= 0;
     const low = !out && item.stock <= 3;
-    const key = '_ic_'+item.id;
-    _IC[key] = { id:item.id, name:item.name, harga:item.harga, category };
-    const dotClass = out?'out':low?'low':'';
-    const stockTxt = out?'Stok habis':low?`Stok: ${item.stock} (sedikit)`:`Stok: ${item.stock}`;
+    const key = '_ic_' + item.id;
+    _IC[key] = { id: item.id, name: item.name, harga: item.harga, category };
+    const dotClass = out ? 'out' : low ? 'low' : '';
+    const stockTxt = out ? 'Stok habis' : low ? `Stok: ${item.stock} (sedikit)` : `Stok: ${item.stock}`;
     return `<div class="item-card">
       <div class="item-name">${item.name}</div>
       <div class="item-price">${item.harga}</div>
-      <div class="item-stock${out?' out-txt':''}"><span class="sdot ${dotClass}"></span>${stockTxt}</div>
-      <button class="buy-btn" ${out?'disabled':''} onclick="openOrder('${key}')">${out?'Habis':'Beli Sekarang'}</button>
+      <div class="item-stock${out ? ' out-txt' : ''}"><span class="sdot ${dotClass}"></span>${stockTxt}</div>
+      <button class="buy-btn" ${out ? 'disabled' : ''} onclick="openOrder('${key}')">${out ? 'Habis' : 'Beli Sekarang'}</button>
     </div>`;
   }).join('');
 }
 
 function renderSystem(items) {
   const grid = document.getElementById('system-grid');
-  if(!grid) return;
+  if (!grid) return;
   grid.innerHTML = items.map(item => {
-    const tags = (item.tags||[]).map(t=>`<span class="system-tag">${t}</span>`).join('');
+    // ✅ FIX: normalisasi tags — admin panel simpan string, kita perlu array
+    const tagsArr = normalizeTags(item.tags);
+    const tagsHtml = tagsArr.map(t => `<span class="system-tag">${t}</span>`).join('');
+    const thumbHtml = item.thumb
+      ? `<img src="${item.thumb}" alt="${item.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+         <div class="no-thumb" style="display:none;">⚙️</div>`
+      : `<div class="no-thumb">⚙️</div>`;
+    // Escape item data for onclick
+    const itemJson = JSON.stringify(item).replace(/\\/g, '\\\\').replace(/"/g, '&quot;');
     return `<div class="system-card">
       <div class="system-thumb">
-        ${item.thumb ? `<img src="${item.thumb}" alt="${item.name}" onerror="this.parentElement.innerHTML='<div class=\\'no-thumb\\'>⚙️</div>'">` : '<div class="no-thumb">⚙️</div>'}
+        ${thumbHtml}
         <span class="system-thumb-badge">SYSTEM</span>
       </div>
       <div class="system-body">
         <div class="system-name">${item.name}</div>
         <div class="system-desc">${item.desc}</div>
-        <div class="system-tags">${tags}</div>
+        <div class="system-tags">${tagsHtml}</div>
         <div class="system-price">${item.harga}</div>
-        <button class="system-buy-btn" onclick="openSystemOrder(${JSON.stringify(item).replace(/"/g,'&quot;')})">Order Sekarang</button>
+        <button class="system-buy-btn" onclick="openSystemOrder(${itemJson})">Order Sekarang</button>
       </div>
     </div>`;
   }).join('');
@@ -1047,56 +1089,64 @@ function renderSystem(items) {
 
 function renderDigital(items) {
   const grid = document.getElementById('digital-grid');
-  if(!grid) return;
-  grid.innerHTML = items.map(item => `
-    <div class="digital-card">
+  if (!grid) return;
+  grid.innerHTML = items.map(item => {
+    // Pastikan prices selalu array
+    const prices = Array.isArray(item.prices) ? item.prices : [];
+    const itemJson = JSON.stringify(item).replace(/\\/g, '\\\\').replace(/"/g, '&quot;');
+    return `<div class="digital-card">
       <div class="dc-header">
-        <div class="dc-icon">${item.icon}</div>
+        <div class="dc-icon">${item.icon || '📦'}</div>
         <div class="dc-title">${item.name}</div>
       </div>
       <div class="dc-desc">${item.desc}</div>
       <div class="dc-prices">
-        ${item.prices.map(p=>`
+        ${prices.map(p => `
           <div class="dc-price-row">
             <span class="dc-price-label">${p.label}</span>
             <span class="dc-price-val">${p.val}</span>
           </div>`).join('')}
       </div>
-      <button class="dc-buy" onclick="openDigitalOrder(${JSON.stringify(item).replace(/"/g,'&quot;')})">Order Sekarang</button>
-    </div>`).join('');
+      <button class="dc-buy" onclick="openDigitalOrder(${itemJson})">Order Sekarang</button>
+    </div>`;
+  }).join('');
 }
 
+// =========================================================
+// UI HELPERS
+// =========================================================
 function toggleSection(head) {
   const body = head.nextElementSibling;
   const arrow = head.querySelector('.rb-section-arrow');
   const collapsed = body.classList.toggle('collapsed');
   head.classList.toggle('collapsed', collapsed);
-  if(arrow) arrow.classList.toggle('open', !collapsed);
+  if (arrow) arrow.classList.toggle('open', !collapsed);
 }
 
 function showPage(page, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-'+page).classList.add('active');
-  if(btn) btn.classList.add('active');
-  // show/hide subnav
-  const subnav = document.getElementById('roblox-subnav');
-  subnav.classList.toggle('visible', page === 'roblox');
+  document.getElementById('page-' + page).classList.add('active');
+  if (btn) btn.classList.add('active');
+  document.getElementById('roblox-subnav').classList.toggle('visible', page === 'roblox');
   window.scrollTo(0, 0);
 }
 
 function showRobloxSub(sub, btn) {
   document.querySelectorAll('.roblox-subpage').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('roblox-sub-'+sub).classList.add('active');
-  if(btn) btn.classList.add('active');
+  document.getElementById('roblox-sub-' + sub).classList.add('active');
+  if (btn) btn.classList.add('active');
   window.scrollTo(0, 0);
 }
 
+// =========================================================
 // ORDER MODALS
+// =========================================================
 function openOrder(key) {
-  _item = _IC[key]; if(!_item) return;
-  _user=''; _pay='';
+  _item = _IC[key];
+  if (!_item) return;
+  _user = ''; _pay = '';
   document.getElementById('m1-name').textContent = _item.name;
   document.getElementById('m1-price').textContent = _item.harga;
   document.getElementById('m1-username').value = '';
@@ -1105,20 +1155,22 @@ function openOrder(key) {
 
 function goStep2() {
   const u = document.getElementById('m1-username').value.trim();
-  if(!u) { alert('Masukkan username Roblox dulu!'); return; }
-  _user=u;
+  if (!u) { alert('Masukkan username Roblox dulu!'); return; }
+  _user = u;
   document.getElementById('modal-step1').classList.remove('open');
   document.getElementById('m2-name').textContent = _item.name;
   document.getElementById('m2-price').textContent = _item.harga;
-  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b=>b.classList.remove('sel'));
-  document.getElementById('btn-next2').disabled=true; _pay='';
+  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b => b.classList.remove('sel'));
+  document.getElementById('btn-next2').disabled = true;
+  _pay = '';
   document.getElementById('modal-step2').classList.add('open');
 }
 
 function selPay(btn, method) {
-  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel'); _pay=method;
-  document.getElementById('btn-next2').disabled=false;
+  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  _pay = method;
+  document.getElementById('btn-next2').disabled = false;
 }
 
 function goStep3() {
@@ -1133,67 +1185,83 @@ function goStep3() {
 }
 
 function openWA() {
-  const msg=`Halo Kawara Store, saya ingin memesan:\n\n👤 Username Roblox: ${_user}\n🎮 Kategori: ${_item.category}\n📦 Item: ${_item.name}\n💰 Harga: ${_item.harga}\n💳 Pembayaran: ${_pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`,'_blank');
+  const msg = `Halo Kawara Store, saya ingin memesan:\n\n👤 Username Roblox: ${_user}\n🎮 Kategori: ${_item.category}\n📦 Item: ${_item.name}\n💰 Harga: ${_item.harga}\n💳 Pembayaran: ${_pay}\n\nMohon diproses, terima kasih! 🙏`;
+  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function openSystemOrder(item) {
-  _systemItem = item; _systemPay='';
+  _systemItem = item;
+  _systemPay = '';
   document.getElementById('ms-title').textContent = item.name;
-  document.getElementById('ms-name').textContent = item.desc.substring(0,60)+'...';
+  document.getElementById('ms-name').textContent = item.desc.substring(0, 60) + '...';
   document.getElementById('ms-price').textContent = item.harga;
-  document.getElementById('ms-user').value='';
-  document.getElementById('ms-desc').value='';
-  document.querySelectorAll('#modal-system .pay-opt').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('ms-user').value = '';
+  document.getElementById('ms-desc').value = '';
+  document.querySelectorAll('#modal-system .pay-opt').forEach(b => b.classList.remove('sel'));
   document.getElementById('modal-system').classList.add('open');
 }
 
 function selPayS(btn, method) {
-  document.querySelectorAll('#modal-system .pay-opt').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel'); _systemPay=method;
+  document.querySelectorAll('#modal-system .pay-opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  _systemPay = method;
 }
 
 function openWASystem() {
-  const nm = document.getElementById('ms-user').value.trim()||'(tidak diisi)';
-  const desc = document.getElementById('ms-desc').value.trim()||'(tidak diisi)';
-  const pay = _systemPay||'(belum dipilih)';
-  const msg=`Halo Kawara Store, saya ingin memesan Roblox System:\n\n👤 Nama: ${nm}\n⚙️ System: ${_systemItem.name}\n💰 Harga: ${_systemItem.harga}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`,'_blank');
+  const nm  = document.getElementById('ms-user').value.trim() || '(tidak diisi)';
+  const desc = document.getElementById('ms-desc').value.trim() || '(tidak diisi)';
+  const pay  = _systemPay || '(belum dipilih)';
+  const msg = `Halo Kawara Store, saya ingin memesan Roblox System:\n\n👤 Nama: ${nm}\n⚙️ System: ${_systemItem.name}\n💰 Harga: ${_systemItem.harga}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
+  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function openDigitalOrder(item) {
-  _digitalItem = item; _digitalPay='';
+  _digitalItem = item;
+  _digitalPay = '';
+  const prices = Array.isArray(item.prices) ? item.prices : [];
   document.getElementById('md-title').textContent = item.name;
-  document.getElementById('md-service').textContent = item.desc.substring(0,60)+'...';
-  document.getElementById('md-price').textContent = item.prices.map(p=>p.label+': '+p.val).join(' · ');
-  document.getElementById('md-name').value='';
-  document.getElementById('md-desc').value='';
-  document.querySelectorAll('#modal-digital .pay-opt').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('md-service').textContent = item.desc.substring(0, 60) + '...';
+  document.getElementById('md-price').textContent = prices.map(p => p.label + ': ' + p.val).join(' · ');
+  document.getElementById('md-name').value = '';
+  document.getElementById('md-desc').value = '';
+  document.querySelectorAll('#modal-digital .pay-opt').forEach(b => b.classList.remove('sel'));
   document.getElementById('modal-digital').classList.add('open');
 }
 
 function selPayD(btn, method) {
-  document.querySelectorAll('#modal-digital .pay-opt').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel'); _digitalPay=method;
+  document.querySelectorAll('#modal-digital .pay-opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  _digitalPay = method;
 }
 
 function openWADigital() {
-  const nm = document.getElementById('md-name').value.trim()||'(tidak diisi)';
-  const desc = document.getElementById('md-desc').value.trim()||'(tidak diisi)';
-  const pay = _digitalPay||'(belum dipilih)';
-  const msg=`Halo Kawara Store, saya ingin memesan Jasa Digital:\n\n👤 Nama: ${nm}\n💼 Jasa: ${_digitalItem.name}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`,'_blank');
+  const nm  = document.getElementById('md-name').value.trim() || '(tidak diisi)';
+  const desc = document.getElementById('md-desc').value.trim() || '(tidak diisi)';
+  const pay  = _digitalPay || '(belum dipilih)';
+  const msg = `Halo Kawara Store, saya ingin memesan Jasa Digital:\n\n👤 Nama: ${nm}\n💼 Jasa: ${_digitalItem.name}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
+  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function closeModals() {
-  document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('open'));
+  document.querySelectorAll('.overlay').forEach(o => o.classList.remove('open'));
 }
-document.querySelectorAll('.overlay').forEach(o=>{
-  o.addEventListener('click',e=>{ if(e.target===o) closeModals(); });
+
+document.querySelectorAll('.overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) closeModals(); });
 });
 
+// =========================================================
+// INIT — render saat halaman buka & saat tab aktif kembali
+// =========================================================
 renderAll();
-document.addEventListener('visibilitychange',()=>{ if(!document.hidden) renderAll(); });
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) renderAll();
+});
+
+// Listen perubahan localStorage dari tab admin (jika dibuka di tab berbeda)
+window.addEventListener('storage', e => {
+  if (e.key === 'kawara_data') renderAll();
+});
 </script>
 </body>
 </html>
