@@ -125,6 +125,8 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
 /* BUTTONS */
 .add-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;color:var(--green);font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:700;cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
 .form-submit{width:100%;padding:12px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px rgba(245,196,0,0.22);letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;min-height:46px;}
+.save-section-btn{width:100%;padding:10px;background:var(--grad);border:none;border-radius:9px;color:#000;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 12px rgba(245,196,0,0.2);letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;min-height:42px;margin-bottom:4px;}
+.save-section-btn:active{opacity:0.88;transform:scale(0.99);}
 
 /* TABLE */
 .tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:6px;backdrop-filter:blur(12px);}
@@ -377,19 +379,22 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
         <div class="sec-label">Kelola</div>
         <div class="sec-ttl">💎 Robux Top Up</div>
         <div class="subsec-lbl" style="margin-top:0;">Robux via Gamepass</div>
-        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-robux-tbody"></tbody></table></div></div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th></tr></thead><tbody id="a-robux-tbody"></tbody></table></div></div>
+        <button class="save-section-btn" onclick="saveAllRobux()">💾 Simpan Robux</button>
         <div class="sec-head" style="margin-top:16px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Item Shop</div><button class="add-btn" onclick="openAdd('fishit_shop')">+ Tambah</button></div>
-        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-shop"></tbody></table></div></div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-fishit-shop"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Gacha Skin</div><button class="add-btn" onclick="openAdd('fishit_gacha')">+ Tambah</button></div>
-        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-gacha"></tbody></table></div></div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-fishit-gacha"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Emote Crates</div><button class="add-btn" onclick="openAdd('fishit_emote')">+ Tambah</button></div>
-        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-fishit-emote"></tbody></table></div></div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-fishit-emote"></tbody></table></div></div>
+        <button class="save-section-btn" onclick="saveAllFishIt()">💾 Simpan Fish It</button>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Passes</div><button class="add-btn" onclick="openAdd('forge_passes')">+ Tambah</button></div>
-        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-passes"></tbody></table></div></div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-forge-passes"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Totems</div><button class="add-btn" onclick="openAdd('forge_totems')">+ Tambah</button></div>
-        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-totems"></tbody></table></div></div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-forge-totems"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Rerolls</div><button class="add-btn" onclick="openAdd('forge_rerolls')">+ Tambah</button></div>
-        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="a-forge-rerolls"></tbody></table></div></div>
+        <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-forge-rerolls"></tbody></table></div></div>
+        <button class="save-section-btn" onclick="saveAllForge()">💾 Simpan The Forge</button>
       </div>
       <div class="roblox-subpage" id="a-roblox-sub-system">
         <div class="sec-head">
@@ -806,17 +811,33 @@ function saveAllRobux(){
 function renderItems(tbodyId,items,cat){
   document.getElementById(tbodyId).innerHTML=items.map(i=>`<tr><td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td><td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td><td><button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button></td></tr>`).join('');
 }
-function saveAllItems(cat){
+function saveAllFishIt(){
   const d=getData();
-  (d[cat]||[]).forEach(i=>{
-    const n=document.getElementById('n-'+i.id);
-    const h=document.getElementById('h-'+i.id);
-    const s=document.getElementById('s-'+i.id);
-    if(n)i.name=n.value.trim();
-    if(h)i.harga=h.value.trim();
-    if(s)i.stock=parseInt(s.value)||0;
+  ['fishit_shop','fishit_gacha','fishit_emote'].forEach(cat=>{
+    (d[cat]||[]).forEach(i=>{
+      const n=document.getElementById('n-'+i.id);
+      const h=document.getElementById('h-'+i.id);
+      const s=document.getElementById('s-'+i.id);
+      if(n)i.name=n.value.trim();
+      if(h)i.harga=h.value.trim();
+      if(s)i.stock=parseInt(s.value)||0;
+    });
   });
-  saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
+  saveLocalData(d);toast('✅ Fish It disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
+}
+function saveAllForge(){
+  const d=getData();
+  ['forge_passes','forge_totems','forge_rerolls'].forEach(cat=>{
+    (d[cat]||[]).forEach(i=>{
+      const n=document.getElementById('n-'+i.id);
+      const h=document.getElementById('h-'+i.id);
+      const s=document.getElementById('s-'+i.id);
+      if(n)i.name=n.value.trim();
+      if(h)i.harga=h.value.trim();
+      if(s)i.stock=parseInt(s.value)||0;
+    });
+  });
+  saveLocalData(d);toast('✅ The Forge disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 function delItem(cat,id){
   if(!confirm('Hapus item ini?'))return;
