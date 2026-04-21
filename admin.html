@@ -93,6 +93,12 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
 .gh-note{font-size:0.72rem;color:var(--muted);line-height:1.6;margin-top:8px;}
 .gh-note a{color:var(--gold);text-decoration:none;}
 
+/* ALERT BOX */
+.alert-box{padding:10px 14px;border-radius:9px;font-size:0.78rem;font-weight:600;margin-bottom:12px;line-height:1.5;}
+.alert-box.warn{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--amber);}
+.alert-box.err{background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);color:var(--red);}
+.alert-box.ok{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:var(--green);}
+
 /* DASHBOARD */
 .dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
 .dash-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
@@ -403,6 +409,11 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
       <div class="sec-label">Konfigurasi</div>
       <div class="sec-ttl">🔧 Pengaturan</div>
 
+      <!-- ALERT TOKEN -->
+      <div id="token-alert" style="display:none;" class="alert-box warn">
+        ⚠️ <strong>GitHub Token belum diset!</strong> Perubahan data tidak akan tersimpan ke store sebelum token dikonfigurasi. Isi token di bawah ini.
+      </div>
+
       <!-- GitHub Token Config -->
       <div class="gh-config">
         <h4>🔑 GitHub Personal Access Token</h4>
@@ -421,9 +432,13 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
             <input class="finput" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
           </div>
         </div>
-        <button class="d-save" onclick="saveGHConfig()" style="margin-top:10px;">💾 Simpan Konfigurasi</button>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="d-save" onclick="saveGHConfig()" style="flex:1;">💾 Simpan Konfigurasi</button>
+          <button class="d-save" onclick="testGHConnection()" style="flex:0 0 auto;width:auto;padding:12px 16px;background:rgba(245,196,0,0.15);color:var(--gold);">🔍 Test</button>
+        </div>
+        <div id="gh-test-result" style="font-size:0.76rem;margin-top:8px;display:none;"></div>
         <div class="gh-note">
-          Cara buat token: <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> → pilih scope <strong>repo</strong> → Generate. Token hanya perlu dibuat sekali dan disimpan di browser ini.
+          Cara buat token: <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> → pilih scope <strong>repo</strong> (centang) → Generate token. Paste di sini lalu klik Simpan.
         </div>
       </div>
 
@@ -484,15 +499,6 @@ function doLogin() {
 }
 ['inp-u','inp-p'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();}));
 function doLogout(){sessionStorage.removeItem('kwa');location.reload();}
-// SEBELUM (salah):
-if(sessionStorage.getItem('kwa')==='1')initAdmin();
-
-// SESUDAH (benar) — sudah ada, pastikan ini yang ada:
-if(sessionStorage.getItem('kwa')==='1'){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('admin-panel').style.display='block';
-  initAdmin(); // ← ini yang hilang
-}
 
 // =====================================================
 // GITHUB CONFIG
@@ -512,11 +518,63 @@ function saveGHConfig() {
   localStorage.setItem('gh_user',u);
   localStorage.setItem('gh_repo',r);
   localStorage.setItem('gh_token',t);
+  checkTokenAlert();
   toast('✅ Konfigurasi GitHub disimpan!','ok');
 }
 
+// Cek apakah token sudah di-set, tampilkan alert jika belum
+function checkTokenAlert() {
+  const cfg = getGHConfig();
+  const alertEl = document.getElementById('token-alert');
+  if (!cfg.token) {
+    alertEl.style.display = 'block';
+    // Highlight tab pengaturan
+    document.querySelectorAll('.atab')[4].style.color = 'var(--amber)';
+  } else {
+    alertEl.style.display = 'none';
+    document.querySelectorAll('.atab')[4].style.color = '';
+  }
+}
+
+async function testGHConnection() {
+  const cfg = getGHConfig();
+  const resultEl = document.getElementById('gh-test-result');
+  resultEl.style.display = 'block';
+  resultEl.style.color = 'var(--amber)';
+  resultEl.textContent = '⏳ Menghubungkan ke GitHub...';
+
+  if (!cfg.token) {
+    resultEl.style.color = 'var(--red)';
+    resultEl.textContent = '❌ Token kosong! Isi token dulu.';
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${cfg.user}/${cfg.repo}`, {
+      headers: { 'Authorization': `token ${cfg.token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (res.ok) {
+      const repo = await res.json();
+      resultEl.style.color = 'var(--green)';
+      resultEl.textContent = `✅ Berhasil! Repo "${repo.full_name}" ditemukan. Token valid.`;
+    } else if (res.status === 401) {
+      resultEl.style.color = 'var(--red)';
+      resultEl.textContent = '❌ Token tidak valid atau kadaluarsa. Buat token baru di GitHub.';
+    } else if (res.status === 404) {
+      resultEl.style.color = 'var(--red)';
+      resultEl.textContent = `❌ Repo "${cfg.user}/${cfg.repo}" tidak ditemukan. Cek username dan nama repo.`;
+    } else {
+      resultEl.style.color = 'var(--red)';
+      resultEl.textContent = `❌ Error ${res.status}. Coba lagi.`;
+    }
+  } catch(e) {
+    resultEl.style.color = 'var(--red)';
+    resultEl.textContent = '❌ Gagal konek: ' + e.message;
+  }
+}
+
 // =====================================================
-// DATA — baca dari localStorage, fallback ke DEFAULT
+// DATA
 // =====================================================
 const DEFAULT_DATA = {
   robux:[
@@ -553,7 +611,6 @@ const DEFAULT_DATA = {
   ]
 };
 
-let _localData = null;
 let _hasChanges = false;
 
 function getData(){
@@ -562,7 +619,6 @@ function getData(){
 }
 function saveLocalData(d){
   localStorage.setItem('kawara_data',JSON.stringify(d));
-  _localData=d;
   markChanged();
 }
 function getTrx(){try{const d=localStorage.getItem('kawara_trx');if(d)return JSON.parse(d);}catch(e){}return[];}
@@ -575,7 +631,7 @@ function getWH(){return localStorage.getItem('kawara_webhook')||'';}
 function markChanged() {
   _hasChanges = true;
   document.getElementById('save-dot').className = 'save-dot saving';
-  document.getElementById('save-text').textContent = 'Ada perubahan belum tersimpan';
+  document.getElementById('save-text').textContent = 'Ada perubahan belum tersimpan ke GitHub';
   document.getElementById('save-all-btn').disabled = false;
 }
 
@@ -599,31 +655,51 @@ async function saveToGitHub() {
 
   try {
     const d = getData();
-    // Ambil SHA file yang ada dulu (diperlukan GitHub API untuk update)
     const apiUrl = `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/data.json`;
+
+    // Ambil SHA file yang ada (diperlukan untuk update)
     const getRes = await fetch(apiUrl, {
       headers: { 'Authorization': `token ${cfg.token}`, 'Accept': 'application/vnd.github.v3+json' }
     });
-    let sha = null;
-    if(getRes.ok) { const existing = await getRes.json(); sha = existing.sha; }
 
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(d, null, 2))));
-    const body = { message: '🛒 Update data produk - ' + new Date().toLocaleString('id-ID'), content };
+    let sha = null;
+    if(getRes.ok) {
+      const existing = await getRes.json();
+      sha = existing.sha;
+    } else if(getRes.status === 401) {
+      throw new Error('Token tidak valid atau kadaluarsa. Buat token baru di GitHub.');
+    } else if(getRes.status === 404) {
+      // File belum ada, akan dibuat baru (sha = null)
+    } else {
+      throw new Error('Gagal cek file: HTTP ' + getRes.status);
+    }
+
+    // Encode JSON ke base64
+    const jsonStr = JSON.stringify(d, null, 2);
+    const content = btoa(unescape(encodeURIComponent(jsonStr)));
+    const body = {
+      message: '🛒 Update data produk - ' + new Date().toLocaleString('id-ID'),
+      content
+    };
     if(sha) body.sha = sha;
 
     const putRes = await fetch(apiUrl, {
       method: 'PUT',
-      headers: { 'Authorization': `token ${cfg.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+      headers: {
+        'Authorization': `token ${cfg.token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
       body: JSON.stringify(body)
     });
 
     if(putRes.ok) {
       _hasChanges = false;
-      setSaveStatus('ok', '✅ Tersimpan ke GitHub — store akan update otomatis');
-      toast('✅ Data berhasil dipublish!', 'ok');
+      setSaveStatus('ok', '✅ Tersimpan ke GitHub — store akan update dalam ~1 menit');
+      toast('✅ Data berhasil dipublish ke GitHub!', 'ok');
     } else {
       const err = await putRes.json();
-      throw new Error(err.message || 'Gagal simpan');
+      throw new Error(err.message || 'Gagal simpan: HTTP ' + putRes.status);
     }
   } catch(e) {
     setSaveStatus('err', '❌ Gagal: ' + e.message);
@@ -669,16 +745,18 @@ function closeLightbox(){document.getElementById('lightbox-modal').classList.rem
 document.getElementById('lightbox-modal').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox-modal'))closeLightbox();});
 
 // =====================================================
-// INIT
+// INIT — SATU TITIK MASUK YANG BENAR
 // =====================================================
 function initAdmin(){
   const cfg=getGHConfig();
   if(cfg.user)document.getElementById('gh-user').value=cfg.user;
   if(cfg.repo)document.getElementById('gh-repo').value=cfg.repo;
+  // Jangan tampilkan token yang tersimpan (security)
   const wh=getWH();
   if(wh){document.getElementById('wh-input').value=wh;document.getElementById('wh-status').textContent='✅ Webhook aktif';}
+  checkTokenAlert();
   renderAll();
-  setSaveStatus('ok','Sinkron dengan GitHub');
+  setSaveStatus('ok','Data lokal dimuat');
 }
 
 function renderAll(){
@@ -749,7 +827,7 @@ function saveRobux(id){
   d.robux[idx].harga=document.getElementById('rh-'+id).value.trim();
   d.robux[idx].gamepass=document.getElementById('rgp-'+id).value.trim();
   d.robux[idx].stock=parseInt(document.getElementById('rs-'+id).value)||0;
-  saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
+  saveLocalData(d);toast('✅ Disimpan lokal! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 
 // =====================================================
@@ -763,7 +841,7 @@ function saveItem(cat,id){
   arr[idx].name=document.getElementById('n-'+id).value.trim();
   arr[idx].harga=document.getElementById('h-'+id).value.trim();
   arr[idx].stock=parseInt(document.getElementById('s-'+id).value)||0;
-  d[cat]=arr;saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
+  d[cat]=arr;saveLocalData(d);toast('✅ Disimpan lokal! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 function delItem(cat,id){
   if(!confirm('Hapus item ini?'))return;
@@ -832,7 +910,7 @@ function saveSystem(id){
   d.roblox_system[idx].stock=parseInt(document.getElementById('sstock-'+id).value)||99;
   d.roblox_system[idx].desc=document.getElementById('sdesc-'+id).value.trim();
   d.roblox_system[idx].tags=document.getElementById('stags-'+id).value.trim();
-  saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');
+  saveLocalData(d);toast('✅ Disimpan lokal! Klik "Simpan ke GitHub" untuk publish.','ok');
 }
 function delSystem(id){
   if(!confirm('Hapus system ini?'))return;
@@ -879,7 +957,7 @@ function _collectDigitalCard(id,d){
   priceRows.forEach((row,pi)=>{const lbl=document.getElementById(`dpl-${id}-${pi}`);const val=document.getElementById(`dpv-${id}-${pi}`);if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});});
   d.digital[idx].prices=prices;
 }
-function saveDigitalCard(id){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);saveLocalData(d);toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');}
+function saveDigitalCard(id){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);saveLocalData(d);toast('✅ Disimpan lokal! Klik "Simpan ke GitHub" untuk publish.','ok');}
 function delDigitalCard(id){if(!confirm('Hapus layanan ini?'))return;const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));d.digital=d.digital.filter(i=>i.id!==id);saveLocalData(d);renderAll();toast('🗑️ Dihapus!');}
 function addDigitalCard(){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));const n={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi layanan baru.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};d.digital.push(n);saveLocalData(d);renderAll();setTimeout(()=>{const el=document.getElementById('dac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);toast('✅ Ditambahkan!','ok');}
 function addPriceRow(id){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);const idx=d.digital.findIndex(i=>i.id===id);d.digital[idx].prices.push({label:'Label baru',val:'Rp0'});saveLocalData(d);renderAll();}
@@ -951,8 +1029,14 @@ function showRobloxSub(sub,btn){
 // TOAST
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast';if(type===true||type==='err')t.classList.add('err');else if(type==='ok')t.classList.add('ok');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
-// INIT
-if(sessionStorage.getItem('kwa')==='1')initAdmin();
+// =====================================================
+// ENTRY POINT — satu blok, selalu panggil initAdmin()
+// =====================================================
+if(sessionStorage.getItem('kwa')==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('admin-panel').style.display='block';
+  initAdmin();
+}
 </script>
 </body>
 </html>
