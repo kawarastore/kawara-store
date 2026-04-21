@@ -400,7 +400,7 @@ footer a { color: var(--gold); text-decoration: none; }
           <span class="rb-section-arrow open">▼</span>
         </div>
         <div class="rb-section-body">
-          <div class="rtable-wrap"><table class="rtable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th></th></tr></thead><tbody id="robux-tbody"></tbody></table></div>
+          <div class="rtable-wrap"><table class="rtable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th></th></tr></thead><tbody id="robux-tbody"></tbody></table></div>
         </div>
       </div>
       <div class="roblox-section">
@@ -724,12 +724,17 @@ function renderAll() {
 function renderRobux(items) {
   document.getElementById('robux-tbody').innerHTML = items.map(item => {
     const out = item.stock <= 0;
+    const low = !out && item.stock <= 3;
     const key = '_ic_' + item.id;
     _IC[key] = { id: item.id, name: item.robux + ' Robux', harga: item.harga, category: 'Robux Via Gamepass' };
+    const dotClass = out ? 'out' : low ? 'low' : '';
+    const stockTxt = out ? '—' : item.stock >= 99 ? '✓' : item.stock;
+    const stockColor = out ? 'var(--red)' : low ? 'var(--amber)' : 'var(--green)';
     return `<tr onclick="${out ? '' : `openOrder('${key}')`}">
       <td><strong>${item.robux} Rbx</strong></td>
       <td class="price">${item.harga}</td>
       <td class="gp">${item.gamepass}</td>
+      <td style="font-size:0.8rem;font-weight:700;color:${stockColor};">${stockTxt}</td>
       <td><span class="rbadge${out ? ' out' : ''}">${out ? 'Habis' : 'Beli'}</span></td>
     </tr>`;
   }).join('');
