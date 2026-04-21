@@ -549,9 +549,10 @@ footer a { color: var(--gold); text-decoration: none; }
 const GITHUB_USER = 'kawarastore';
 const GITHUB_REPO = 'kawara-store';
 const DATA_FILE   = 'data.json';
-// Pakai GitHub API langsung biar tidak kena CDN cache
+// URL raw untuk baca data (tanpa auth, public)
 const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${DATA_FILE}`;
-const dataUrl = () => `${RAW_URL}?nocache=${Date.now()}&r=${Math.random()}`;
+// Tambah cache buster supaya tidak kena cache browser
+const dataUrl = () => `${RAW_URL}?t=${Date.now()}`;
 // =====================================================
 
 const DEFAULT = {
@@ -654,14 +655,7 @@ async function fetchData(manual = false) {
   setSyncStatus('loading', manual ? 'Memuat ulang...' : 'Memuat data...');
 
   try {
-    const res = await fetch(dataUrl(), {
-  method: 'GET',
-  cache: 'no-store',
-  headers: {
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Pragma': 'no-cache'
-  }
-});
+    const res = await fetch(dataUrl(), { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
     // Merge dengan DEFAULT — kalau field kosong pakai default
@@ -929,8 +923,6 @@ document.querySelectorAll('.overlay').forEach(o => {
   o.addEventListener('click', e => { if (e.target === o) closeModals(); });
 });
 
-  localStorage.removeItem('kawara_cache');
-localStorage.removeItem('kawara_cache_time');
 // =====================================================
 // INIT
 // =====================================================
