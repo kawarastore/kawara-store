@@ -150,6 +150,12 @@
       "name": "Hyper Boat Pack",
       "harga": "95K",
       "stock": 5
+    },
+    {
+      "id": "fishit_shop_1776781371619",
+      "name": "Golden Clockwork",
+      "harga": "85K",
+      "stock": 25
     }
   ],
   "fishit_gacha": [
