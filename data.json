@@ -438,7 +438,7 @@
     {
       "id": "sys1",
       "name": "SAWERIA",
-      "desc": "Efek animasi keren saat donasi masuk,\nNotifikasi otomatis saat donasi diterima,\nTampil nama donatur & nominal donasi,\nSetiap donasi langsung tercatat di Discord,\nSemua konfigurasi terpusat di 1 ModuleScript,\nTidak membebani performa game,\nScript Ini Menggunakan License,",
+      "desc": "• Efek Animasi Keren Saat Donasi Masuk\n• Notifikasi Otomatis Saat Donasi Diterima\n• Tampil Nama Donatur & Nominal Donasi\n• Setiap Donasi Langsung Tercatat di Discord\n• Semua Konfigurasi Terpusat di 1 ModuleScript\n• Tidak Membebani Performa Game\n• Script Ini Menggunakan License",
       "tags": "Saweria,Leaderboard,Effect,Notif,Webhook",
       "harga": "Rp200.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131814694195241/image.png?ex=69e8c4d5&is=69e77355&hm=dcac1403f6e69d9e5ea4e1c651c2c51f341495fe17d574a8c2dd7a230668abdf&=&format=webp&quality=lossless&width=1554&height=874",
@@ -447,7 +447,7 @@
     {
       "id": "sys2",
       "name": "MENU PLAYER ADVANCED",
-      "desc": "Bisa Like Player Lain dan Ada Papan Leaderboardnya,\n Sinkronisasi Animasi Presisi,\nAnimasi Dikontrol Server,\nMaksimal Carry 1/1,\nSistem Request (Terima / Tolak),\nUsername & Display Name,\nBio / Deskripsi Custom,\nScript Bersih & Optimal,\nFile Config Sederhana,\nSetup Animasi Mudah,\nScript Ini Menggunakan License,",
+      "desc": "• Bisa Like Player Lain & Tersedia Papan Leaderboard\n• Sinkronisasi Animasi Presisi\n• Animasi Dikontrol Server\n• Maksimal Carry 1/1\n• Sistem Request (Terima / Tolak)\n• Username & Display Name\n• Bio / Deskripsi Custom\n• Script Bersih & Optimal\n• File Config Sederhana\n• Setup Animasi Mudah\n• Script Ini Menggunakan License",
       "tags": "Dance,Like,Bio,Sync,Carry,Menuplayer,Inspect",
       "harga": "Rp250.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131918008287362/image.png?ex=69e8c4ee&is=69e7736e&hm=a90bdb51be4334d4936668934e5b0ab9cffac22374f4b5616e3d5d87eb61f56d&=&format=webp&quality=lossless&width=1554&height=874",
@@ -456,10 +456,19 @@
     {
       "id": "sys_1776782483188",
       "name": "PRIVATE ROOM",
-      "desc": "Akses Room Lebih Aman & Eksklusif,\nBisa Atur Jumlah Digit Kode Room & Max Player,\nSistem Kode Unik Otomatis,\nAkses Khusus untuk VIP / VVIP,\nCocok untuk Monetisasi Game,\nAdmin Bisa Melihat Kode Semua Room,\nTidak Bisa Interaksi Antar Room,\nTidak Bisa “Nembus” ke Room Lain,\nSetiap Room Menggunakan Map / Place Terpisah,\nBeda Kode beda server,\nLebih Aman dari Exploit / Cheater,\nScript Ringan & Optimal,\nScript Ini Menggunakan License.\n\n🎁 BONUS\n• 10 Animasi Keren Siap Pakai\n• Sudah Include Gaya Cowok & Cewek",
+      "desc": "• Akses Room Lebih Aman & Eksklusif\n• Bisa Atur Jumlah Digit Kode Room & Max Player\n• Sistem Kode Unik Otomatis\n• Akses Khusus untuk VIP / VVIP\n• Cocok untuk Monetisasi Game\n• Admin Bisa Melihat Kode Semua Room\n• Tidak Bisa Interaksi Antar Room\n• Tidak Bisa “Nembus” ke Room Lain\n• Setiap Room Menggunakan Map / Place Terpisah\n• Beda Kode beda Server\n• Lebih Aman dari Exploit / Cheater\n• Script Ringan & Optimal\n• Script Ini Menggunakan License\n\n🎁 BONUS\n• 10 Animasi Keren Siap Pakai\n• Sudah Include Gaya Cowok & Cewek",
       "tags": "PrivateRoom,PanelAdmin,VIP,VVIP",
       "harga": "Rp400.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496132020223348846/image.png?ex=69e8c506&is=69e77386&hm=bab745c234a9d1d74ef2344289697ac26dfb60267173d51222d9663227828cff&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 9999
+    },
+    {
+      "id": "sys_1776783048141",
+      "name": "OVERHEAD",
+      "desc": "• Bisa Custom Text Sesuka Hati\n• Tampilan Rapi & Modern\n• Mudah Diatur Lewat Config\n• Ada Bendera Dan Level\n• Top Leaderboard Level\n• Efek Warna Bergerak (Rainbow)\n• Cocok untuk Role Spesial\n• Bisa Tambah Title Custom\n• Support Title VIP\n• Support Title VVIP\n• Banyak Pilihan Status\n• Tampilan Status di Atas Head\n• Update Real-time\n• Config Mudah Dipahami\n• Ringan & Optimal\n• Script Ini Menggunakan License",
+      "tags": "Overhead,PanelAdmin,TitleCustom,TitleStatus,Level,Bendera,VIP,VVIP",
+      "harga": "Rp100.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496132099168796732/image.png?ex=69e8c519&is=69e77399&hm=c5ecce09f3f1fd92724dc8a542a9e928e8b8215d22ff4974ff8dcf5ee07ee1cd&=&format=webp&quality=lossless&width=1554&height=874",
       "stock": 9999
     }
   ]
