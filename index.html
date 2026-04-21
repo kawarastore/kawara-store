@@ -550,8 +550,8 @@ const GITHUB_USER = 'kawarastore';
 const GITHUB_REPO = 'kawara-store';
 const DATA_FILE   = 'data.json';
 // Pakai GitHub API langsung biar tidak kena CDN cache
-const RAW_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${DATA_FILE}`;
-const dataUrl = () => `${RAW_URL}?t=${Date.now()}`;
+const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${DATA_FILE}`;
+const dataUrl = () => `${RAW_URL}?nocache=${Date.now()}&r=${Math.random()}`;
 // =====================================================
 
 const DEFAULT = {
@@ -655,8 +655,12 @@ async function fetchData(manual = false) {
 
   try {
     const res = await fetch(dataUrl(), {
+  method: 'GET',
   cache: 'no-store',
-  headers: { 'Accept': 'application/vnd.github.v3.raw' }
+  headers: {
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache'
+  }
 });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
@@ -925,6 +929,8 @@ document.querySelectorAll('.overlay').forEach(o => {
   o.addEventListener('click', e => { if (e.target === o) closeModals(); });
 });
 
+  localStorage.removeItem('kawara_cache');
+localStorage.removeItem('kawara_cache_time');
 // =====================================================
 // INIT
 // =====================================================
