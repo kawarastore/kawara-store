@@ -1,1 +1,451 @@
-{}
+{
+  "robux": [
+    {
+      "id": "r1",
+      "robux": 50,
+      "harga": "5k",
+      "gamepass": "72",
+      "stock": 50
+    },
+    {
+      "id": "r2",
+      "robux": 100,
+      "harga": "10k",
+      "gamepass": "143",
+      "stock": 50
+    },
+    {
+      "id": "r3",
+      "robux": 200,
+      "harga": "19k",
+      "gamepass": "286",
+      "stock": 50
+    },
+    {
+      "id": "r4",
+      "robux": 300,
+      "harga": "28k",
+      "gamepass": "429",
+      "stock": 40
+    },
+    {
+      "id": "r5",
+      "robux": 400,
+      "harga": "37k",
+      "gamepass": "572",
+      "stock": 40
+    },
+    {
+      "id": "r6",
+      "robux": 500,
+      "harga": "47k",
+      "gamepass": "715",
+      "stock": 30
+    },
+    {
+      "id": "r7",
+      "robux": 600,
+      "harga": "57k",
+      "gamepass": "858",
+      "stock": 30
+    },
+    {
+      "id": "r8",
+      "robux": 700,
+      "harga": "67k",
+      "gamepass": "1000",
+      "stock": 25
+    },
+    {
+      "id": "r9",
+      "robux": 800,
+      "harga": "77k",
+      "gamepass": "1143",
+      "stock": 25
+    },
+    {
+      "id": "r10",
+      "robux": 900,
+      "harga": "87k",
+      "gamepass": "1286",
+      "stock": 15
+    },
+    {
+      "id": "r11",
+      "robux": 1000,
+      "harga": "97k",
+      "gamepass": "1430",
+      "stock": 15
+    }
+  ],
+  "fishit_shop": [
+    {
+      "id": "fs1",
+      "name": "Rod Skin: Bunny Staff",
+      "harga": "85K",
+      "stock": 10
+    },
+    {
+      "id": "fs2",
+      "name": "Rod Skin: Easter Parasol",
+      "harga": "85K",
+      "stock": 10
+    },
+    {
+      "id": "fs4",
+      "name": "Easter Pack",
+      "harga": "25K",
+      "stock": 10
+    },
+    {
+      "id": "fs5",
+      "name": "VIP + LUCK",
+      "harga": "45K",
+      "stock": 5
+    },
+    {
+      "id": "fs6",
+      "name": "+ Mutations",
+      "harga": "25K",
+      "stock": 5
+    },
+    {
+      "id": "fs7",
+      "name": "Advanced Luck",
+      "harga": "50K",
+      "stock": 5
+    },
+    {
+      "id": "fs8",
+      "name": "Extra Luck",
+      "harga": "25K",
+      "stock": 5
+    },
+    {
+      "id": "fs9",
+      "name": "Double XP",
+      "harga": "18K",
+      "stock": 5
+    },
+    {
+      "id": "fs10",
+      "name": "Mini Hoverboard",
+      "harga": "20K",
+      "stock": 5
+    },
+    {
+      "id": "fs11",
+      "name": "Sell Anywhere",
+      "harga": "30K",
+      "stock": 5
+    },
+    {
+      "id": "fs12",
+      "name": "Small Luck",
+      "harga": "5K",
+      "stock": 5
+    },
+    {
+      "id": "fs13",
+      "name": "Hyper Boat Pack",
+      "harga": "95K",
+      "stock": 5
+    }
+  ],
+  "fishit_gacha": [
+    {
+      "id": "fg1",
+      "name": "Azure Crates — 1x Spin",
+      "harga": "11K",
+      "stock": 100
+    },
+    {
+      "id": "fg2",
+      "name": "Azure Crates — 5x Spin",
+      "harga": "53K",
+      "stock": 50
+    },
+    {
+      "id": "fg3",
+      "name": "Pirate — 1x Spin",
+      "harga": "11K",
+      "stock": 100
+    },
+    {
+      "id": "fg4",
+      "name": "Pirate — 5x Spin",
+      "harga": "53K",
+      "stock": 50
+    },
+    {
+      "id": "fg5",
+      "name": "Elderwood — 1x Spin",
+      "harga": "10K",
+      "stock": 100
+    },
+    {
+      "id": "fg6",
+      "name": "Elderwood — 5x Spin",
+      "harga": "48K",
+      "stock": 50
+    },
+    {
+      "id": "fg7",
+      "name": "Luxury — 1x Spin",
+      "harga": "10K",
+      "stock": 100
+    },
+    {
+      "id": "fg8",
+      "name": "Luxury — 5x Spin",
+      "harga": "48K",
+      "stock": 50
+    }
+  ],
+  "fishit_emote": [
+    {
+      "id": "fe1",
+      "name": "Emote Crates — 1x Spin",
+      "harga": "5K",
+      "stock": 30
+    },
+    {
+      "id": "fe2",
+      "name": "Emote Crates — 5x Spin",
+      "harga": "23K",
+      "stock": 47
+    }
+  ],
+  "forge_passes": [
+    {
+      "id": "fp1",
+      "name": "Fast Forge",
+      "harga": "10K",
+      "stock": 10
+    },
+    {
+      "id": "fp2",
+      "name": "Supporter",
+      "harga": "15K",
+      "stock": 10
+    },
+    {
+      "id": "fp3",
+      "name": "Forge Anywhere",
+      "harga": "20K",
+      "stock": 10
+    },
+    {
+      "id": "fp4",
+      "name": "Better Forge",
+      "harga": "170K",
+      "stock": 10
+    },
+    {
+      "id": "fp5",
+      "name": "Sell Anywhere",
+      "harga": "13K",
+      "stock": 10
+    },
+    {
+      "id": "fp6",
+      "name": "Double Storage",
+      "harga": "8K",
+      "stock": 10
+    }
+  ],
+  "forge_totems": [
+    {
+      "id": "ft1",
+      "name": "XP Totem x3",
+      "harga": "5K",
+      "stock": 10
+    },
+    {
+      "id": "ft2",
+      "name": "Luck Totem x3",
+      "harga": "6K",
+      "stock": 10
+    },
+    {
+      "id": "ft3",
+      "name": "Miner Totem x3",
+      "harga": "6K",
+      "stock": 10
+    },
+    {
+      "id": "ft4",
+      "name": "Warrior Totem x3",
+      "harga": "6K",
+      "stock": 10
+    },
+    {
+      "id": "ft5",
+      "name": "Vitality x3",
+      "harga": "6K",
+      "stock": 10
+    }
+  ],
+  "forge_rerolls": [
+    {
+      "id": "fr1",
+      "name": "Buy 1 Reroll",
+      "harga": "3K",
+      "stock": 99
+    },
+    {
+      "id": "fr2",
+      "name": "Buy 5 Reroll",
+      "harga": "12K",
+      "stock": 99
+    },
+    {
+      "id": "fr3",
+      "name": "Buy 10 Reroll",
+      "harga": "23K",
+      "stock": 99
+    }
+  ],
+  "digital": [
+    {
+      "id": "d1",
+      "icon": "📄",
+      "name": "Convert & Edit PDF",
+      "desc": "Ubah, gabung, pisah, compress, dan edit isi file PDF dengan cepat dan rapi.",
+      "prices": [
+        {
+          "label": "Word ke PDF",
+          "val": "Rp5.000/file"
+        },
+        {
+          "label": "PDF ke Word",
+          "val": "Rp5.000/file"
+        },
+        {
+          "label": "Gabung/Pisah PDF",
+          "val": "Rp5.000/file"
+        },
+        {
+          "label": "Compress PDF",
+          "val": "Rp5.000/file"
+        },
+        {
+          "label": "Edit isi PDF",
+          "val": "Mulai Rp10.000"
+        },
+        {
+          "label": "Excel Database ke Word",
+          "val": "Mulai Rp15.000"
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "icon": "🖼️",
+      "name": "Edit Foto Simple",
+      "desc": "Ganti background, resize, crop, perbaikan HD, dan paket foto lamaran.",
+      "prices": [
+        {
+          "label": "Ganti background",
+          "val": "Rp3.000/foto"
+        },
+        {
+          "label": "Resize & crop",
+          "val": "Rp3.000/foto"
+        },
+        {
+          "label": "Perbaikan HD",
+          "val": "Rp5.000/foto"
+        },
+        {
+          "label": "Paket foto lamaran",
+          "val": "Rp15.000"
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "icon": "✨",
+      "name": "Desain CV & Poster",
+      "desc": "Desain CV menarik siap pakai — sederhana hingga profesional, plus desain poster.",
+      "prices": [
+        {
+          "label": "CV Simpel",
+          "val": "Rp15.000"
+        },
+        {
+          "label": "CV Profesional",
+          "val": "Rp20.000"
+        },
+        {
+          "label": "Poster",
+          "val": "Mulai Rp30.000"
+        }
+      ]
+    },
+    {
+      "id": "d_1776766225642",
+      "icon": "📰",
+      "name": "Desain Feed & Story",
+      "desc": "Jasa pembuatan desain feed & story Instagram yang estetik, konsisten, dan cocok untuk branding maupun jualan.",
+      "prices": [
+        {
+          "label": "Feed 1 Post",
+          "val": "Rp5.000"
+        },
+        {
+          "label": "Paket Feed 6 Post",
+          "val": "Rp25.000"
+        }
+      ]
+    },
+    {
+      "id": "d_1776766462920",
+      "icon": "📝",
+      "name": "Pricelist, Banner & Spanduk",
+      "desc": "Jasa pembuatan desain pricelist, banner, dan spanduk yang menarik, rapi, dan siap digunakan untuk promosi maupun branding.",
+      "prices": [
+        {
+          "label": "Pricelist Sederhana",
+          "val": "Rp10.000"
+        },
+        {
+          "label": "Pricelist Premium",
+          "val": "Rp20.000"
+        },
+        {
+          "label": "Banner",
+          "val": "Rp25.000"
+        },
+        {
+          "label": "Spanduk",
+          "val": "Rp40.000"
+        },
+        {
+          "label": "Paket Usaha (Pricelist + Banner)",
+          "val": "Rp60.000"
+        }
+      ]
+    }
+  ],
+  "roblox_system": [
+    {
+      "id": "sys1",
+      "name": "Saweria System",
+      "desc": "Efek animasi keren saat donasi masuk\nNotifikasi otomatis saat donasi diterima\nTampil nama donatur & nominal donasi\nSetiap donasi langsung tercatat di Discord\nSemua konfigurasi terpusat di 1 ModuleScript\nTidak membebani performa game\nScript Ini Menggunakan License",
+      "tags": "Saweria,Leaderboard,Effect,Notif,Webhook",
+      "harga": "Rp200.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131814694195241/image.png?ex=69e8c4d5&is=69e77355&hm=dcac1403f6e69d9e5ea4e1c651c2c51f341495fe17d574a8c2dd7a230668abdf&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 999
+    },
+    {
+      "id": "sys2",
+      "name": "Dance + Menu player",
+      "desc": "Bisa Like Player Lain dan Ada Papan Leaderboardnya\n Sinkronisasi Animasi Presisi\nAnimasi Dikontrol Server\nMaksimal Carry 1/1\nSistem Request (Terima / Tolak)\nUsername & Display Name\nBio / Deskripsi Custom\nScript Bersih & Optimal\nFile Config Sederhana\nSetup Animasi Mudah\nScript Ini Menggunakan License",
+      "tags": "Dance,Like,Bio,Sync,Carry,Menuplayer,Inspect",
+      "harga": "Rp250.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131918008287362/image.png?ex=69e8c4ee&is=69e7736e&hm=a90bdb51be4334d4936668934e5b0ab9cffac22374f4b5616e3d5d87eb61f56d&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 999
+    }
+  ]
+}
