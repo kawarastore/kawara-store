@@ -437,21 +437,30 @@
   "roblox_system": [
     {
       "id": "sys1",
-      "name": "Saweria System",
-      "desc": "Efek animasi keren saat donasi masuk\nNotifikasi otomatis saat donasi diterima\nTampil nama donatur & nominal donasi\nSetiap donasi langsung tercatat di Discord\nSemua konfigurasi terpusat di 1 ModuleScript\nTidak membebani performa game\nScript Ini Menggunakan License",
+      "name": "SAWERIA",
+      "desc": "Efek animasi keren saat donasi masuk,\nNotifikasi otomatis saat donasi diterima,\nTampil nama donatur & nominal donasi,\nSetiap donasi langsung tercatat di Discord,\nSemua konfigurasi terpusat di 1 ModuleScript,\nTidak membebani performa game,\nScript Ini Menggunakan License,",
       "tags": "Saweria,Leaderboard,Effect,Notif,Webhook",
       "harga": "Rp200.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131814694195241/image.png?ex=69e8c4d5&is=69e77355&hm=dcac1403f6e69d9e5ea4e1c651c2c51f341495fe17d574a8c2dd7a230668abdf&=&format=webp&quality=lossless&width=1554&height=874",
-      "stock": 999
+      "stock": 9999
     },
     {
       "id": "sys2",
-      "name": "Dance + Menu player",
-      "desc": "Bisa Like Player Lain dan Ada Papan Leaderboardnya\n Sinkronisasi Animasi Presisi\nAnimasi Dikontrol Server\nMaksimal Carry 1/1\nSistem Request (Terima / Tolak)\nUsername & Display Name\nBio / Deskripsi Custom\nScript Bersih & Optimal\nFile Config Sederhana\nSetup Animasi Mudah\nScript Ini Menggunakan License",
+      "name": "MENU PLAYER ADVANCED",
+      "desc": "Bisa Like Player Lain dan Ada Papan Leaderboardnya,\n Sinkronisasi Animasi Presisi,\nAnimasi Dikontrol Server,\nMaksimal Carry 1/1,\nSistem Request (Terima / Tolak),\nUsername & Display Name,\nBio / Deskripsi Custom,\nScript Bersih & Optimal,\nFile Config Sederhana,\nSetup Animasi Mudah,\nScript Ini Menggunakan License,",
       "tags": "Dance,Like,Bio,Sync,Carry,Menuplayer,Inspect",
       "harga": "Rp250.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131918008287362/image.png?ex=69e8c4ee&is=69e7736e&hm=a90bdb51be4334d4936668934e5b0ab9cffac22374f4b5616e3d5d87eb61f56d&=&format=webp&quality=lossless&width=1554&height=874",
-      "stock": 999
+      "stock": 9999
+    },
+    {
+      "id": "sys_1776782483188",
+      "name": "PRIVATE ROOM",
+      "desc": "Akses Room Lebih Aman & Eksklusif,\nBisa Atur Jumlah Digit Kode Room & Max Player,\nSistem Kode Unik Otomatis,\nAkses Khusus untuk VIP / VVIP,\nCocok untuk Monetisasi Game,\nAdmin Bisa Melihat Kode Semua Room,\nTidak Bisa Interaksi Antar Room,\nTidak Bisa “Nembus” ke Room Lain,\nSetiap Room Menggunakan Map / Place Terpisah,\nBeda Kode beda server,\nLebih Aman dari Exploit / Cheater,\nScript Ringan & Optimal,\nScript Ini Menggunakan License.\n\n🎁 BONUS\n• 10 Animasi Keren Siap Pakai\n• Sudah Include Gaya Cowok & Cewek",
+      "tags": "PrivateRoom,PanelAdmin,VIP,VVIP",
+      "harga": "Rp400.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496132020223348846/image.png?ex=69e8c506&is=69e77386&hm=bab745c234a9d1d74ef2344289697ac26dfb60267173d51222d9663227828cff&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 9999
     }
   ]
 }
