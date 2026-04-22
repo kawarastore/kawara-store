@@ -221,6 +221,13 @@
           "stock": 3
         }
       ]
+    },
+    {
+      "id": "game_1776873089474",
+      "label": "🚗 CDID",
+      "icon": "🚗",
+      "type": "grid",
+      "items": []
     }
   ],
   "digital_catalogs": [
