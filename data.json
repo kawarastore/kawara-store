@@ -289,13 +289,6 @@
           "stock": 3
         }
       ]
-    },
-    {
-      "id": "dfisch",
-      "label": "🎋 Sambung Kata",
-      "icon": "🎋",
-      "type": "grid",
-      "items": []
     }
   ],
   "digital_catalogs": [
