@@ -417,6 +417,13 @@
           "stock": 10
         }
       ]
+    },
+    {
+      "id": "game_1776873830489",
+      "label": "🤡 Violence District",
+      "icon": "🤡",
+      "type": "grid",
+      "items": []
     }
   ],
   "digital_catalogs": [
