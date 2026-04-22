@@ -450,6 +450,18 @@
           "val": "Rp10.000"
         }
       ]
+    },
+    {
+      "id": "d_1776844270113",
+      "icon": "🎮",
+      "name": "Jasa Roblox",
+      "desc": "Pembuatan & edit script Roblox sesuai request, mulai dari fitur sederhana hingga sistem kompleks.\n\nHarga menyesuaikan tingkat kesulitan (simple – advanced).\nSilakan konsultasi terlebih dahulu sebelum order.",
+      "prices": [
+        {
+          "label": "Jasa Script Roblox",
+          "val": "Konsultasi langsung ke admin"
+        }
+      ]
     }
   ]
 }
