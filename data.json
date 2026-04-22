@@ -65,6 +65,41 @@
           "harga": "48K",
           "gamepass": "715",
           "stock_on": false
+        },
+        {
+          "id": "ri_1776875933130",
+          "robux": 600,
+          "harga": "58K",
+          "gamepass": "858",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776875933759",
+          "robux": 700,
+          "harga": "68K",
+          "gamepass": "1000",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776875934244",
+          "robux": 800,
+          "harga": "78K",
+          "gamepass": "1143",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776875934837",
+          "robux": 900,
+          "harga": "88K",
+          "gamepass": "1286",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776875935438",
+          "robux": 1000,
+          "harga": "98K",
+          "gamepass": "1430",
+          "stock_on": true
         }
       ]
     },
