@@ -405,13 +405,17 @@
     },
     {
       "id": "d_1776843993125",
-      "icon": "📦",
-      "name": "Layanan Baru",
-      "desc": "Deskripsi.",
+      "icon": "✍️",
+      "name": "Jasa Ketik & Rapihin",
+      "desc": "Ketik ulang atau rapikan dokumen jadi lebih rapi dan profesional. Cocok untuk tugas sekolah, makalah, dan laporan.",
       "prices": [
         {
-          "label": "Harga",
-          "val": "Mulai Rp10.000"
+          "label": "Ketik ulang",
+          "val": "Rp3.000 / halaman"
+        },
+        {
+          "label": "Rapihin dokumen",
+          "val": "Rp5.000 – Rp10.000"
         }
       ]
     }
