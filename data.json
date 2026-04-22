@@ -221,7 +221,7 @@
       "id": "fp1",
       "name": "Fast Forge",
       "harga": "10K",
-      "stock": 10
+      "stock": 9
     },
     {
       "id": "fp2",
@@ -233,24 +233,24 @@
       "id": "fp3",
       "name": "Forge Anywhere",
       "harga": "20K",
-      "stock": 10
+      "stock": 8
     },
     {
       "id": "fp4",
       "name": "Better Forge",
-      "harga": "170K",
-      "stock": 10
+      "harga": "17K",
+      "stock": 7
     },
     {
       "id": "fp5",
       "name": "Sell Anywhere",
       "harga": "13K",
-      "stock": 10
+      "stock": 7
     },
     {
       "id": "fp6",
       "name": "Double Storage",
-      "harga": "8K",
+      "harga": "9K",
       "stock": 10
     }
   ],
