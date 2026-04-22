@@ -27,28 +27,32 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
+/* LOGIN */
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;z-index:1;padding:20px;}
 .login-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 22px;width:100%;max-width:360px;backdrop-filter:blur(24px);box-shadow:0 24px 60px rgba(0,0,0,0.7);}
 .login-logo{font-family:'Rajdhani',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
 .login-sub{color:var(--muted);font-size:0.77rem;margin-bottom:22px;}
 .l-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-family:'Outfit',sans-serif;font-size:1rem;outline:none;margin-bottom:10px;transition:border-color 0.2s;-webkit-appearance:none;}
 .l-input:focus{border-color:rgba(245,196,0,0.5);}
-.l-btn{width:100%;padding:13px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;margin-top:4px;min-height:48px;}
+.l-btn{width:100%;padding:13px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;margin-top:4px;box-shadow:0 4px 18px rgba(245,196,0,0.25);min-height:48px;}
 .l-err{color:var(--red);font-size:0.8rem;margin-top:8px;display:none;}
 
+/* LOADING */
 #data-loading{display:none;position:fixed;inset:0;z-index:500;background:rgba(6,4,0,0.95);align-items:center;justify-content:center;flex-direction:column;gap:14px;}
 #data-loading.show{display:flex;}
 .loading-spinner{width:36px;height:36px;border:3px solid rgba(245,196,0,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
 .loading-text{font-size:0.84rem;color:var(--muted);}
 
+/* ADMIN */
 #admin-panel{display:none;position:relative;z-index:1;}
 header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;}
 .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);padding:0 14px;}
 .h-logo{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .h-right{display:flex;align-items:center;gap:8px;}
 .admin-badge{padding:3px 9px;border-radius:20px;font-size:0.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--gold-dim);border:1px solid rgba(245,196,0,0.3);color:var(--gold);}
-.logout{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:600;}
+.logout{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:600;transition:all 0.2s;}
 
+/* STORE CLOSED BANNER */
 .store-closed-banner{background:rgba(231,76,60,0.15);border-bottom:1px solid rgba(231,76,60,0.3);padding:8px 14px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:0.78rem;font-weight:700;color:var(--red);position:sticky;top:var(--nav-h);z-index:198;}
 .store-closed-banner.hidden{display:none;}
 
@@ -67,6 +71,11 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .atab{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.79rem;font-weight:600;padding:11px 14px;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
 .atab.active{color:var(--gold);border-bottom-color:var(--gold);}
 
+.acontent{max-width:1200px;margin:0 auto;padding:16px;width:100%;}
+.apage{display:none;}
+.apage.active{display:block;animation:fadeUp 0.3s ease;}
+
+/* STORE CLOSE TOGGLE */
 .close-store-card{background:var(--card);border:2px solid rgba(231,76,60,0.3);border-radius:14px;padding:20px;margin-bottom:16px;backdrop-filter:blur(12px);}
 .close-store-card.open-state{border-color:rgba(16,185,129,0.3);}
 .close-store-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
@@ -88,15 +97,6 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .panel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;backdrop-filter:blur(16px);}
 .panel h4{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
 
-/* Robux balance panel in admin */
-.robux-balance-admin{background:rgba(245,196,0,0.06);border:1px solid rgba(245,196,0,0.25);border-radius:12px;padding:16px;margin-bottom:14px;}
-.robux-balance-admin h4{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.rba-desc{font-size:0.76rem;color:var(--muted);margin-bottom:12px;line-height:1.6;}
-.rba-row{display:flex;gap:10px;align-items:center;}
-.rba-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(245,196,0,0.3);border-radius:9px;padding:10px 13px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;outline:none;-webkit-appearance:none;}
-.rba-input:focus{border-color:rgba(245,196,0,0.6);}
-.rba-save{padding:10px 16px;background:var(--grad);border:none;border-radius:9px;color:#000;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;white-space:nowrap;}
-
 .ff{display:flex;flex-direction:column;gap:5px;}
 .flbl{font-size:0.64rem;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
 .finput,.fselect,.ftextarea{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:11px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;width:100%;}
@@ -107,6 +107,7 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .form-submit,.save-section-btn,.d-save{width:100%;padding:11px;background:var(--grad);border:none;border-radius:9px;color:#000;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;min-height:44px;margin-bottom:4px;}
 .d-save-ghost{background:rgba(245,196,0,0.12);color:var(--gold);padding:11px;border:1px solid rgba(245,196,0,0.3);border-radius:9px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;min-height:44px;margin-bottom:4px;}
 
+/* Robux table */
 .tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:6px;backdrop-filter:blur(12px);}
 .atable{width:100%;border-collapse:collapse;}
 .atable th{padding:9px 12px;text-align:left;font-size:0.59rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
@@ -117,6 +118,11 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .e-input.xwide{width:100%;min-width:100px;}
 .e-input:focus{border-color:rgba(245,196,0,0.5);}
 
+/* Stock toggle */
+.stock-toggle-btn{padding:4px 12px;border-radius:20px;font-size:0.66rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.stock-toggle-btn.on{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.35);color:var(--green);}
+.stock-toggle-btn.off{background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);color:var(--red);}
+
 .ibtn{background:none;border:none;cursor:pointer;padding:5px 9px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:0.73rem;font-weight:700;transition:all 0.2s;min-height:32px;}
 .ibtn.save{color:var(--green);background:rgba(16,185,129,0.1);}
 .ibtn.del{color:var(--red);background:rgba(231,76,60,0.1);}
@@ -125,12 +131,14 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .subsec-lbl{display:flex;align-items:center;gap:10px;font-size:0.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:18px 0 10px;}
 .subsec-lbl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
 
+/* Game management cards */
 .game-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;backdrop-filter:blur(12px);}
 .game-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
 .game-card-title{display:flex;align-items:center;gap:8px;}
 .game-card-icon-input{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:7px;padding:6px 8px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;width:46px;text-align:center;}
 .game-card-actions{display:flex;gap:6px;}
 
+/* Digital catalog cards */
 .digital-cat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;backdrop-filter:blur(12px);}
 .dc-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
 .dc-title-group{display:flex;align-items:center;gap:8px;}
@@ -149,14 +157,27 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .dc-price-label-inp:focus,.dc-price-val-inp:focus{border-color:rgba(245,196,0,0.5);}
 .del-price-btn{padding:4px 8px;background:rgba(231,76,60,0.08);border:none;border-radius:5px;color:var(--red);cursor:pointer;font-size:0.78rem;flex-shrink:0;}
 .add-price-btn{width:100%;padding:6px;background:rgba(245,196,0,0.06);border:1px dashed rgba(245,196,0,0.2);border-radius:6px;color:var(--gold);font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;margin-top:4px;}
-.add-item-btn{width:100%;padding:9px;background:rgba(245,196,0,0.06);border:1px dashed rgba(245,196,0,0.22);border-radius:8px;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:700;cursor:pointer;margin-top:8px;}
+.add-item-btn{width:100%;padding:9px;background:rgba(245,196,0,0.06);border:1px dashed rgba(245,196,0,0.22);border-radius:8px;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:700;cursor:pointer;margin-top:8px;transition:all 0.2s;}
+.add-item-btn:hover{color:var(--gold);border-color:rgba(245,196,0,0.35);}
 
+/* Robux item rows */
+.robux-item-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid rgba(245,196,0,0.05);}
+.robux-item-row:last-child{border-bottom:none;}
+.ri-label{font-size:0.78rem;color:var(--muted);min-width:70px;flex-shrink:0;}
+
+/* Tabs for game sections */
+.game-sections-wrap{margin-top:10px;}
+.section-item{background:rgba(245,196,0,0.03);border:1px solid var(--border-soft);border-radius:8px;padding:10px;margin-bottom:8px;}
+.section-item-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+
+/* Dashboard */
 .dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
 .dash-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;backdrop-filter:blur(12px);}
 .dash-icon{font-size:1.4rem;margin-bottom:8px;}
 .dash-val{font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;}
 .dash-lbl{font-size:0.72rem;color:var(--muted);margin-top:3px;font-weight:500;}
 
+/* Trx */
 .trx-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px;margin-bottom:8px;}
 .trx-top{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;}
 .trx-info{flex:1;min-width:0;}
@@ -180,7 +201,7 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .revenue-chart h4{font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
 .chart-bars{display:flex;align-items:flex-end;gap:4px;height:80px;padding-bottom:4px;}
 .chart-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;min-width:28px;}
-.chart-bar{width:100%;border-radius:3px 3px 0 0;background:var(--grad);min-height:2px;}
+.chart-bar{width:100%;border-radius:3px 3px 0 0;background:var(--grad);min-height:2px;transition:height 0.3s;}
 .chart-bar-lbl{font-size:0.56rem;color:var(--muted);white-space:nowrap;}
 .recent-list{display:flex;flex-direction:column;gap:8px;}
 .recent-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(255,255,255,0.02);border:1px solid var(--border-soft);border-radius:9px;gap:10px;}
@@ -189,6 +210,7 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .ri-detail{font-size:0.72rem;color:var(--muted);margin-top:2px;}
 .ri-price{font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;flex-shrink:0;}
 
+/* Upload */
 .upload-zone{border:2px dashed var(--border);border-radius:10px;padding:18px 14px;text-align:center;cursor:pointer;background:rgba(255,255,255,0.02);position:relative;}
 .upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .upload-icon{font-size:1.5rem;margin-bottom:5px;}
@@ -197,7 +219,15 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .img-preview-wrap{position:relative;display:inline-block;margin-top:10px;}
 .img-preview{max-width:100%;max-height:140px;border-radius:8px;border:1px solid var(--border);display:block;}
 .img-remove{position:absolute;top:-8px;right:-8px;background:var(--red);border:none;color:#fff;width:22px;height:22px;border-radius:50%;font-size:0.7rem;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.item-preview-bar{display:none;padding:8px 12px;background:rgba(245,196,0,0.06);border:1px solid rgba(245,196,0,0.2);border-radius:8px;margin-top:-6px;margin-bottom:10px;font-size:0.76rem;align-items:center;justify-content:space-between;gap:8px;}
+.item-preview-bar.visible{display:flex;}
+.preview-name{color:var(--text);font-weight:600;}
+.preview-harga{font-family:'Rajdhani',sans-serif;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.preview-stock{color:var(--muted);}
+.stock-deduct-info{display:none;padding:8px 12px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;font-size:0.75rem;color:var(--green);margin-bottom:10px;}
+.stock-deduct-info.visible{display:block;}
 
+/* Sync */
 .sync-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;font-size:0.74rem;font-weight:600;margin-bottom:12px;}
 .sync-badge.synced{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);color:var(--green);}
 .sync-badge.local{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);color:var(--amber);}
@@ -211,6 +241,7 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .alert-box.warn{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--amber);}
 .alert-box.ok{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:var(--green);}
 
+/* Lightbox */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(16px);z-index:400;align-items:flex-end;justify-content:center;}
 .overlay.open{display:flex;}
 .modal{background:#0e0900;border:1px solid var(--border);border-radius:20px 20px 0 0;padding:22px 18px 32px;width:100%;max-width:500px;position:relative;animation:slideUp 0.28s cubic-bezier(0.16,1,0.3,1);max-height:88vh;overflow-y:auto;}
@@ -220,12 +251,13 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .modal-action{width:100%;padding:13px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:6px;min-height:48px;}
 #lightbox-img{max-width:100%;max-height:65vh;border-radius:10px;object-fit:contain;display:block;}
 .empty{text-align:center;color:var(--muted);padding:28px;font-size:0.83rem;}
-.empty-section{text-align:center;padding:20px;color:var(--muted);font-size:0.78rem;border:1px dashed var(--border);border-radius:8px;margin-top:8px;}
 
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:10px;font-size:0.8rem;font-weight:600;backdrop-filter:blur(16px);opacity:0;transition:all 0.28s;z-index:999;pointer-events:none;white-space:nowrap;max-width:calc(100% - 32px);}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 .toast.err{border-color:rgba(231,76,60,0.5);color:var(--red);}
 .toast.ok{border-color:rgba(16,185,129,0.4);color:var(--green);}
+
+.empty-section{text-align:center;padding:20px;color:var(--muted);font-size:0.78rem;border:1px dashed var(--border);border-radius:8px;margin-top:8px;}
 
 @media(min-width:600px){.overlay{align-items:center;padding:20px;}.modal{border-radius:18px;}.modal::before{display:none;}.acontent{padding:18px 20px;}.dash-grid{grid-template-columns:repeat(4,1fr);}}
 </style>
@@ -270,20 +302,20 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
   </div>
   <div class="anav">
     <div class="anav-inner">
-      <button class="atab active" onclick="showAPage('dashboard',this)">Dashboard</button>
-      <button class="atab" onclick="showAPage('trx',this)">Transaksi</button>
-      <button class="atab" onclick="showAPage('roblox',this)">Roblox</button>
-      <button class="atab" onclick="showAPage('digital',this)">Digital</button>
-      <button class="atab" onclick="showAPage('siteinfo',this)">Info Toko</button>
-      <button class="atab" onclick="showAPage('settings',this)">Pengaturan</button>
+      <button class="atab active" onclick="showAPage('dashboard',this)">📊 Dashboard</button>
+      <button class="atab" onclick="showAPage('trx',this)">📋 Transaksi</button>
+      <button class="atab" onclick="showAPage('roblox',this)">🎮 Roblox</button>
+      <button class="atab" onclick="showAPage('digital',this)">💼 Digital</button>
+      <button class="atab" onclick="showAPage('siteinfo',this)">✏️ Info Toko</button>
+      <button class="atab" onclick="showAPage('settings',this)">🔧 Pengaturan</button>
     </div>
   </div>
-  <div class="acontent" style="max-width:1200px;margin:0 auto;padding:16px;width:100%;">
+  <div class="acontent">
 
     <!-- DASHBOARD -->
     <div class="apage active" id="apage-dashboard">
       <div class="sec-label">Overview</div>
-      <div class="sec-ttl">Dashboard</div>
+      <div class="sec-ttl">📊 Dashboard</div>
       <div id="dash-sync-badge"></div>
       <div class="dash-grid">
         <div class="dash-card"><div class="dash-icon">💰</div><div class="dash-val" id="d-total-rev">—</div><div class="dash-lbl">Total Penjualan</div></div>
@@ -298,14 +330,14 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
         <button class="filter-btn" onclick="setFilter('week',this)">Minggu Ini</button>
         <button class="filter-btn" onclick="setFilter('month',this)">Bulan Ini</button>
       </div>
-      <div class="revenue-chart"><h4>Aktivitas Transaksi (7 Hari)</h4><div class="chart-bars" id="chart-bars"></div></div>
-      <div class="panel"><h4>Transaksi Terbaru</h4><div class="recent-list" id="recent-list"></div></div>
+      <div class="revenue-chart"><h4>📈 Aktivitas Transaksi (7 Hari)</h4><div class="chart-bars" id="chart-bars"></div></div>
+      <div class="panel"><h4>🕐 Transaksi Terbaru</h4><div class="recent-list" id="recent-list"></div></div>
     </div>
 
     <!-- TRANSAKSI -->
     <div class="apage" id="apage-trx">
       <div class="sec-label">Kelola</div>
-      <div class="sec-ttl">Transaksi</div>
+      <div class="sec-ttl">📋 Transaksi</div>
       <div class="history-filter" style="margin-bottom:12px;">
         <span class="filter-lbl">Filter:</span>
         <button class="filter-btn active" onclick="setTrxFilter('all',this)">Semua</button>
@@ -314,17 +346,17 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
         <button class="filter-btn" onclick="setTrxFilter('month',this)">Bulan Ini</button>
       </div>
       <div class="panel">
-        <h4>Tambah Transaksi</h4>
+        <h4>➕ Tambah Transaksi</h4>
         <div class="form-grid">
           <div class="ff"><label class="flbl">Username / Nama</label><input class="finput" id="t-user" placeholder="Username..."></div>
-          <div class="ff"><label class="flbl">Item / Deskripsi</label><input class="finput" id="t-cat" placeholder="Nama item..."></div>
+          <div class="ff"><label class="flbl">Item / Deskripsi</label><input class="finput" id="t-cat" placeholder="Nama item yang dibeli..."></div>
         </div>
         <div class="form-grid">
           <div class="ff"><label class="flbl">Total Harga</label><input class="finput" id="t-price" placeholder="misal: 45K"></div>
           <div class="ff"><label class="flbl">Status</label><select class="fselect" id="t-status"><option value="pending">Pending</option><option value="done">Selesai</option></select></div>
         </div>
         <div class="ff" style="margin-bottom:14px;">
-          <label class="flbl">Foto Bukti <span style="color:var(--muted);font-weight:400;text-transform:none;">(opsional)</span></label>
+          <label class="flbl">📸 Foto Bukti <span style="color:var(--muted);font-weight:400;text-transform:none;">(opsional)</span></label>
           <div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
             <input type="file" id="t-bukti-input" accept="image/*" onchange="handleFileSelect(event)">
             <div class="upload-icon">🖼️</div>
@@ -338,7 +370,7 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
             <div style="font-size:0.68rem;color:var(--green);margin-top:4px;" id="bukti-filename"></div>
           </div>
         </div>
-        <button class="form-submit" onclick="addTrx()">Simpan & Kirim ke Discord</button>
+        <button class="form-submit" onclick="addTrx()">📤 Simpan & Kirim ke Discord</button>
       </div>
       <div id="trx-list"></div>
     </div>
@@ -346,20 +378,9 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
     <!-- ROBLOX GAMES -->
     <div class="apage" id="apage-roblox">
       <div class="sec-label">Kelola</div>
-      <div class="sec-ttl">Roblox — Game Categories</div>
-
-      <!-- Robux Balance Input -->
-      <div class="robux-balance-admin">
-        <h4>💎 Saldo Robux Toko</h4>
-        <p class="rba-desc">Tampil di halaman store sebagai info stok Robux yang tersedia. Kosongkan untuk disembunyikan.</p>
-        <div class="rba-row">
-          <input class="rba-input" id="rba-input" type="number" inputmode="numeric" placeholder="0" min="0">
-          <button class="rba-save" onclick="saveRobuxBalance()">💾 Simpan & Publish</button>
-        </div>
-      </div>
-
+      <div class="sec-ttl">🎮 Roblox — Game Categories</div>
       <div class="panel" style="margin-bottom:14px;">
-        <p style="font-size:0.8rem;color:var(--muted);line-height:1.65;">Kelola kategori game dan item. Setiap game bisa punya tipe <strong style="color:var(--gold);">robux_table</strong> atau <strong style="color:var(--gold);">grid</strong>.</p>
+        <p style="font-size:0.8rem;color:var(--muted);line-height:1.65;">Kelola kategori game dan item. Setiap game bisa punya tipe <strong style="color:var(--gold);">robux_table</strong> (tabel robux) atau <strong style="color:var(--gold);">grid</strong> (kartu item). Klik <strong style="color:var(--gold);">💾 Simpan ke GitHub</strong> untuk publish.</p>
       </div>
       <div class="sec-head">
         <div></div>
@@ -371,9 +392,9 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
     <!-- DIGITAL CATALOGS -->
     <div class="apage" id="apage-digital">
       <div class="sec-label">Kelola</div>
-      <div class="sec-ttl">Digital — Katalog Layanan</div>
+      <div class="sec-ttl">💼 Digital — Katalog Layanan</div>
       <div class="panel" style="margin-bottom:14px;">
-        <p style="font-size:0.8rem;color:var(--muted);line-height:1.65;">Buat katalog layanan digital.</p>
+        <p style="font-size:0.8rem;color:var(--muted);line-height:1.65;">Buat katalog layanan digital. Setiap katalog bisa punya sub-tab sendiri di store. Klik <strong style="color:var(--gold);">💾 Simpan ke GitHub</strong> untuk publish.</p>
       </div>
       <div class="sec-head">
         <div></div>
@@ -385,8 +406,9 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
     <!-- SITE INFO -->
     <div class="apage" id="apage-siteinfo">
       <div class="sec-label">Kustomisasi</div>
-      <div class="sec-ttl">Info & Deskripsi Toko</div>
+      <div class="sec-ttl">✏️ Info & Deskripsi Toko</div>
 
+      <!-- STORE CLOSE TOGGLE -->
       <div class="close-store-card" id="close-store-card">
         <div class="close-store-header">
           <div class="close-store-title">🔒 Tutup Store</div>
@@ -395,8 +417,8 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
             <span class="toggle-slider"></span>
           </label>
         </div>
-        <div class="close-store-status open" id="close-store-status-badge">Store BUKA</div>
-        <div class="close-store-desc">Aktifkan untuk menutup store sementara.</div>
+        <div class="close-store-status open" id="close-store-status-badge">Store BUKA — Pengunjung bisa memesan</div>
+        <div class="close-store-desc">Aktifkan untuk menutup store sementara. Pengunjung akan melihat halaman tutup dan tidak bisa menekan tombol apapun.</div>
         <div class="ff">
           <label class="flbl">Pesan Saat Tutup</label>
           <input class="finput" id="closed-message-inp" placeholder="Store sedang tutup sementara...">
@@ -404,7 +426,7 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
       </div>
 
       <div class="panel">
-        <h4>Identitas Toko</h4>
+        <h4>🏪 Identitas Toko</h4>
         <div class="form-grid">
           <div class="ff"><label class="flbl">Hero Badge Text</label><input class="finput" id="si-hero-badge" placeholder="Kawara Store — ..."></div>
           <div class="ff"><label class="flbl">Hero Title</label><input class="finput" id="si-hero-title" placeholder="Jual Beli Item"></div>
@@ -413,22 +435,23 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
           <div class="ff"><label class="flbl">Hero Title Em (Gradient)</label><input class="finput" id="si-hero-title-em" placeholder="Roblox & Jasa Digital"></div>
           <div class="ff"><label class="flbl">Link Discord</label><input class="finput" id="si-discord-link" placeholder="https://discord.gg/..."></div>
         </div>
-        <div class="ff" style="margin-bottom:12px;"><label class="flbl">Hero Description</label><textarea class="ftextarea" id="si-hero-desc"></textarea></div>
-        <div class="ff" style="margin-bottom:12px;"><label class="flbl">Nomor WhatsApp Admin</label><input class="finput" id="si-wa-number" placeholder="628..."></div>
+        <div class="ff" style="margin-bottom:12px;"><label class="flbl">Hero Description</label><textarea class="ftextarea" id="si-hero-desc" placeholder="Deskripsi singkat toko..."></textarea></div>
+        <div class="ff" style="margin-bottom:12px;"><label class="flbl">Nomor WhatsApp Admin (angka saja)</label><input class="finput" id="si-wa-number" placeholder="628..."></div>
       </div>
 
       <div class="panel">
-        <h4>Cara Beli</h4>
-        <div class="ff" style="margin-bottom:12px;"><textarea class="ftextarea" id="si-how-to-buy" style="min-height:80px;"></textarea></div>
+        <h4>📝 Cara Beli</h4>
+        <div class="ff" style="margin-bottom:12px;"><label class="flbl">Teks Cara Beli</label><textarea class="ftextarea" id="si-how-to-buy" style="min-height:80px;" placeholder="1. Pilih item → 2. Klik Beli..."></textarea></div>
       </div>
 
       <div class="panel">
-        <h4>Deskripsi Tambahan</h4>
-        <div class="ff" style="margin-bottom:12px;"><textarea class="ftextarea" id="si-site-desc" style="min-height:80px;"></textarea></div>
+        <h4>📢 Deskripsi Tambahan (Opsional)</h4>
+        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:10px;line-height:1.6;">Tampil di bawah hero di halaman Beranda. Kosongkan untuk disembunyikan.</p>
+        <div class="ff" style="margin-bottom:12px;"><label class="flbl">Deskripsi Website</label><textarea class="ftextarea" id="si-site-desc" style="min-height:80px;" placeholder="Info tambahan tentang toko..."></textarea></div>
       </div>
 
       <div class="panel">
-        <h4>Metode Pembayaran</h4>
+        <h4>💳 Metode Pembayaran</h4>
         <p style="font-size:0.76rem;color:var(--muted);margin-bottom:10px;">Pisahkan dengan koma. Contoh: SeaBank, DANA, GoPay, QRIS</p>
         <div class="ff" style="margin-bottom:12px;"><input class="finput" id="si-payment-methods" placeholder="SeaBank, DANA, GoPay, QRIS"></div>
       </div>
@@ -439,11 +462,11 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
     <!-- SETTINGS -->
     <div class="apage" id="apage-settings">
       <div class="sec-label">Konfigurasi</div>
-      <div class="sec-ttl">Pengaturan</div>
-      <div id="token-alert" style="display:none;" class="alert-box warn">⚠️ <strong>GitHub Token belum diset!</strong></div>
+      <div class="sec-ttl">🔧 Pengaturan</div>
+      <div id="token-alert" style="display:none;" class="alert-box warn">⚠️ <strong>GitHub Token belum diset!</strong> Data tidak akan tersimpan ke GitHub.</div>
       <div class="gh-config">
-        <h4>GitHub Personal Access Token</h4>
-        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:12px;line-height:1.6;">Token disimpan di browser ini saja.</p>
+        <h4>🔑 GitHub Personal Access Token</h4>
+        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:12px;line-height:1.6;">Token disimpan di browser ini saja. <strong style="color:var(--amber);">Wajib diset di setiap device yang dipakai admin.</strong></p>
         <div class="form-grid">
           <div class="ff"><label class="flbl">GitHub Username</label><input class="finput" id="gh-user" placeholder="kawarastore" value="kawarastore"></div>
           <div class="ff"><label class="flbl">Nama Repository</label><input class="finput" id="gh-repo" placeholder="kawara-store" value="kawara-store"></div>
@@ -457,22 +480,24 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
         <div class="gh-note">Cara buat token: <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> → scope <strong>repo</strong> → Generate.</div>
       </div>
       <div class="panel">
-        <h4>Discord Webhook</h4>
+        <h4>📢 Discord Webhook</h4>
+        <p style="color:var(--muted);font-size:0.77rem;margin-bottom:14px;line-height:1.65;">Setiap transaksi baru otomatis terkirim ke channel Discord.</p>
         <input class="finput" id="wh-input" placeholder="https://discord.com/api/webhooks/..." style="margin-bottom:10px;">
         <button class="d-save" onclick="saveWH()">💾 Simpan Webhook</button>
         <div id="wh-status" style="color:var(--muted);font-size:0.74rem;margin-top:8px;"></div>
       </div>
       <div class="panel">
-        <h4>Sinkronisasi Data</h4>
+        <h4>🔄 Sinkronisasi Data</h4>
         <div id="trx-sync-settings-badge" style="margin-bottom:12px;"></div>
         <button class="d-save-ghost" onclick="reloadAllFromGitHub()">🔄 Reload Semua Data dari GitHub</button>
         <div id="trx-fetch-status" style="font-size:0.74rem;color:var(--muted);margin-top:6px;min-height:18px;"></div>
       </div>
     </div>
 
-  </div>
-</div>
+  </div><!-- acontent -->
+</div><!-- admin-panel -->
 
+<!-- LIGHTBOX -->
 <div class="overlay" id="lightbox-modal">
   <div class="modal">
     <button class="mx" onclick="closeLightbox()">✕</button>
@@ -483,90 +508,145 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 <div class="toast" id="toast"></div>
 
 <script>
-const CREDS={user:'kawarastore',pass:'Hanz1247rrr*'};
-function doLogin(){
-  const u=document.getElementById('inp-u').value;
-  const p=document.getElementById('inp-p').value;
-  if(u===CREDS.user&&p===CREDS.pass){sessionStorage.setItem('kwa','1');document.getElementById('login-screen').style.display='none';initAdmin();}
-  else document.getElementById('l-err').style.display='block';
+// =====================================================
+// AUTH
+// =====================================================
+const CREDS = { user: 'kawarastore', pass: 'Hanz1247rrr*' };
+function doLogin() {
+  const u = document.getElementById('inp-u').value;
+  const p = document.getElementById('inp-p').value;
+  if (u === CREDS.user && p === CREDS.pass) {
+    sessionStorage.setItem('kwa', '1');
+    document.getElementById('login-screen').style.display = 'none';
+    initAdmin();
+  } else {
+    document.getElementById('l-err').style.display = 'block';
+  }
 }
-['inp-u','inp-p'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();}));
-function doLogout(){sessionStorage.removeItem('kwa');location.reload();}
+['inp-u','inp-p'].forEach(id => document.getElementById(id).addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); }));
+function doLogout() { sessionStorage.removeItem('kwa'); location.reload(); }
 
-function getGHConfig(){return{user:localStorage.getItem('gh_user')||'kawarastore',repo:localStorage.getItem('gh_repo')||'kawara-store',token:localStorage.getItem('gh_token')||''};}
-function saveGHConfig(){
+// =====================================================
+// GITHUB CONFIG
+// =====================================================
+function getGHConfig() {
+  return { user: localStorage.getItem('gh_user')||'kawarastore', repo: localStorage.getItem('gh_repo')||'kawara-store', token: localStorage.getItem('gh_token')||'' };
+}
+function saveGHConfig() {
   const u=document.getElementById('gh-user').value.trim();
   const r=document.getElementById('gh-repo').value.trim();
   const t=document.getElementById('gh-token').value.trim();
   if(!t){toast('❌ Token tidak boleh kosong!',true);return;}
-  localStorage.setItem('gh_user',u);localStorage.setItem('gh_repo',r);localStorage.setItem('gh_token',t);
-  checkTokenAlert();toast('✅ Konfigurasi tersimpan!','ok');
+  localStorage.setItem('gh_user',u); localStorage.setItem('gh_repo',r); localStorage.setItem('gh_token',t);
+  checkTokenAlert();
+  toast('✅ Konfigurasi tersimpan!','ok');
   setTimeout(()=>reloadAllFromGitHub(),500);
 }
-function checkTokenAlert(){const cfg=getGHConfig();document.getElementById('token-alert').style.display=cfg.token?'none':'block';}
-async function testGHConnection(){
-  const cfg=getGHConfig();const el=document.getElementById('gh-test-result');
-  el.style.display='block';el.style.color='var(--amber)';el.textContent='⏳ Menghubungkan...';
+function checkTokenAlert() {
+  const cfg=getGHConfig();
+  document.getElementById('token-alert').style.display=cfg.token?'none':'block';
+}
+async function testGHConnection() {
+  const cfg=getGHConfig(); const el=document.getElementById('gh-test-result');
+  el.style.display='block'; el.style.color='var(--amber)'; el.textContent='⏳ Menghubungkan...';
   if(!cfg.token){el.style.color='var(--red)';el.textContent='❌ Token kosong!';return;}
-  try{
+  try {
     const res=await fetch(`https://api.github.com/repos/${cfg.user}/${cfg.repo}`,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'}});
-    if(res.ok){const r=await res.json();el.style.color='var(--green)';el.textContent=`✅ Berhasil! Repo "${r.full_name}".`;}
+    if(res.ok){const r=await res.json();el.style.color='var(--green)';el.textContent=`✅ Berhasil! Repo "${r.full_name}" ditemukan.`;}
     else if(res.status===401){el.style.color='var(--red)';el.textContent='❌ Token tidak valid.';}
     else{el.style.color='var(--red)';el.textContent=`❌ Error ${res.status}.`;}
-  }catch(e){el.style.color='var(--red)';el.textContent='❌ '+e.message;}
+  } catch(e){el.style.color='var(--red)';el.textContent='❌ '+e.message;}
 }
 
-const DEFAULT_SITE={
-  store_closed:false,closed_message:'Store sedang tutup sementara. Silakan kembali lagi nanti ya! 🙏',
-  hero_badge:'Kawara Store — Marketplace Terpercaya',hero_title:'Jual Beli Item',hero_title_em:'Roblox & Jasa Digital',
+// =====================================================
+// PRODUCT DATA
+// =====================================================
+const DEFAULT_SITE = {
+  store_closed:false, closed_message:'Store sedang tutup sementara. Silakan kembali lagi nanti ya! 🙏',
+  hero_badge:'Kawara Store — Marketplace Terpercaya', hero_title:'Jual Beli Item', hero_title_em:'Roblox & Jasa Digital',
   hero_desc:'Robux, item game Roblox, dan berbagai layanan digital — semua tersedia.',
-  how_to_buy:'1. Pilih item → 2. Klik "Beli Sekarang" → 3. Isi username → 4. Pilih pembayaran → 5. Hubungi admin.',
-  site_description:'',discord_link:'https://discord.gg/AJBXUbwdhZ',whatsapp_number:'6287720254002',
-  payment_methods:['SeaBank','DANA','GoPay','QRIS'],robux_balance:null,
+  how_to_buy:'1. Pilih item dari tab Roblox atau Digital → 2. Klik "Beli Sekarang" → 3. Isi username Roblox → 4. Pilih metode pembayaran → 5. Hubungi admin via WhatsApp.',
+  site_description:'', discord_link:'https://discord.gg/AJBXUbwdhZ', whatsapp_number:'6287720254002',
+  payment_methods:['SeaBank','DANA','GoPay','QRIS'],
 };
 
-let _prodData=null,_hasChanges=false;
+const DEFAULT_ROBLOX_GAMES = [
+  {id:'robux',label:'💎 Robux via Gamepass',icon:'💎',type:'robux_table',items:[]},
+  {id:'sawaindo',label:'🌾 Sawah Indo',icon:'🌾',type:'grid',items:[]},
+  {id:'indohangout',label:'🏠 Indo Hangout',icon:'🏠',type:'grid',items:[]},
+  {id:'cdi',label:'🗺️ CDI',icon:'🗺️',type:'grid',items:[]},
+  {id:'dfisch',label:'🐟 DFISCH',icon:'🐟',type:'grid',items:[]},
+  {id:'bloxfruit',label:'🍎 Blox Fruit',icon:'🍎',type:'grid',items:[]},
+  {id:'brookhaven',label:'🏙️ Brookhaven',icon:'🏙️',type:'grid',items:[]},
+];
 
-async function fetchProdFromGitHub(){
+const DEFAULT_DIGITAL_CATALOGS = [
+  {id:'digitalcat1',label:'📄 Layanan Dokumen',icon:'📄',items:[]},
+];
+
+let _prodData = null;
+let _hasChanges = false;
+
+async function fetchProdFromGitHub() {
   const cfg=getGHConfig();
-  if(!cfg.token){_prodData={site:{...DEFAULT_SITE},roblox_games:[],digital_catalogs:[]};return false;}
-  try{
-    const res=await fetch(`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/data.json`,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},cache:'no-store'});
+  if(!cfg.token){_prodData={site:{...DEFAULT_SITE},roblox_games:JSON.parse(JSON.stringify(DEFAULT_ROBLOX_GAMES)),digital_catalogs:JSON.parse(JSON.stringify(DEFAULT_DIGITAL_CATALOGS))};return false;}
+  try {
+    const apiUrl=`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/data.json`;
+    const res=await fetch(apiUrl,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},cache:'no-store'});
     if(res.ok){
       const file=await res.json();
       const decoded=decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
       const parsed=JSON.parse(decoded);
-      _prodData={site:Object.assign({},DEFAULT_SITE,parsed.site||{}),roblox_games:parsed.roblox_games||[],digital_catalogs:parsed.digital_catalogs||[]};
+      _prodData={
+        site:Object.assign({},DEFAULT_SITE,parsed.site||{}),
+        roblox_games:(parsed.roblox_games&&parsed.roblox_games.length>0)?parsed.roblox_games:JSON.parse(JSON.stringify(DEFAULT_ROBLOX_GAMES)),
+        digital_catalogs:(parsed.digital_catalogs&&parsed.digital_catalogs.length>0)?parsed.digital_catalogs:JSON.parse(JSON.stringify(DEFAULT_DIGITAL_CATALOGS)),
+      };
       return true;
-    }else if(res.status===404){_prodData={site:{...DEFAULT_SITE},roblox_games:[],digital_catalogs:[]};return true;}
-    else throw new Error('HTTP '+res.status);
-  }catch(e){_prodData={site:{...DEFAULT_SITE},roblox_games:[],digital_catalogs:[]};toast('⚠️ Gagal fetch: '+e.message,true);return false;}
+    } else if(res.status===404){
+      _prodData={site:{...DEFAULT_SITE},roblox_games:JSON.parse(JSON.stringify(DEFAULT_ROBLOX_GAMES)),digital_catalogs:JSON.parse(JSON.stringify(DEFAULT_DIGITAL_CATALOGS))};
+      return true;
+    } else throw new Error('HTTP '+res.status);
+  } catch(e){
+    _prodData={site:{...DEFAULT_SITE},roblox_games:JSON.parse(JSON.stringify(DEFAULT_ROBLOX_GAMES)),digital_catalogs:JSON.parse(JSON.stringify(DEFAULT_DIGITAL_CATALOGS))};
+    toast('⚠️ Gagal fetch data: '+e.message,true); return false;
+  }
 }
 
-function getData(){return _prodData||{site:{...DEFAULT_SITE},roblox_games:[],digital_catalogs:[]};}
+function getData(){return _prodData||{site:{...DEFAULT_SITE},roblox_games:JSON.parse(JSON.stringify(DEFAULT_ROBLOX_GAMES)),digital_catalogs:JSON.parse(JSON.stringify(DEFAULT_DIGITAL_CATALOGS))};}
 
-// TRANSACTIONS
-let _trxData=[],_trxGHSha=null,_trxSyncState='loading';
+// =====================================================
+// TRANSAKSI — GITHUB SYNC
+// =====================================================
+let _trxData=[];
+let _trxGHSha=null;
+let _trxSyncState='loading';
+
 function setTrxSyncState(state,detail){
   _trxSyncState=state;
-  const labels={synced:`<span class="sync-dot-sm"></span> 🌐 Terhubung ke GitHub${detail?` · ${detail}`:''}`,local:`<span class="sync-dot-sm"></span> ⚠️ Hanya tersimpan lokal`,loading:`<span class="sync-dot-sm pulse"></span> ⏳ Memuat...`};
+  const badges=['trx-sync-settings-badge','dash-sync-badge'];
+  const labels={synced:`<span class="sync-dot-sm"></span> 🌐 Terhubung ke GitHub${detail?` · ${detail}`:''}`,local:`<span class="sync-dot-sm"></span> ⚠️ Hanya tersimpan lokal`,loading:`<span class="sync-dot-sm pulse"></span> ⏳ Memuat dari GitHub...`};
   const classes={synced:'synced',local:'local',loading:'loading'};
-  ['trx-sync-settings-badge','dash-sync-badge'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=`<div class="sync-badge ${classes[state]}">${labels[state]}</div>`;});
+  badges.forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=`<div class="sync-badge ${classes[state]}">${labels[state]}</div>`;});
 }
+
 async function fetchTrxFromGitHub(manual=false){
-  const cfg=getGHConfig();const statusEl=document.getElementById('trx-fetch-status');
+  const cfg=getGHConfig(); const statusEl=document.getElementById('trx-fetch-status');
   if(!cfg.token){try{const s=localStorage.getItem('kawara_trx');if(s)_trxData=JSON.parse(s);}catch(e){}setTrxSyncState('local');return;}
   setTrxSyncState('loading');
   try{
-    const res=await fetch(`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/transactions.json`,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},cache:'no-store'});
-    if(res.ok){const file=await res.json();_trxGHSha=file.sha;const decoded=decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));_trxData=JSON.parse(decoded);localStorage.setItem('kawara_trx',JSON.stringify(_trxData));setTrxSyncState('synced',`${_trxData.length} transaksi`);if(statusEl){statusEl.style.color='var(--green)';statusEl.textContent=`✅ ${_trxData.length} transaksi dimuat.`;}}
+    const apiUrl=`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/transactions.json`;
+    const res=await fetch(apiUrl,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},cache:'no-store'});
+    if(res.ok){const file=await res.json();_trxGHSha=file.sha;const decoded=decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));_trxData=JSON.parse(decoded);localStorage.setItem('kawara_trx',JSON.stringify(_trxData));setTrxSyncState('synced',`${_trxData.length} transaksi`);if(statusEl){statusEl.style.color='var(--green)';statusEl.textContent=`✅ ${_trxData.length} transaksi dimuat dari GitHub.`;}}
     else if(res.status===404){_trxData=[];_trxGHSha=null;setTrxSyncState('synced','belum ada data');}
     else throw new Error('HTTP '+res.status);
   }catch(e){try{const s=localStorage.getItem('kawara_trx');if(s)_trxData=JSON.parse(s);}catch(e2){}setTrxSyncState('local');if(manual)toast('❌ '+e.message,true);}
-  renderTrxList();renderDashboard();
+  renderTrxList(); renderDashboard();
 }
+
 async function ghPushFile(filename,content,commitMsg){
-  const cfg=getGHConfig();if(!cfg.token)throw new Error('Token belum diset');
+  const cfg=getGHConfig();
+  if(!cfg.token)throw new Error('Token belum diset');
   const apiUrl=`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${filename}`;
   const getRes=await fetch(apiUrl,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},cache:'no-store'});
   let sha=null;
@@ -577,13 +657,16 @@ async function ghPushFile(filename,content,commitMsg){
   const body={message:commitMsg,content:encoded};if(sha)body.sha=sha;
   const putRes=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`token ${cfg.token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
   if(!putRes.ok){const err=await putRes.json().catch(()=>({}));throw new Error(err.message||'HTTP '+putRes.status);}
-  return (await putRes.json()).content.sha;
+  const result=await putRes.json();return result.content.sha;
 }
 
+// =====================================================
+// SAVE PRODUCT TO GITHUB
+// =====================================================
 function markChanged(){
   _hasChanges=true;
   document.getElementById('save-dot').className='save-dot saving';
-  document.getElementById('save-text').textContent='Ada perubahan belum tersimpan';
+  document.getElementById('save-text').textContent='Ada perubahan belum tersimpan ke GitHub';
   document.getElementById('save-all-btn').disabled=false;
 }
 function setSaveStatus(state,msg){
@@ -594,46 +677,63 @@ function setSaveStatus(state,msg){
 
 async function saveToGitHub(){
   const cfg=getGHConfig();
-  if(!cfg.token){toast('❌ Set GitHub Token dulu!',true);showAPage('settings',document.querySelectorAll('.atab')[5]);return;}
-  const btn=document.getElementById('save-all-btn');btn.disabled=true;btn.textContent='⏳ Menyimpan...';
+  if(!cfg.token){toast('❌ Set GitHub Token dulu di Pengaturan!',true);showAPage('settings',document.querySelectorAll('.atab')[5]);return;}
+  const btn=document.getElementById('save-all-btn'); btn.disabled=true; btn.textContent='⏳ Menyimpan...';
   setSaveStatus('saving','Menyimpan ke GitHub...');
   try{
-    const json=JSON.stringify(getData(),null,2);
-    await ghPushFile('data.json',json,'🛒 Update data - '+new Date().toLocaleString('id-ID'));
-    _hasChanges=false;setSaveStatus('ok','✅ Tersimpan ke GitHub');toast('✅ Dipublish ke GitHub!','ok');
-    updateClosedBanner(getData().site?.store_closed);
-  }catch(e){setSaveStatus('err','❌ '+e.message);toast('❌ '+e.message,true);btn.disabled=false;}
+    const d=getData();
+    const json=JSON.stringify(d,null,2);
+    await ghPushFile('data.json',json,'🛒 Update data produk - '+new Date().toLocaleString('id-ID'));
+    _hasChanges=false;
+    setSaveStatus('ok','✅ Tersimpan ke GitHub');
+    toast('✅ Data dipublish ke GitHub!','ok');
+    // Update closed banner
+    updateClosedBanner(d.site?.store_closed);
+  }catch(e){setSaveStatus('err','❌ Gagal: '+e.message);toast('❌ '+e.message,true);btn.disabled=false;}
   finally{btn.textContent='💾 Simpan ke GitHub';if(_hasChanges)btn.disabled=false;}
 }
+
 async function saveTrxToGitHub(){
   const cfg=getGHConfig();
   if(!cfg.token){localStorage.setItem('kawara_trx',JSON.stringify(_trxData));setTrxSyncState('local');return false;}
   try{
-    const newSha=await ghPushFile('transactions.json',JSON.stringify(_trxData,null,2),'📋 Update transaksi - '+new Date().toLocaleString('id-ID'));
-    _trxGHSha=newSha;localStorage.setItem('kawara_trx',JSON.stringify(_trxData));
-    setTrxSyncState('synced',`${_trxData.length} transaksi`);return true;
-  }catch(e){localStorage.setItem('kawara_trx',JSON.stringify(_trxData));setTrxSyncState('local');toast('⚠️ Tersimpan lokal: '+e.message,true);return false;}
-}
-async function reloadAllFromGitHub(){
-  const el=document.getElementById('trx-fetch-status');
-  if(el){el.style.color='var(--amber)';el.textContent='⏳ Mengambil data...';}
-  setSaveStatus('saving','Memuat...');
-  await fetchProdFromGitHub();await fetchTrxFromGitHub(true);
-  renderProductPanels();renderSiteInfoForm();renderTrxList();renderDashboard();
-  setSaveStatus('ok','✅ Data berhasil dimuat');toast('✅ Data berhasil dimuat!','ok');
+    const json=JSON.stringify(_trxData,null,2);
+    const newSha=await ghPushFile('transactions.json',json,'📋 Update transaksi - '+new Date().toLocaleString('id-ID'));
+    _trxGHSha=newSha; localStorage.setItem('kawara_trx',JSON.stringify(_trxData));
+    setTrxSyncState('synced',`${_trxData.length} transaksi`); return true;
+  }catch(e){localStorage.setItem('kawara_trx',JSON.stringify(_trxData));setTrxSyncState('local');toast('⚠️ Transaksi tersimpan lokal: '+e.message,true);return false;}
 }
 
+async function reloadAllFromGitHub(){
+  const statusEl=document.getElementById('trx-fetch-status');
+  if(statusEl){statusEl.style.color='var(--amber)';statusEl.textContent='⏳ Mengambil semua data dari GitHub...';}
+  setSaveStatus('saving','Memuat dari GitHub...');
+  await fetchProdFromGitHub();
+  await fetchTrxFromGitHub(true);
+  renderProductPanels();
+  renderSiteInfoForm();
+  renderTrxList(); renderDashboard();
+  setSaveStatus('ok','✅ Data berhasil dimuat dari GitHub');
+  toast('✅ Semua data berhasil dimuat dari GitHub!','ok');
+}
+
+// =====================================================
+// INIT
+// =====================================================
 async function initAdmin(){
   document.getElementById('data-loading').classList.add('show');
+  document.getElementById('loading-text').textContent='Mengambil data dari GitHub...';
   const cfg=getGHConfig();
   if(cfg.user)document.getElementById('gh-user').value=cfg.user;
   if(cfg.repo)document.getElementById('gh-repo').value=cfg.repo;
   const wh=getWH();if(wh){document.getElementById('wh-input').value=wh;document.getElementById('wh-status').textContent='✅ Webhook aktif';}
   checkTokenAlert();
-  await fetchProdFromGitHub();await fetchTrxFromGitHub();
-  renderProductPanels();renderSiteInfoForm();
-  setSaveStatus('ok',cfg.token?'✅ Data dimuat':'⚠️ Set token dulu');
-  renderTrxList();renderDashboard();
+  await fetchProdFromGitHub();
+  await fetchTrxFromGitHub();
+  renderProductPanels();
+  renderSiteInfoForm();
+  setSaveStatus('ok',cfg.token?'✅ Data dimuat dari GitHub':'⚠️ Pakai data default — set token dulu');
+  renderTrxList(); renderDashboard();
   updateClosedBanner(_prodData?.site?.store_closed);
   document.getElementById('data-loading').classList.remove('show');
   document.getElementById('admin-panel').style.display='block';
@@ -641,24 +741,13 @@ async function initAdmin(){
 
 function renderProductPanels(){
   if(!_prodData)return;
-  renderRobloxGames(_prodData.roblox_games||[]);
-  renderDigitalCatalogs(_prodData.digital_catalogs||[]);
-  // Set robux balance input
-  const rba=document.getElementById('rba-input');
-  if(rba)rba.value=_prodData.site?.robux_balance||'';
+  renderRobloxGames(_prodData.roblox_games||DEFAULT_ROBLOX_GAMES);
+  renderDigitalCatalogs(_prodData.digital_catalogs||DEFAULT_DIGITAL_CATALOGS);
 }
 
-// ROBUX BALANCE
-function saveRobuxBalance(){
-  if(!_prodData)_prodData={};
-  if(!_prodData.site)_prodData.site={...DEFAULT_SITE};
-  const val=document.getElementById('rba-input').value.trim();
-  _prodData.site.robux_balance=val===''?null:parseInt(val)||null;
-  markChanged();
-  saveToGitHub();
-}
-
-// SITE INFO
+// =====================================================
+// SITE INFO FORM
+// =====================================================
 function renderSiteInfoForm(){
   const s=(_prodData?.site)||DEFAULT_SITE;
   const el=id=>document.getElementById(id);
@@ -675,23 +764,30 @@ function renderSiteInfoForm(){
   el('closed-message-inp').value=s.closed_message||'';
   updateStoreClosedUI(!!s.store_closed);
 }
-function onStoreClosedChange(){updateStoreClosedUI(document.getElementById('store-closed-toggle').checked);}
+
+function onStoreClosedChange(){
+  const closed=document.getElementById('store-closed-toggle').checked;
+  updateStoreClosedUI(closed);
+}
+
 function updateStoreClosedUI(closed){
   const card=document.getElementById('close-store-card');
   const badge=document.getElementById('close-store-status-badge');
   card.className='close-store-card'+(closed?'':' open-state');
   badge.className='close-store-status'+(closed?' closed':' open');
-  badge.textContent=closed?'Store TUTUP':'Store BUKA';
+  badge.textContent=closed?'Store TUTUP — Pengunjung tidak bisa memesan':'Store BUKA — Pengunjung bisa memesan';
   updateClosedBanner(closed);
 }
+
 function updateClosedBanner(closed){
   const banner=document.getElementById('store-closed-banner');
-  if(closed)banner.classList.remove('hidden');else banner.classList.add('hidden');
+  if(closed){banner.classList.remove('hidden');}else{banner.classList.add('hidden');}
 }
+
 function saveSiteInfo(){
   if(!_prodData)_prodData={};
-  const pm=document.getElementById('si-payment-methods').value.split(',').map(s=>s.trim()).filter(Boolean);
-  const curBalance=_prodData.site?.robux_balance??null;
+  const pmStr=document.getElementById('si-payment-methods').value;
+  const pm=pmStr.split(',').map(s=>s.trim()).filter(Boolean);
   _prodData.site={
     store_closed:document.getElementById('store-closed-toggle').checked,
     closed_message:document.getElementById('closed-message-inp').value.trim()||DEFAULT_SITE.closed_message,
@@ -704,17 +800,22 @@ function saveSiteInfo(){
     discord_link:document.getElementById('si-discord-link').value.trim()||DEFAULT_SITE.discord_link,
     whatsapp_number:document.getElementById('si-wa-number').value.replace(/\D/g,'')||DEFAULT_SITE.whatsapp_number,
     payment_methods:pm.length>0?pm:DEFAULT_SITE.payment_methods,
-    robux_balance:curBalance,
   };
-  markChanged();saveToGitHub();
+  markChanged();
+  saveToGitHub();
 }
 
-// ROBLOX GAMES
+// =====================================================
+// ROBLOX GAMES MANAGEMENT
+// =====================================================
 function renderRobloxGames(games){
-  document.getElementById('roblox-games-list').innerHTML=games.map((g,gi)=>renderRobloxGameCard(g,gi)).join('');
+  const container=document.getElementById('roblox-games-list');
+  container.innerHTML=games.map((g,gi)=>renderRobloxGameCard(g,gi)).join('');
 }
+
 function renderRobloxGameCard(game,gi){
   const isRobux=game.type==='robux_table';
+  const itemsHtml=isRobux?renderRobuxItems(game):renderGridItems(game);
   return `<div class="game-card" id="game-card-${game.id}">
     <div class="game-card-header">
       <div class="game-card-title">
@@ -729,29 +830,36 @@ function renderRobloxGameCard(game,gi){
         <button class="ibtn del" onclick="deleteRobloxGame('${game.id}')">🗑️</button>
       </div>
     </div>
-    <div id="g-items-${game.id}">${isRobux?renderRobuxItems(game):renderGridItems(game)}</div>
+    <div id="g-items-${game.id}">${itemsHtml}</div>
     <div style="display:flex;gap:8px;margin-top:10px;">
       <button class="ibtn save" onclick="saveRobloxGame('${game.id}')">💾 Simpan & Publish</button>
       <button class="add-btn" onclick="addItemToGame('${game.id}')" style="font-size:0.72rem;">+ Item</button>
     </div>
   </div>`;
 }
+
 function renderRobuxItems(game){
   const items=game.items||[];
-  if(!items.length)return`<div class="empty-section">Belum ada item. Klik "+ Item".</div>`;
-  return`<div style="overflow-x:auto;"><table class="atable" style="min-width:300px;"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th></th></tr></thead><tbody>
+  if(!items.length) return `<div class="empty-section">Belum ada item robux. Klik "+ Item" untuk menambah.</div>`;
+  return `<div style="overflow-x:auto;"><table class="atable" style="min-width:360px;"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Status</th><th></th></tr></thead><tbody>
     ${items.map(item=>`<tr>
-      <td><input class="e-input" id="ri-rbx-${item.id}" value="${item.robux}" style="width:60px;" inputmode="numeric"></td>
-      <td><input class="e-input" id="ri-h-${item.id}" value="${item.harga}" style="width:65px;"></td>
-      <td><input class="e-input" id="ri-gp-${item.id}" value="${item.gamepass||''}" style="width:70px;"></td>
+      <td><input class="e-input" id="ri-rbx-${item.id}" value="${item.robux}" style="width:60px;" inputmode="numeric" placeholder="100"></td>
+      <td><input class="e-input" id="ri-h-${item.id}" value="${item.harga}" style="width:65px;" placeholder="10K"></td>
+      <td><input class="e-input" id="ri-gp-${item.id}" value="${item.gamepass||''}" style="width:70px;" placeholder="GP ID"></td>
+      <td>
+        <button class="stock-toggle-btn ${item.stock_on!==false?'on':'off'}" id="ri-tog-${item.id}" onclick="toggleRobuxStock('${game.id}','${item.id}',this)">
+          ${item.stock_on!==false?'✅ ON':'❌ OFF'}
+        </button>
+      </td>
       <td><button class="ibtn del" onclick="deleteRobloxItem('${game.id}','${item.id}')">🗑️</button></td>
     </tr>`).join('')}
   </tbody></table></div>`;
 }
+
 function renderGridItems(game){
   const items=game.items||[];
-  if(!items.length)return`<div class="empty-section">Belum ada item. Klik "+ Item".</div>`;
-  return`<div style="overflow-x:auto;"><table class="atable" style="min-width:280px;"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody>
+  if(!items.length) return `<div class="empty-section">Belum ada item. Klik "+ Item" untuk menambah.</div>`;
+  return `<div style="overflow-x:auto;"><table class="atable" style="min-width:280px;"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody>
     ${items.map(item=>`<tr>
       <td style="max-width:160px;"><input class="e-input xwide" id="gi-n-${item.id}" value="${item.name.replace(/"/g,'&quot;')}"></td>
       <td><input class="e-input" id="gi-h-${item.id}" value="${item.harga}" style="width:65px;"></td>
@@ -760,16 +868,35 @@ function renderGridItems(game){
     </tr>`).join('')}
   </tbody></table></div>`;
 }
-function changeGameType(gameId){
-  const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;
-  game.type=document.getElementById('g-type-'+gameId).value;
-  markChanged();renderRobloxGames(d.roblox_games);
+
+function toggleRobuxStock(gameId,itemId,btn){
+  const d=getData();
+  const game=d.roblox_games.find(g=>g.id===gameId); if(!game)return;
+  const item=game.items.find(i=>i.id===itemId); if(!item)return;
+  item.stock_on=item.stock_on===false?true:false;
+  if(item.stock_on===false){btn.className='stock-toggle-btn off';btn.textContent='❌ OFF';}
+  else{btn.className='stock-toggle-btn on';btn.textContent='✅ ON';}
+  markChanged();
 }
+
+function changeGameType(gameId){
+  const d=getData();
+  const game=d.roblox_games.find(g=>g.id===gameId); if(!game)return;
+  const sel=document.getElementById('g-type-'+gameId);
+  game.type=sel.value;
+  markChanged();
+  renderRobloxGames(d.roblox_games);
+}
+
 function saveRobloxGame(gameId){
-  const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;
-  const icon=document.getElementById('g-icon-'+gameId)?.value.trim()||game.icon;
-  const label=document.getElementById('g-label-'+gameId)?.value.trim()||game.label;
-  game.icon=icon;game.label=icon+' '+label;
+  const d=getData();
+  const game=d.roblox_games.find(g=>g.id===gameId); if(!game)return;
+  const iconEl=document.getElementById('g-icon-'+gameId);
+  const labelEl=document.getElementById('g-label-'+gameId);
+  const icon=iconEl?iconEl.value.trim():game.icon;
+  const label=labelEl?labelEl.value.trim():game.label;
+  game.icon=icon; game.label=icon+' '+label;
+
   if(game.type==='robux_table'){
     (game.items||[]).forEach(item=>{
       const rbx=document.getElementById('ri-rbx-'+item.id);
@@ -779,7 +906,7 @@ function saveRobloxGame(gameId){
       if(h)item.harga=h.value.trim();
       if(gp)item.gamepass=gp.value.trim();
     });
-  }else{
+  } else {
     (game.items||[]).forEach(item=>{
       const n=document.getElementById('gi-n-'+item.id);
       const h=document.getElementById('gi-h-'+item.id);
@@ -789,44 +916,67 @@ function saveRobloxGame(gameId){
       if(s)item.stock=parseInt(s.value)||0;
     });
   }
-  markChanged();saveToGitHub();
+  markChanged();
+  saveToGitHub();
 }
+
 function addItemToGame(gameId){
-  const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;
+  const d=getData();
+  const game=d.roblox_games.find(g=>g.id===gameId); if(!game)return;
   if(!game.items)game.items=[];
-  if(game.type==='robux_table')game.items.push({id:'ri_'+Date.now(),robux:100,harga:'10K',gamepass:''});
-  else game.items.push({id:'gi_'+Date.now(),name:'Item Baru',harga:'10K',stock:10});
-  markChanged();renderRobloxGames(d.roblox_games);toast('✅ Item ditambahkan!','ok');
+  if(game.type==='robux_table'){
+    game.items.push({id:'ri_'+Date.now(),robux:100,harga:'10K',gamepass:'',stock_on:true});
+  } else {
+    game.items.push({id:'gi_'+Date.now(),name:'Item Baru',harga:'10K',stock:10});
+  }
+  markChanged();
+  renderRobloxGames(d.roblox_games);
+  toast('✅ Item ditambahkan!','ok');
 }
+
 function deleteRobloxItem(gameId,itemId){
   if(!confirm('Hapus item ini?'))return;
-  const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;
+  const d=getData();
+  const game=d.roblox_games.find(g=>g.id===gameId); if(!game)return;
   game.items=(game.items||[]).filter(i=>i.id!==itemId);
-  markChanged();renderRobloxGames(d.roblox_games);
+  markChanged();
+  renderRobloxGames(d.roblox_games);
 }
+
 function deleteRobloxGame(gameId){
-  if(!confirm('Hapus game ini?'))return;
-  const d=getData();d.roblox_games=d.roblox_games.filter(g=>g.id!==gameId);
-  markChanged();renderRobloxGames(d.roblox_games);saveToGitHub();
+  if(!confirm('Hapus game ini beserta semua itemnya?'))return;
+  const d=getData();
+  d.roblox_games=d.roblox_games.filter(g=>g.id!==gameId);
+  markChanged();
+  renderRobloxGames(d.roblox_games);
+  saveToGitHub();
 }
+
 function addRobloxGame(){
-  const d=getData();if(!d.roblox_games)d.roblox_games=[];
+  const d=getData();
+  if(!d.roblox_games)d.roblox_games=[];
   const newGame={id:'game_'+Date.now(),label:'🎮 Game Baru',icon:'🎮',type:'grid',items:[]};
-  d.roblox_games.push(newGame);markChanged();renderRobloxGames(d.roblox_games);
+  d.roblox_games.push(newGame);
+  markChanged();
+  renderRobloxGames(d.roblox_games);
   setTimeout(()=>{const el=document.getElementById('game-card-'+newGame.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
   toast('✅ Game ditambahkan!','ok');
 }
 
-// DIGITAL CATALOGS
+// =====================================================
+// DIGITAL CATALOGS MANAGEMENT
+// =====================================================
 function renderDigitalCatalogs(cats){
-  document.getElementById('digital-catalogs-list').innerHTML=cats.map((cat,ci)=>renderDigitalCatCard(cat,ci)).join('');
+  const container=document.getElementById('digital-catalogs-list');
+  container.innerHTML=cats.map((cat,ci)=>renderDigitalCatCard(cat,ci)).join('');
 }
+
 function renderDigitalCatCard(cat,ci){
   const itemsHtml=(cat.items||[]).map((item,ii)=>renderDigitalItemRow(cat.id,item,ii)).join('');
   return `<div class="digital-cat-card" id="dcat-${cat.id}">
     <div class="dc-header-row">
       <div class="dc-title-group">
-        <input class="game-card-icon-input" id="dc-icon-${cat.id}" value="${cat.icon}">
+        <input class="game-card-icon-input" id="dc-icon-${cat.id}" value="${cat.icon}" title="Ikon">
         <input class="finput" id="dc-label-${cat.id}" value="${cat.label}" placeholder="Nama katalog..." style="margin-bottom:0;flex:1;">
       </div>
       <div class="game-card-actions">
@@ -838,6 +988,7 @@ function renderDigitalCatCard(cat,ci){
     <button class="add-item-btn" onclick="addDigitalItem('${cat.id}')">+ Tambah Layanan</button>
   </div>`;
 }
+
 function renderDigitalItemRow(catId,item,ii){
   const prices=(item.prices||[]).map((p,pi)=>
     `<div class="dc-price-row" id="dp-${catId}-${item.id}-${pi}">
@@ -846,13 +997,14 @@ function renderDigitalItemRow(catId,item,ii){
       <button class="del-price-btn" onclick="deleteDigitalItemPrice('${catId}','${item.id}',${pi})">✕</button>
     </div>`
   ).join('');
+
   return `<div class="dc-item-row" id="ditem-${catId}-${item.id}">
     <div class="dc-item-row-top">
-      <input class="dc-item-icon-inp" id="di-icon-${catId}-${item.id}" value="${item.icon||'📦'}">
+      <input class="dc-item-icon-inp" id="di-icon-${catId}-${item.id}" value="${item.icon||'📦'}" title="Ikon">
       <input class="dc-item-field" id="di-name-${catId}-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama layanan...">
       <button class="ibtn del" onclick="deleteDigitalItem('${catId}','${item.id}')" style="flex-shrink:0;">🗑️</button>
     </div>
-    <textarea class="dc-item-desc" id="di-desc-${catId}-${item.id}" placeholder="Deskripsi...">${item.desc||''}</textarea>
+    <textarea class="dc-item-desc" id="di-desc-${catId}-${item.id}" placeholder="Deskripsi layanan...">${item.desc||''}</textarea>
     <div class="dc-prices-section">
       <div class="dc-prices-label">Daftar Harga</div>
       <div id="di-prices-${catId}-${item.id}">${prices}</div>
@@ -860,15 +1012,21 @@ function renderDigitalItemRow(catId,item,ii){
     </div>
   </div>`;
 }
+
 function collectDigitalCatalog(catId){
-  const d=getData();const cat=d.digital_catalogs.find(c=>c.id===catId);if(!cat)return;
-  const iconEl=document.getElementById('dc-icon-'+catId);const labelEl=document.getElementById('dc-label-'+catId);
-  if(iconEl)cat.icon=iconEl.value.trim();if(labelEl)cat.label=labelEl.value.trim();
+  const d=getData();
+  const cat=d.digital_catalogs.find(c=>c.id===catId); if(!cat)return;
+  const iconEl=document.getElementById('dc-icon-'+catId);
+  const labelEl=document.getElementById('dc-label-'+catId);
+  if(iconEl)cat.icon=iconEl.value.trim();
+  if(labelEl)cat.label=labelEl.value.trim();
   (cat.items||[]).forEach(item=>{
-    const n=document.getElementById('di-name-'+catId+'-'+item.id);
-    const desc=document.getElementById('di-desc-'+catId+'-'+item.id);
-    const icon=document.getElementById('di-icon-'+catId+'-'+item.id);
-    if(n)item.name=n.value.trim();if(desc)item.desc=desc.value.trim();if(icon)item.icon=icon.value.trim();
+    const nameEl=document.getElementById('di-name-'+catId+'-'+item.id);
+    const descEl=document.getElementById('di-desc-'+catId+'-'+item.id);
+    const iconItemEl=document.getElementById('di-icon-'+catId+'-'+item.id);
+    if(nameEl)item.name=nameEl.value.trim();
+    if(descEl)item.desc=descEl.value.trim();
+    if(iconItemEl)item.icon=iconItemEl.value.trim();
     const priceRows=document.querySelectorAll(`[id^="dp-${catId}-${item.id}-"]`);
     const prices=[];
     priceRows.forEach((row,pi)=>{
@@ -879,44 +1037,79 @@ function collectDigitalCatalog(catId){
     item.prices=prices;
   });
 }
-function saveDigitalCatalog(catId){collectDigitalCatalog(catId);markChanged();saveToGitHub();}
-function deleteDigitalCatalog(catId){
-  if(!confirm('Hapus katalog ini?'))return;
-  const d=getData();d.digital_catalogs=d.digital_catalogs.filter(c=>c.id!==catId);
-  markChanged();renderDigitalCatalogs(d.digital_catalogs);saveToGitHub();
+
+function saveDigitalCatalog(catId){
+  collectDigitalCatalog(catId);
+  markChanged();
+  saveToGitHub();
 }
+
+function deleteDigitalCatalog(catId){
+  if(!confirm('Hapus katalog ini beserta semua layanannya?'))return;
+  const d=getData();
+  d.digital_catalogs=d.digital_catalogs.filter(c=>c.id!==catId);
+  markChanged();
+  renderDigitalCatalogs(d.digital_catalogs);
+  saveToGitHub();
+}
+
 function addDigitalCatalog(){
-  const d=getData();if(!d.digital_catalogs)d.digital_catalogs=[];
+  const d=getData();
+  if(!d.digital_catalogs)d.digital_catalogs=[];
   const newCat={id:'dcat_'+Date.now(),label:'📦 Katalog Baru',icon:'📦',items:[]};
-  d.digital_catalogs.push(newCat);markChanged();renderDigitalCatalogs(d.digital_catalogs);
+  d.digital_catalogs.push(newCat);
+  markChanged();
+  renderDigitalCatalogs(d.digital_catalogs);
   setTimeout(()=>{const el=document.getElementById('dcat-'+newCat.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
   toast('✅ Katalog ditambahkan!','ok');
 }
+
 function addDigitalItem(catId){
-  collectDigitalCatalog(catId);const d=getData();const cat=d.digital_catalogs.find(c=>c.id===catId);if(!cat)return;
+  collectDigitalCatalog(catId);
+  const d=getData();
+  const cat=d.digital_catalogs.find(c=>c.id===catId); if(!cat)return;
   if(!cat.items)cat.items=[];
   cat.items.push({id:'di_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi layanan...',prices:[{label:'Harga',val:'Mulai Rp0'}]});
-  markChanged();renderDigitalCatalogs(d.digital_catalogs);toast('✅ Layanan ditambahkan!','ok');
-}
-function deleteDigitalItem(catId,itemId){
-  if(!confirm('Hapus layanan ini?'))return;
-  collectDigitalCatalog(catId);const d=getData();const cat=d.digital_catalogs.find(c=>c.id===catId);if(!cat)return;
-  cat.items=(cat.items||[]).filter(i=>i.id!==itemId);markChanged();renderDigitalCatalogs(d.digital_catalogs);
-}
-function addDigitalItemPrice(catId,itemId){
-  collectDigitalCatalog(catId);const d=getData();const cat=d.digital_catalogs.find(c=>c.id===catId);if(!cat)return;
-  const item=cat.items.find(i=>i.id===itemId);if(!item)return;
-  if(!item.prices)item.prices=[];item.prices.push({label:'Label',val:'Rp0'});
-  markChanged();renderDigitalCatalogs(d.digital_catalogs);
-}
-function deleteDigitalItemPrice(catId,itemId,pi){
-  collectDigitalCatalog(catId);const d=getData();const cat=d.digital_catalogs.find(c=>c.id===catId);if(!cat)return;
-  const item=cat.items.find(i=>i.id===itemId);if(!item)return;
-  item.prices.splice(pi,1);markChanged();renderDigitalCatalogs(d.digital_catalogs);
+  markChanged();
+  renderDigitalCatalogs(d.digital_catalogs);
+  toast('✅ Layanan ditambahkan!','ok');
 }
 
+function deleteDigitalItem(catId,itemId){
+  if(!confirm('Hapus layanan ini?'))return;
+  collectDigitalCatalog(catId);
+  const d=getData();
+  const cat=d.digital_catalogs.find(c=>c.id===catId); if(!cat)return;
+  cat.items=(cat.items||[]).filter(i=>i.id!==itemId);
+  markChanged();
+  renderDigitalCatalogs(d.digital_catalogs);
+}
+
+function addDigitalItemPrice(catId,itemId){
+  collectDigitalCatalog(catId);
+  const d=getData();
+  const cat=d.digital_catalogs.find(c=>c.id===catId); if(!cat)return;
+  const item=cat.items.find(i=>i.id===itemId); if(!item)return;
+  if(!item.prices)item.prices=[];
+  item.prices.push({label:'Label',val:'Rp0'});
+  markChanged();
+  renderDigitalCatalogs(d.digital_catalogs);
+}
+
+function deleteDigitalItemPrice(catId,itemId,pi){
+  collectDigitalCatalog(catId);
+  const d=getData();
+  const cat=d.digital_catalogs.find(c=>c.id===catId); if(!cat)return;
+  const item=cat.items.find(i=>i.id===itemId); if(!item)return;
+  item.prices.splice(pi,1);
+  markChanged();
+  renderDigitalCatalogs(d.digital_catalogs);
+}
+
+// =====================================================
 // TRANSAKSI
-let _trxFilter='all',dashFilter='all';
+// =====================================================
+let _trxFilter='all', dashFilter='all';
 function filterTrxByPeriod(arr,period){
   const now=new Date();
   return arr.filter(t=>{
@@ -949,9 +1142,10 @@ function renderDashboard(){
 }
 
 function renderTrxList(){
-  const arr=filterTrxByPeriod(_trxData,_trxFilter);const el=document.getElementById('trx-list');
+  const arr=filterTrxByPeriod(_trxData,_trxFilter);
+  const el=document.getElementById('trx-list');
   if(!arr.length){el.innerHTML='<div class="empty">Belum ada transaksi.</div>';return;}
-  el.innerHTML=arr.map(t=>`<div class="trx-card"><div class="trx-top"><div class="trx-info"><div class="trx-user">👤 ${t.username}</div><div class="trx-detail">📦 ${t.category}</div><div class="trx-time">🕐 ${t.time}</div></div>${t.bukti?`<img class="trx-bukti-thumb" src="${t.bukti}" alt="Bukti" onclick="openLightbox('${t.bukti}')">`:''}</div><div class="trx-bottom"><div><div class="trx-price">${t.price}</div><span class="status-badge ${t.status}">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span></div><div class="trx-actions">${t.status!=='done'?`<button class="t-done" onclick="updateTrx('${t.id}','done')">✅ Selesai</button>`:''}<button class="t-del" onclick="delTrx('${t.id}')">Hapus</button></div></div></div>`).join('');
+  el.innerHTML=arr.map(t=>`<div class="trx-card"><div class="trx-top"><div class="trx-info"><div class="trx-user">👤 ${t.username}</div><div class="trx-detail">📦 ${t.category}</div><div class="trx-time">🕐 ${t.time}</div></div>${t.bukti?`<img class="trx-bukti-thumb" src="${t.bukti}" alt="Bukti" onclick="openLightbox('${t.bukti}','Bukti: ${t.username}')">`:''}</div><div class="trx-bottom"><div><div class="trx-price">${t.price}</div><span class="status-badge ${t.status}">${t.status==='done'?'✅ Selesai':'⏳ Pending'}</span></div><div class="trx-actions">${t.status!=='done'?`<button class="t-done" onclick="updateTrx('${t.id}','done')">✅ Selesai</button>`:''}<button class="t-del" onclick="delTrx('${t.id}')">Hapus</button></div></div></div>`).join('');
 }
 
 async function addTrx(){
@@ -964,29 +1158,33 @@ async function addTrx(){
   if(!price){toast('❌ Isi total harga!',true);return;}
   const trx={id:'trx_'+Date.now(),username,category,price,status,time:new Date().toLocaleString('id-ID'),bukti:buktiBase64||null};
   _trxData.unshift(trx);
-  document.getElementById('t-user').value='';document.getElementById('t-cat').value='';document.getElementById('t-price').value='';document.getElementById('t-status').value='pending';removeBukti();
+  document.getElementById('t-user').value=''; document.getElementById('t-cat').value=''; document.getElementById('t-price').value=''; document.getElementById('t-status').value='pending'; removeBukti();
   toast('⏳ Menyimpan...','ok');
-  const ok=await saveTrxToGitHub();
+  const trxOk=await saveTrxToGitHub();
   await sendDiscord(trx);
-  renderTrxList();renderDashboard();
-  toast(ok?'✅ Tersimpan di GitHub!':'⚠️ Tersimpan lokal.',ok?'ok':true);
+  renderTrxList(); renderDashboard();
+  toast(trxOk?'✅ Transaksi tersimpan di GitHub!':'⚠️ Tersimpan lokal.',trxOk?'ok':true);
 }
+
 async function updateTrx(id,status){
   const idx=_trxData.findIndex(t=>t.id===id);if(idx===-1)return;
   _trxData[idx].status=status;renderTrxList();renderDashboard();
   const ok=await saveTrxToGitHub();
-  toast(ok?'✅ Diupdate & sync!':'✅ Diupdate (lokal)','ok');
+  toast(ok?'✅ Status diupdate & sync ke GitHub!':'✅ Status diupdate (lokal)','ok');
 }
+
 async function delTrx(id){
   if(!confirm('Hapus transaksi ini?'))return;
   _trxData=_trxData.filter(t=>t.id!==id);renderTrxList();renderDashboard();
   const ok=await saveTrxToGitHub();
-  toast(ok?'🗑️ Dihapus & sync!':'🗑️ Dihapus (lokal)','ok');
+  toast(ok?'🗑️ Dihapus & sync ke GitHub!':'🗑️ Dihapus (lokal)','ok');
 }
 
+// =====================================================
 // DISCORD
+// =====================================================
 function getWH(){return localStorage.getItem('kawara_webhook')||'';}
-function saveWH(){const url=document.getElementById('wh-input').value.trim();if(!url){toast('❌ Masukkan URL!',true);return;}localStorage.setItem('kawara_webhook',url);document.getElementById('wh-status').textContent='✅ Webhook aktif';toast('✅ Tersimpan!','ok');}
+function saveWH(){const url=document.getElementById('wh-input').value.trim();if(!url){toast('❌ Masukkan URL webhook!',true);return;}localStorage.setItem('kawara_webhook',url);document.getElementById('wh-status').textContent='✅ Webhook aktif';toast('✅ Webhook disimpan!','ok');}
 async function sendDiscord(trx){
   const wh=getWH();if(!wh)return;
   const embed={title:'🛒 Transaksi Baru — Kawara Store',color:0xf5c400,fields:[{name:'👤 Username',value:trx.username,inline:true},{name:'📦 Item',value:trx.category,inline:true},{name:'💰 Harga',value:trx.price,inline:true},{name:'📊 Status',value:trx.status==='done'?'✅ Selesai':'⏳ Pending',inline:true},{name:'🕐 Waktu',value:trx.time,inline:false}],footer:{text:'Kawara Store Admin'}};
@@ -994,11 +1192,13 @@ async function sendDiscord(trx){
     let r;
     if(trx.bukti){const base64Data=trx.bukti.split(',')[1];const mime=trx.bukti.split(';')[0].split(':')[1]||'image/png';const ext=mime.split('/')[1]||'png';const byteChars=atob(base64Data);const byteArr=new Uint8Array(byteChars.length);for(let i=0;i<byteChars.length;i++)byteArr[i]=byteChars.charCodeAt(i);const blob=new Blob([byteArr],{type:mime});const filename=`bukti_${trx.id}.${ext}`;embed.image={url:`attachment://${filename}`};const form=new FormData();form.append('file',blob,filename);form.append('payload_json',JSON.stringify({embeds:[embed]}));r=await fetch(wh,{method:'POST',body:form});}
     else{r=await fetch(wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({embeds:[embed]})});}
-    if(r.ok)toast('✅ Terkirim ke Discord!','ok');else toast('⚠️ Gagal kirim Discord',true);
+    if(r.ok)toast('✅ Terkirim ke Discord!','ok');else toast('⚠️ Gagal kirim Discord ('+r.status+')',true);
   }catch(e){toast('⚠️ '+e.message,true);}
 }
 
+// =====================================================
 // UPLOAD
+// =====================================================
 let buktiBase64=null;
 function handleDragOver(e){e.preventDefault();}
 function handleDrop(e){e.preventDefault();const f=e.dataTransfer.files[0];if(f)processFile(f);}
@@ -1011,10 +1211,13 @@ function processFile(file){
   r.readAsDataURL(file);
 }
 function removeBukti(){buktiBase64=null;document.getElementById('bukti-preview').src='';document.getElementById('bukti-preview-wrap').style.display='none';document.getElementById('upload-zone').style.display='block';document.getElementById('t-bukti-input').value='';}
-function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-modal').classList.add('open');}
+function openLightbox(src,caption){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-modal').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox-modal').classList.remove('open');document.getElementById('lightbox-img').src='';}
 document.getElementById('lightbox-modal').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox-modal'))closeLightbox();});
 
+// =====================================================
+// NAV
+// =====================================================
 function showAPage(page,btn){
   document.querySelectorAll('.apage').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.atab').forEach(b=>b.classList.remove('active'));
@@ -1022,15 +1225,20 @@ function showAPage(page,btn){
   btn.classList.add('active');
   window.scrollTo(0,0);
 }
+
 function toast(msg,type=''){
   const t=document.getElementById('toast');t.textContent=msg;t.className='toast';
   if(type===true||type==='err')t.classList.add('err');else if(type==='ok')t.classList.add('ok');
   t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);
 }
-// apage needs to be queryable
-document.querySelectorAll('.apage').forEach(p=>{});
 
-if(sessionStorage.getItem('kwa')==='1'){document.getElementById('login-screen').style.display='none';initAdmin();}
+// =====================================================
+// ENTRY POINT
+// =====================================================
+if(sessionStorage.getItem('kwa')==='1'){
+  document.getElementById('login-screen').style.display='none';
+  initAdmin();
+}
 </script>
 </body>
 </html>
