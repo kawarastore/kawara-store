@@ -1,467 +1,79 @@
 {
-  "robux": [
+  "site": {
+    "store_closed": true,
+    "closed_message": "Store sedang tutup sementara. Silakan kembali lagi nanti ya! 🙏",
+    "hero_badge": "Kawara Store — Marketplace Terpercaya",
+    "hero_title": "Jual Beli Item",
+    "hero_title_em": "Roblox & Jasa Digital",
+    "hero_desc": "Robux, item game Roblox, dan berbagai layanan digital — semua tersedia.",
+    "how_to_buy": "1. Pilih item dari tab Roblox atau Digital → 2. Klik \"Beli Sekarang\" → 3. Isi username Roblox → 4. Pilih metode pembayaran → 5. Hubungi admin via WhatsApp.",
+    "site_description": "",
+    "discord_link": "https://discord.gg/AJBXUbwdhZ",
+    "whatsapp_number": "6287720254002",
+    "payment_methods": [
+      "SeaBank",
+      "DANA",
+      "GoPay",
+      "QRIS"
+    ]
+  },
+  "roblox_games": [
     {
-      "id": "r1",
-      "robux": 50,
-      "harga": "4K",
-      "gamepass": "72",
-      "stock": 40
+      "id": "robux",
+      "label": "💎 Robux via Gamepass",
+      "icon": "💎",
+      "type": "robux_table",
+      "items": []
     },
     {
-      "id": "r2",
-      "robux": 100,
-      "harga": "9K",
-      "gamepass": "143",
-      "stock": 33
+      "id": "sawaindo",
+      "label": "🌾 Sawah Indo",
+      "icon": "🌾",
+      "type": "grid",
+      "items": []
     },
     {
-      "id": "r3",
-      "robux": 200,
-      "harga": "18K",
-      "gamepass": "286",
-      "stock": 28
+      "id": "indohangout",
+      "label": "🏠 Indo Hangout",
+      "icon": "🏠",
+      "type": "grid",
+      "items": []
     },
     {
-      "id": "r4",
-      "robux": 300,
-      "harga": "28K",
-      "gamepass": "429",
-      "stock": 17
+      "id": "cdi",
+      "label": "🗺️ CDI",
+      "icon": "🗺️",
+      "type": "grid",
+      "items": []
     },
     {
-      "id": "r5",
-      "robux": 400,
-      "harga": "38K",
-      "gamepass": "572",
-      "stock": 15
+      "id": "dfisch",
+      "label": "🐟 DFISCH",
+      "icon": "🐟",
+      "type": "grid",
+      "items": []
     },
     {
-      "id": "r6",
-      "robux": 500,
-      "harga": "48K",
-      "gamepass": "715",
-      "stock": 10
+      "id": "bloxfruit",
+      "label": "🍎 Blox Fruit",
+      "icon": "🍎",
+      "type": "grid",
+      "items": []
     },
     {
-      "id": "r7",
-      "robux": 600,
-      "harga": "58K",
-      "gamepass": "858",
-      "stock": 9
-    },
-    {
-      "id": "r8",
-      "robux": 700,
-      "harga": "68K",
-      "gamepass": "1000",
-      "stock": 7
-    },
-    {
-      "id": "r9",
-      "robux": 800,
-      "harga": "78K",
-      "gamepass": "1143",
-      "stock": 8
-    },
-    {
-      "id": "r10",
-      "robux": 900,
-      "harga": "88K",
-      "gamepass": "1286",
-      "stock": 9
-    },
-    {
-      "id": "r11",
-      "robux": 1000,
-      "harga": "85K",
-      "gamepass": "1430",
-      "stock": 3
+      "id": "brookhaven",
+      "label": "🏙️ Brookhaven",
+      "icon": "🏙️",
+      "type": "grid",
+      "items": []
     }
   ],
-  "fishit_shop": [
+  "digital_catalogs": [
     {
-      "id": "fs1",
-      "name": "Rod Skin: Bunny Staff",
-      "harga": "85K",
-      "stock": 10
-    },
-    {
-      "id": "fs2",
-      "name": "Rod Skin: Easter Parasol",
-      "harga": "85K",
-      "stock": 10
-    },
-    {
-      "id": "fs3",
-      "name": "VIP + LUCK",
-      "harga": "45K",
-      "stock": 10
-    },
-    {
-      "id": "fs4",
-      "name": "Easter Pack",
-      "harga": "25K",
-      "stock": 10
-    },
-    {
-      "id": "fs5",
-      "name": "Advanced Luck",
-      "harga": "50K",
-      "stock": 10
-    },
-    {
-      "id": "fs6",
-      "name": "Extra Luck",
-      "harga": "25K",
-      "stock": 10
-    },
-    {
-      "id": "fs7",
-      "name": "Double XP",
-      "harga": "18K",
-      "stock": 10
-    },
-    {
-      "id": "fs8",
-      "name": "Mini Hoverboard",
-      "harga": "20K",
-      "stock": 10
-    },
-    {
-      "id": "fs9",
-      "name": "Sell Anywhere",
-      "harga": "30K",
-      "stock": 10
-    },
-    {
-      "id": "fs10",
-      "name": "Small Luck",
-      "harga": "5K",
-      "stock": 10
-    },
-    {
-      "id": "fs11",
-      "name": "Hyper Boat Pack",
-      "harga": "95K",
-      "stock": 10
-    },
-    {
-      "id": "fishit_shop_1776842551331",
-      "name": "Rod Golden Clockwork",
-      "harga": "85k",
-      "stock": 18
-    }
-  ],
-  "fishit_gacha": [
-    {
-      "id": "fg1",
-      "name": "Azure Crates — 1x Spin",
-      "harga": "10K",
-      "stock": 15
-    },
-    {
-      "id": "fg2",
-      "name": "Azure Crates — 5x Spin",
-      "harga": "50K",
-      "stock": 8
-    },
-    {
-      "id": "fg3",
-      "name": "Pirate — 1x Spin",
-      "harga": "10K",
-      "stock": 15
-    },
-    {
-      "id": "fg4",
-      "name": "Pirate — 5x Spin",
-      "harga": "50K",
-      "stock": 8
-    },
-    {
-      "id": "fg5",
-      "name": "Elderwood — 1x Spin",
-      "harga": "10K",
-      "stock": 15
-    },
-    {
-      "id": "fg6",
-      "name": "Elderwood — 5x Spin",
-      "harga": "45K",
-      "stock": 8
-    },
-    {
-      "id": "fg7",
-      "name": "Luxury — 1x Spin",
-      "harga": "10K",
-      "stock": 15
-    },
-    {
-      "id": "fg8",
-      "name": "Luxury — 5x Spin",
-      "harga": "45K",
-      "stock": 8
-    }
-  ],
-  "fishit_emote": [
-    {
-      "id": "fe1",
-      "name": "Emote Crates — 1x Spin",
-      "harga": "5K",
-      "stock": 23
-    },
-    {
-      "id": "fe2",
-      "name": "Emote Crates — 5x Spin",
-      "harga": "23K",
-      "stock": 18
-    }
-  ],
-  "forge_passes": [
-    {
-      "id": "fp1",
-      "name": "Fast Forge",
-      "harga": "10K",
-      "stock": 9
-    },
-    {
-      "id": "fp2",
-      "name": "Supporter",
-      "harga": "15K",
-      "stock": 10
-    },
-    {
-      "id": "fp3",
-      "name": "Forge Anywhere",
-      "harga": "20K",
-      "stock": 8
-    },
-    {
-      "id": "fp4",
-      "name": "Better Forge",
-      "harga": "17K",
-      "stock": 7
-    },
-    {
-      "id": "fp5",
-      "name": "Sell Anywhere",
-      "harga": "13K",
-      "stock": 7
-    },
-    {
-      "id": "fp6",
-      "name": "Double Storage",
-      "harga": "9K",
-      "stock": 10
-    }
-  ],
-  "forge_totems": [
-    {
-      "id": "ft1",
-      "name": "XP Totem x3",
-      "harga": "5K",
-      "stock": 10
-    },
-    {
-      "id": "ft2",
-      "name": "Luck Totem x3",
-      "harga": "6K",
-      "stock": 10
-    },
-    {
-      "id": "ft3",
-      "name": "Miner Totem x3",
-      "harga": "6K",
-      "stock": 10
-    },
-    {
-      "id": "ft4",
-      "name": "Warrior Totem x3",
-      "harga": "6K",
-      "stock": 10
-    },
-    {
-      "id": "ft5",
-      "name": "Vitality x3",
-      "harga": "6K",
-      "stock": 10
-    }
-  ],
-  "forge_rerolls": [
-    {
-      "id": "fr1",
-      "name": "Buy 1 Reroll",
-      "harga": "3K",
-      "stock": 99
-    },
-    {
-      "id": "fr2",
-      "name": "Buy 5 Reroll",
-      "harga": "12K",
-      "stock": 99
-    },
-    {
-      "id": "fr3",
-      "name": "Buy 10 Reroll",
-      "harga": "23K",
-      "stock": 99
-    }
-  ],
-  "roblox_system": [
-    {
-      "id": "sys1",
-      "name": "SAWERIA SYSTEM",
-      "desc": "efek donasi keren langsung muncul di game, notifikasi real-time lengkap dengan nama & nominal, serta auto log ke Discord via webhook. Setup super mudah (1 ModuleScript), ringan, rapi, dan siap pakai di berbagai map.",
-      "tags": "Roblox,Donate,System,Saweria,Webhook,Discord,AdminPanel,Script,Lua,GameDev,Effect,Notification,Tools,Automation",
-      "harga": "Rp200.000",
-      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131872801947679/image.png?ex=69e96da3&is=69e81c23&hm=ca59e361a7419f7d873b1e185fc5fbb3e891335a61883af847f2956f24d7318e&=&format=webp&quality=lossless&width=1554&height=874",
-      "stock": 998
-    },
-    {
-      "id": "sys_1776843105995",
-      "name": "PRIVATE ROOM SYSTEM",
-      "desc": "buat & masuk room dengan kode unik, aman dari exploit karena tiap room terpisah. Support VIP/VVIP untuk monetisasi, admin bisa monitoring semua room, dan UI modern (PC & Mobile).\n\nSetup mudah, ringan, dan fully customizable. Bonus 10 animasi siap pakai.",
-      "tags": "Roblox,PrivateRoom,RoomSystem,GameSystem,Script,Lua,Multiplayer,VIP,VVIP,Admin,Security,AntiCheat,UI,GameDev,Tools",
-      "harga": "Rp400.000",
-      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496135509510983710/image.png?ex=69e97106&is=69e81f86&hm=3c944f26c89b5b21e54f4bc64557e363312e0e7bdf61cbe4c24e5108cf731fe1&=&format=webp&quality=lossless&width=1554&height=874",
-      "stock": 999
-    },
-    {
-      "id": "sys_1776843210176",
-      "name": "LIKE + SYNC DANCE SYSTEM",
-      "desc": "fitur like dengan leaderboard real-time, dance bareng sinkron, carry system (gendong) dengan request, dan profil player lengkap. UI modern dark mode, smooth, dan nyaman di PC & Mobile.\n\nRingan, anti-spam, mudah di-setup, dan fully customizable.",
-      "tags": "Roblox,PlayerMenu,LikeSystem,DanceSystem,CarrySystem,ProfileSystem,UI,Script,Lua,Multiplayer,GameDev,Social,Tools",
-      "harga": "Rp250.000",
-      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131918008287362/image.png?ex=69e96dae&is=69e81c2e&hm=e5ae1f537b8c73690be0609c4de0e8c8ce2f0ad6ac5daad1b6a9f87e688f88ab&=&format=webp&quality=lossless&width=1554&height=874",
-      "stock": 999
-    },
-    {
-      "id": "sys_1776843315347",
-      "name": "OVERHEAD SYSTEM",
-      "desc": "tampilkan nama, title, status, bendera & level di atas player dengan desain modern. Support custom text, multi-line, efek rainbow untuk role spesial, dan update real-time.\n\nRingan, fleksibel, mudah diatur lewat config, dan cocok untuk semua tema game.",
-      "tags": "Roblox,Overhead,System,Title,Status,Level,UI,Script,Lua,GameDev,Customization,Display,Tools",
-      "harga": "Rp100.000",
-      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496132099168796732/image.png?ex=69e96dd9&is=69e81c59&hm=b5d0732f42ae7e477297ab5f460f7493e307535a7964909ec14f065ae1c848fe&=&format=webp&quality=lossless&width=1554&height=874",
-      "stock": 999
-    },
-    {
-      "id": "sys_1776843402291",
-      "name": "COMMAND BAR SYSTEM",
-      "desc": "UI modern bisa di-drag, autocomplete pintar, dan command VIP/VVIP yang aman dari exploit. Support warna (preview langsung), custom clothing pakai Asset ID, resize karakter, dan smooth refresh tanpa teleport.\n\nSetup super mudah (1 ModuleScript), ringan, dan fully customizable.",
-      "tags": "Roblox,CommandBar,Admin,System,Script,Lua,UI,GameDev,Tools,VIP,VVIP,Commands,Customization",
-      "harga": "Rp80.000",
-      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496414905333448774/image.png?ex=69e9cc7b&is=69e87afb&hm=51d3aa0b6f3136f04c0973a3f1f73fb1e97c051255c02bdc193b3b0fb773e935&=&format=webp&quality=lossless&width=1554&height=874",
-      "stock": 999
-    },
-    {
-      "id": "sys_1776843581682",
-      "name": "ANIMATION 18+",
-      "desc": "10 animasi siap pakai dengan berbagai gaya (cowok & cewek). Cocok untuk nambah variasi ekspresi & interaksi di game kamu.\n\nMudah dipakai, ringan, dan siap langsung digunakan.",
-      "tags": "Roblox,CustomAnimation,EmoteSystem,CharacterAnimation,GameAssets,AnimationPack,GameScript,DevTools,PlayerInteraction",
-      "harga": "Rp150.000",
-      "thumb": "",
-      "stock": 999
-    }
-  ],
-  "digital": [
-    {
-      "id": "d1",
+      "id": "digitalcat1",
+      "label": "📄 Layanan Dokumen",
       "icon": "📄",
-      "name": "Convert & Edit PDF",
-      "desc": "Ubah, gabung, pisah, compress, dan edit file PDF dengan cepat & rapi. Cocok untuk tugas, dokumen kerja, dan kebutuhan sehari-hari.",
-      "prices": [
-        {
-          "label": "Word → PDF",
-          "val": "Rp3.000/file"
-        },
-        {
-          "label": "PDF → Word",
-          "val": "Rp5.000/file"
-        },
-        {
-          "label": "Edit / Rapihin PDF",
-          "val": "Mulai Rp10.000"
-        }
-      ]
-    },
-    {
-      "id": "d_1776843826849",
-      "icon": "🎨",
-      "name": "Desain Simpel",
-      "desc": "Jasa desain cepat untuk poster, feed Instagram, banner, dan thumbnail. Desain clean, menarik, dan siap pakai untuk kebutuhan online.",
-      "prices": [
-        {
-          "label": "Poster / Feed IG",
-          "val": "Rp10.000"
-        },
-        {
-          "label": "Banner / Spanduk",
-          "val": "Rp15.000"
-        },
-        {
-          "label": "Thumbnail YouTube",
-          "val": "Rp10.000"
-        }
-      ]
-    },
-    {
-      "id": "d_1776843993125",
-      "icon": "✍️",
-      "name": "Jasa Ketik & Rapihin",
-      "desc": "Ketik ulang atau rapikan dokumen jadi lebih rapi dan profesional. Cocok untuk tugas sekolah, makalah, dan laporan.",
-      "prices": [
-        {
-          "label": "Ketik ulang",
-          "val": "Rp3.000 / halaman"
-        },
-        {
-          "label": "Rapihin dokumen",
-          "val": "Rp5.000 – Rp10.000"
-        }
-      ]
-    },
-    {
-      "id": "d_1776844155584",
-      "icon": "🖼️",
-      "name": "Jasa Logo Simpel",
-      "desc": "Pembuatan logo simpel untuk nama, brand, atau komunitas. Desain clean dan cocok untuk berbagai kebutuhan.",
-      "prices": [
-        {
-          "label": "Logo nama / komunitas",
-          "val": "Rp10.000 – Rp20.000"
-        }
-      ]
-    },
-    {
-      "id": "d_1776844203707",
-      "icon": "📸",
-      "name": "Edit Foto",
-      "desc": "Edit foto jadi lebih HD, hapus background, dan tambah efek keren seperti hujan, glow, dan lainnya.",
-      "prices": [
-        {
-          "label": "HD / 4K",
-          "val": "Rp5.000"
-        },
-        {
-          "label": "Hapus background",
-          "val": "Rp5.000"
-        },
-        {
-          "label": "Tambah efek (hujan, glow, dll)",
-          "val": "Rp10.000"
-        }
-      ]
-    },
-    {
-      "id": "d_1776844270113",
-      "icon": "🎮",
-      "name": "Jasa Roblox",
-      "desc": "Pembuatan & edit script Roblox sesuai request, mulai dari fitur sederhana hingga sistem kompleks.\n\nHarga menyesuaikan tingkat kesulitan (simple – advanced).\nSilakan konsultasi terlebih dahulu sebelum order.",
-      "prices": [
-        {
-          "label": "Jasa Script Roblox",
-          "val": "Konsultasi langsung ke admin"
-        }
-      ]
+      "items": []
     }
   ]
 }
