@@ -159,7 +159,68 @@
       "label": "🏠 Indo Hangout",
       "icon": "🏠",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776872295043",
+          "name": "Starter Tools",
+          "harga": "19K",
+          "stock": 11
+        },
+        {
+          "id": "gi_1776872295737",
+          "name": "2x Speed",
+          "harga": "19K",
+          "stock": 14
+        },
+        {
+          "id": "gi_1776872296293",
+          "name": "2x Jump",
+          "harga": "19K",
+          "stock": 13
+        },
+        {
+          "id": "gi_1776872296771",
+          "name": "Customize Display Name",
+          "harga": "22K",
+          "stock": 5
+        },
+        {
+          "id": "gi_1776872297311",
+          "name": "VIP",
+          "harga": "40K",
+          "stock": 5
+        },
+        {
+          "id": "gi_1776872297841",
+          "name": "Duck Boat",
+          "harga": "170K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872298328",
+          "name": "Balloon",
+          "harga": "170K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872298808",
+          "name": "Radio",
+          "harga": "255K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872299400",
+          "name": "Sendal Mertua",
+          "harga": "340K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872300538",
+          "name": "Motor Terbang",
+          "harga": "515K",
+          "stock": 3
+        }
+      ]
     },
     {
       "id": "cdi",
