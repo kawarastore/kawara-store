@@ -342,6 +342,15 @@
       "harga": "Rp100.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496132099168796732/image.png?ex=69e96dd9&is=69e81c59&hm=b5d0732f42ae7e477297ab5f460f7493e307535a7964909ec14f065ae1c848fe&=&format=webp&quality=lossless&width=1554&height=874",
       "stock": 999
+    },
+    {
+      "id": "sys_1776843402291",
+      "name": "COMMAND BAR SYSTEM",
+      "desc": "UI modern bisa di-drag, autocomplete pintar, dan command VIP/VVIP yang aman dari exploit. Support warna (preview langsung), custom clothing pakai Asset ID, resize karakter, dan smooth refresh tanpa teleport.\n\nSetup super mudah (1 ModuleScript), ringan, dan fully customizable.",
+      "tags": "Roblox,CommandBar,Admin,System,Script,Lua,UI,GameDev,Tools,VIP,VVIP,Commands,Customization",
+      "harga": "Rp80.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496414905333448774/image.png?ex=69e9cc7b&is=69e87afb&hm=51d3aa0b6f3136f04c0973a3f1f73fb1e97c051255c02bdc193b3b0fb773e935&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 999
     }
   ],
   "digital": [
