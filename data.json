@@ -418,6 +418,18 @@
           "val": "Rp5.000 – Rp10.000"
         }
       ]
+    },
+    {
+      "id": "d_1776844155584",
+      "icon": "🖼️",
+      "name": "Jasa Logo Simpel",
+      "desc": "Pembuatan logo simpel untuk nama, brand, atau komunitas. Desain clean dan cocok untuk berbagai kebutuhan.",
+      "prices": [
+        {
+          "label": "Logo nama / komunitas",
+          "val": "Rp10.000 – Rp20.000"
+        }
+      ]
     }
   ]
 }
