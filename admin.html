@@ -36,6 +36,13 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-
 .l-btn:active{opacity:0.9;transform:scale(0.98);}
 .l-err{color:var(--red);font-size:0.8rem;margin-top:8px;display:none;}
 
+/* DATA LOADING OVERLAY */
+#data-loading{display:none;position:fixed;inset:0;z-index:500;background:rgba(6,4,0,0.95);align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+#data-loading.show{display:flex;}
+.loading-spinner{width:36px;height:36px;border:3px solid rgba(245,196,0,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:0.84rem;color:var(--muted);}
+
 /* ADMIN */
 #admin-panel{display:none;position:relative;z-index:1;}
 header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;width:100%;}
@@ -229,6 +236,12 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
 <div class="bg-layer"></div>
 <div class="bg-grid"></div>
 
+<!-- DATA LOADING OVERLAY -->
+<div id="data-loading">
+  <div class="loading-spinner"></div>
+  <div class="loading-text" id="loading-text">Mengambil data dari GitHub...</div>
+</div>
+
 <!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
@@ -372,21 +385,21 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
         <div class="sec-ttl">💎 Robux Top Up</div>
         <div class="subsec-lbl" style="margin-top:0;">Robux via Gamepass</div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th></tr></thead><tbody id="a-robux-tbody"></tbody></table></div></div>
-        <button class="save-section-btn" onclick="saveAllRobux()">💾 Simpan Robux</button>
+        <button class="save-section-btn" onclick="saveAllRobux()">💾 Simpan & Publish Robux</button>
         <div class="sec-head" style="margin-top:16px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Item Shop</div><button class="add-btn" onclick="openAdd('fishit_shop')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-fishit-shop"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Gacha Skin</div><button class="add-btn" onclick="openAdd('fishit_gacha')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-fishit-gacha"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">🎣 Fish It — Emote Crates</div><button class="add-btn" onclick="openAdd('fishit_emote')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-fishit-emote"></tbody></table></div></div>
-        <button class="save-section-btn" onclick="saveAllFishIt()">💾 Simpan Fish It</button>
+        <button class="save-section-btn" onclick="saveAllFishIt()">💾 Simpan & Publish Fish It</button>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Passes</div><button class="add-btn" onclick="openAdd('forge_passes')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-forge-passes"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Totems</div><button class="add-btn" onclick="openAdd('forge_totems')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-forge-totems"></tbody></table></div></div>
         <div class="sec-head" style="margin-top:14px;"><div class="subsec-lbl" style="margin:0;flex:1;">⚒️ The Forge — Rerolls</div><button class="add-btn" onclick="openAdd('forge_rerolls')">+ Tambah</button></div>
         <div class="tbl-scroll"><div class="tbl-wrap"><table class="atable"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody id="a-forge-rerolls"></tbody></table></div></div>
-        <button class="save-section-btn" onclick="saveAllForge()">💾 Simpan The Forge</button>
+        <button class="save-section-btn" onclick="saveAllForge()">💾 Simpan & Publish The Forge</button>
       </div>
       <div class="roblox-subpage" id="a-roblox-sub-system">
         <div class="sec-head">
@@ -414,11 +427,11 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
       <div class="sec-label">Konfigurasi</div>
       <div class="sec-ttl">🔧 Pengaturan</div>
       <div id="token-alert" style="display:none;" class="alert-box warn">
-        ⚠️ <strong>GitHub Token belum diset!</strong> Transaksi & produk tidak akan tersimpan ke GitHub.
+        ⚠️ <strong>GitHub Token belum diset!</strong> Data tidak akan tersimpan ke GitHub.
       </div>
       <div class="gh-config">
         <h4>🔑 GitHub Personal Access Token</h4>
-        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:12px;line-height:1.6;">Token ini digunakan untuk menyimpan data ke GitHub. <strong style="color:var(--text);">Disimpan hanya di browser ini.</strong></p>
+        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:12px;line-height:1.6;">Token disimpan di browser ini saja. <strong style="color:var(--amber);">Wajib diset di setiap device yang dipakai admin.</strong></p>
         <div class="gh-fields">
           <div class="ff"><label class="flbl">GitHub Username</label><input class="finput" id="gh-user" placeholder="kawarastore" value="kawarastore"></div>
           <div class="ff"><label class="flbl">Nama Repository</label><input class="finput" id="gh-repo" placeholder="kawara-store" value="kawara-store"></div>
@@ -439,13 +452,12 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);-webkit-backdrop-f
         <div id="wh-status" style="color:var(--muted);font-size:0.74rem;margin-top:8px;"></div>
       </div>
       <div class="panel">
-        <h4>🔄 Sinkronisasi Transaksi</h4>
+        <h4>🔄 Sinkronisasi Data</h4>
         <p style="color:var(--muted);font-size:0.77rem;margin-bottom:14px;line-height:1.65;">
-          Transaksi disimpan di GitHub sebagai <code style="background:rgba(255,255,255,0.07);padding:1px 6px;border-radius:4px;font-size:0.74rem;">transactions.json</code>.
-          Semua device yang login akan melihat <strong style="color:var(--text);">data transaksi yang sama</strong> secara real-time.
+          Semua data (produk &amp; transaksi) disimpan di GitHub. <strong style="color:var(--text);">Semua device akan melihat data yang sama</strong> setelah token diset.
         </p>
         <div id="trx-sync-settings-badge" style="margin-bottom:12px;"></div>
-        <button class="d-save" onclick="fetchTrxFromGitHub(true)" style="background:rgba(245,196,0,0.12);color:var(--gold);margin-bottom:6px;">📥 Refresh Transaksi dari GitHub</button>
+        <button class="d-save" onclick="reloadAllFromGitHub()" style="background:rgba(245,196,0,0.12);color:var(--gold);margin-bottom:6px;">🔄 Reload Semua Data dari GitHub</button>
         <div id="trx-fetch-status" style="font-size:0.74rem;color:var(--muted);margin-top:6px;min-height:18px;"></div>
       </div>
     </div>
@@ -491,7 +503,6 @@ function doLogin() {
   if (u === CREDS.user && p === CREDS.pass) {
     sessionStorage.setItem('kwa','1');
     document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
     initAdmin();
   } else { document.getElementById('l-err').style.display = 'block'; }
 }
@@ -517,17 +528,17 @@ function saveGHConfig() {
   localStorage.setItem('gh_repo', r);
   localStorage.setItem('gh_token', t);
   checkTokenAlert();
-  toast('✅ Konfigurasi GitHub disimpan!', 'ok');
+  toast('✅ Konfigurasi tersimpan! Reload data...', 'ok');
+  // Reload semua data dari GitHub setelah token disimpan
+  setTimeout(() => reloadAllFromGitHub(), 500);
 }
 function checkTokenAlert() {
   const cfg = getGHConfig();
   const alertEl = document.getElementById('token-alert');
   if (!cfg.token) {
     alertEl.style.display = 'block';
-    document.querySelectorAll('.atab')[4].style.color = 'var(--amber)';
   } else {
     alertEl.style.display = 'none';
-    document.querySelectorAll('.atab')[4].style.color = '';
   }
 }
 async function testGHConnection() {
@@ -549,7 +560,7 @@ async function testGHConnection() {
 }
 
 // =====================================================
-// PRODUCT DATA
+// PRODUCT DATA — SUMBER KEBENARAN: GITHUB
 // =====================================================
 const DEFAULT_DATA = {
   robux:[{id:'r1',robux:50,harga:'4K',gamepass:'72',stock:99},{id:'r2',robux:100,harga:'9K',gamepass:'143',stock:99},{id:'r3',robux:200,harga:'18K',gamepass:'286',stock:99},{id:'r4',robux:300,harga:'28K',gamepass:'429',stock:99},{id:'r5',robux:400,harga:'38K',gamepass:'572',stock:99},{id:'r6',robux:500,harga:'48K',gamepass:'715',stock:99},{id:'r7',robux:600,harga:'58K',gamepass:'858',stock:99},{id:'r8',robux:700,harga:'68K',gamepass:'1000',stock:99},{id:'r9',robux:800,harga:'78K',gamepass:'1143',stock:99},{id:'r10',robux:900,harga:'88K',gamepass:'1286',stock:99},{id:'r11',robux:1000,harga:'98K',gamepass:'1430',stock:99}],
@@ -562,19 +573,69 @@ const DEFAULT_DATA = {
   roblox_system:[{id:'sys1',name:'Admin System',desc:'Sistem admin panel lengkap.',tags:'Admin,Panel,Tools',harga:'Rp50.000',thumb:'',stock:99}],
   digital:[{id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF.',prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]}]
 };
+
+// _prodData adalah sumber kebenaran produk (dari GitHub, bukan localStorage)
+let _prodData = null;
+let _prodGHSha = null;
 let _hasChanges = false;
-function getData() { try{const d=localStorage.getItem('kawara_data');if(d)return JSON.parse(d);}catch(e){} return JSON.parse(JSON.stringify(DEFAULT_DATA)); }
-function saveLocalData(d) { localStorage.setItem('kawara_data',JSON.stringify(d)); markChanged(); }
+
+// Fetch data produk dari GitHub
+async function fetchProdFromGitHub() {
+  const cfg = getGHConfig();
+  if (!cfg.token) {
+    _prodData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+    return false;
+  }
+  try {
+    const apiUrl = `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/data.json`;
+    const res = await fetch(apiUrl, {
+      headers: {'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},
+      cache: 'no-store'
+    });
+    if (res.ok) {
+      const file = await res.json();
+      _prodGHSha = file.sha;
+      const decoded = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
+      const parsed = JSON.parse(decoded);
+      // Merge dengan default untuk key yang mungkin belum ada
+      _prodData = {};
+      Object.keys(DEFAULT_DATA).forEach(k => {
+        _prodData[k] = (parsed[k] && parsed[k].length > 0) ? parsed[k] : JSON.parse(JSON.stringify(DEFAULT_DATA[k]));
+      });
+      return true;
+    } else if (res.status === 404) {
+      _prodData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+      _prodGHSha = null;
+      return true;
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch(e) {
+    _prodData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+    toast('⚠️ Gagal fetch data produk: ' + e.message, true);
+    return false;
+  }
+}
+
+function getData() {
+  if (!_prodData) return JSON.parse(JSON.stringify(DEFAULT_DATA));
+  return _prodData;
+}
+
+function saveLocalOnly() {
+  // Tidak perlu simpan ke localStorage lagi — data ada di _prodData (in-memory)
+  // Hanya mark changed supaya tombol Simpan ke GitHub aktif
+  markChanged();
+}
+
 function getWH() { return localStorage.getItem('kawara_webhook')||''; }
 
 // =====================================================
 // TRANSAKSI — GITHUB SYNC
 // =====================================================
-// Transaksi disimpan di GitHub sebagai transactions.json
-// Semua device admin yang sudah set token akan fetch dari file yang sama
 let _trxData = [];
 let _trxGHSha = null;
-let _trxSyncState = 'loading'; // 'loading' | 'synced' | 'local'
+let _trxSyncState = 'loading';
 
 function setTrxSyncState(state, detail) {
   _trxSyncState = state;
@@ -582,7 +643,7 @@ function setTrxSyncState(state, detail) {
   const labels = {
     synced: `<span class="sync-dot-sm"></span> 🌐 Terhubung ke GitHub — semua device melihat data yang sama${detail?` · ${detail}`:''}`,
     local:  `<span class="sync-dot-sm"></span> ⚠️ Hanya tersimpan lokal — set GitHub Token di Pengaturan`,
-    loading:`<span class="sync-dot-sm pulse"></span> ⏳ Memuat transaksi dari GitHub...`
+    loading:`<span class="sync-dot-sm pulse"></span> ⏳ Memuat dari GitHub...`
   };
   const classes = { synced:'synced', local:'local', loading:'loading' };
   badges.forEach(id => {
@@ -620,16 +681,14 @@ async function fetchTrxFromGitHub(manual = false) {
       _trxData = [];
       _trxGHSha = null;
       setTrxSyncState('synced', 'belum ada data');
-      if (statusEl) { statusEl.style.color='var(--muted)'; statusEl.textContent='ℹ️ transactions.json belum ada — akan dibuat saat pertama simpan.'; }
-    } else if (res.status === 401) {
-      throw new Error('Token tidak valid');
+      if (statusEl) { statusEl.style.color='var(--muted)'; statusEl.textContent='ℹ️ transactions.json belum ada.'; }
     } else {
       throw new Error('HTTP ' + res.status);
     }
   } catch(e) {
     try { const s = localStorage.getItem('kawara_trx'); if (s) _trxData = JSON.parse(s); } catch(e2) {}
     setTrxSyncState('local');
-    if (statusEl) { statusEl.style.color='var(--red)'; statusEl.textContent='❌ Gagal: '+e.message+' — pakai data lokal.'; }
+    if (statusEl) { statusEl.style.color='var(--red)'; statusEl.textContent='❌ Gagal: '+e.message; }
     if (manual) toast('❌ '+e.message, true);
   }
   renderTrxList();
@@ -646,7 +705,7 @@ async function saveTrxToGitHub() {
   try {
     const apiUrl = `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/transactions.json`;
     if (!_trxGHSha) {
-      const check = await fetch(apiUrl, {headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'}});
+      const check = await fetch(apiUrl, {headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},cache:'no-store'});
       if (check.ok) { const f = await check.json(); _trxGHSha = f.sha; }
     }
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(_trxData, null, 2))));
@@ -673,6 +732,22 @@ async function saveTrxToGitHub() {
     toast('⚠️ Transaksi tersimpan lokal: '+e.message, true);
     return false;
   }
+}
+
+// =====================================================
+// RELOAD ALL (panggil saat perlu sync ulang)
+// =====================================================
+async function reloadAllFromGitHub() {
+  const statusEl = document.getElementById('trx-fetch-status');
+  if (statusEl) { statusEl.style.color='var(--amber)'; statusEl.textContent='⏳ Mengambil semua data dari GitHub...'; }
+  setSaveStatus('saving','Memuat dari GitHub...');
+  const [,] = await Promise.all([fetchProdFromGitHub(), fetchTrxFromGitHub(true)]);
+  renderProductPanels();
+  populateItemDropdown();
+  renderTrxList();
+  renderDashboard();
+  setSaveStatus('ok','✅ Data berhasil dimuat dari GitHub');
+  toast('✅ Semua data berhasil dimuat dari GitHub!', 'ok');
 }
 
 // =====================================================
@@ -721,42 +796,79 @@ function onItemSelect() {
 }
 
 // =====================================================
-// GITHUB — PRODUK
+// GITHUB — SIMPAN PRODUK
 // =====================================================
-function markChanged() { _hasChanges=true; document.getElementById('save-dot').className='save-dot saving'; document.getElementById('save-text').textContent='Ada perubahan belum tersimpan ke GitHub'; document.getElementById('save-all-btn').disabled=false; }
-function setSaveStatus(state, msg) { document.getElementById('save-dot').className='save-dot '+state; document.getElementById('save-text').textContent=msg; if(state==='ok')document.getElementById('save-all-btn').disabled=true; }
+function markChanged() {
+  _hasChanges = true;
+  document.getElementById('save-dot').className = 'save-dot saving';
+  document.getElementById('save-text').textContent = 'Ada perubahan belum tersimpan ke GitHub';
+  document.getElementById('save-all-btn').disabled = false;
+}
+function setSaveStatus(state, msg) {
+  document.getElementById('save-dot').className = 'save-dot ' + state;
+  document.getElementById('save-text').textContent = msg;
+  if (state === 'ok') document.getElementById('save-all-btn').disabled = true;
+}
 async function saveToGitHub() {
   const cfg = getGHConfig();
-  if (!cfg.token) { toast('❌ Set GitHub Token dulu!', true); showAPage('discord',document.querySelectorAll('.atab')[4]); return; }
-  const btn = document.getElementById('save-all-btn'); btn.disabled=true; btn.textContent='⏳ Menyimpan...';
+  if (!cfg.token) { toast('❌ Set GitHub Token dulu di Pengaturan!', true); showAPage('discord',document.querySelectorAll('.atab')[4]); return; }
+  const btn = document.getElementById('save-all-btn'); btn.disabled = true; btn.textContent = '⏳ Menyimpan...';
   setSaveStatus('saving','Menyimpan ke GitHub...');
   try {
     const d = getData();
+    // Pastikan thumb tidak menggunakan base64
     if (d.roblox_system) d.roblox_system = d.roblox_system.map(s=>({...s,thumb:(s.thumb&&!s.thumb.startsWith('data:'))?s.thumb:''}));
     const apiUrl = `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/data.json`;
-    const getRes = await fetch(apiUrl, {headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'}});
+    // Selalu fetch SHA terbaru sebelum push (hindari konflik)
+    const getRes = await fetch(apiUrl, {headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'},cache:'no-store'});
     let sha = null;
-    if (getRes.ok) { const ex = await getRes.json(); sha = ex.sha; }
-    else if (getRes.status===401) throw new Error('Token tidak valid.');
-    else if (getRes.status!==404) throw new Error('HTTP '+getRes.status);
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(d,null,2))));
-    const body = {message:'🛒 Update data produk - '+new Date().toLocaleString('id-ID'),content};
+    if (getRes.ok) { const ex = await getRes.json(); sha = ex.sha; _prodGHSha = ex.sha; }
+    else if (getRes.status === 401) throw new Error('Token tidak valid.');
+    else if (getRes.status !== 404) throw new Error('HTTP ' + getRes.status);
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(d, null, 2))));
+    const body = { message: '🛒 Update data produk - '+new Date().toLocaleString('id-ID'), content };
     if (sha) body.sha = sha;
-    const putRes = await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`token ${cfg.token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
-    if (putRes.ok) { _hasChanges=false; setSaveStatus('ok','✅ Tersimpan ke GitHub — store update dalam ~1 menit'); toast('✅ Data dipublish ke GitHub!','ok'); populateItemDropdown(); }
-    else { const err=await putRes.json(); throw new Error(err.message||'HTTP '+putRes.status); }
-  } catch(e) { setSaveStatus('err','❌ Gagal: '+e.message); toast('❌ '+e.message,true); btn.disabled=false; }
-  finally { btn.textContent='💾 Simpan ke GitHub'; if(_hasChanges)btn.disabled=false; }
+    const putRes = await fetch(apiUrl, { method:'PUT', headers:{'Authorization':`token ${cfg.token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'}, body: JSON.stringify(body) });
+    if (putRes.ok) {
+      const result = await putRes.json();
+      _prodGHSha = result.content.sha;
+      _hasChanges = false;
+      setSaveStatus('ok', '✅ Tersimpan ke GitHub — store update dalam ~1 menit');
+      toast('✅ Data dipublish ke GitHub!', 'ok');
+      populateItemDropdown();
+    } else {
+      const err = await putRes.json();
+      throw new Error(err.message || 'HTTP ' + putRes.status);
+    }
+  } catch(e) {
+    setSaveStatus('err', '❌ Gagal: ' + e.message);
+    toast('❌ ' + e.message, true);
+    btn.disabled = false;
+  } finally {
+    btn.textContent = '💾 Simpan ke GitHub';
+    if (_hasChanges) btn.disabled = false;
+  }
 }
 
 // =====================================================
-// STOCK DEDUCT
+// STOCK DEDUCT — langsung ke _prodData
 // =====================================================
 function deductStock(itemId) {
-  if (!itemId) return false;
-  const d = getData(); const CATS=['robux','fishit_shop','fishit_gacha','fishit_emote','forge_passes','forge_totems','forge_rerolls','roblox_system']; let found=false;
-  for (const cat of CATS) { if(!d[cat])continue; const idx=d[cat].findIndex(i=>i.id===itemId); if(idx!==-1){if(d[cat][idx].stock>0)d[cat][idx].stock-=1;found=true;const ci=_itemCatalog.find(i=>i.id===itemId);if(ci)ci.stock=d[cat][idx].stock;break;} }
-  if (found) saveLocalData(d);
+  if (!itemId || !_prodData) return false;
+  const CATS = ['robux','fishit_shop','fishit_gacha','fishit_emote','forge_passes','forge_totems','forge_rerolls','roblox_system'];
+  let found = false;
+  for (const cat of CATS) {
+    if (!_prodData[cat]) continue;
+    const idx = _prodData[cat].findIndex(i => i.id === itemId);
+    if (idx !== -1) {
+      if (_prodData[cat][idx].stock > 0) _prodData[cat][idx].stock -= 1;
+      found = true;
+      const ci = _itemCatalog.find(i => i.id === itemId);
+      if (ci) ci.stock = _prodData[cat][idx].stock;
+      break;
+    }
+  }
+  if (found) markChanged();
   return found;
 }
 
@@ -780,23 +892,37 @@ function closeLightbox(){document.getElementById('lightbox-modal').classList.rem
 document.getElementById('lightbox-modal').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox-modal'))closeLightbox();});
 
 // =====================================================
-// INIT
+// INIT — FETCH DARI GITHUB DULU
 // =====================================================
 async function initAdmin() {
+  // Tampilkan loading overlay
+  document.getElementById('data-loading').classList.add('show');
+  document.getElementById('loading-text').textContent = 'Mengambil data dari GitHub...';
+
   const cfg = getGHConfig();
   if (cfg.user) document.getElementById('gh-user').value = cfg.user;
   if (cfg.repo) document.getElementById('gh-repo').value = cfg.repo;
-  const wh = getWH(); if (wh) { document.getElementById('wh-input').value=wh; document.getElementById('wh-status').textContent='✅ Webhook aktif'; }
+  const wh = getWH(); if (wh) { document.getElementById('wh-input').value = wh; document.getElementById('wh-status').textContent = '✅ Webhook aktif'; }
   checkTokenAlert();
+
+  // Fetch semua data dari GitHub secara paralel
+  document.getElementById('loading-text').textContent = 'Mengambil data produk & transaksi...';
+  await Promise.all([fetchProdFromGitHub(), fetchTrxFromGitHub()]);
+
+  // Render setelah data tersedia
   renderProductPanels();
   populateItemDropdown();
-  setSaveStatus('ok','Data lokal dimuat');
-  // Fetch transaksi dari GitHub (sumber kebenaran)
-  await fetchTrxFromGitHub();
-  renderDashboard();
+  setSaveStatus('ok', cfg.token ? '✅ Data dimuat dari GitHub' : '⚠️ Pakai data default — set token dulu');
+  renderAll();
+
+  // Sembunyikan loading, tampilkan admin panel
+  document.getElementById('data-loading').classList.remove('show');
+  document.getElementById('admin-panel').style.display = 'block';
 }
+
 function renderProductPanels() {
-  const d = getData();
+  if (!_prodData) return;
+  const d = _prodData;
   renderRobux(d.robux||DEFAULT_DATA.robux);
   renderItems('a-fishit-shop',d.fishit_shop||DEFAULT_DATA.fishit_shop,'fishit_shop');
   renderItems('a-fishit-gacha',d.fishit_gacha||DEFAULT_DATA.fishit_gacha,'fishit_gacha');
@@ -846,36 +972,170 @@ function renderDashboard() {
 // =====================================================
 // ROBUX & ITEMS TABLE
 // =====================================================
-function renderRobux(items){document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`<tr><td><strong>${i.robux} Rbx</strong></td><td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:65px;"></td><td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td></tr>`).join('');}
-function saveAllRobux(){const d=getData();d.robux.forEach(i=>{const h=document.getElementById('rh-'+i.id);const gp=document.getElementById('rgp-'+i.id);const s=document.getElementById('rs-'+i.id);if(h)i.harga=h.value.trim();if(gp)i.gamepass=gp.value.trim();if(s)i.stock=parseInt(s.value)||0;});saveLocalData(d);populateItemDropdown();toast('✅ Disimpan! Klik "Simpan ke GitHub" untuk publish.','ok');}
-function renderItems(tbodyId,items,cat){document.getElementById(tbodyId).innerHTML=items.map(i=>`<tr><td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td><td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td><td><button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button></td></tr>`).join('');}
-function saveAllFishIt(){const d=getData();['fishit_shop','fishit_gacha','fishit_emote'].forEach(cat=>{(d[cat]||[]).forEach(i=>{const n=document.getElementById('n-'+i.id);const h=document.getElementById('h-'+i.id);const s=document.getElementById('s-'+i.id);if(n)i.name=n.value.trim();if(h)i.harga=h.value.trim();if(s)i.stock=parseInt(s.value)||0;});});saveLocalData(d);populateItemDropdown();toast('✅ Fish It disimpan!','ok');}
-function saveAllForge(){const d=getData();['forge_passes','forge_totems','forge_rerolls'].forEach(cat=>{(d[cat]||[]).forEach(i=>{const n=document.getElementById('n-'+i.id);const h=document.getElementById('h-'+i.id);const s=document.getElementById('s-'+i.id);if(n)i.name=n.value.trim();if(h)i.harga=h.value.trim();if(s)i.stock=parseInt(s.value)||0;});});saveLocalData(d);populateItemDropdown();toast('✅ The Forge disimpan!','ok');}
-function delItem(cat,id){if(!confirm('Hapus item ini?'))return;const d=getData();d[cat]=d[cat].filter(i=>i.id!==id);saveLocalData(d);renderProductPanels();populateItemDropdown();toast('🗑️ Dihapus!');}
+function renderRobux(items){
+  document.getElementById('a-robux-tbody').innerHTML=items.map(i=>`<tr><td><strong>${i.robux} Rbx</strong></td><td><input class="e-input" id="rh-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="rgp-${i.id}" value="${i.gamepass}" style="width:65px;"></td><td><input class="e-input" id="rs-${i.id}" type="number" value="${i.stock}" style="width:52px;" inputmode="numeric"></td></tr>`).join('');
+}
+function saveAllRobux(){
+  if (!_prodData) return;
+  _prodData.robux.forEach(i=>{
+    const h=document.getElementById('rh-'+i.id);const gp=document.getElementById('rgp-'+i.id);const s=document.getElementById('rs-'+i.id);
+    if(h)i.harga=h.value.trim();if(gp)i.gamepass=gp.value.trim();if(s)i.stock=parseInt(s.value)||0;
+  });
+  markChanged();
+  populateItemDropdown();
+  saveToGitHub();
+}
+function renderItems(tbodyId,items,cat){
+  document.getElementById(tbodyId).innerHTML=items.map(i=>`<tr><td style="max-width:150px;"><input class="e-input xwide" id="n-${i.id}" value="${i.name.replace(/"/g,'&quot;')}"></td><td><input class="e-input" id="h-${i.id}" value="${i.harga}" style="width:62px;"></td><td><input class="e-input" id="s-${i.id}" type="number" value="${i.stock}" style="width:50px;" inputmode="numeric"></td><td><button class="ibtn del" onclick="delItem('${cat}','${i.id}')">🗑️</button></td></tr>`).join('');
+}
+function _collectCatFromDOM(cat) {
+  if (!_prodData || !_prodData[cat]) return;
+  _prodData[cat].forEach(i => {
+    const n=document.getElementById('n-'+i.id);const h=document.getElementById('h-'+i.id);const s=document.getElementById('s-'+i.id);
+    if(n)i.name=n.value.trim();if(h)i.harga=h.value.trim();if(s)i.stock=parseInt(s.value)||0;
+  });
+}
+function saveAllFishIt(){
+  ['fishit_shop','fishit_gacha','fishit_emote'].forEach(cat=>_collectCatFromDOM(cat));
+  markChanged(); populateItemDropdown(); saveToGitHub();
+}
+function saveAllForge(){
+  ['forge_passes','forge_totems','forge_rerolls'].forEach(cat=>_collectCatFromDOM(cat));
+  markChanged(); populateItemDropdown(); saveToGitHub();
+}
+function delItem(cat,id){
+  if(!confirm('Hapus item ini?'))return;
+  if(!_prodData)return;
+  _prodData[cat]=_prodData[cat].filter(i=>i.id!==id);
+  markChanged();
+  renderProductPanels();
+  populateItemDropdown();
+  saveToGitHub();
+}
 function openAdd(cat){document.getElementById('add-cat').value=cat;['add-name','add-harga'].forEach(id=>document.getElementById(id).value='');document.getElementById('add-stock').value='10';document.getElementById('add-modal').classList.add('open');}
 function closeAdd(){document.getElementById('add-modal').classList.remove('open');}
-function submitAdd(){const cat=document.getElementById('add-cat').value;const name=document.getElementById('add-name').value.trim();const harga=document.getElementById('add-harga').value.trim();const stock=parseInt(document.getElementById('add-stock').value)||0;if(!name||!harga){toast('❌ Isi nama dan harga!',true);return;}const d=getData();d[cat].push({id:cat+'_'+Date.now(),name,harga,stock});saveLocalData(d);closeAdd();renderProductPanels();populateItemDropdown();toast('✅ Ditambahkan!','ok');}
+function submitAdd(){
+  const cat=document.getElementById('add-cat').value;
+  const name=document.getElementById('add-name').value.trim();
+  const harga=document.getElementById('add-harga').value.trim();
+  const stock=parseInt(document.getElementById('add-stock').value)||0;
+  if(!name||!harga){toast('❌ Isi nama dan harga!',true);return;}
+  if(!_prodData)return;
+  if(!_prodData[cat])_prodData[cat]=[];
+  _prodData[cat].push({id:cat+'_'+Date.now(),name,harga,stock});
+  markChanged();
+  closeAdd();
+  renderProductPanels();
+  populateItemDropdown();
+  saveToGitHub();
+}
 document.getElementById('add-modal').addEventListener('click',e=>{if(e.target===document.getElementById('add-modal'))closeAdd();});
 
 // =====================================================
 // ROBLOX SYSTEM
 // =====================================================
-function renderSystemAdmin(items){const c=document.getElementById('system-admin-list');c.innerHTML=items.map(item=>{const thumbUrl=(item.thumb&&!item.thumb.startsWith('data:'))?item.thumb:'';return `<div class="system-admin-card" id="sac-${item.id}"><div class="sac-thumb-area">${thumbUrl?`<img id="sac-img-${item.id}" src="${thumbUrl}" alt="${item.name}" onerror="this.style.display='none';document.getElementById('sac-ph-${item.id}').style.display='flex';"><div class="sac-thumb-placeholder" id="sac-ph-${item.id}" style="display:none;position:absolute;inset:0;"><span>⚙️</span><span>Gambar tidak bisa dimuat</span></div>`:`<div class="sac-thumb-placeholder" id="sac-ph-${item.id}"><span>⚙️</span><span>Belum ada gambar</span></div>`}</div><div class="sac-body"><div class="sac-fields"><div class="ff"><label class="flbl">Nama System</label><input class="finput" id="sname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama..."></div><div class="ff"><label class="flbl">Harga</label><input class="finput" id="sharga-${item.id}" value="${item.harga}" placeholder="Rp0"></div><div class="ff"><label class="flbl">Stok</label><input class="finput" id="sstock-${item.id}" type="number" value="${item.stock||99}" inputmode="numeric"></div><div class="ff sac-full"><label class="flbl">🖼️ URL Gambar</label><div class="thumb-url-wrap"><input class="thumb-url-input" id="sthumb-${item.id}" value="${thumbUrl}" placeholder="https://..."><button class="thumb-preview-btn" onclick="previewThumb('${item.id}')">👁️ Preview</button></div><div class="thumb-status" id="sthumb-status-${item.id}"></div></div><div class="ff sac-full"><label class="flbl">Deskripsi</label><textarea class="ftextarea" id="sdesc-${item.id}" style="min-height:52px;">${item.desc}</textarea></div><div class="ff sac-full"><label class="flbl">Tags (pisah koma)</label><input class="sac-tags-input" id="stags-${item.id}" value="${item.tags||''}" placeholder="Admin,Panel,Tools"></div></div><div class="sac-actions"><button class="ibtn save" onclick="saveSystem('${item.id}')">💾 Simpan</button><button class="ibtn del" onclick="delSystem('${item.id}')">🗑️ Hapus</button></div></div></div>`;}).join('');}
+function renderSystemAdmin(items){
+  const c=document.getElementById('system-admin-list');
+  c.innerHTML=items.map(item=>{
+    const thumbUrl=(item.thumb&&!item.thumb.startsWith('data:'))?item.thumb:'';
+    return `<div class="system-admin-card" id="sac-${item.id}"><div class="sac-thumb-area">${thumbUrl?`<img id="sac-img-${item.id}" src="${thumbUrl}" alt="${item.name}" onerror="this.style.display='none';document.getElementById('sac-ph-${item.id}').style.display='flex';"><div class="sac-thumb-placeholder" id="sac-ph-${item.id}" style="display:none;position:absolute;inset:0;"><span>⚙️</span><span>Gambar tidak bisa dimuat</span></div>`:`<div class="sac-thumb-placeholder" id="sac-ph-${item.id}"><span>⚙️</span><span>Belum ada gambar</span></div>`}</div><div class="sac-body"><div class="sac-fields"><div class="ff"><label class="flbl">Nama System</label><input class="finput" id="sname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama..."></div><div class="ff"><label class="flbl">Harga</label><input class="finput" id="sharga-${item.id}" value="${item.harga}" placeholder="Rp0"></div><div class="ff"><label class="flbl">Stok</label><input class="finput" id="sstock-${item.id}" type="number" value="${item.stock||99}" inputmode="numeric"></div><div class="ff sac-full"><label class="flbl">🖼️ URL Gambar</label><div class="thumb-url-wrap"><input class="thumb-url-input" id="sthumb-${item.id}" value="${thumbUrl}" placeholder="https://..."><button class="thumb-preview-btn" onclick="previewThumb('${item.id}')">👁️ Preview</button></div><div class="thumb-status" id="sthumb-status-${item.id}"></div></div><div class="ff sac-full"><label class="flbl">Deskripsi</label><textarea class="ftextarea" id="sdesc-${item.id}" style="min-height:52px;">${item.desc}</textarea></div><div class="ff sac-full"><label class="flbl">Tags (pisah koma)</label><input class="sac-tags-input" id="stags-${item.id}" value="${item.tags||''}" placeholder="Admin,Panel,Tools"></div></div><div class="sac-actions"><button class="ibtn save" onclick="saveSystem('${item.id}')">💾 Simpan & Publish</button><button class="ibtn del" onclick="delSystem('${item.id}')">🗑️ Hapus</button></div></div></div>`;
+  }).join('');
+}
 function previewThumb(id){const url=document.getElementById('sthumb-'+id).value.trim();const statusEl=document.getElementById('sthumb-status-'+id);const thumbArea=document.querySelector(`#sac-${id} .sac-thumb-area`);if(!url){statusEl.className='thumb-status err';statusEl.textContent='❌ URL kosong';return;}statusEl.className='thumb-status';statusEl.textContent='⏳ Memuat...';thumbArea.innerHTML=`<img src="${url}" alt="preview" style="width:100%;height:100%;object-fit:cover;" onload="document.getElementById('sthumb-status-${id}').className='thumb-status ok';document.getElementById('sthumb-status-${id}').textContent='✅ Berhasil!';" onerror="document.getElementById('sthumb-status-${id}').className='thumb-status err';document.getElementById('sthumb-status-${id}').textContent='❌ Gagal.'">`;}
-function saveSystem(id){const d=getData();if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));const idx=d.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;const thumbUrl=document.getElementById('sthumb-'+id).value.trim();if(thumbUrl&&thumbUrl.startsWith('data:')){toast('❌ Gunakan URL link gambar!',true);return;}d.roblox_system[idx].name=document.getElementById('sname-'+id).value.trim();d.roblox_system[idx].harga=document.getElementById('sharga-'+id).value.trim();d.roblox_system[idx].stock=parseInt(document.getElementById('sstock-'+id).value)||99;d.roblox_system[idx].desc=document.getElementById('sdesc-'+id).value.trim();d.roblox_system[idx].tags=document.getElementById('stags-'+id).value.trim();d.roblox_system[idx].thumb=thumbUrl;saveLocalData(d);populateItemDropdown();toast('✅ Disimpan lokal!','ok');}
-function delSystem(id){if(!confirm('Hapus?'))return;const d=getData();if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));d.roblox_system=d.roblox_system.filter(i=>i.id!==id);saveLocalData(d);renderAll();populateItemDropdown();toast('🗑️ Dihapus!');}
-function addSystemCard(){const d=getData();if(!d.roblox_system)d.roblox_system=JSON.parse(JSON.stringify(DEFAULT_DATA.roblox_system));const n={id:'sys_'+Date.now(),name:'System Baru',desc:'Deskripsi...',tags:'',harga:'Mulai Rp0',thumb:'',stock:99};d.roblox_system.push(n);saveLocalData(d);renderAll();populateItemDropdown();setTimeout(()=>{const el=document.getElementById('sac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);toast('✅ Ditambahkan!','ok');}
+function saveSystem(id){
+  if(!_prodData||!_prodData.roblox_system)return;
+  const idx=_prodData.roblox_system.findIndex(i=>i.id===id);if(idx===-1)return;
+  const thumbUrl=document.getElementById('sthumb-'+id).value.trim();
+  if(thumbUrl&&thumbUrl.startsWith('data:')){toast('❌ Gunakan URL link gambar!',true);return;}
+  _prodData.roblox_system[idx].name=document.getElementById('sname-'+id).value.trim();
+  _prodData.roblox_system[idx].harga=document.getElementById('sharga-'+id).value.trim();
+  _prodData.roblox_system[idx].stock=parseInt(document.getElementById('sstock-'+id).value)||99;
+  _prodData.roblox_system[idx].desc=document.getElementById('sdesc-'+id).value.trim();
+  _prodData.roblox_system[idx].tags=document.getElementById('stags-'+id).value.trim();
+  _prodData.roblox_system[idx].thumb=thumbUrl;
+  markChanged();
+  populateItemDropdown();
+  saveToGitHub();
+}
+function delSystem(id){
+  if(!confirm('Hapus?'))return;
+  if(!_prodData||!_prodData.roblox_system)return;
+  _prodData.roblox_system=_prodData.roblox_system.filter(i=>i.id!==id);
+  markChanged();
+  renderAll();
+  populateItemDropdown();
+  saveToGitHub();
+}
+function addSystemCard(){
+  if(!_prodData)return;
+  if(!_prodData.roblox_system)_prodData.roblox_system=[];
+  const n={id:'sys_'+Date.now(),name:'System Baru',desc:'Deskripsi...',tags:'',harga:'Mulai Rp0',thumb:'',stock:99};
+  _prodData.roblox_system.push(n);
+  markChanged();
+  renderAll();
+  populateItemDropdown();
+  setTimeout(()=>{const el=document.getElementById('sac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+  toast('✅ Ditambahkan!','ok');
+}
 
 // =====================================================
 // DIGITAL
 // =====================================================
-function renderDigitalAdmin(items){const c=document.getElementById('digital-admin-list');c.innerHTML=items.map(item=>`<div class="digital-admin-card" id="dac-${item.id}"><div class="dac-header"><div class="dac-title-row"><input class="dac-icon-edit" id="dic-${item.id}" value="${item.icon}" title="Ikon"><input class="finput dac-name-edit" id="dname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama layanan..." style="margin-bottom:0;"></div><div class="dac-actions"><button class="ibtn save" onclick="saveDigitalCard('${item.id}')">💾 Simpan</button><button class="ibtn del" onclick="delDigitalCard('${item.id}')">🗑️</button></div></div><textarea class="ftextarea dac-desc-edit" id="ddesc-${item.id}" placeholder="Deskripsi..." style="margin-bottom:10px;width:100%;">${item.desc}</textarea><div class="dac-prices" id="dprices-${item.id}">${item.prices.map((p,pi)=>`<div class="dac-price-row" id="dpr-${item.id}-${pi}"><input class="dac-price-label-edit" id="dpl-${item.id}-${pi}" value="${p.label}" placeholder="Label..."><input class="dac-price-val-edit" id="dpv-${item.id}-${pi}" value="${p.val}" placeholder="Harga..."><button class="del-price-btn" onclick="delPriceRow('${item.id}',${pi})">✕</button></div>`).join('')}</div><button class="add-price-btn" onclick="addPriceRow('${item.id}')">+ Tambah Baris Harga</button></div>`).join('');}
-function _collectDigitalCard(id,d){const idx=d.digital.findIndex(i=>i.id===id);if(idx===-1)return;d.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';d.digital[idx].name=document.getElementById('dname-'+id).value.trim();d.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);const prices=[];priceRows.forEach((row,pi)=>{const lbl=document.getElementById(`dpl-${id}-${pi}`);const val=document.getElementById(`dpv-${id}-${pi}`);if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});});d.digital[idx].prices=prices;}
-function saveDigitalCard(id){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);saveLocalData(d);toast('✅ Disimpan!','ok');}
-function delDigitalCard(id){if(!confirm('Hapus?'))return;const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));d.digital=d.digital.filter(i=>i.id!==id);saveLocalData(d);renderAll();toast('🗑️ Dihapus!');}
-function addDigitalCard(){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));const n={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};d.digital.push(n);saveLocalData(d);renderAll();setTimeout(()=>{const el=document.getElementById('dac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);toast('✅ Ditambahkan!','ok');}
-function addPriceRow(id){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);const idx=d.digital.findIndex(i=>i.id===id);d.digital[idx].prices.push({label:'Label',val:'Rp0'});saveLocalData(d);renderAll();}
-function delPriceRow(id,pi){const d=getData();if(!d.digital)d.digital=JSON.parse(JSON.stringify(DEFAULT_DATA.digital));_collectDigitalCard(id,d);const idx=d.digital.findIndex(i=>i.id===id);d.digital[idx].prices.splice(pi,1);saveLocalData(d);renderAll();}
+function renderDigitalAdmin(items){
+  const c=document.getElementById('digital-admin-list');
+  c.innerHTML=items.map(item=>`<div class="digital-admin-card" id="dac-${item.id}"><div class="dac-header"><div class="dac-title-row"><input class="dac-icon-edit" id="dic-${item.id}" value="${item.icon}" title="Ikon"><input class="finput dac-name-edit" id="dname-${item.id}" value="${item.name.replace(/"/g,'&quot;')}" placeholder="Nama layanan..." style="margin-bottom:0;"></div><div class="dac-actions"><button class="ibtn save" onclick="saveDigitalCard('${item.id}')">💾 Simpan & Publish</button><button class="ibtn del" onclick="delDigitalCard('${item.id}')">🗑️</button></div></div><textarea class="ftextarea dac-desc-edit" id="ddesc-${item.id}" placeholder="Deskripsi..." style="margin-bottom:10px;width:100%;">${item.desc}</textarea><div class="dac-prices" id="dprices-${item.id}">${item.prices.map((p,pi)=>`<div class="dac-price-row" id="dpr-${item.id}-${pi}"><input class="dac-price-label-edit" id="dpl-${item.id}-${pi}" value="${p.label}" placeholder="Label..."><input class="dac-price-val-edit" id="dpv-${item.id}-${pi}" value="${p.val}" placeholder="Harga..."><button class="del-price-btn" onclick="delPriceRow('${item.id}',${pi})">✕</button></div>`).join('')}</div><button class="add-price-btn" onclick="addPriceRow('${item.id}')">+ Tambah Baris Harga</button></div>`).join('');
+}
+function _collectDigitalCard(id){
+  if(!_prodData||!_prodData.digital)return;
+  const idx=_prodData.digital.findIndex(i=>i.id===id);if(idx===-1)return;
+  _prodData.digital[idx].icon=document.getElementById('dic-'+id).value.trim()||'📦';
+  _prodData.digital[idx].name=document.getElementById('dname-'+id).value.trim();
+  _prodData.digital[idx].desc=document.getElementById('ddesc-'+id).value.trim();
+  const priceRows=document.querySelectorAll(`[id^="dpr-${id}-"]`);const prices=[];
+  priceRows.forEach((row,pi)=>{const lbl=document.getElementById(`dpl-${id}-${pi}`);const val=document.getElementById(`dpv-${id}-${pi}`);if(lbl&&val&&lbl.value.trim())prices.push({label:lbl.value.trim(),val:val.value.trim()});});
+  _prodData.digital[idx].prices=prices;
+}
+function saveDigitalCard(id){
+  _collectDigitalCard(id);
+  markChanged();
+  saveToGitHub();
+}
+function delDigitalCard(id){
+  if(!confirm('Hapus?'))return;
+  if(!_prodData||!_prodData.digital)return;
+  _prodData.digital=_prodData.digital.filter(i=>i.id!==id);
+  markChanged();
+  renderAll();
+  saveToGitHub();
+}
+function addDigitalCard(){
+  if(!_prodData)return;
+  if(!_prodData.digital)_prodData.digital=[];
+  const n={id:'d_'+Date.now(),icon:'📦',name:'Layanan Baru',desc:'Deskripsi.',prices:[{label:'Harga',val:'Mulai Rp10.000'}]};
+  _prodData.digital.push(n);
+  markChanged();
+  renderAll();
+  setTimeout(()=>{const el=document.getElementById('dac-'+n.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+  toast('✅ Ditambahkan!','ok');
+}
+function addPriceRow(id){
+  _collectDigitalCard(id);
+  if(!_prodData||!_prodData.digital)return;
+  const idx=_prodData.digital.findIndex(i=>i.id===id);
+  if(idx===-1)return;
+  _prodData.digital[idx].prices.push({label:'Label',val:'Rp0'});
+  markChanged();
+  renderAll();
+}
+function delPriceRow(id,pi){
+  _collectDigitalCard(id);
+  if(!_prodData||!_prodData.digital)return;
+  const idx=_prodData.digital.findIndex(i=>i.id===id);
+  if(idx===-1)return;
+  _prodData.digital[idx].prices.splice(pi,1);
+  markChanged();
+  renderAll();
+}
 
 // =====================================================
 // DISCORD
@@ -917,7 +1177,8 @@ async function addTrx() {
   // Simpan transaksi & produk ke GitHub secara paralel
   const [trxOk] = await Promise.all([saveTrxToGitHub(), saveToGitHub()]);
   await sendDiscord(trx);
-  renderAll();populateItemDropdown();
+  renderAll();
+  populateItemDropdown();
   toast(trxOk?`✅ Tersimpan di GitHub! Stok sisa: ${remainingStock}`:`⚠️ Tersimpan lokal. Stok sisa: ${remainingStock}`,trxOk?'ok':true);
 }
 async function updateTrx(id,status){
@@ -955,7 +1216,6 @@ function toast(msg,type=''){const t=document.getElementById('toast');t.textConte
 // =====================================================
 if(sessionStorage.getItem('kwa')==='1'){
   document.getElementById('login-screen').style.display='none';
-  document.getElementById('admin-panel').style.display='block';
   initAdmin();
 }
 </script>
