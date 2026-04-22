@@ -315,6 +315,15 @@
       "harga": "Rp200.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131872801947679/image.png?ex=69e96da3&is=69e81c23&hm=ca59e361a7419f7d873b1e185fc5fbb3e891335a61883af847f2956f24d7318e&=&format=webp&quality=lossless&width=1554&height=874",
       "stock": 999
+    },
+    {
+      "id": "sys_1776843105995",
+      "name": "PRIVATE ROOM SYSTEM",
+      "desc": "buat & masuk room dengan kode unik, aman dari exploit karena tiap room terpisah. Support VIP/VVIP untuk monetisasi, admin bisa monitoring semua room, dan UI modern (PC & Mobile).\n\nSetup mudah, ringan, dan fully customizable. Bonus 10 animasi siap pakai.",
+      "tags": "Roblox,PrivateRoom,RoomSystem,GameSystem,Script,Lua,Multiplayer,VIP,VVIP,Admin,Security,AntiCheat,UI,GameDev,Tools",
+      "harga": "Rp400.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496135509510983710/image.png?ex=69e97106&is=69e81f86&hm=3c944f26c89b5b21e54f4bc64557e363312e0e7bdf61cbe4c24e5108cf731fe1&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 999
     }
   ],
   "digital": [
