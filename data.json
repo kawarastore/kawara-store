@@ -295,7 +295,152 @@
       "label": "🐟 Fish It!",
       "icon": "🐟",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776873350594",
+          "name": "Small Luck",
+          "harga": "4K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873353688",
+          "name": "Double XP",
+          "harga": "16K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873354703",
+          "name": "Mini Hoverboat",
+          "harga": "19K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873355185",
+          "name": "Extra Luck",
+          "harga": "21K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873356054",
+          "name": "More Mutations",
+          "harga": "25K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873356547",
+          "name": "Sell Anywhere",
+          "harga": "27K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873357189",
+          "name": "VIP + Luck",
+          "harga": "38K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873357643",
+          "name": "Advanced Luck",
+          "harga": "47K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873358266",
+          "name": "Hyper Boat Pack",
+          "harga": "86K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873358698",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873359312",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873359710",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873360299",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873360682",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873361284",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873361742",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873362397",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873363919",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873364558",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873364964",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873365622",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873365972",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873366607",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873367032",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        }
+      ]
     }
   ],
   "digital_catalogs": [
