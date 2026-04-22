@@ -645,39 +645,33 @@
           "stock": 10
         },
         {
-          "id": "gi_1776874266671",
-          "name": "1 Juta Cash",
-          "harga": "10K",
-          "stock": 10
-        },
-        {
           "id": "gi_1776874267271",
           "name": "5 Juta Cash",
-          "harga": "10K",
+          "harga": "1K",
           "stock": 10
         },
         {
           "id": "gi_1776874267843",
           "name": "10 Juta Cash",
-          "harga": "10K",
+          "harga": "3K",
           "stock": 10
         },
         {
           "id": "gi_1776874268530",
           "name": "50 Juta Cash",
-          "harga": "10K",
+          "harga": "5K",
           "stock": 10
         },
         {
           "id": "gi_1776874269134",
           "name": "100 Juta Cash",
-          "harga": "10K",
+          "harga": "8K",
           "stock": 10
         },
         {
           "id": "gi_1776874269833",
           "name": "500 Juta Cash",
-          "harga": "10K",
+          "harga": "34K",
           "stock": 10
         }
       ]
