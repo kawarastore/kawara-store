@@ -227,7 +227,68 @@
       "label": "🚗 CDID",
       "icon": "🚗",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776873114284",
+          "name": "Luxury House",
+          "harga": "5K",
+          "stock": 8
+        },
+        {
+          "id": "gi_1776873115138",
+          "name": "Additional Ownable Car",
+          "harga": "7K",
+          "stock": 5
+        },
+        {
+          "id": "gi_1776873115674",
+          "name": "Emergency Vehicle",
+          "harga": "11K",
+          "stock": 2
+        },
+        {
+          "id": "gi_1776873116408",
+          "name": "Retro Pass",
+          "harga": "13K",
+          "stock": 4
+        },
+        {
+          "id": "gi_1776873117064",
+          "name": "Rare Imports",
+          "harga": "15K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776873117720",
+          "name": "Advanced Modification",
+          "harga": "20K",
+          "stock": 6
+        },
+        {
+          "id": "gi_1776873118420",
+          "name": "Luxury Car",
+          "harga": "21K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776873119064",
+          "name": "2x Additional Ownable Car",
+          "harga": "22K",
+          "stock": 4
+        },
+        {
+          "id": "gi_1776873119759",
+          "name": "2x Paycheck",
+          "harga": "33K",
+          "stock": 5
+        },
+        {
+          "id": "gi_1776873120435",
+          "name": "+50% Job Earning",
+          "harga": "33K",
+          "stock": 3
+        }
+      ]
     }
   ],
   "digital_catalogs": [
