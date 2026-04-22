@@ -224,7 +224,7 @@
     },
     {
       "id": "cdi",
-      "label": "🗺️ CDI",
+      "label": "🗺️ CDID",
       "icon": "🗺️",
       "type": "grid",
       "items": []
