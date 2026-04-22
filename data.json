@@ -710,20 +710,6 @@
           "stock": 10
         }
       ]
-    },
-    {
-      "id": "game_1776876997262",
-      "label": "😊 VALORANT",
-      "icon": "😊",
-      "type": "grid",
-      "items": [
-        {
-          "id": "gi_1776877221173",
-          "name": "VANDAL",
-          "harga": "10K",
-          "stock": 10
-        }
-      ]
     }
   ],
   "digital_catalogs": [
