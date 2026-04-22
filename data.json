@@ -29,42 +29,42 @@
           "robux": 50,
           "harga": "10K",
           "gamepass": "",
-          "stock_on": true
+          "stock_on": false
         },
         {
           "id": "ri_1776871963460",
           "robux": 100,
           "harga": "10K",
           "gamepass": "",
-          "stock_on": true
+          "stock_on": false
         },
         {
           "id": "ri_1776871964135",
           "robux": 250,
           "harga": "10K",
           "gamepass": "",
-          "stock_on": true
+          "stock_on": false
         },
         {
           "id": "ri_1776871964662",
           "robux": 500,
           "harga": "10K",
           "gamepass": "",
-          "stock_on": true
+          "stock_on": false
         },
         {
           "id": "ri_1776871965086",
           "robux": 750,
           "harga": "10K",
           "gamepass": "",
-          "stock_on": true
+          "stock_on": false
         },
         {
           "id": "ri_1776871980221",
           "robux": 1000,
           "harga": "10K",
           "gamepass": "",
-          "stock_on": true
+          "stock_on": false
         }
       ]
     },
