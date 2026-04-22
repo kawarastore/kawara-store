@@ -61,7 +61,7 @@ body {
 .orb3 { width:160px;height:160px;background:#ffd700;top:45%;left:35%;opacity:0.1;animation-delay:-15s; }
 @keyframes orbFloat { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(20px,-28px) scale(1.04)} 66%{transform:translate(-15px,22px) scale(0.96)} }
 
-/* ===== SYNC BAR ===== */
+/* SYNC BAR */
 .sync-bar {
   position: sticky; top: 0; z-index: 201;
   display: flex; align-items: center; justify-content: space-between;
@@ -71,15 +71,8 @@ body {
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   font-size: 0.72rem; gap: 10px;
 }
-.sync-status {
-  display: flex; align-items: center; gap: 6px;
-  color: var(--muted); font-weight: 500;
-}
-.sync-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--muted); flex-shrink: 0;
-  transition: background 0.3s;
-}
+.sync-status { display: flex; align-items: center; gap: 6px; color: var(--muted); font-weight: 500; }
+.sync-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); flex-shrink: 0; transition: background 0.3s; }
 .sync-dot.ok { background: var(--green); }
 .sync-dot.loading { background: var(--amber); animation: blink 0.8s ease-in-out infinite; }
 .sync-dot.err { background: var(--red); }
@@ -132,6 +125,7 @@ nav {
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
 
+/* SUBNAV — level 1 (Roblox: Top Up / System) */
 .subnav-wrap {
   position: sticky; top: calc(37px + var(--nav-h)); z-index: 199;
   background: rgba(8,5,0,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -148,11 +142,46 @@ nav {
 }
 .subtab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
 
+/* SUBNAV — level 2 (game list inside TopUp) */
+.game-subnav-wrap {
+  position: sticky; top: calc(37px + var(--nav-h) + var(--subnav-h)); z-index: 198;
+  background: rgba(6,4,0,0.96); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(245,196,0,0.07); display: none;
+}
+.game-subnav-wrap.visible { display: block; }
+.game-subnav-inner { display: flex; gap: 2px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 0 12px; max-width: 1080px; margin: 0 auto; }
+.game-subnav-inner::-webkit-scrollbar { display: none; }
+.gametab-btn {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--muted); font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem; font-weight: 600; padding: 8px 12px; cursor: pointer; transition: all 0.2s;
+  white-space: nowrap; flex-shrink: 0; -webkit-tap-highlight-color: transparent;
+}
+.gametab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* DIGITAL CATEGORY NAV */
+.digital-cat-nav {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;
+}
+.dcat-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 13px; border-radius: 20px;
+  background: rgba(245,196,0,0.06); border: 1px solid var(--border-soft);
+  color: var(--muted); font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  white-space: nowrap; -webkit-tap-highlight-color: transparent;
+}
+.dcat-btn.active { background: var(--gold-dim); border-color: rgba(245,196,0,0.35); color: var(--text); }
+
 main { max-width: 1080px; margin: 0 auto; padding: 20px 14px 60px; position: relative; z-index: 1; width: 100%; }
 .page { display: none; }
 .page.active { display: block; animation: fadeUp 0.32s ease; }
 .roblox-subpage { display: none; }
 .roblox-subpage.active { display: block; animation: fadeUp 0.28s ease; }
+.game-subpage { display: none; }
+.game-subpage.active { display: block; animation: fadeUp 0.25s ease; }
+.digital-catpage { display: none; }
+.digital-catpage.active { display: block; animation: fadeUp 0.25s ease; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
 .hero { padding: 24px 0 20px; }
@@ -243,6 +272,11 @@ main { max-width: 1080px; margin: 0 auto; padding: 20px 14px 60px; position: rel
 .buy-btn:active { background: var(--grad); border-color: transparent; color: #000; }
 .buy-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
+/* Empty state */
+.empty-game { text-align:center; padding:32px 20px; color:var(--muted); }
+.empty-game .empty-icon { font-size:2rem; margin-bottom:10px; }
+.empty-game p { font-size:0.82rem; line-height:1.6; }
+
 .system-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
 .system-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .system-thumb { width: 100%; height: 160px; background: rgba(245,196,0,0.05); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
@@ -258,6 +292,7 @@ main { max-width: 1080px; margin: 0 auto; padding: 20px 14px 60px; position: rel
 .system-buy-btn { width: 100%; padding: 9px; background: var(--grad-soft); border: 1px solid rgba(245,196,0,0.25); border-radius: 8px; color: var(--text); font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; -webkit-tap-highlight-color: transparent; min-height: 38px; }
 .system-buy-btn:active { background: var(--grad); color: #000; border-color: transparent; }
 
+/* Digital */
 .digital-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
 .digital-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .dc-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
@@ -271,10 +306,6 @@ main { max-width: 1080px; margin: 0 auto; padding: 20px 14px 60px; position: rel
 .dc-price-val { font-family: 'Rajdhani', sans-serif; font-weight: 700; background: var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip: text; }
 .dc-buy { width: 100%; margin-top: 13px; padding: 9px; background: var(--grad-soft); border: 1px solid rgba(245,196,0,0.22); border-radius: 8px; color: var(--text); font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; -webkit-tap-highlight-color: transparent; min-height: 38px; }
 .dc-buy:active { background: var(--grad); color: #000; border-color: transparent; }
-
-/* Loading skeleton */
-.skeleton { background: rgba(245,196,0,0.06); border-radius: 8px; animation: shimmer 1.5s ease-in-out infinite; }
-@keyframes shimmer { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
 
 .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 300; align-items: flex-end; justify-content: center; padding: 0; }
 .overlay.open { display: flex; }
@@ -337,7 +368,7 @@ footer a { color: var(--gold); text-decoration: none; }
   <div class="nav-inner">
     <div class="logo-wrap">
       <img class="logo-img" src="https://raw.githubusercontent.com/kawarastore/kawara-store/main/logo.png" onerror="this.style.display='none'" alt="logo">
-      <div class="logo">Kawara Store</div>
+      <div class="logo" id="nav-logo-text">Kawara Store</div>
     </div>
     <div class="main-tabs">
       <button class="tab-btn active" onclick="showPage('beranda',this)">🏠 Beranda</button>
@@ -347,6 +378,7 @@ footer a { color: var(--gold); text-decoration: none; }
   </div>
 </nav>
 
+<!-- Level 1: Roblox subnav (Top Up / System) -->
 <div class="subnav-wrap" id="roblox-subnav">
   <div class="subnav-inner">
     <button class="subtab-btn active" onclick="showRobloxSub('topup',this)">💎 Top Up Robux</button>
@@ -354,14 +386,22 @@ footer a { color: var(--gold); text-decoration: none; }
   </div>
 </div>
 
+<!-- Level 2: Game tabs inside TopUp -->
+<div class="game-subnav-wrap" id="game-subnav">
+  <div class="game-subnav-inner" id="game-subnav-inner">
+    <!-- Filled dynamically -->
+  </div>
+</div>
+
 <main>
+  <!-- ===== BERANDA ===== -->
   <div class="page active" id="page-beranda">
     <div class="hero">
-      <div class="hero-badge">Kawara Store — Marketplace Terpercaya</div>
-      <h1>Jual Beli Item<br><em>Roblox & Jasa Digital</em></h1>
-      <p>Robux, Fish It, The Forge, Roblox System, dan berbagai layanan digital — semua tersedia. Harga terjangkau, proses cepat, pelayanan ramah.</p>
+      <div class="hero-badge" id="hero-badge-text">Kawara Store — Marketplace Terpercaya</div>
+      <h1 id="hero-title">Jual Beli Item<br><em id="hero-title-em">Roblox & Jasa Digital</em></h1>
+      <p id="hero-desc">Robux, Fish It, The Forge, Roblox System, dan berbagai layanan digital — semua tersedia. Harga terjangkau, proses cepat, pelayanan ramah.</p>
       <div class="hero-actions">
-        <a href="https://discord.gg/AJBXUbwdhZ" target="_blank" class="btn-primary">
+        <a href="https://discord.gg/AJBXUbwdhZ" target="_blank" class="btn-primary" id="hero-discord-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
           Gabung Discord
         </a>
@@ -369,14 +409,14 @@ footer a { color: var(--gold); text-decoration: none; }
       </div>
     </div>
     <div class="info-strip">
-      <div class="strip-item"><div class="strip-icon">✅</div><span>Terpercaya &amp; Aman</span></div>
-      <div class="strip-item"><div class="strip-icon">⚡</div><span>Proses Cepat</span></div>
-      <div class="strip-item"><div class="strip-icon">💬</div><span>Respon Ramah</span></div>
-      <div class="strip-item"><div class="strip-icon">💰</div><span>Harga Terjangkau</span></div>
+      <div class="strip-item"><div class="strip-icon">✅</div><span id="strip1">Terpercaya &amp; Aman</span></div>
+      <div class="strip-item"><div class="strip-icon">⚡</div><span id="strip2">Proses Cepat</span></div>
+      <div class="strip-item"><div class="strip-icon">💬</div><span id="strip3">Respon Ramah</span></div>
+      <div class="strip-item"><div class="strip-icon">💰</div><span id="strip4">Harga Terjangkau</span></div>
     </div>
     <div class="how-box">
       <div class="sec-label" style="margin-bottom:8px;">Cara Beli</div>
-      <p>
+      <p id="how-to-buy">
         <strong>1. Pilih item</strong> dari tab Roblox atau Digital &nbsp;→&nbsp;
         <strong>2. Klik "Beli Sekarang"</strong> &nbsp;→&nbsp;
         <strong>3. Isi username Roblox</strong> &nbsp;→&nbsp;
@@ -386,52 +426,16 @@ footer a { color: var(--gold); text-decoration: none; }
     </div>
   </div>
 
+  <!-- ===== ROBLOX ===== -->
   <div class="page" id="page-roblox">
+    <!-- TOP UP subpage -->
     <div class="roblox-subpage active" id="roblox-sub-topup">
       <div class="sec-label">Produk</div>
       <div class="sec-title">💎 Top Up Robux</div>
-      <div class="roblox-section">
-        <div class="rb-section-head" onclick="toggleSection(this)">
-          <div class="rb-section-head-left">
-            <span class="rb-section-icon">💎</span>
-            <span class="rb-section-title">Robux via Gamepass</span>
-            <span class="rb-section-count" id="robux-count">— item</span>
-          </div>
-          <span class="rb-section-arrow open">▼</span>
-        </div>
-        <div class="rb-section-body">
-          <div class="rtable-wrap"><table class="rtable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th></th></tr></thead><tbody id="robux-tbody"></tbody></table></div>
-        </div>
-      </div>
-      <div class="roblox-section">
-        <div class="rb-section-head" onclick="toggleSection(this)">
-          <div class="rb-section-head-left"><span class="rb-section-icon">🎣</span><span class="rb-section-title">Fish It</span><span class="rb-section-count" id="fishit-count">— item</span></div>
-          <span class="rb-section-arrow open">▼</span>
-        </div>
-        <div class="rb-section-body">
-          <div class="subsec" style="margin:12px 14px 8px;">Item Shop</div>
-          <div class="items-grid" id="fishit-shop-grid"></div>
-          <div class="subsec" style="margin:12px 14px 8px;">Gacha — Skin Crates</div>
-          <div class="items-grid" id="fishit-gacha-grid"></div>
-          <div class="subsec" style="margin:12px 14px 8px;">Gacha — Emote Crates</div>
-          <div class="items-grid" id="fishit-emote-grid"></div>
-        </div>
-      </div>
-      <div class="roblox-section">
-        <div class="rb-section-head" onclick="toggleSection(this)">
-          <div class="rb-section-head-left"><span class="rb-section-icon">⚒️</span><span class="rb-section-title">The Forge</span><span class="rb-section-count" id="forge-count">— item</span></div>
-          <span class="rb-section-arrow open">▼</span>
-        </div>
-        <div class="rb-section-body">
-          <div class="subsec" style="margin:12px 14px 8px;">Passes</div>
-          <div class="items-grid" id="forge-passes-grid"></div>
-          <div class="subsec" style="margin:12px 14px 8px;">Totems</div>
-          <div class="items-grid" id="forge-totems-grid"></div>
-          <div class="subsec" style="margin:12px 14px 8px;">Rerolls</div>
-          <div class="items-grid" id="forge-rerolls-grid"></div>
-        </div>
-      </div>
+      <!-- Game pages rendered dynamically -->
+      <div id="topup-game-pages"></div>
     </div>
+    <!-- SYSTEM subpage -->
     <div class="roblox-subpage" id="roblox-sub-system">
       <div class="sec-label">Khusus Developer</div>
       <div class="sec-title">⚙️ Roblox System</div>
@@ -440,15 +444,18 @@ footer a { color: var(--gold); text-decoration: none; }
     </div>
   </div>
 
+  <!-- ===== DIGITAL ===== -->
   <div class="page" id="page-digital">
     <div class="sec-label">Layanan</div>
     <div class="sec-title">💼 Jasa Digital</div>
-    <div class="how-box" style="margin-bottom:16px;"><p>Berbagai layanan digital siap membantu kebutuhanmu. <strong>Harga bisa disesuaikan dengan tingkat kesulitan.</strong></p></div>
-    <div class="digital-grid" id="digital-grid"></div>
+    <!-- Category nav (filled dynamically) -->
+    <div class="digital-cat-nav" id="digital-cat-nav"></div>
+    <!-- Category pages (filled dynamically) -->
+    <div id="digital-cat-pages"></div>
   </div>
 </main>
 
-<!-- MODALS (sama persis seperti aslinya) -->
+<!-- MODALS -->
 <div class="overlay" id="modal-step1">
   <div class="modal">
     <button class="modal-x" onclick="closeModals()">✕</button>
@@ -538,108 +545,202 @@ footer a { color: var(--gold); text-decoration: none; }
 </div>
 
 <footer>
-  © 2025 Kawara Store &nbsp;·&nbsp;
-  <a href="https://discord.gg/AJBXUbwdhZ" target="_blank">Discord</a>
+  © 2025 <span id="footer-store-name">Kawara Store</span> &nbsp;·&nbsp;
+  <a href="https://discord.gg/AJBXUbwdhZ" target="_blank" id="footer-discord-link">Discord</a>
 </footer>
 
 <script>
-// =====================================================
-// KONFIGURASI — GANTI SESUAI REPO KAMU
-// =====================================================
+// ===================================================
+// CONFIG
+// ===================================================
 const GITHUB_USER = 'kawarastore';
 const GITHUB_REPO = 'kawara-store';
 const DATA_FILE   = 'data.json';
-// URL raw untuk baca data (tanpa auth, public)
 const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${DATA_FILE}`;
-// Tambah cache buster supaya tidak kena cache browser
 const dataUrl = () => `${RAW_URL}?t=${Date.now()}`;
-// =====================================================
 
+// ===================================================
+// DEFAULT DATA
+// ===================================================
 const DEFAULT = {
-  robux:[
-    {id:'r1',robux:50,harga:'4K',gamepass:'72',stock:99},
-    {id:'r2',robux:100,harga:'9K',gamepass:'143',stock:99},
-    {id:'r3',robux:200,harga:'18K',gamepass:'286',stock:99},
-    {id:'r4',robux:300,harga:'28K',gamepass:'429',stock:99},
-    {id:'r5',robux:400,harga:'38K',gamepass:'572',stock:99},
-    {id:'r6',robux:500,harga:'48K',gamepass:'715',stock:99},
-    {id:'r7',robux:600,harga:'58K',gamepass:'858',stock:99},
-    {id:'r8',robux:700,harga:'68K',gamepass:'1000',stock:99},
-    {id:'r9',robux:800,harga:'78K',gamepass:'1143',stock:99},
-    {id:'r10',robux:900,harga:'88K',gamepass:'1286',stock:99},
-    {id:'r11',robux:1000,harga:'98K',gamepass:'1430',stock:99},
+  // Site config / descriptions
+  site_config: {
+    store_name: 'Kawara Store',
+    nav_logo_text: 'Kawara Store',
+    hero_badge: 'Kawara Store — Marketplace Terpercaya',
+    hero_title: 'Jual Beli Item',
+    hero_title_em: 'Roblox & Jasa Digital',
+    hero_desc: 'Robux, Fish It, The Forge, Roblox System, dan berbagai layanan digital — semua tersedia. Harga terjangkau, proses cepat, pelayanan ramah.',
+    strip1: 'Terpercaya & Aman',
+    strip2: 'Proses Cepat',
+    strip3: 'Respon Ramah',
+    strip4: 'Harga Terjangkau',
+    how_to_buy: '1. Pilih item dari tab Roblox atau Digital → 2. Klik "Beli Sekarang" → 3. Isi username Roblox → 4. Pilih metode pembayaran → 5. Hubungi admin via WhatsApp untuk konfirmasi & proses pesanan.',
+    footer_store_name: 'Kawara Store',
+    discord_url: 'https://discord.gg/AJBXUbwdhZ',
+    wa_number: '6287720254002',
+  },
+
+  // GAMES LIST for TopUp — each game has sections with items
+  topup_games: [
+    {
+      id: 'robux',
+      name: 'Robux',
+      emoji: '💎',
+      sections: [
+        {
+          id: 'robux_gamepass',
+          title: 'Robux via Gamepass',
+          icon: '💎',
+          type: 'table', // table = robux style with gamepass col
+          items: [
+            {id:'r1',robux:50,harga:'4K',gamepass:'72',stock:99},
+            {id:'r2',robux:100,harga:'9K',gamepass:'143',stock:99},
+            {id:'r3',robux:200,harga:'18K',gamepass:'286',stock:99},
+            {id:'r4',robux:300,harga:'28K',gamepass:'429',stock:99},
+            {id:'r5',robux:400,harga:'38K',gamepass:'572',stock:99},
+            {id:'r6',robux:500,harga:'48K',gamepass:'715',stock:99},
+            {id:'r7',robux:600,harga:'58K',gamepass:'858',stock:99},
+            {id:'r8',robux:700,harga:'68K',gamepass:'1000',stock:99},
+            {id:'r9',robux:800,harga:'78K',gamepass:'1143',stock:99},
+            {id:'r10',robux:900,harga:'88K',gamepass:'1286',stock:99},
+            {id:'r11',robux:1000,harga:'98K',gamepass:'1430',stock:99},
+          ]
+        }
+      ]
+    },
+    {
+      id: 'fishit',
+      name: 'Fish It',
+      emoji: '🎣',
+      sections: [
+        { id:'fishit_shop', title:'Item Shop', icon:'🛒', type:'grid',
+          items:[
+            {id:'fs1',name:'Rod Skin: Bunny Staff',harga:'85K',stock:10},
+            {id:'fs2',name:'Rod Skin: Easter Parasol',harga:'85K',stock:10},
+            {id:'fs3',name:'VIP + LUCK',harga:'45K',stock:10},
+            {id:'fs4',name:'Easter Pack',harga:'25K',stock:10},
+            {id:'fs5',name:'Advanced Luck',harga:'50K',stock:10},
+            {id:'fs6',name:'Extra Luck',harga:'25K',stock:10},
+            {id:'fs7',name:'Double XP',harga:'18K',stock:10},
+            {id:'fs8',name:'Mini Hoverboard',harga:'20K',stock:10},
+            {id:'fs9',name:'Sell Anywhere',harga:'30K',stock:10},
+            {id:'fs10',name:'Small Luck',harga:'5K',stock:10},
+            {id:'fs11',name:'Hyper Boat Pack',harga:'95K',stock:10},
+          ]
+        },
+        { id:'fishit_gacha', title:'Gacha — Skin Crates', icon:'🎰', type:'grid',
+          items:[
+            {id:'fg1',name:'Azure Crates — 1x Spin',harga:'11K',stock:99},
+            {id:'fg2',name:'Azure Crates — 5x Spin',harga:'53K',stock:99},
+            {id:'fg3',name:'Pirate — 1x Spin',harga:'11K',stock:99},
+            {id:'fg4',name:'Pirate — 5x Spin',harga:'53K',stock:99},
+            {id:'fg5',name:'Elderwood — 1x Spin',harga:'10K',stock:99},
+            {id:'fg6',name:'Elderwood — 5x Spin',harga:'48K',stock:99},
+            {id:'fg7',name:'Luxury — 1x Spin',harga:'10K',stock:99},
+            {id:'fg8',name:'Luxury — 5x Spin',harga:'48K',stock:99},
+          ]
+        },
+        { id:'fishit_emote', title:'Gacha — Emote Crates', icon:'🎭', type:'grid',
+          items:[
+            {id:'fe1',name:'Emote Crates — 1x Spin',harga:'5K',stock:99},
+            {id:'fe2',name:'Emote Crates — 5x Spin',harga:'23K',stock:99},
+          ]
+        },
+      ]
+    },
+    {
+      id: 'forge',
+      name: 'The Forge',
+      emoji: '⚒️',
+      sections: [
+        { id:'forge_passes', title:'Passes', icon:'🎫', type:'grid',
+          items:[
+            {id:'fp1',name:'Fast Forge',harga:'10K',stock:10},
+            {id:'fp2',name:'Supporter',harga:'15K',stock:10},
+            {id:'fp3',name:'Forge Anywhere',harga:'20K',stock:10},
+            {id:'fp4',name:'Better Forge',harga:'170K',stock:10},
+            {id:'fp5',name:'Sell Anywhere',harga:'13K',stock:10},
+            {id:'fp6',name:'Double Storage',harga:'8K',stock:10},
+          ]
+        },
+        { id:'forge_totems', title:'Totems', icon:'🗿', type:'grid',
+          items:[
+            {id:'ft1',name:'XP Totem x3',harga:'5K',stock:10},
+            {id:'ft2',name:'Luck Totem x3',harga:'6K',stock:10},
+            {id:'ft3',name:'Miner Totem x3',harga:'6K',stock:10},
+            {id:'ft4',name:'Warrior Totem x3',harga:'6K',stock:10},
+            {id:'ft5',name:'Vitality x3',harga:'6K',stock:10},
+          ]
+        },
+        { id:'forge_rerolls', title:'Rerolls', icon:'🔄', type:'grid',
+          items:[
+            {id:'fr1',name:'Buy 1 Reroll',harga:'3K',stock:99},
+            {id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},
+            {id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99},
+          ]
+        },
+      ]
+    },
+    { id:'sawah', name:'Sawah Indo', emoji:'🌾', sections:[] },
+    { id:'hangout', name:'Indo Hangout', emoji:'🏠', sections:[] },
+    { id:'cdi', name:'CDI', emoji:'🗺️', sections:[] },
+    { id:'dfish', name:'DFISH', emoji:'🐟', sections:[] },
+    { id:'bloxfruit', name:'Blox Fruit', emoji:'🍎', sections:[] },
+    { id:'brookhaven', name:'Brookhaven', emoji:'🏙️', sections:[] },
   ],
-  fishit_shop:[
-    {id:'fs1',name:'Rod Skin: Bunny Staff',harga:'85K',stock:10},
-    {id:'fs2',name:'Rod Skin: Easter Parasol',harga:'85K',stock:10},
-    {id:'fs3',name:'VIP + LUCK',harga:'45K',stock:10},
-    {id:'fs4',name:'Easter Pack',harga:'25K',stock:10},
-    {id:'fs5',name:'Advanced Luck',harga:'50K',stock:10},
-    {id:'fs6',name:'Extra Luck',harga:'25K',stock:10},
-    {id:'fs7',name:'Double XP',harga:'18K',stock:10},
-    {id:'fs8',name:'Mini Hoverboard',harga:'20K',stock:10},
-    {id:'fs9',name:'Sell Anywhere',harga:'30K',stock:10},
-    {id:'fs10',name:'Small Luck',harga:'5K',stock:10},
-    {id:'fs11',name:'Hyper Boat Pack',harga:'95K',stock:10},
-  ],
-  fishit_gacha:[
-    {id:'fg1',name:'Azure Crates — 1x Spin',harga:'11K',stock:99},
-    {id:'fg2',name:'Azure Crates — 5x Spin',harga:'53K',stock:99},
-    {id:'fg3',name:'Pirate — 1x Spin',harga:'11K',stock:99},
-    {id:'fg4',name:'Pirate — 5x Spin',harga:'53K',stock:99},
-    {id:'fg5',name:'Elderwood — 1x Spin',harga:'10K',stock:99},
-    {id:'fg6',name:'Elderwood — 5x Spin',harga:'48K',stock:99},
-    {id:'fg7',name:'Luxury — 1x Spin',harga:'10K',stock:99},
-    {id:'fg8',name:'Luxury — 5x Spin',harga:'48K',stock:99},
-  ],
-  fishit_emote:[
-    {id:'fe1',name:'Emote Crates — 1x Spin',harga:'5K',stock:99},
-    {id:'fe2',name:'Emote Crates — 5x Spin',harga:'23K',stock:99},
-  ],
-  forge_passes:[
-    {id:'fp1',name:'Fast Forge',harga:'10K',stock:10},
-    {id:'fp2',name:'Supporter',harga:'15K',stock:10},
-    {id:'fp3',name:'Forge Anywhere',harga:'20K',stock:10},
-    {id:'fp4',name:'Better Forge',harga:'170K',stock:10},
-    {id:'fp5',name:'Sell Anywhere',harga:'13K',stock:10},
-    {id:'fp6',name:'Double Storage',harga:'8K',stock:10},
-  ],
-  forge_totems:[
-    {id:'ft1',name:'XP Totem x3',harga:'5K',stock:10},
-    {id:'ft2',name:'Luck Totem x3',harga:'6K',stock:10},
-    {id:'ft3',name:'Miner Totem x3',harga:'6K',stock:10},
-    {id:'ft4',name:'Warrior Totem x3',harga:'6K',stock:10},
-    {id:'ft5',name:'Vitality x3',harga:'6K',stock:10},
-  ],
-  forge_rerolls:[
-    {id:'fr1',name:'Buy 1 Reroll',harga:'3K',stock:99},
-    {id:'fr2',name:'Buy 5 Reroll',harga:'12K',stock:99},
-    {id:'fr3',name:'Buy 10 Reroll',harga:'23K',stock:99},
-  ],
+
   roblox_system:[
     {id:'sys1',name:'Admin System',desc:'Sistem admin panel lengkap untuk game Roblox kamu.',tags:'Admin,Panel,Tools',harga:'Rp50.000',thumb:'',stock:99},
     {id:'sys2',name:'Anti Cheat System',desc:'Sistem anti cheat canggih yang mendeteksi exploit secara otomatis.',tags:'Security,AntiExploit',harga:'Rp75.000',thumb:'',stock:99},
     {id:'sys3',name:'Data Store System',desc:'Sistem penyimpanan data pemain yang stabil dengan auto-save.',tags:'DataStore,Save',harga:'Rp40.000',thumb:'',stock:99},
   ],
-  digital:[
-    {id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF.',prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Gabung/Pisah PDF',val:'Rp3.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]},
-    {id:'d2',icon:'⌨️',name:'Ketik & Rapihin Dokumen',desc:'Ketik dari foto, perbaikan typo, format tugas.',prices:[{label:'Ketik dari foto',val:'Rp2.000/hal'},{label:'Rapihin dokumen',val:'Rp2.000/hal'},{label:'Format tugas',val:'Mulai Rp10.000'}]},
-    {id:'d3',icon:'🖼️',name:'Edit Foto Simple',desc:'Ganti background, resize, crop, perbaikan HD.',prices:[{label:'Ganti background',val:'Rp5.000/foto'},{label:'Resize & crop',val:'Rp3.000/foto'},{label:'Perbaikan HD',val:'Rp5.000/foto'}]},
-    {id:'d4',icon:'✨',name:'Desain CV & Poster',desc:'Desain CV menarik siap pakai, plus desain poster.',prices:[{label:'CV Sederhana',val:'Rp15.000'},{label:'CV Profesional',val:'Rp25.000'},{label:'Poster',val:'Mulai Rp20.000'}]},
-    {id:'d5',icon:'📊',name:'Edit PPT',desc:'Presentasi jadi rapi dan menarik.',prices:[{label:'Rapihin PPT',val:'Rp10.000–Rp15.000'},{label:'Desain Ulang',val:'Mulai Rp25.000'}]},
-    {id:'d6',icon:'🎁',name:'Paket Bundling',desc:'Hemat lebih dengan paket kombinasi layanan.',prices:[{label:'CV + Convert PDF',val:'Rp15.000'},{label:'CV + Edit Foto',val:'Rp20.000'}]},
-  ]
+
+  // Digital: array of categories, each has items
+  digital_categories: [
+    {
+      id: 'dokumen',
+      name: 'Dokumen',
+      emoji: '📄',
+      items: [
+        {id:'d1',icon:'📄',name:'Convert & Edit PDF',desc:'Ubah, gabung, pisah, compress, dan edit isi file PDF.',prices:[{label:'Word ke PDF',val:'Rp3.000/file'},{label:'PDF ke Word',val:'Rp5.000/file'},{label:'Gabung/Pisah PDF',val:'Rp3.000/file'},{label:'Edit isi PDF',val:'Mulai Rp10.000'}]},
+        {id:'d2',icon:'⌨️',name:'Ketik & Rapihin Dokumen',desc:'Ketik dari foto, perbaikan typo, format tugas.',prices:[{label:'Ketik dari foto',val:'Rp2.000/hal'},{label:'Rapihin dokumen',val:'Rp2.000/hal'},{label:'Format tugas',val:'Mulai Rp10.000'}]},
+        {id:'d5',icon:'📊',name:'Edit PPT',desc:'Presentasi jadi rapi dan menarik.',prices:[{label:'Rapihin PPT',val:'Rp10.000–Rp15.000'},{label:'Desain Ulang',val:'Mulai Rp25.000'}]},
+      ]
+    },
+    {
+      id: 'desain',
+      name: 'Desain',
+      emoji: '🎨',
+      items: [
+        {id:'d3',icon:'🖼️',name:'Edit Foto Simple',desc:'Ganti background, resize, crop, perbaikan HD.',prices:[{label:'Ganti background',val:'Rp5.000/foto'},{label:'Resize & crop',val:'Rp3.000/foto'},{label:'Perbaikan HD',val:'Rp5.000/foto'}]},
+        {id:'d4',icon:'✨',name:'Desain CV & Poster',desc:'Desain CV menarik siap pakai, plus desain poster.',prices:[{label:'CV Sederhana',val:'Rp15.000'},{label:'CV Profesional',val:'Rp25.000'},{label:'Poster',val:'Mulai Rp20.000'}]},
+      ]
+    },
+    {
+      id: 'bundling',
+      name: 'Bundling',
+      emoji: '🎁',
+      items: [
+        {id:'d6',icon:'🎁',name:'Paket Bundling',desc:'Hemat lebih dengan paket kombinasi layanan.',prices:[{label:'CV + Convert PDF',val:'Rp15.000'},{label:'CV + Edit Foto',val:'Rp20.000'}]},
+      ]
+    }
+  ],
 };
 
-// =====================================================
-// FETCH DATA DARI GITHUB
-// =====================================================
+// ===================================================
+// STATE
+// ===================================================
 let _data = null;
 let _IC = {};
 let _item = null, _user = '', _pay = '';
 let _digitalItem = null, _digitalPay = '';
 let _systemItem = null, _systemPay = '';
+let _currentGame = null;
 
+// ===================================================
+// FETCH
+// ===================================================
 function setSyncStatus(state, msg) {
   const dot = document.getElementById('sync-dot');
   const txt = document.getElementById('sync-text');
@@ -653,16 +754,11 @@ async function fetchData(manual = false) {
   btn.disabled = true;
   icon.classList.add('spin');
   setSyncStatus('loading', manual ? 'Memuat ulang...' : 'Memuat data...');
-
   try {
     const res = await fetch(dataUrl(), { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
-    // Merge dengan DEFAULT — kalau field kosong pakai default
-    _data = {};
-    const keys = Object.keys(DEFAULT);
-    keys.forEach(k => { _data[k] = (json[k] && json[k].length > 0) ? json[k] : DEFAULT[k]; });
-    // Simpan ke localStorage sebagai cache fallback
+    _data = mergeWithDefault(json);
     localStorage.setItem('kawara_cache', JSON.stringify(_data));
     localStorage.setItem('kawara_cache_time', Date.now().toString());
     renderAll();
@@ -670,7 +766,6 @@ async function fetchData(manual = false) {
     setSyncStatus('ok', 'Data terkini');
     document.getElementById('last-update').textContent = '· ' + now;
   } catch(e) {
-    // Fallback ke cache lokal
     const cache = localStorage.getItem('kawara_cache');
     if (cache) {
       _data = JSON.parse(cache);
@@ -690,71 +785,203 @@ async function fetchData(manual = false) {
   }
 }
 
-// =====================================================
-// RENDER
-// =====================================================
-function normalizeTags(tags) {
-  if (!tags) return [];
-  if (Array.isArray(tags)) return tags;
-  return String(tags).split(',').map(t => t.trim()).filter(Boolean);
+function mergeWithDefault(json) {
+  const d = JSON.parse(JSON.stringify(DEFAULT));
+  if (json.site_config) Object.assign(d.site_config, json.site_config);
+  if (json.topup_games && json.topup_games.length) d.topup_games = json.topup_games;
+  if (json.roblox_system && json.roblox_system.length) d.roblox_system = json.roblox_system;
+  if (json.digital_categories && json.digital_categories.length) d.digital_categories = json.digital_categories;
+  return d;
 }
 
+// ===================================================
+// RENDER ALL
+// ===================================================
 function renderAll() {
   if (!_data) return;
-  renderRobux(_data.robux || DEFAULT.robux);
-  renderGrid('fishit-shop-grid',  _data.fishit_shop  || DEFAULT.fishit_shop,  'Fish It');
-  renderGrid('fishit-gacha-grid', _data.fishit_gacha || DEFAULT.fishit_gacha, 'Fish It');
-  renderGrid('fishit-emote-grid', _data.fishit_emote || DEFAULT.fishit_emote, 'Fish It');
-  renderGrid('forge-passes-grid', _data.forge_passes || DEFAULT.forge_passes, 'The Forge');
-  renderGrid('forge-totems-grid', _data.forge_totems || DEFAULT.forge_totems, 'The Forge');
-  renderGrid('forge-rerolls-grid',_data.forge_rerolls|| DEFAULT.forge_rerolls,'The Forge');
-  renderSystem(_data.roblox_system|| DEFAULT.roblox_system);
-  renderDigital(_data.digital     || DEFAULT.digital);
-
-  const fi = (_data.fishit_shop||[]).length + (_data.fishit_gacha||[]).length + (_data.fishit_emote||[]).length;
-  const fo = (_data.forge_passes||[]).length + (_data.forge_totems||[]).length + (_data.forge_rerolls||[]).length;
-  const rc = document.getElementById('robux-count');
-  const fic = document.getElementById('fishit-count');
-  const foc = document.getElementById('forge-count');
-  if (rc)  rc.textContent  = (_data.robux||[]).length + ' item';
-  if (fic) fic.textContent = fi + ' item';
-  if (foc) foc.textContent = fo + ' item';
+  applySiteConfig(_data.site_config || DEFAULT.site_config);
+  renderTopupGames(_data.topup_games || DEFAULT.topup_games);
+  renderSystem(_data.roblox_system || DEFAULT.roblox_system);
+  renderDigitalCats(_data.digital_categories || DEFAULT.digital_categories);
 }
 
-function renderRobux(items) {
-  document.getElementById('robux-tbody').innerHTML = items.map(item => {
+// ===================================================
+// SITE CONFIG
+// ===================================================
+function applySiteConfig(cfg) {
+  const sc = cfg || {};
+  setText('nav-logo-text', sc.nav_logo_text || DEFAULT.site_config.nav_logo_text);
+  setText('hero-badge-text', sc.hero_badge || DEFAULT.site_config.hero_badge);
+  setText('hero-title', sc.hero_title || DEFAULT.site_config.hero_title);
+  setText('hero-title-em', sc.hero_title_em || DEFAULT.site_config.hero_title_em);
+  setText('hero-desc', sc.hero_desc || DEFAULT.site_config.hero_desc);
+  setText('strip1', sc.strip1 || DEFAULT.site_config.strip1);
+  setText('strip2', sc.strip2 || DEFAULT.site_config.strip2);
+  setText('strip3', sc.strip3 || DEFAULT.site_config.strip3);
+  setText('strip4', sc.strip4 || DEFAULT.site_config.strip4);
+  setText('how-to-buy', sc.how_to_buy || DEFAULT.site_config.how_to_buy);
+  setText('footer-store-name', sc.footer_store_name || DEFAULT.site_config.footer_store_name);
+  const discordUrl = sc.discord_url || DEFAULT.site_config.discord_url;
+  const discordBtn = document.getElementById('hero-discord-btn');
+  if (discordBtn) discordBtn.href = discordUrl;
+  const footerLink = document.getElementById('footer-discord-link');
+  if (footerLink) footerLink.href = discordUrl;
+  if (sc.store_name) document.title = sc.store_name;
+}
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+// ===================================================
+// TOP UP GAMES
+// ===================================================
+function renderTopupGames(games) {
+  // Build game subnav
+  const navInner = document.getElementById('game-subnav-inner');
+  navInner.innerHTML = games.map((g, i) =>
+    `<button class="gametab-btn${i===0?' active':''}" onclick="showGame('${g.id}',this)">${g.emoji} ${g.name}</button>`
+  ).join('');
+
+  // Build game pages
+  const pagesContainer = document.getElementById('topup-game-pages');
+  pagesContainer.innerHTML = games.map((g, i) => {
+    const totalItems = (g.sections || []).reduce((acc, s) => acc + (s.items||[]).length, 0);
+    const isEmpty = totalItems === 0;
+    let inner = '';
+    if (isEmpty) {
+      inner = `<div class="empty-game">
+        <div class="empty-icon">${g.emoji}</div>
+        <p><strong>${g.name}</strong><br>Belum ada item tersedia.<br>Segera hadir!</p>
+      </div>`;
+    } else {
+      inner = (g.sections || []).map(sec => {
+        const count = (sec.items||[]).length;
+        return `<div class="roblox-section">
+          <div class="rb-section-head" onclick="toggleSection(this)">
+            <div class="rb-section-head-left">
+              <span class="rb-section-icon">${sec.icon||g.emoji}</span>
+              <span class="rb-section-title">${sec.title}</span>
+              <span class="rb-section-count">${count} item</span>
+            </div>
+            <span class="rb-section-arrow open">▼</span>
+          </div>
+          <div class="rb-section-body">
+            ${sec.type === 'table' ? renderSectionTable(sec, g.name) : renderSectionGrid(sec, g.name)}
+          </div>
+        </div>`;
+      }).join('');
+    }
+    return `<div class="game-subpage${i===0?' active':''}" id="game-page-${g.id}">${inner}</div>`;
+  }).join('');
+
+  // Register items in _IC
+  _IC = {};
+  games.forEach(g => {
+    (g.sections||[]).forEach(sec => {
+      (sec.items||[]).forEach(item => {
+        const key = '_ic_' + item.id;
+        const name = item.robux ? item.robux + ' Robux' : item.name;
+        _IC[key] = { id: item.id, name, harga: item.harga, category: `${g.name} — ${sec.title}` };
+      });
+    });
+  });
+
+  _currentGame = games[0]?.id || null;
+}
+
+function renderSectionTable(sec, gameName) {
+  const rows = (sec.items||[]).map(item => {
     const out = item.stock <= 0;
     const low = !out && item.stock <= 3;
     const key = '_ic_' + item.id;
-    _IC[key] = { id: item.id, name: item.robux + ' Robux', harga: item.harga, category: 'Robux Via Gamepass' };
-    const dotClass = out ? 'out' : low ? 'low' : '';
-    const stockTxt = out ? '—' : item.stock >= 99 ? '✓' : item.stock;
     const stockColor = out ? 'var(--red)' : low ? 'var(--amber)' : 'var(--green)';
+    const stockTxt = out ? '—' : item.stock >= 99 ? '✓' : item.stock;
     return `<tr onclick="${out ? '' : `openOrder('${key}')`}">
       <td><strong>${item.robux} Rbx</strong></td>
       <td class="price">${item.harga}</td>
       <td class="gp">${item.gamepass}</td>
       <td style="font-size:0.8rem;font-weight:700;color:${stockColor};">${stockTxt}</td>
-      <td><span class="rbadge${out ? ' out' : ''}">${out ? 'Habis' : 'Beli'}</span></td>
+      <td><span class="rbadge${out?' out':''}">${out?'Habis':'Beli'}</span></td>
     </tr>`;
   }).join('');
+  return `<div class="rtable-wrap"><table class="rtable"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Stok</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-function renderGrid(containerId, items, category) {
-  document.getElementById(containerId).innerHTML = items.map(item => {
+function renderSectionGrid(sec, gameName) {
+  const cards = (sec.items||[]).map(item => {
     const out = item.stock <= 0;
     const low = !out && item.stock <= 3;
     const key = '_ic_' + item.id;
-    _IC[key] = { id: item.id, name: item.name, harga: item.harga, category };
     const dotClass = out ? 'out' : low ? 'low' : '';
     const stockTxt = out ? 'Stok habis' : low ? `Stok: ${item.stock} (sedikit)` : `Stok: ${item.stock}`;
     return `<div class="item-card">
       <div class="item-name">${item.name}</div>
       <div class="item-price">${item.harga}</div>
-      <div class="item-stock${out ? ' out-txt' : ''}"><span class="sdot ${dotClass}"></span>${stockTxt}</div>
-      <button class="buy-btn" ${out ? 'disabled' : ''} onclick="openOrder('${key}')">${out ? 'Habis' : 'Beli Sekarang'}</button>
+      <div class="item-stock${out?' out-txt':''}"><span class="sdot ${dotClass}"></span>${stockTxt}</div>
+      <button class="buy-btn" ${out?'disabled':''} onclick="openOrder('${key}')">${out?'Habis':'Beli Sekarang'}</button>
     </div>`;
   }).join('');
+  return `<div class="items-grid">${cards}</div>`;
+}
+
+function showGame(gameId, btn) {
+  document.querySelectorAll('.game-subpage').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.gametab-btn').forEach(b => b.classList.remove('active'));
+  const page = document.getElementById('game-page-' + gameId);
+  if (page) page.classList.add('active');
+  if (btn) btn.classList.add('active');
+  _currentGame = gameId;
+}
+
+// ===================================================
+// DIGITAL CATEGORIES
+// ===================================================
+function renderDigitalCats(cats) {
+  const nav = document.getElementById('digital-cat-nav');
+  const pages = document.getElementById('digital-cat-pages');
+
+  nav.innerHTML = cats.map((cat, i) =>
+    `<button class="dcat-btn${i===0?' active':''}" onclick="showDigitalCat('${cat.id}',this)">${cat.emoji} ${cat.name}</button>`
+  ).join('');
+
+  pages.innerHTML = cats.map((cat, i) => {
+    const items = cat.items || [];
+    const cards = items.length ? items.map(item => {
+      const prices = Array.isArray(item.prices) ? item.prices : [];
+      const itemJson = JSON.stringify(item).replace(/\\/g,'\\\\').replace(/"/g,'&quot;');
+      return `<div class="digital-card">
+        <div class="dc-header">
+          <div class="dc-icon">${item.icon||'📦'}</div>
+          <div class="dc-title">${item.name}</div>
+        </div>
+        <div class="dc-desc">${item.desc}</div>
+        <div class="dc-prices">${prices.map(p=>`<div class="dc-price-row"><span class="dc-price-label">${p.label}</span><span class="dc-price-val">${p.val}</span></div>`).join('')}</div>
+        <button class="dc-buy" onclick="openDigitalOrder(${itemJson})">Order Sekarang</button>
+      </div>`;
+    }).join('') : `<div class="empty-game"><div class="empty-icon">${cat.emoji}</div><p><strong>${cat.name}</strong><br>Belum ada layanan tersedia.<br>Segera hadir!</p></div>`;
+
+    return `<div class="digital-catpage${i===0?' active':''}" id="dcat-${cat.id}">
+      <div class="digital-grid">${cards}</div>
+    </div>`;
+  }).join('');
+}
+
+function showDigitalCat(catId, btn) {
+  document.querySelectorAll('.digital-catpage').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.dcat-btn').forEach(b => b.classList.remove('active'));
+  const page = document.getElementById('dcat-' + catId);
+  if (page) page.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ===================================================
+// SYSTEM
+// ===================================================
+function normalizeTags(tags) {
+  if (!tags) return [];
+  if (Array.isArray(tags)) return tags;
+  return String(tags).split(',').map(t => t.trim()).filter(Boolean);
 }
 
 function renderSystem(items) {
@@ -781,27 +1008,9 @@ function renderSystem(items) {
   }).join('');
 }
 
-function renderDigital(items) {
-  const grid = document.getElementById('digital-grid');
-  if (!grid) return;
-  grid.innerHTML = items.map(item => {
-    const prices = Array.isArray(item.prices) ? item.prices : [];
-    const itemJson = JSON.stringify(item).replace(/\\/g,'\\\\').replace(/"/g,'&quot;');
-    return `<div class="digital-card">
-      <div class="dc-header">
-        <div class="dc-icon">${item.icon||'📦'}</div>
-        <div class="dc-title">${item.name}</div>
-      </div>
-      <div class="dc-desc">${item.desc}</div>
-      <div class="dc-prices">${prices.map(p=>`<div class="dc-price-row"><span class="dc-price-label">${p.label}</span><span class="dc-price-val">${p.val}</span></div>`).join('')}</div>
-      <button class="dc-buy" onclick="openDigitalOrder(${itemJson})">Order Sekarang</button>
-    </div>`;
-  }).join('');
-}
-
-// =====================================================
-// UI HELPERS
-// =====================================================
+// ===================================================
+// UI NAV
+// ===================================================
 function toggleSection(head) {
   const body = head.nextElementSibling;
   const arrow = head.querySelector('.rb-section-arrow');
@@ -815,7 +1024,13 @@ function showPage(page, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   if (btn) btn.classList.add('active');
-  document.getElementById('roblox-subnav').classList.toggle('visible', page === 'roblox');
+  const robloxSubnav = document.getElementById('roblox-subnav');
+  const gameSubnav = document.getElementById('game-subnav');
+  const isRoblox = page === 'roblox';
+  robloxSubnav.classList.toggle('visible', isRoblox);
+  // show game subnav only if topup is active
+  const isTopup = isRoblox && document.getElementById('roblox-sub-topup')?.classList.contains('active');
+  gameSubnav.classList.toggle('visible', isTopup);
   window.scrollTo(0, 0);
 }
 
@@ -824,7 +1039,16 @@ function showRobloxSub(sub, btn) {
   document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('roblox-sub-' + sub).classList.add('active');
   if (btn) btn.classList.add('active');
+  const gameSubnav = document.getElementById('game-subnav');
+  gameSubnav.classList.toggle('visible', sub === 'topup');
   window.scrollTo(0, 0);
+}
+
+// ===================================================
+// MODALS
+// ===================================================
+function getWANumber() {
+  return (_data?.site_config?.wa_number) || DEFAULT.site_config.wa_number;
 }
 
 function openOrder(key) {
@@ -835,7 +1059,6 @@ function openOrder(key) {
   document.getElementById('m1-username').value = '';
   document.getElementById('modal-step1').classList.add('open');
 }
-
 function goStep2() {
   const u = document.getElementById('m1-username').value.trim();
   if (!u) { alert('Masukkan username Roblox dulu!'); return; }
@@ -848,13 +1071,11 @@ function goStep2() {
   _pay = '';
   document.getElementById('modal-step2').classList.add('open');
 }
-
 function selPay(btn, method) {
   document.querySelectorAll('#modal-step2 .pay-opt').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel'); _pay = method;
   document.getElementById('btn-next2').disabled = false;
 }
-
 function goStep3() {
   document.getElementById('modal-step2').classList.remove('open');
   document.getElementById('m3-summary').innerHTML = `
@@ -865,12 +1086,10 @@ function goStep3() {
     <div class="confirm-row"><span class="lbl">Pembayaran via</span><span class="val">${_pay}</span></div>`;
   document.getElementById('modal-step3').classList.add('open');
 }
-
 function openWA() {
   const msg = `Halo Kawara Store, saya ingin memesan:\n\n👤 Username Roblox: ${_user}\n🎮 Kategori: ${_item.category}\n📦 Item: ${_item.name}\n💰 Harga: ${_item.harga}\n💳 Pembayaran: ${_pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${getWANumber()}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
 function openSystemOrder(item) {
   _systemItem = item; _systemPay = '';
   document.getElementById('ms-title').textContent = item.name;
@@ -881,20 +1100,17 @@ function openSystemOrder(item) {
   document.querySelectorAll('#modal-system .pay-opt').forEach(b => b.classList.remove('sel'));
   document.getElementById('modal-system').classList.add('open');
 }
-
 function selPayS(btn, method) {
   document.querySelectorAll('#modal-system .pay-opt').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel'); _systemPay = method;
 }
-
 function openWASystem() {
   const nm = document.getElementById('ms-user').value.trim() || '(tidak diisi)';
   const desc = document.getElementById('ms-desc').value.trim() || '(tidak diisi)';
   const pay = _systemPay || '(belum dipilih)';
   const msg = `Halo Kawara Store, saya ingin memesan Roblox System:\n\n👤 Nama: ${nm}\n⚙️ System: ${_systemItem.name}\n💰 Harga: ${_systemItem.harga}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${getWANumber()}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
 function openDigitalOrder(item) {
   _digitalItem = item; _digitalPay = '';
   const prices = Array.isArray(item.prices) ? item.prices : [];
@@ -906,34 +1122,28 @@ function openDigitalOrder(item) {
   document.querySelectorAll('#modal-digital .pay-opt').forEach(b => b.classList.remove('sel'));
   document.getElementById('modal-digital').classList.add('open');
 }
-
 function selPayD(btn, method) {
   document.querySelectorAll('#modal-digital .pay-opt').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel'); _digitalPay = method;
 }
-
 function openWADigital() {
   const nm = document.getElementById('md-name').value.trim() || '(tidak diisi)';
   const desc = document.getElementById('md-desc').value.trim() || '(tidak diisi)';
   const pay = _digitalPay || '(belum dipilih)';
   const msg = `Halo Kawara Store, saya ingin memesan Jasa Digital:\n\n👤 Nama: ${nm}\n💼 Jasa: ${_digitalItem.name}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/6287720254002?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${getWANumber()}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
 function closeModals() {
   document.querySelectorAll('.overlay').forEach(o => o.classList.remove('open'));
 }
-
 document.querySelectorAll('.overlay').forEach(o => {
   o.addEventListener('click', e => { if (e.target === o) closeModals(); });
 });
 
-// =====================================================
+// ===================================================
 // INIT
-// =====================================================
+// ===================================================
 fetchData();
-
-// Auto refresh setiap 5 menit kalau tab aktif
 setInterval(() => { if (!document.hidden) fetchData(); }, 5 * 60 * 1000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) fetchData(); });
 </script>
