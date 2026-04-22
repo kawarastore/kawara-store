@@ -227,7 +227,68 @@
       "label": "🗺️ CDID",
       "icon": "🗺️",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776872527758",
+          "name": "LUXURY CAR",
+          "harga": "22K",
+          "stock": 6
+        },
+        {
+          "id": "gi_1776872528266",
+          "name": "MODIFICATION",
+          "harga": "21K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872528764",
+          "name": "RARE IMPORTS",
+          "harga": "15K",
+          "stock": 5
+        },
+        {
+          "id": "gi_1776872529208",
+          "name": "RETRO PASS",
+          "harga": "14K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872529655",
+          "name": "2X ADDITIONAL",
+          "harga": "23K",
+          "stock": 4
+        },
+        {
+          "id": "gi_1776872530103",
+          "name": "EMERGENCY",
+          "harga": "10K",
+          "stock": 1
+        },
+        {
+          "id": "gi_1776872530546",
+          "name": "JOB EARNING",
+          "harga": "35K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872531105",
+          "name": "LUXURY HOUSE",
+          "harga": "5K",
+          "stock": 3
+        },
+        {
+          "id": "gi_1776872531549",
+          "name": "ADDITIONAL",
+          "harga": "7K",
+          "stock": 5
+        },
+        {
+          "id": "gi_1776872532054",
+          "name": "2X PAY CHECK",
+          "harga": "35K",
+          "stock": 3
+        }
+      ]
     },
     {
       "id": "dfisch",
