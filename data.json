@@ -367,18 +367,18 @@
       "id": "d1",
       "icon": "📄",
       "name": "Convert & Edit PDF",
-      "desc": "Ubah, gabung, pisah, compress, dan edit isi file PDF.",
+      "desc": "Ubah, gabung, pisah, compress, dan edit file PDF dengan cepat & rapi. Cocok untuk tugas, dokumen kerja, dan kebutuhan sehari-hari.",
       "prices": [
         {
-          "label": "Word ke PDF",
+          "label": "Word → PDF",
           "val": "Rp3.000/file"
         },
         {
-          "label": "PDF ke Word",
+          "label": "PDF → Word",
           "val": "Rp5.000/file"
         },
         {
-          "label": "Edit isi PDF",
+          "label": "Edit / Rapihin PDF",
           "val": "Mulai Rp10.000"
         }
       ]
