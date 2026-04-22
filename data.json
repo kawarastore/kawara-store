@@ -156,50 +156,50 @@
     {
       "id": "fg1",
       "name": "Azure Crates — 1x Spin",
-      "harga": "11K",
-      "stock": 99
+      "harga": "10K",
+      "stock": 15
     },
     {
       "id": "fg2",
       "name": "Azure Crates — 5x Spin",
-      "harga": "53K",
-      "stock": 99
+      "harga": "50K",
+      "stock": 8
     },
     {
       "id": "fg3",
       "name": "Pirate — 1x Spin",
-      "harga": "11K",
-      "stock": 99
+      "harga": "10K",
+      "stock": 15
     },
     {
       "id": "fg4",
       "name": "Pirate — 5x Spin",
-      "harga": "53K",
-      "stock": 99
+      "harga": "50K",
+      "stock": 8
     },
     {
       "id": "fg5",
       "name": "Elderwood — 1x Spin",
       "harga": "10K",
-      "stock": 99
+      "stock": 15
     },
     {
       "id": "fg6",
       "name": "Elderwood — 5x Spin",
-      "harga": "48K",
-      "stock": 99
+      "harga": "45K",
+      "stock": 8
     },
     {
       "id": "fg7",
       "name": "Luxury — 1x Spin",
       "harga": "10K",
-      "stock": 99
+      "stock": 15
     },
     {
       "id": "fg8",
       "name": "Luxury — 5x Spin",
-      "harga": "48K",
-      "stock": 99
+      "harga": "45K",
+      "stock": 8
     }
   ],
   "fishit_emote": [
