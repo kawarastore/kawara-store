@@ -382,6 +382,38 @@
           "val": "Mulai Rp10.000"
         }
       ]
+    },
+    {
+      "id": "d_1776843826849",
+      "icon": "🎨",
+      "name": "Desain Simpel",
+      "desc": "Jasa desain cepat untuk poster, feed Instagram, banner, dan thumbnail. Desain clean, menarik, dan siap pakai untuk kebutuhan online.",
+      "prices": [
+        {
+          "label": "Poster / Feed IG",
+          "val": "Rp10.000"
+        },
+        {
+          "label": "Banner / Spanduk",
+          "val": "Rp15.000"
+        },
+        {
+          "label": "Thumbnail YouTube",
+          "val": "Rp10.000"
+        }
+      ]
+    },
+    {
+      "id": "d_1776843993125",
+      "icon": "📦",
+      "name": "Layanan Baru",
+      "desc": "Deskripsi.",
+      "prices": [
+        {
+          "label": "Harga",
+          "val": "Mulai Rp10.000"
+        }
+      ]
     }
   ]
 }
