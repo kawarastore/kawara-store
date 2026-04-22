@@ -577,6 +577,13 @@
           "stock": 10
         }
       ]
+    },
+    {
+      "id": "game_1776874229660",
+      "label": "🏍️ Drag Drive Simulator",
+      "icon": "🏍️",
+      "type": "grid",
+      "items": []
     }
   ],
   "digital_catalogs": [
