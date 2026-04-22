@@ -73,7 +73,86 @@
       "label": "🌾 Sawah Indo",
       "icon": "🌾",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776872119910",
+          "name": "2x Harvest",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872129152",
+          "name": "Fast Grow",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872144924",
+          "name": "Ekstra Lots",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872145506",
+          "name": "2x Sell",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872145953",
+          "name": "Rain Lover",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872146937",
+          "name": "2x XP",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872147435",
+          "name": "Auto Collect Milk",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872147886",
+          "name": "Boombox",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872148340",
+          "name": "Auto Collect Egg",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872148801",
+          "name": "Auto Harvest",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872149251",
+          "name": "Auto Feed Cow",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872149754",
+          "name": "Auto Feed Chicken",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776872150208",
+          "name": "VIP Farmer",
+          "harga": "10K",
+          "stock": 10
+        }
+      ]
     },
     {
       "id": "indohangout",
