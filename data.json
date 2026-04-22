@@ -545,7 +545,38 @@
       "label": "🏝️ Indo Voice",
       "icon": "🏝️",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776874154613",
+          "name": "Photographer Bundle",
+          "harga": "8K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874160700",
+          "name": "Money Giver",
+          "harga": "13K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874161404",
+          "name": "Custom Sign",
+          "harga": "21K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874162032",
+          "name": "Anti Hair Fall",
+          "harga": "87K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874162619",
+          "name": "Haircut Scissors",
+          "harga": "870K",
+          "stock": 10
+        }
+      ]
     }
   ],
   "digital_catalogs": [
