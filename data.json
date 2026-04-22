@@ -430,6 +430,22 @@
           "val": "Rp10.000 – Rp20.000"
         }
       ]
+    },
+    {
+      "id": "d_1776844203707",
+      "icon": "📸",
+      "name": "Edit Foto",
+      "desc": "Edit foto jadi lebih HD, hapus background, dan tambah efek keren seperti hujan, glow, dan lainnya.",
+      "prices": [
+        {
+          "label": "HD / 4K",
+          "val": "Rp5.000"
+        },
+        {
+          "label": "Hapus background",
+          "val": "Rp5.000"
+        }
+      ]
     }
   ]
 }
