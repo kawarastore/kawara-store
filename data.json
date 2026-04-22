@@ -333,6 +333,15 @@
       "harga": "Rp250.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131918008287362/image.png?ex=69e96dae&is=69e81c2e&hm=e5ae1f537b8c73690be0609c4de0e8c8ce2f0ad6ac5daad1b6a9f87e688f88ab&=&format=webp&quality=lossless&width=1554&height=874",
       "stock": 999
+    },
+    {
+      "id": "sys_1776843315347",
+      "name": "OVERHEAD SYSTEM",
+      "desc": "tampilkan nama, title, status, bendera & level di atas player dengan desain modern. Support custom text, multi-line, efek rainbow untuk role spesial, dan update real-time.\n\nRingan, fleksibel, mudah diatur lewat config, dan cocok untuk semua tema game.",
+      "tags": "Roblox,Overhead,System,Title,Status,Level,UI,Script,Lua,GameDev,Customization,Display,Tools",
+      "harga": "Rp100.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496132099168796732/image.png?ex=69e96dd9&is=69e81c59&hm=b5d0732f42ae7e477297ab5f460f7493e307535a7964909ec14f065ae1c848fe&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 999
     }
   ],
   "digital": [
