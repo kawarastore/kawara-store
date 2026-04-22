@@ -423,7 +423,128 @@
       "label": "🤡 Violence District",
       "icon": "🤡",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776873863624",
+          "name": "500 Screws",
+          "harga": "1K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873864429",
+          "name": "2.500 Screws",
+          "harga": "6K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873865015",
+          "name": "7.500 Screws",
+          "harga": "19K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873865648",
+          "name": "15.000 Screws",
+          "harga": "39K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873866429",
+          "name": "50.000 Screws",
+          "harga": "130K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873867020",
+          "name": "30% EXP Boost (1 Hour)",
+          "harga": "4K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873867676",
+          "name": "30% EXP Boost (3 Hours)",
+          "harga": "12K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873868256",
+          "name": "30% EXP Boost (6 Hours)",
+          "harga": "26K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873868860",
+          "name": "30% EXP Boost (12 Hours)",
+          "harga": "47K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873869447",
+          "name": "100 Emblems",
+          "harga": "4K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873870043",
+          "name": "250 Emblems",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873870611",
+          "name": "500 Emblems",
+          "harga": "21K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873871177",
+          "name": "1.000 Emblems",
+          "harga": "43K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873871799",
+          "name": "2.000 Emblems",
+          "harga": "87K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873872382",
+          "name": "100 Ornaments",
+          "harga": "7K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873873029",
+          "name": "250 Ornaments",
+          "harga": "19K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873873580",
+          "name": "500 Ornaments",
+          "harga": "38K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873874204",
+          "name": "1.000 Ornaments",
+          "harga": "77K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873874815",
+          "name": "15 SIN",
+          "harga": "13K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776873875457",
+          "name": "Item Baru",
+          "harga": "10K",
+          "stock": 10
+        }
+      ]
     }
   ],
   "digital_catalogs": [
