@@ -23,7 +23,50 @@
       "label": "💎 Robux via Gamepass",
       "icon": "💎",
       "type": "robux_table",
-      "items": []
+      "items": [
+        {
+          "id": "ri_1776871961698",
+          "robux": 50,
+          "harga": "10K",
+          "gamepass": "",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776871963460",
+          "robux": 100,
+          "harga": "10K",
+          "gamepass": "",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776871964135",
+          "robux": 250,
+          "harga": "10K",
+          "gamepass": "",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776871964662",
+          "robux": 500,
+          "harga": "10K",
+          "gamepass": "",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776871965086",
+          "robux": 750,
+          "harga": "10K",
+          "gamepass": "",
+          "stock_on": true
+        },
+        {
+          "id": "ri_1776871980221",
+          "robux": 1000,
+          "harga": "10K",
+          "gamepass": "",
+          "stock_on": true
+        }
+      ]
     },
     {
       "id": "sawaindo",
