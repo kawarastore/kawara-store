@@ -207,13 +207,13 @@
       "id": "fe1",
       "name": "Emote Crates — 1x Spin",
       "harga": "5K",
-      "stock": 99
+      "stock": 23
     },
     {
       "id": "fe2",
       "name": "Emote Crates — 5x Spin",
       "harga": "23K",
-      "stock": 99
+      "stock": 18
     }
   ],
   "forge_passes": [
