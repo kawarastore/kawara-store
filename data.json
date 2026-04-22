@@ -537,12 +537,6 @@
           "name": "15 SIN",
           "harga": "13K",
           "stock": 10
-        },
-        {
-          "id": "gi_1776873875457",
-          "name": "Item Baru",
-          "harga": "10K",
-          "stock": 10
         }
       ]
     }
