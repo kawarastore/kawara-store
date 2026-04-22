@@ -415,30 +415,6 @@
           "name": "Easter Pack",
           "harga": "21K",
           "stock": 10
-        },
-        {
-          "id": "gi_1776873365622",
-          "name": "Item Baru",
-          "harga": "10K",
-          "stock": 10
-        },
-        {
-          "id": "gi_1776873365972",
-          "name": "Item Baru",
-          "harga": "10K",
-          "stock": 10
-        },
-        {
-          "id": "gi_1776873366607",
-          "name": "Item Baru",
-          "harga": "10K",
-          "stock": 10
-        },
-        {
-          "id": "gi_1776873367032",
-          "name": "Item Baru",
-          "harga": "10K",
-          "stock": 10
         }
       ]
     }
