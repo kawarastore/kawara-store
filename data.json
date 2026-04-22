@@ -539,6 +539,13 @@
           "stock": 10
         }
       ]
+    },
+    {
+      "id": "game_1776874137991",
+      "label": "🏝️ Indo Voice",
+      "icon": "🏝️",
+      "type": "grid",
+      "items": []
     }
   ],
   "digital_catalogs": [
