@@ -324,6 +324,15 @@
       "harga": "Rp400.000",
       "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496135509510983710/image.png?ex=69e97106&is=69e81f86&hm=3c944f26c89b5b21e54f4bc64557e363312e0e7bdf61cbe4c24e5108cf731fe1&=&format=webp&quality=lossless&width=1554&height=874",
       "stock": 999
+    },
+    {
+      "id": "sys_1776843210176",
+      "name": "LIKE + SYNC DANCE SYSTEM",
+      "desc": "fitur like dengan leaderboard real-time, dance bareng sinkron, carry system (gendong) dengan request, dan profil player lengkap. UI modern dark mode, smooth, dan nyaman di PC & Mobile.\n\nRingan, anti-spam, mudah di-setup, dan fully customizable.",
+      "tags": "Roblox,PlayerMenu,LikeSystem,DanceSystem,CarrySystem,ProfileSystem,UI,Script,Lua,Multiplayer,GameDev,Social,Tools",
+      "harga": "Rp250.000",
+      "thumb": "https://media.discordapp.net/attachments/1440532658873565305/1496131918008287362/image.png?ex=69e96dae&is=69e81c2e&hm=e5ae1f537b8c73690be0609c4de0e8c8ce2f0ad6ac5daad1b6a9f87e688f88ab&=&format=webp&quality=lossless&width=1554&height=874",
+      "stock": 999
     }
   ],
   "digital": [
