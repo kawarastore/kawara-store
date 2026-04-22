@@ -20,7 +20,7 @@
   "roblox_games": [
     {
       "id": "robux",
-      "label": "Robux via Gamepass",
+      "label": "💎 Robux via Gamepass",
       "icon": "💎",
       "type": "robux_table",
       "items": [
@@ -105,7 +105,7 @@
     },
     {
       "id": "sawaindo",
-      "label": "Sawah Indo",
+      "label": "🌾 Sawah Indo",
       "icon": "🌾",
       "type": "grid",
       "items": [
@@ -191,7 +191,7 @@
     },
     {
       "id": "indohangout",
-      "label": "Indo Hangout",
+      "label": "🏠 Indo Hangout",
       "icon": "🏠",
       "type": "grid",
       "items": [
@@ -259,7 +259,7 @@
     },
     {
       "id": "game_1776873089474",
-      "label": "CDID",
+      "label": "🚗 CDID",
       "icon": "🚗",
       "type": "grid",
       "items": [
@@ -327,7 +327,7 @@
     },
     {
       "id": "game_1776873302768",
-      "label": "Fish It!",
+      "label": "🐟 Fish It!",
       "icon": "🐟",
       "type": "grid",
       "items": [
@@ -455,7 +455,7 @@
     },
     {
       "id": "game_1776873830489",
-      "label": "Violence District",
+      "label": "🤡 Violence District",
       "icon": "🤡",
       "type": "grid",
       "items": [
@@ -577,7 +577,7 @@
     },
     {
       "id": "game_1776874137991",
-      "label": "Indo Voice",
+      "label": "🏝️ Indo Voice",
       "icon": "🏝️",
       "type": "grid",
       "items": [
@@ -615,7 +615,7 @@
     },
     {
       "id": "game_1776874229660",
-      "label": "Drag Drive Simulator",
+      "label": "🏍️ Drag Drive Simulator",
       "icon": "🏍️",
       "type": "grid",
       "items": [
@@ -710,12 +710,19 @@
           "stock": 10
         }
       ]
+    },
+    {
+      "id": "game_1776876997262",
+      "label": "😊 Game Baru",
+      "icon": "😊",
+      "type": "grid",
+      "items": []
     }
   ],
   "digital_catalogs": [
     {
       "id": "digitalcat1",
-      "label": "Layanan Dokumen",
+      "label": "📄 Layanan Dokumen",
       "icon": "📄",
       "items": []
     }
