@@ -32,6 +32,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
 @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
 
+/* CLOSED STORE OVERLAY */
 .store-closed-overlay {
   display:none; position:fixed; inset:0; z-index:500;
   background:rgba(0,0,0,0.92); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
@@ -45,13 +46,14 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
 .closed-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px; background:rgba(231,76,60,0.15); border:1px solid rgba(231,76,60,0.3); color:var(--red); font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px; }
 .closed-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--red); animation:blink 1s ease-in-out infinite; }
 
+/* SYNC BAR */
 .sync-bar { position:sticky; top:0; z-index:201; display:flex; align-items:center; justify-content:space-between; padding:7px 14px; background:rgba(6,4,0,0.98); border-bottom:1px solid rgba(245,196,0,0.12); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); font-size:0.72rem; gap:10px; }
 .sync-status { display:flex; align-items:center; gap:6px; color:var(--muted); font-weight:500; }
 .sync-dot { width:6px; height:6px; border-radius:50%; background:var(--muted); flex-shrink:0; transition:background 0.3s; }
 .sync-dot.ok { background:var(--green); }
 .sync-dot.loading { background:var(--amber); animation:blink 0.8s ease-in-out infinite; }
 .sync-dot.err { background:var(--red); }
-.refresh-btn { display:flex; align-items:center; gap:5px; padding:5px 11px; border-radius:7px; background:var(--gold-dim); border:1px solid rgba(245,196,0,0.28); color:var(--gold); font-family:'Outfit',sans-serif; font-size:0.72rem; font-weight:700; cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; white-space:nowrap; }
+.refresh-btn { display:flex; align-items:center; gap:5px; padding:5px 11px; border-radius:7px; background:var(--gold-dim); border:1px solid rgba(245,196,0,0.28); color:var(--gold); font-family:'Outfit',sans-serif; font-size:0.72rem; font-weight:700; cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; letter-spacing:0.3px; white-space:nowrap; }
 .refresh-btn:active { background:rgba(245,196,0,0.25); }
 .refresh-btn:disabled { opacity:0.4; cursor:not-allowed; }
 .refresh-icon { transition:transform 0.5s; display:inline-block; }
@@ -65,7 +67,8 @@ nav { position:sticky; top:37px; z-index:200; background:rgba(6,4,0,0.97); backd
 .logo { font-family:'Rajdhani',sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; white-space:nowrap; }
 .main-tabs { display:flex; gap:2px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; flex-shrink:1; }
 .main-tabs::-webkit-scrollbar { display:none; }
-.tab-btn { background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:600; padding:6px 10px; cursor:pointer; transition:all 0.22s; white-space:nowrap; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+.tab-btn { background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:600; letter-spacing:0.3px; padding:6px 10px; cursor:pointer; transition:all 0.22s; white-space:nowrap; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+.tab-btn:hover { color:var(--text); }
 .tab-btn.active { color:var(--gold); border-bottom-color:var(--gold); }
 
 .subnav-wrap { position:sticky; top:calc(37px + var(--nav-h)); z-index:199; background:rgba(8,5,0,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid rgba(245,196,0,0.1); display:none; }
@@ -75,6 +78,7 @@ nav { position:sticky; top:37px; z-index:200; background:rgba(6,4,0,0.97); backd
 .subtab-btn { background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); font-family:'Outfit',sans-serif; font-size:0.8rem; font-weight:600; padding:10px 14px; cursor:pointer; transition:all 0.2s; white-space:nowrap; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
 .subtab-btn.active { color:var(--gold); border-bottom-color:var(--gold); }
 
+/* Digital sub-nav */
 .digital-subnav-wrap { position:sticky; top:calc(37px + var(--nav-h)); z-index:199; background:rgba(8,5,0,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid rgba(245,196,0,0.1); display:none; }
 .digital-subnav-wrap.visible { display:block; }
 .digital-subnav-inner { display:flex; gap:2px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0 12px; max-width:1080px; margin:0 auto; }
@@ -95,12 +99,14 @@ main { max-width:1080px; margin:0 auto; padding:20px 14px 60px; position:relativ
 .hero h1 em { font-style:normal; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero p { color:var(--muted); font-size:0.88rem; line-height:1.65; max-width:380px; margin-bottom:20px; }
 .hero-actions { display:flex; gap:8px; flex-wrap:wrap; }
-.btn-primary { display:inline-flex; align-items:center; gap:7px; padding:10px 18px; border-radius:10px; background:var(--grad); border:none; color:#000; font-family:'Outfit',sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer; text-decoration:none; transition:all 0.25s; box-shadow:0 4px 20px rgba(245,196,0,0.3); -webkit-tap-highlight-color:transparent; }
+.btn-primary { display:inline-flex; align-items:center; gap:7px; padding:10px 18px; border-radius:10px; background:var(--grad); border:none; color:#000; font-family:'Outfit',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.5px; cursor:pointer; text-decoration:none; transition:all 0.25s; box-shadow:0 4px 20px rgba(245,196,0,0.3); -webkit-tap-highlight-color:transparent; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(245,196,0,0.45); }
 .btn-secondary { display:inline-flex; align-items:center; gap:7px; padding:10px 18px; border-radius:10px; background:transparent; border:1px solid var(--border); color:var(--text); font-family:'Outfit',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer; text-decoration:none; transition:all 0.25s; -webkit-tap-highlight-color:transparent; }
+.btn-secondary:hover { border-color:rgba(245,196,0,0.4); background:var(--gold-soft); }
 .info-strip { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:24px; }
-.strip-item { display:flex; align-items:center; gap:10px; padding:11px 13px; border-radius:12px; background:var(--card); border:1px solid var(--border); backdrop-filter:blur(12px); font-size:0.8rem; font-weight:500; }
+.strip-item { display:flex; align-items:center; gap:10px; padding:11px 13px; border-radius:12px; background:var(--card); border:1px solid var(--border); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); font-size:0.8rem; font-weight:500; }
 .strip-icon { width:28px; height:28px; border-radius:7px; background:var(--grad-soft); display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; border:1px solid var(--border); }
-.how-box { margin-top:18px; padding:16px 18px; background:var(--card); border:1px solid var(--border); border-radius:12px; backdrop-filter:blur(12px); }
+.how-box { margin-top:18px; padding:16px 18px; background:var(--card); border:1px solid var(--border); border-radius:12px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
 .how-box p { color:var(--muted); font-size:0.82rem; line-height:1.8; }
 .how-box strong { color:var(--text); }
 .sec-label { font-family:'Rajdhani',sans-serif; font-size:0.63rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
@@ -108,33 +114,27 @@ main { max-width:1080px; margin:0 auto; padding:20px 14px 60px; position:relativ
 .subsec { display:flex; align-items:center; gap:10px; font-size:0.63rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin:20px 0 10px; }
 .subsec::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
 
-.site-desc-box { margin-bottom:20px; padding:14px 16px; background:var(--card); border:1px solid var(--border); border-radius:12px; backdrop-filter:blur(12px); }
+/* Site description box */
+.site-desc-box { margin-bottom:20px; padding:14px 16px; background:var(--card); border:1px solid var(--border); border-radius:12px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
 .site-desc-box p { color:var(--muted); font-size:0.82rem; line-height:1.75; }
-
-/* ROBUX BALANCE PANEL */
-.robux-balance-panel { display:none; margin-bottom:16px; padding:16px 18px; background:rgba(245,196,0,0.06); border:1px solid rgba(245,196,0,0.25); border-radius:14px; backdrop-filter:blur(12px); }
-.robux-balance-panel.visible { display:flex; align-items:center; gap:14px; }
-.rbp-icon { font-size:1.8rem; flex-shrink:0; }
-.rbp-info { flex:1; }
-.rbp-label { font-size:0.62rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
-.rbp-amount { font-family:'Rajdhani',sans-serif; font-size:1.6rem; font-weight:700; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.1; }
-.rbp-sub { font-size:0.72rem; color:var(--muted); margin-top:2px; }
+.site-desc-box strong { color:var(--text); }
 
 .roblox-section { margin-bottom:10px; }
-.rb-section-head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px 10px 0 0; background:var(--card); border:1px solid var(--border); backdrop-filter:blur(12px); cursor:pointer; user-select:none; transition:background 0.2s; -webkit-tap-highlight-color:transparent; }
+.rb-section-head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px 10px 0 0; background:var(--card); border:1px solid var(--border); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); cursor:pointer; user-select:none; transition:background 0.2s; -webkit-tap-highlight-color:transparent; }
 .rb-section-head.collapsed { border-radius:10px; }
+.rb-section-head:active { background:rgba(245,196,0,0.06); }
 .rb-section-head-left { display:flex; align-items:center; gap:10px; }
 .rb-section-icon { font-size:1.05rem; }
 .rb-section-title { font-family:'Rajdhani',sans-serif; font-size:0.92rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
-.rb-section-count { padding:2px 7px; border-radius:20px; background:var(--gold-dim); border:1px solid rgba(245,196,0,0.25); font-size:0.66rem; font-weight:700; color:var(--gold); }
+.rb-section-count { padding:2px 7px; border-radius:20px; background:var(--gold-dim); border:1px solid rgba(245,196,0,0.25); font-size:0.66rem; font-weight:700; color:var(--gold); letter-spacing:0.5px; }
 .rb-section-arrow { color:var(--gold); font-size:0.72rem; transition:transform 0.25s; flex-shrink:0; }
 .rb-section-arrow.open { transform:rotate(180deg); }
-.rb-section-body { background:rgba(6,4,0,0.5); border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; overflow:hidden; backdrop-filter:blur(12px); max-height:5000px; transition:max-height 0.4s ease; }
+.rb-section-body { background:rgba(6,4,0,0.5); border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; overflow:hidden; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); max-height:5000px; transition:max-height 0.4s ease; }
 .rb-section-body.collapsed { max-height:0; border:none; }
 
-/* Robux table — no stock column */
+/* Robux table with toggle stock */
 .rtable-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
-.rtable { width:100%; border-collapse:collapse; min-width:220px; }
+.rtable { width:100%; border-collapse:collapse; min-width:280px; }
 .rtable th { padding:9px 14px; text-align:left; font-size:0.6rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); white-space:nowrap; }
 .rtable td { padding:10px 14px; font-size:0.87rem; border-bottom:1px solid rgba(245,196,0,0.05); }
 .rtable tr:last-child td { border-bottom:none; }
@@ -142,11 +142,17 @@ main { max-width:1080px; margin:0 auto; padding:20px 14px 60px; position:relativ
 .rtable tbody tr:active td { background:rgba(245,196,0,0.05); }
 .rtable .price { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.9rem; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .rtable .gp { color:var(--muted); font-size:0.78rem; }
-.rbadge { display:inline-block; padding:3px 9px; border-radius:6px; background:var(--gold-dim); border:1px solid rgba(245,196,0,0.28); font-size:0.7rem; font-weight:700; color:var(--gold); cursor:pointer; }
+.rbadge { display:inline-block; padding:3px 9px; border-radius:6px; background:var(--gold-dim); border:1px solid rgba(245,196,0,0.28); font-size:0.7rem; font-weight:700; color:var(--gold); }
 .rbadge.out { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.07); color:var(--muted); cursor:default; }
 
+/* Stock indicator pill */
+.stock-pill { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:20px; font-size:0.66rem; font-weight:700; }
+.stock-pill.on { background:rgba(46,204,113,0.12); border:1px solid rgba(46,204,113,0.3); color:var(--green); }
+.stock-pill.off { background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.25); color:var(--red); }
+.stock-pill::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; }
+
 .items-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:12px; }
-.item-card { background:rgba(245,196,0,0.03); border:1px solid var(--border-soft); border-radius:10px; padding:12px; transition:all 0.22s; }
+.item-card { background:rgba(245,196,0,0.03); border:1px solid var(--border-soft); border-radius:10px; padding:12px; transition:all 0.22s; position:relative; }
 .item-card:active { border-color:rgba(245,196,0,0.3); transform:scale(0.98); }
 .item-name { font-weight:600; font-size:0.82rem; margin-bottom:6px; line-height:1.35; }
 .item-price { font-family:'Rajdhani',sans-serif; font-size:0.95rem; font-weight:700; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:5px; }
@@ -159,40 +165,43 @@ main { max-width:1080px; margin:0 auto; padding:20px 14px 60px; position:relativ
 .buy-btn:active { background:var(--grad); border-color:transparent; color:#000; }
 .buy-btn:disabled { opacity:0.3; cursor:not-allowed; }
 
+/* Empty state */
 .empty-state { text-align:center; padding:32px 16px; color:var(--muted); }
 .empty-state-icon { font-size:2rem; margin-bottom:8px; opacity:0.4; }
 .empty-state-txt { font-size:0.8rem; line-height:1.6; }
 
-.digital-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; backdrop-filter:blur(12px); margin-bottom:10px; }
+.digital-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); margin-bottom:10px; }
 .dc-header { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
 .dc-icon { width:38px; height:38px; border-radius:9px; background:var(--gold-dim); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
-.dc-title { font-family:'Rajdhani',sans-serif; font-size:0.96rem; font-weight:700; }
+.dc-title { font-family:'Rajdhani',sans-serif; font-size:0.96rem; font-weight:700; letter-spacing:0.5px; }
 .dc-desc { color:var(--muted); font-size:0.77rem; line-height:1.55; margin-bottom:12px; }
 .dc-prices { display:flex; flex-direction:column; gap:4px; }
 .dc-price-row { display:flex; justify-content:space-between; align-items:center; padding:5px 0; border-bottom:1px solid rgba(245,196,0,0.06); font-size:0.78rem; }
 .dc-price-row:last-child { border:none; }
 .dc-price-label { color:var(--muted); }
 .dc-price-val { font-family:'Rajdhani',sans-serif; font-weight:700; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.dc-buy { width:100%; margin-top:13px; padding:9px; background:var(--grad-soft); border:1px solid rgba(245,196,0,0.22); border-radius:8px; color:var(--text); font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; -webkit-tap-highlight-color:transparent; min-height:38px; }
+.dc-buy { width:100%; margin-top:13px; padding:9px; background:var(--grad-soft); border:1px solid rgba(245,196,0,0.22); border-radius:8px; color:var(--text); font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all 0.2s; letter-spacing:0.5px; -webkit-tap-highlight-color:transparent; min-height:38px; }
 .dc-buy:active { background:var(--grad); color:#000; border-color:transparent; }
+
 .digital-grid { display:grid; grid-template-columns:1fr; gap:10px; }
 
-.overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(16px); z-index:300; align-items:flex-end; justify-content:center; }
+.overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); z-index:300; align-items:flex-end; justify-content:center; padding:0; }
 .overlay.open { display:flex; }
-.modal { background:#0e0900; border:1px solid var(--border); border-radius:20px 20px 0 0; padding:24px 18px 32px; width:100%; max-width:480px; position:relative; animation:slideUp 0.28s cubic-bezier(0.16,1,0.3,1); max-height:92vh; overflow-y:auto; }
+.modal { background:#0e0900; border:1px solid var(--border); border-radius:20px 20px 0 0; padding:24px 18px 32px; width:100%; max-width:480px; position:relative; animation:slideUp 0.28s cubic-bezier(0.16,1,0.3,1); box-shadow:0 0 0 1px rgba(245,196,0,0.06),0 -8px 40px rgba(0,0,0,0.5); max-height:92vh; overflow-y:auto; -webkit-overflow-scrolling:touch; }
 .modal::before { content:''; display:block; width:36px; height:4px; border-radius:2px; background:rgba(245,196,0,0.25); margin:0 auto 18px; }
-.modal-x { position:absolute; top:18px; right:14px; background:rgba(255,255,255,0.05); border:1px solid var(--border-soft); color:var(--muted); width:30px; height:30px; border-radius:7px; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; justify-content:center; -webkit-tap-highlight-color:transparent; }
+.modal-x { position:absolute; top:18px; right:14px; background:rgba(255,255,255,0.05); border:1px solid var(--border-soft); color:var(--muted); width:30px; height:30px; border-radius:7px; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; justify-content:center; transition:all 0.15s; -webkit-tap-highlight-color:transparent; }
 .modal-step-label { font-size:0.62rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin-bottom:4px; opacity:0.8; }
 .modal h3 { font-family:'Rajdhani',sans-serif; font-size:1.05rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
 .modal-item-name { color:var(--muted); font-size:0.84rem; margin-bottom:2px; }
 .modal-price { font-family:'Rajdhani',sans-serif; font-weight:700; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-size:1.05rem; margin-bottom:18px; }
 .field-label { font-size:0.66rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:7px; }
-.field-input { width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:10px; padding:13px 14px; color:var(--text); font-family:'Outfit',sans-serif; font-size:1rem; outline:none; margin-bottom:16px; transition:border-color 0.2s; -webkit-appearance:none; }
+.field-input { width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:10px; padding:13px 14px; color:var(--text); font-family:'Outfit',sans-serif; font-size:1rem; outline:none; margin-bottom:16px; transition:border-color 0.2s; -webkit-appearance:none; appearance:none; }
 .field-input:focus { border-color:rgba(245,196,0,0.5); }
 .pay-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
 .pay-opt { padding:11px 8px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; color:var(--muted); font-family:'Outfit',sans-serif; font-size:0.84rem; font-weight:600; cursor:pointer; transition:all 0.2s; text-align:center; min-height:44px; -webkit-tap-highlight-color:transparent; }
 .pay-opt.sel { background:var(--gold-dim); border-color:rgba(245,196,0,0.4); color:var(--text); }
-.modal-cta { width:100%; padding:13px; background:var(--grad); border:none; border-radius:12px; color:#000; font-family:'Outfit',sans-serif; font-size:0.92rem; font-weight:700; cursor:pointer; box-shadow:0 4px 20px rgba(245,196,0,0.28); min-height:48px; }
+.modal-cta { width:100%; padding:13px; background:var(--grad); border:none; border-radius:12px; color:#000; font-family:'Outfit',sans-serif; font-size:0.92rem; font-weight:700; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 20px rgba(245,196,0,0.28); letter-spacing:0.5px; -webkit-tap-highlight-color:transparent; min-height:48px; }
+.modal-cta:active { opacity:0.9; transform:scale(0.98); }
 .modal-cta:disabled { opacity:0.35; cursor:not-allowed; }
 .confirm-box { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:13px; margin-bottom:16px; }
 .confirm-row { display:flex; justify-content:space-between; align-items:flex-start; padding:7px 0; border-bottom:1px solid rgba(245,196,0,0.05); font-size:0.83rem; gap:8px; }
@@ -200,7 +209,8 @@ main { max-width:1080px; margin:0 auto; padding:20px 14px 60px; position:relativ
 .confirm-row .lbl { color:var(--muted); flex-shrink:0; }
 .confirm-row .val { font-weight:600; text-align:right; }
 .confirm-row .val.hl { font-family:'Rajdhani',sans-serif; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.wa-cta { width:100%; padding:13px; background:linear-gradient(135deg,#25d366,#128c7e); border:none; border-radius:12px; color:#fff; font-family:'Outfit',sans-serif; font-size:0.92rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; min-height:48px; }
+.wa-cta { width:100%; padding:13px; background:linear-gradient(135deg,#25d366,#128c7e); border:none; border-radius:12px; color:#fff; font-family:'Outfit',sans-serif; font-size:0.92rem; font-weight:700; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 20px rgba(37,211,102,0.22); -webkit-tap-highlight-color:transparent; min-height:48px; }
+.wa-cta:active { opacity:0.9; transform:scale(0.98); }
 .note { color:var(--muted); font-size:0.77rem; line-height:1.65; margin-bottom:13px; }
 
 footer { text-align:center; padding:20px 16px; border-top:1px solid var(--border); margin-top:28px; color:var(--muted); font-size:0.73rem; font-family:'Rajdhani',sans-serif; letter-spacing:1.5px; text-transform:uppercase; position:relative; z-index:1; }
@@ -220,6 +230,7 @@ footer a { color:var(--gold); text-decoration:none; }
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
+<!-- STORE CLOSED OVERLAY -->
 <div class="store-closed-overlay" id="store-closed-overlay">
   <div class="closed-badge">Store Status</div>
   <div class="closed-icon">🔒</div>
@@ -227,6 +238,7 @@ footer a { color:var(--gold); text-decoration:none; }
   <div class="closed-desc" id="closed-desc-text">Store sedang tutup sementara. Silakan kembali lagi nanti ya! 🙏</div>
 </div>
 
+<!-- SYNC BAR -->
 <div class="sync-bar">
   <div class="sync-status">
     <span class="sync-dot" id="sync-dot"></span>
@@ -245,18 +257,25 @@ footer a { color:var(--gold); text-decoration:none; }
       <div class="logo">Kawara Store</div>
     </div>
     <div class="main-tabs">
-      <button class="tab-btn active" onclick="showPage('beranda',this)">Beranda</button>
-      <button class="tab-btn" onclick="showPage('roblox',this)">Roblox</button>
-      <button class="tab-btn" onclick="showPage('digital',this)">Digital</button>
+      <button class="tab-btn active" onclick="showPage('beranda',this)">🏠 Beranda</button>
+      <button class="tab-btn" onclick="showPage('roblox',this)">🎮 Roblox</button>
+      <button class="tab-btn" onclick="showPage('digital',this)">💼 Digital</button>
     </div>
   </div>
 </nav>
 
+<!-- Roblox Sub Nav -->
 <div class="subnav-wrap" id="roblox-subnav">
-  <div class="subnav-inner" id="roblox-subnav-inner"></div>
+  <div class="subnav-inner" id="roblox-subnav-inner">
+    <!-- populated dynamically -->
+  </div>
 </div>
+
+<!-- Digital Sub Nav -->
 <div class="digital-subnav-wrap" id="digital-subnav">
-  <div class="digital-subnav-inner" id="digital-subnav-inner"></div>
+  <div class="digital-subnav-inner" id="digital-subnav-inner">
+    <!-- populated dynamically -->
+  </div>
 </div>
 
 <main>
@@ -265,17 +284,17 @@ footer a { color:var(--gold); text-decoration:none; }
     <div class="hero">
       <div class="hero-badge" id="hero-badge-text">Kawara Store — Marketplace Terpercaya</div>
       <h1 id="hero-title">Jual Beli Item<br><em id="hero-title-em">Roblox & Jasa Digital</em></h1>
-      <p id="hero-desc">Robux, item game Roblox, dan berbagai layanan digital — semua tersedia.</p>
+      <p id="hero-desc">Robux, Fish It, The Forge, dan berbagai layanan digital — semua tersedia. Harga terjangkau, proses cepat, pelayanan ramah.</p>
       <div class="hero-actions">
         <a href="https://discord.gg/AJBXUbwdhZ" target="_blank" class="btn-primary" id="discord-link-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-          Gabung Discord
+          <span id="discord-btn-text">Gabung Discord</span>
         </a>
         <button class="btn-secondary" onclick="showPage('roblox', document.querySelectorAll('.tab-btn')[1])">Lihat Produk →</button>
       </div>
     </div>
     <div class="info-strip">
-      <div class="strip-item"><div class="strip-icon">✅</div><span>Terpercaya & Aman</span></div>
+      <div class="strip-item"><div class="strip-icon">✅</div><span>Terpercaya &amp; Aman</span></div>
       <div class="strip-item"><div class="strip-icon">⚡</div><span>Proses Cepat</span></div>
       <div class="strip-item"><div class="strip-icon">💬</div><span>Respon Ramah</span></div>
       <div class="strip-item"><div class="strip-icon">💰</div><span>Harga Terjangkau</span></div>
@@ -285,27 +304,28 @@ footer a { color:var(--gold); text-decoration:none; }
     </div>
     <div class="how-box" id="how-to-buy-box">
       <div class="sec-label" style="margin-bottom:8px;">Cara Beli</div>
-      <p id="how-to-buy-text"></p>
+      <p id="how-to-buy-text">
+        <strong>1. Pilih item</strong> dari tab Roblox atau Digital &nbsp;→&nbsp;
+        <strong>2. Klik "Beli Sekarang"</strong> &nbsp;→&nbsp;
+        <strong>3. Isi username Roblox</strong> &nbsp;→&nbsp;
+        <strong>4. Pilih metode pembayaran</strong> &nbsp;→&nbsp;
+        <strong>5. Hubungi admin via WhatsApp</strong> untuk konfirmasi &amp; proses pesanan.
+      </p>
     </div>
   </div>
 
   <!-- ROBLOX -->
   <div class="page" id="page-roblox">
-    <!-- Robux balance panel -->
-    <div class="robux-balance-panel" id="robux-balance-panel">
-      <div class="rbp-icon">💎</div>
-      <div class="rbp-info">
-        <div class="rbp-label">Stok Robux Toko</div>
-        <div class="rbp-amount" id="rbp-amount">—</div>
-        <div class="rbp-sub">Saldo Robux yang tersedia untuk dijual</div>
-      </div>
+    <div id="roblox-pages-container">
+      <!-- populated dynamically -->
     </div>
-    <div id="roblox-pages-container"></div>
   </div>
 
   <!-- DIGITAL -->
   <div class="page" id="page-digital">
-    <div id="digital-pages-container"></div>
+    <div id="digital-pages-container">
+      <!-- populated dynamically -->
+    </div>
   </div>
 </main>
 
@@ -329,7 +349,9 @@ footer a { color:var(--gold); text-decoration:none; }
     <h3>Pilih Pembayaran</h3>
     <div class="modal-item-name" id="m2-name"></div>
     <div class="modal-price" id="m2-price"></div>
-    <div class="pay-grid" id="pay-grid-step2"></div>
+    <div class="pay-grid" id="pay-grid-step2">
+      <!-- populated from settings -->
+    </div>
     <button class="modal-cta" id="btn-next2" onclick="goStep3()" disabled>Konfirmasi →</button>
   </div>
 </div>
@@ -357,7 +379,9 @@ footer a { color:var(--gold); text-decoration:none; }
     <input class="field-input" id="md-name" type="text" placeholder="Masukkan nama kamu..." autocomplete="off">
     <label class="field-label">Deskripsi Kebutuhan</label>
     <input class="field-input" id="md-desc" type="text" placeholder="Jelaskan kebutuhan kamu..." autocomplete="off">
-    <div class="pay-grid" id="pay-grid-digital"></div>
+    <div class="pay-grid" id="pay-grid-digital">
+      <!-- populated from settings -->
+    </div>
     <button class="wa-cta" onclick="openWADigital()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Hubungi Admin via WhatsApp
@@ -373,267 +397,389 @@ footer a { color:var(--gold); text-decoration:none; }
 <script>
 const GITHUB_USER = 'kawarastore';
 const GITHUB_REPO = 'kawara-store';
-const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/data.json`;
+const DATA_FILE = 'data.json';
+const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${DATA_FILE}`;
 const dataUrl = () => `${RAW_URL}?t=${Date.now()}`;
 
+// Default config / site settings
 const DEFAULT_SITE = {
-  store_closed:false, closed_message:'Store sedang tutup sementara. Silakan kembali lagi nanti ya! 🙏',
-  hero_badge:'Kawara Store — Marketplace Terpercaya', hero_title:'Jual Beli Item', hero_title_em:'Roblox & Jasa Digital',
-  hero_desc:'Robux, item game Roblox, dan berbagai layanan digital — semua tersedia.',
-  how_to_buy:'1. Pilih item → 2. Klik "Beli Sekarang" → 3. Isi username → 4. Pilih pembayaran → 5. Hubungi admin.',
-  site_description:'', discord_link:'https://discord.gg/AJBXUbwdhZ', whatsapp_number:'6287720254002',
-  payment_methods:['SeaBank','DANA','GoPay','QRIS'], robux_balance:null,
+  store_closed: false,
+  closed_message: 'Store sedang tutup sementara. Silakan kembali lagi nanti ya! 🙏',
+  hero_badge: 'Kawara Store — Marketplace Terpercaya',
+  hero_title: 'Jual Beli Item',
+  hero_title_em: 'Roblox & Jasa Digital',
+  hero_desc: 'Robux, item game Roblox, dan berbagai layanan digital — semua tersedia. Harga terjangkau, proses cepat, pelayanan ramah.',
+  how_to_buy: '1. Pilih item dari tab Roblox atau Digital → 2. Klik "Beli Sekarang" → 3. Isi username Roblox → 4. Pilih metode pembayaran → 5. Hubungi admin via WhatsApp untuk konfirmasi & proses pesanan.',
+  site_description: '',
+  discord_link: 'https://discord.gg/AJBXUbwdhZ',
+  whatsapp_number: '6287720254002',
+  payment_methods: ['SeaBank', 'DANA', 'GoPay', 'QRIS'],
 };
 
-let _data=null, _item=null, _user='', _pay='', _digitalItem=null, _digitalPay='', _IC={};
+// Default roblox game categories — all empty
+const DEFAULT_ROBLOX_GAMES = [
+  { id: 'robux', label: '💎 Robux via Gamepass', icon: '💎', type: 'robux_table', items: [] },
+  { id: 'sawaindo', label: '🌾 Sawah Indo', icon: '🌾', type: 'grid', items: [] },
+  { id: 'indohangout', label: '🏠 Indo Hangout', icon: '🏠', type: 'grid', items: [] },
+  { id: 'cdi', label: '🗺️ CDI', icon: '🗺️', type: 'grid', items: [] },
+  { id: 'dfisch', label: '🐟 DFISCH', icon: '🐟', type: 'grid', items: [] },
+  { id: 'bloxfruit', label: '🍎 Blox Fruit', icon: '🍎', type: 'grid', items: [] },
+  { id: 'brookhaven', label: '🏙️ Brookhaven', icon: '🏙️', type: 'grid', items: [] },
+];
 
-function setSyncStatus(state,msg){
-  document.getElementById('sync-dot').className='sync-dot '+state;
-  document.getElementById('sync-text').textContent=msg;
+// Default digital catalogs — all empty
+const DEFAULT_DIGITAL_CATALOGS = [
+  { id: 'digitalcat1', label: '📄 Layanan Dokumen', icon: '📄', items: [] },
+];
+
+const DEFAULT = {
+  site: DEFAULT_SITE,
+  roblox_games: DEFAULT_ROBLOX_GAMES,
+  digital_catalogs: DEFAULT_DIGITAL_CATALOGS,
+};
+
+let _data = null;
+let _item = null, _user = '', _pay = '';
+let _digitalItem = null, _digitalPay = '';
+let _IC = {};
+let _activeRobloxSub = null;
+let _activeDigitalSub = null;
+
+// =====================
+// FETCH
+// =====================
+function setSyncStatus(state, msg) {
+  const dot = document.getElementById('sync-dot');
+  const txt = document.getElementById('sync-text');
+  dot.className = 'sync-dot ' + state;
+  txt.textContent = msg;
 }
 
-async function fetchData(manual=false){
-  const btn=document.getElementById('refresh-btn'); const icon=document.getElementById('refresh-icon');
-  btn.disabled=true; icon.classList.add('spin');
-  setSyncStatus('loading',manual?'Memuat ulang...':'Memuat data...');
-  try{
-    const res=await fetch(dataUrl(),{cache:'no-store'});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const json=await res.json();
-    _data=mergeWithDefault(json);
-    localStorage.setItem('kawara_cache',JSON.stringify(_data));
-    localStorage.setItem('kawara_cache_time',Date.now().toString());
+async function fetchData(manual = false) {
+  const btn = document.getElementById('refresh-btn');
+  const icon = document.getElementById('refresh-icon');
+  btn.disabled = true; icon.classList.add('spin');
+  setSyncStatus('loading', manual ? 'Memuat ulang...' : 'Memuat data...');
+  try {
+    const res = await fetch(dataUrl(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    _data = mergeWithDefault(json);
+    localStorage.setItem('kawara_cache', JSON.stringify(_data));
+    localStorage.setItem('kawara_cache_time', Date.now().toString());
     renderAll();
-    const now=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-    setSyncStatus('ok','Data terkini');
-    document.getElementById('last-update').textContent='· '+now;
-  }catch(e){
-    const cache=localStorage.getItem('kawara_cache');
-    if(cache){_data=JSON.parse(cache);renderAll();setSyncStatus('err','Offline — pakai cache');}
-    else{_data={site:{...DEFAULT_SITE},roblox_games:[],digital_catalogs:[]};renderAll();setSyncStatus('err','Gagal memuat data');}
-  }finally{btn.disabled=false;icon.classList.remove('spin');}
+    const now = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    setSyncStatus('ok', 'Data terkini');
+    document.getElementById('last-update').textContent = '· ' + now;
+  } catch(e) {
+    const cache = localStorage.getItem('kawara_cache');
+    if (cache) {
+      _data = JSON.parse(cache);
+      renderAll();
+      const cacheTime = localStorage.getItem('kawara_cache_time');
+      const ago = cacheTime ? Math.round((Date.now() - parseInt(cacheTime)) / 60000) : '?';
+      setSyncStatus('err', 'Offline — pakai cache');
+      document.getElementById('last-update').textContent = '· ' + ago + ' menit lalu';
+    } else {
+      _data = JSON.parse(JSON.stringify(DEFAULT));
+      renderAll();
+      setSyncStatus('err', 'Gagal — pakai data bawaan');
+    }
+  } finally {
+    btn.disabled = false; icon.classList.remove('spin');
+  }
 }
 
-function mergeWithDefault(json){
-  return {
-    site:Object.assign({},DEFAULT_SITE,json.site||{}),
-    roblox_games:json.roblox_games||[],
-    digital_catalogs:json.digital_catalogs||[],
-  };
+function mergeWithDefault(json) {
+  const d = {};
+  d.site = Object.assign({}, DEFAULT_SITE, json.site || {});
+  d.roblox_games = (json.roblox_games && json.roblox_games.length > 0) ? json.roblox_games : DEFAULT_ROBLOX_GAMES;
+  d.digital_catalogs = (json.digital_catalogs && json.digital_catalogs.length > 0) ? json.digital_catalogs : DEFAULT_DIGITAL_CATALOGS;
+  return d;
 }
 
-function renderAll(){
-  if(!_data)return;
-  const site=_data.site||DEFAULT_SITE;
-  if(site.store_closed){
+// =====================
+// RENDER ALL
+// =====================
+function renderAll() {
+  if (!_data) return;
+  const site = _data.site || DEFAULT_SITE;
+
+  // Store closed check
+  if (site.store_closed) {
     document.getElementById('store-closed-overlay').classList.add('active');
-    document.getElementById('closed-desc-text').textContent=site.closed_message||DEFAULT_SITE.closed_message;
+    document.getElementById('closed-desc-text').textContent = site.closed_message || DEFAULT_SITE.closed_message;
     return;
-  }
-  document.getElementById('store-closed-overlay').classList.remove('active');
-  document.getElementById('hero-badge-text').textContent=site.hero_badge||DEFAULT_SITE.hero_badge;
-  document.getElementById('hero-title').innerHTML=(site.hero_title||DEFAULT_SITE.hero_title)+'<br><em id="hero-title-em">'+(site.hero_title_em||DEFAULT_SITE.hero_title_em)+'</em>';
-  document.getElementById('hero-desc').textContent=site.hero_desc||DEFAULT_SITE.hero_desc;
-  document.getElementById('how-to-buy-text').innerHTML=formatHowToBuy(site.how_to_buy||DEFAULT_SITE.how_to_buy);
-  if(site.site_description){document.getElementById('site-desc-box').style.display='block';document.getElementById('site-desc-content').innerHTML=site.site_description.replace(/\n/g,'<br>');}
-  else document.getElementById('site-desc-box').style.display='none';
-  document.getElementById('discord-link-btn').href=site.discord_link||DEFAULT_SITE.discord_link;
-  document.getElementById('footer-discord-link').href=site.discord_link||DEFAULT_SITE.discord_link;
-  renderPaymentGrids(site.payment_methods||DEFAULT_SITE.payment_methods);
-
-  // Robux balance panel
-  const balPanel=document.getElementById('robux-balance-panel');
-  const balEl=document.getElementById('rbp-amount');
-  if(site.robux_balance!==null&&site.robux_balance!==undefined&&site.robux_balance!==''){
-    balPanel.classList.add('visible');
-    const num=parseInt(site.robux_balance);
-    balEl.textContent=isNaN(num)?site.robux_balance:num.toLocaleString('id-ID')+' Robux';
   } else {
-    balPanel.classList.remove('visible');
+    document.getElementById('store-closed-overlay').classList.remove('active');
   }
 
+  // Site content
+  document.getElementById('hero-badge-text').textContent = site.hero_badge || DEFAULT_SITE.hero_badge;
+  document.getElementById('hero-title').innerHTML = (site.hero_title || DEFAULT_SITE.hero_title).replace(/\n/g, '<br>') + '<br><em id="hero-title-em">' + (site.hero_title_em || DEFAULT_SITE.hero_title_em) + '</em>';
+  document.getElementById('hero-desc').textContent = site.hero_desc || DEFAULT_SITE.hero_desc;
+  document.getElementById('how-to-buy-text').innerHTML = formatHowToBuy(site.how_to_buy || DEFAULT_SITE.how_to_buy);
+
+  if (site.site_description) {
+    document.getElementById('site-desc-box').style.display = 'block';
+    document.getElementById('site-desc-content').innerHTML = site.site_description.replace(/\n/g, '<br>');
+  } else {
+    document.getElementById('site-desc-box').style.display = 'none';
+  }
+
+  // Discord link
+  const discordLink = site.discord_link || DEFAULT_SITE.discord_link;
+  document.getElementById('discord-link-btn').href = discordLink;
+  document.getElementById('footer-discord-link').href = discordLink;
+
+  // Payment methods
+  renderPaymentGrids(site.payment_methods || DEFAULT_SITE.payment_methods);
+
+  // Roblox
   renderRobloxNav();
   renderRobloxPages();
+
+  // Digital
   renderDigitalNav();
   renderDigitalPages();
 }
 
-function formatHowToBuy(text){
-  return text.replace(/(\d+\.\s[^→\n]+)/g,'<strong>$1</strong>');
+function formatHowToBuy(text) {
+  // Bold numbered steps
+  return text.replace(/(\d+\.\s[^→]+)/g, '<strong>$1</strong>');
 }
 
-function renderPaymentGrids(methods){
-  const icons={SeaBank:'🏦',DANA:'💙',GoPay:'💚',QRIS:'📱',OVO:'💜',LinkAja:'❤️',Mandiri:'🏛️',BCA:'🔵'};
-  ['pay-grid-step2','pay-grid-digital'].forEach((id,i)=>{
-    const fn=i===0?'selPay':'selPayD';
-    const el=document.getElementById(id); if(!el)return;
-    el.innerHTML=methods.map(m=>`<button class="pay-opt" onclick="${fn}(this,'${m}')">${icons[m]||'💳'} ${m}</button>`).join('');
-  });
+function renderPaymentGrids(methods) {
+  const payIcons = { SeaBank: '🏦', DANA: '💙', GoPay: '💚', QRIS: '📱', OVO: '💜', LinkAja: '❤️', Mandiri: '🏛️', BCA: '🔵' };
+  const makeOpts = (containerId, selFn) => {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = methods.map(m => `<button class="pay-opt" onclick="${selFn}(this,'${m}')">${payIcons[m]||'💳'} ${m}</button>`).join('');
+  };
+  makeOpts('pay-grid-step2', 'selPay');
+  makeOpts('pay-grid-digital', 'selPayD');
 }
 
-function renderRobloxNav(){
-  const games=_data.roblox_games||[];
-  document.getElementById('roblox-subnav-inner').innerHTML=games.map((g,i)=>
-    `<button class="subtab-btn${i===0?' active':''}" onclick="showRobloxSub('${g.id}',this)">${g.label}</button>`
+// =====================
+// ROBLOX NAV + PAGES
+// =====================
+function renderRobloxNav() {
+  const games = _data.roblox_games || DEFAULT_ROBLOX_GAMES;
+  const nav = document.getElementById('roblox-subnav-inner');
+  nav.innerHTML = games.map((g, i) =>
+    `<button class="subtab-btn${i===0?' active':''}" onclick="showRobloxSub('${g.id}',this)">${g.icon} ${g.label.replace(g.icon+' ','')}</button>`
   ).join('');
+  _activeRobloxSub = games[0]?.id || null;
 }
 
-function renderRobloxPages(){
-  const games=_data.roblox_games||[];
-  document.getElementById('roblox-pages-container').innerHTML=games.map((g,i)=>
-    `<div class="roblox-subpage${i===0?' active':''}" id="roblox-sub-${g.id}">
+function renderRobloxPages() {
+  const games = _data.roblox_games || DEFAULT_ROBLOX_GAMES;
+  const container = document.getElementById('roblox-pages-container');
+  container.innerHTML = games.map((g, i) => {
+    return `<div class="roblox-subpage${i===0?' active':''}" id="roblox-sub-${g.id}">
       <div class="sec-label">Produk</div>
-      <div class="sec-title">${g.label}</div>
+      <div class="sec-title">${g.icon} ${g.label.replace(g.icon+' ','')}</div>
       ${renderRobloxGameContent(g)}
-    </div>`
-  ).join('');
+    </div>`;
+  }).join('');
 }
 
-function renderRobloxGameContent(game){
-  if(game.type==='robux_table'){
-    const rows=(game.items||[]).map(item=>{
-      const key='_ic_'+item.id;
-      _IC[key]={id:item.id,name:item.robux+' Robux',harga:item.harga,category:'Robux Via Gamepass'};
-      return `<tr onclick="openOrder('${key}')">
+function renderRobloxGameContent(game) {
+  if (game.type === 'robux_table') {
+    const rows = (game.items || []).map(item => {
+      const stockOn = item.stock_on !== false;
+      const key = '_ic_' + item.id;
+      _IC[key] = { id: item.id, name: item.robux + ' Robux', harga: item.harga, category: 'Robux Via Gamepass' };
+      return `<tr onclick="${stockOn ? `openOrder('${key}')` : ''}">
         <td><strong>${item.robux} Rbx</strong></td>
         <td class="price">${item.harga}</td>
-        <td class="gp">${item.gamepass||'—'}</td>
-        <td><span class="rbadge">Beli</span></td>
+        <td class="gp">${item.gamepass || '—'}</td>
+        <td><span class="stock-pill ${stockOn ? 'on' : 'off'}">${stockOn ? 'Ready' : 'Habis'}</span></td>
+        <td><span class="rbadge${!stockOn ? ' out' : ''}">${stockOn ? 'Beli' : 'Habis'}</span></td>
       </tr>`;
     }).join('');
-    if(!rows)return `<div class="empty-state"><div class="empty-state-icon">💎</div><div class="empty-state-txt">Belum ada item. Cek lagi nanti!</div></div>`;
+
+    if (!rows) {
+      return `<div class="roblox-section">
+        <div class="rb-section-head"><div class="rb-section-head-left"><span class="rb-section-icon">💎</span><span class="rb-section-title">Robux via Gamepass</span></div></div>
+        <div class="rb-section-body"><div class="empty-state"><div class="empty-state-icon">💎</div><div class="empty-state-txt">Belum ada item. Cek lagi nanti!</div></div></div>
+      </div>`;
+    }
+
     return `<div class="roblox-section">
       <div class="rb-section-head" onclick="toggleSection(this)">
         <div class="rb-section-head-left">
-          <span class="rb-section-icon">${game.icon}</span>
-          <span class="rb-section-title">${game.label}</span>
+          <span class="rb-section-icon">💎</span>
+          <span class="rb-section-title">Robux via Gamepass</span>
           <span class="rb-section-count">${game.items.length} item</span>
         </div>
         <span class="rb-section-arrow open">▼</span>
       </div>
       <div class="rb-section-body">
         <div class="rtable-wrap"><table class="rtable">
-          <thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th></th></tr></thead>
+          <thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Status</th><th></th></tr></thead>
           <tbody>${rows}</tbody>
         </table></div>
       </div>
     </div>`;
   }
-  const items=game.items||[];
-  if(!items.length)return `<div class="empty-state"><div class="empty-state-icon">${game.icon}</div><div class="empty-state-txt">Belum ada item. Cek lagi nanti!</div></div>`;
-  const itemsHtml=items.map(item=>{
-    const out=item.stock<=0; const low=!out&&item.stock<=3;
-    const key='_ic_'+item.id;
-    _IC[key]={id:item.id,name:item.name,harga:item.harga,category:game.label};
-    return `<div class="item-card">
-      <div class="item-name">${item.name}</div>
-      <div class="item-price">${item.harga}</div>
-      <div class="item-stock${out?' out-txt':''}"><span class="sdot ${out?'out':low?'low':''}"></span>${out?'Stok habis':low?`Stok: ${item.stock} (sedikit)`:`Stok: ${item.stock}`}</div>
-      <button class="buy-btn" ${out?'disabled':''} onclick="openOrder('${key}')">${out?'Habis':'Beli Sekarang'}</button>
-    </div>`;
+
+  // Grid type — support sections
+  const sections = game.sections && game.sections.length > 0 ? game.sections : [{ label: null, items: game.items || [] }];
+  const sectionsHtml = sections.map(sec => {
+    const items = sec.items || [];
+    const itemsHtml = items.length > 0 ? items.map(item => {
+      const out = item.stock <= 0;
+      const low = !out && item.stock <= 3;
+      const key = '_ic_' + item.id;
+      _IC[key] = { id: item.id, name: item.name, harga: item.harga, category: game.label };
+      const dotClass = out ? 'out' : low ? 'low' : '';
+      const stockTxt = out ? 'Stok habis' : low ? `Stok: ${item.stock} (sedikit)` : `Stok: ${item.stock}`;
+      return `<div class="item-card">
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">${item.harga}</div>
+        <div class="item-stock${out?' out-txt':''}"><span class="sdot ${dotClass}"></span>${stockTxt}</div>
+        <button class="buy-btn" ${out?'disabled':''} onclick="openOrder('${key}')">${out?'Habis':'Beli Sekarang'}</button>
+      </div>`;
+    }).join('') : `<div class="empty-state" style="grid-column:1/-1;"><div class="empty-state-icon">${game.icon}</div><div class="empty-state-txt">Belum ada item. Cek lagi nanti!</div></div>`;
+    return (sec.label ? `<div class="subsec" style="margin:12px 14px 8px;">${sec.label}</div>` : '') +
+      `<div class="items-grid">${itemsHtml}</div>`;
   }).join('');
+
+  if ((game.items || []).length === 0 && (!game.sections || game.sections.length === 0)) {
+    return `<div class="roblox-section">
+      <div class="rb-section-head"><div class="rb-section-head-left"><span class="rb-section-icon">${game.icon}</span><span class="rb-section-title">${game.label}</span></div></div>
+      <div class="rb-section-body"><div class="empty-state"><div class="empty-state-icon">${game.icon}</div><div class="empty-state-txt">Belum ada item. Cek lagi nanti!</div></div></div>
+    </div>`;
+  }
+
   return `<div class="roblox-section">
     <div class="rb-section-head" onclick="toggleSection(this)">
       <div class="rb-section-head-left">
         <span class="rb-section-icon">${game.icon}</span>
         <span class="rb-section-title">${game.label}</span>
-        <span class="rb-section-count">${items.length} item</span>
+        <span class="rb-section-count">${(game.items||[]).length} item</span>
       </div>
       <span class="rb-section-arrow open">▼</span>
     </div>
-    <div class="rb-section-body"><div class="items-grid">${itemsHtml}</div></div>
+    <div class="rb-section-body">${sectionsHtml}</div>
   </div>`;
 }
 
-function renderDigitalNav(){
-  const cats=_data.digital_catalogs||[];
-  document.getElementById('digital-subnav-inner').innerHTML=cats.map((c,i)=>
-    `<button class="subtab-btn${i===0?' active':''}" onclick="showDigitalSub('${c.id}',this)">${c.label}</button>`
+// =====================
+// DIGITAL NAV + PAGES
+// =====================
+function renderDigitalNav() {
+  const cats = _data.digital_catalogs || DEFAULT_DIGITAL_CATALOGS;
+  const nav = document.getElementById('digital-subnav-inner');
+  nav.innerHTML = cats.map((c, i) =>
+    `<button class="subtab-btn${i===0?' active':''}" onclick="showDigitalSub('${c.id}',this)">${c.icon} ${c.label}</button>`
   ).join('');
+  _activeDigitalSub = cats[0]?.id || null;
 }
 
-function renderDigitalPages(){
-  const cats=_data.digital_catalogs||[];
-  document.getElementById('digital-pages-container').innerHTML=cats.map((cat,i)=>{
-    const items=cat.items||[];
-    const itemsHtml=items.length>0?items.map(item=>{
-      const prices=Array.isArray(item.prices)?item.prices:[];
-      const itemJson=JSON.stringify(item).replace(/\\/g,'\\\\').replace(/"/g,'&quot;');
+function renderDigitalPages() {
+  const cats = _data.digital_catalogs || DEFAULT_DIGITAL_CATALOGS;
+  const container = document.getElementById('digital-pages-container');
+  container.innerHTML = cats.map((cat, i) => {
+    const items = cat.items || [];
+    const itemsHtml = items.length > 0 ? items.map(item => {
+      const prices = Array.isArray(item.prices) ? item.prices : [];
+      const itemJson = JSON.stringify(item).replace(/\\/g,'\\\\').replace(/"/g,'&quot;');
       return `<div class="digital-card">
-        <div class="dc-header"><div class="dc-icon">${item.icon||cat.icon||'📦'}</div><div class="dc-title">${item.name}</div></div>
+        <div class="dc-header">
+          <div class="dc-icon">${item.icon||cat.icon||'📦'}</div>
+          <div class="dc-title">${item.name}</div>
+        </div>
         <div class="dc-desc">${item.desc}</div>
         <div class="dc-prices">${prices.map(p=>`<div class="dc-price-row"><span class="dc-price-label">${p.label}</span><span class="dc-price-val">${p.val}</span></div>`).join('')}</div>
         <button class="dc-buy" onclick="openDigitalOrder(${itemJson})">Order Sekarang</button>
       </div>`;
-    }).join(''):`<div class="empty-state"><div class="empty-state-icon">${cat.icon}</div><div class="empty-state-txt">Belum ada layanan. Cek lagi nanti!</div></div>`;
+    }).join('') : `<div class="empty-state"><div class="empty-state-icon">${cat.icon}</div><div class="empty-state-txt">Belum ada layanan. Cek lagi nanti!</div></div>`;
+
     return `<div class="digital-subpage${i===0?' active':''}" id="digital-sub-${cat.id}">
       <div class="sec-label">Layanan</div>
-      <div class="sec-title">${cat.label}</div>
+      <div class="sec-title">${cat.icon} ${cat.label}</div>
       <div class="digital-grid">${itemsHtml}</div>
     </div>`;
   }).join('');
 }
 
-function toggleSection(head){
-  const body=head.nextElementSibling; const arrow=head.querySelector('.rb-section-arrow');
-  const collapsed=body.classList.toggle('collapsed');
-  head.classList.toggle('collapsed',collapsed);
-  if(arrow)arrow.classList.toggle('open',!collapsed);
+// =====================
+// UI HELPERS
+// =====================
+function toggleSection(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.rb-section-arrow');
+  const collapsed = body.classList.toggle('collapsed');
+  head.classList.toggle('collapsed', collapsed);
+  if (arrow) arrow.classList.toggle('open', !collapsed);
 }
 
-function showPage(page,btn){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('page-'+page).classList.add('active');
-  if(btn)btn.classList.add('active');
-  document.getElementById('roblox-subnav').classList.toggle('visible',page==='roblox');
-  document.getElementById('digital-subnav').classList.toggle('visible',page==='digital');
-  window.scrollTo(0,0);
+function showPage(page, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  if (btn) btn.classList.add('active');
+  document.getElementById('roblox-subnav').classList.toggle('visible', page === 'roblox');
+  document.getElementById('digital-subnav').classList.toggle('visible', page === 'digital');
+  window.scrollTo(0, 0);
 }
 
-function showRobloxSub(sub,btn){
-  document.querySelectorAll('.roblox-subpage').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('#roblox-subnav-inner .subtab-btn').forEach(b=>b.classList.remove('active'));
-  const el=document.getElementById('roblox-sub-'+sub); if(el)el.classList.add('active');
-  if(btn)btn.classList.add('active');
-  window.scrollTo(0,0);
+function showRobloxSub(sub, btn) {
+  document.querySelectorAll('.roblox-subpage').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#roblox-subnav-inner .subtab-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById('roblox-sub-' + sub);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+  _activeRobloxSub = sub;
+  window.scrollTo(0, 0);
 }
 
-function showDigitalSub(sub,btn){
-  document.querySelectorAll('.digital-subpage').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('#digital-subnav-inner .subtab-btn').forEach(b=>b.classList.remove('active'));
-  const el=document.getElementById('digital-sub-'+sub); if(el)el.classList.add('active');
-  if(btn)btn.classList.add('active');
-  window.scrollTo(0,0);
+function showDigitalSub(sub, btn) {
+  document.querySelectorAll('.digital-subpage').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#digital-subnav-inner .subtab-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById('digital-sub-' + sub);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+  _activeDigitalSub = sub;
+  window.scrollTo(0, 0);
 }
 
-function openOrder(key){
-  _item=_IC[key]; if(!_item)return;
-  _user=''; _pay='';
-  document.getElementById('m1-name').textContent=_item.name;
-  document.getElementById('m1-price').textContent=_item.harga;
-  document.getElementById('m1-username').value='';
+// =====================
+// ORDER MODALS
+// =====================
+function openOrder(key) {
+  _item = _IC[key]; if (!_item) return;
+  _user = ''; _pay = '';
+  document.getElementById('m1-name').textContent = _item.name;
+  document.getElementById('m1-price').textContent = _item.harga;
+  document.getElementById('m1-username').value = '';
   document.getElementById('modal-step1').classList.add('open');
 }
-function goStep2(){
-  const u=document.getElementById('m1-username').value.trim();
-  if(!u){alert('Masukkan username Roblox dulu!');return;}
-  _user=u;
+
+function goStep2() {
+  const u = document.getElementById('m1-username').value.trim();
+  if (!u) { alert('Masukkan username Roblox dulu!'); return; }
+  _user = u;
   document.getElementById('modal-step1').classList.remove('open');
-  document.getElementById('m2-name').textContent=_item.name;
-  document.getElementById('m2-price').textContent=_item.harga;
-  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b=>b.classList.remove('sel'));
-  document.getElementById('btn-next2').disabled=true; _pay='';
+  document.getElementById('m2-name').textContent = _item.name;
+  document.getElementById('m2-price').textContent = _item.harga;
+  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b => b.classList.remove('sel'));
+  document.getElementById('btn-next2').disabled = true;
+  _pay = '';
   document.getElementById('modal-step2').classList.add('open');
 }
-function selPay(btn,method){
-  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel'); _pay=method;
-  document.getElementById('btn-next2').disabled=false;
+
+function selPay(btn, method) {
+  document.querySelectorAll('#modal-step2 .pay-opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel'); _pay = method;
+  document.getElementById('btn-next2').disabled = false;
 }
-function goStep3(){
+
+function goStep3() {
   document.getElementById('modal-step2').classList.remove('open');
-  document.getElementById('m3-summary').innerHTML=`
+  document.getElementById('m3-summary').innerHTML = `
     <div class="confirm-row"><span class="lbl">Username Roblox</span><span class="val">${_user}</span></div>
     <div class="confirm-row"><span class="lbl">Kategori</span><span class="val">${_item.category}</span></div>
     <div class="confirm-row"><span class="lbl">Item</span><span class="val">${_item.name}</span></div>
@@ -641,39 +787,51 @@ function goStep3(){
     <div class="confirm-row"><span class="lbl">Pembayaran via</span><span class="val">${_pay}</span></div>`;
   document.getElementById('modal-step3').classList.add('open');
 }
-function openWA(){
-  const wa=(_data?.site?.whatsapp_number||DEFAULT_SITE.whatsapp_number).replace(/\D/g,'');
-  const msg=`Halo Kawara Store, saya ingin memesan:\n\n👤 Username Roblox: ${_user}\n🎮 Kategori: ${_item.category}\n📦 Item: ${_item.name}\n💰 Harga: ${_item.harga}\n💳 Pembayaran: ${_pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`,'_blank');
+
+function openWA() {
+  const wa = (_data?.site?.whatsapp_number || DEFAULT_SITE.whatsapp_number).replace(/\D/g,'');
+  const msg = `Halo Kawara Store, saya ingin memesan:\n\n👤 Username Roblox: ${_user}\n🎮 Kategori: ${_item.category}\n📦 Item: ${_item.name}\n💰 Harga: ${_item.harga}\n💳 Pembayaran: ${_pay}\n\nMohon diproses, terima kasih! 🙏`;
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-function openDigitalOrder(item){
-  _digitalItem=item; _digitalPay='';
-  const prices=Array.isArray(item.prices)?item.prices:[];
-  document.getElementById('md-title').textContent=item.name;
-  document.getElementById('md-service').textContent=(item.desc||'').substring(0,60)+((item.desc?.length||0)>60?'...':'');
-  document.getElementById('md-price').textContent=prices.map(p=>p.label+': '+p.val).join(' · ');
-  document.getElementById('md-name').value=''; document.getElementById('md-desc').value='';
-  document.querySelectorAll('#modal-digital .pay-opt').forEach(b=>b.classList.remove('sel'));
+
+function openDigitalOrder(item) {
+  _digitalItem = item; _digitalPay = '';
+  const prices = Array.isArray(item.prices) ? item.prices : [];
+  document.getElementById('md-title').textContent = item.name;
+  document.getElementById('md-service').textContent = (item.desc||'').substring(0,60) + (item.desc?.length>60?'...':'');
+  document.getElementById('md-price').textContent = prices.map(p => p.label + ': ' + p.val).join(' · ');
+  document.getElementById('md-name').value = '';
+  document.getElementById('md-desc').value = '';
+  document.querySelectorAll('#modal-digital .pay-opt').forEach(b => b.classList.remove('sel'));
   document.getElementById('modal-digital').classList.add('open');
 }
-function selPayD(btn,method){
-  document.querySelectorAll('#modal-digital .pay-opt').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel'); _digitalPay=method;
-}
-function openWADigital(){
-  const wa=(_data?.site?.whatsapp_number||DEFAULT_SITE.whatsapp_number).replace(/\D/g,'');
-  const nm=document.getElementById('md-name').value.trim()||'(tidak diisi)';
-  const desc=document.getElementById('md-desc').value.trim()||'(tidak diisi)';
-  const pay=_digitalPay||'(belum dipilih)';
-  const msg=`Halo Kawara Store, saya ingin memesan Jasa Digital:\n\n👤 Nama: ${nm}\n💼 Jasa: ${_digitalItem.name}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
-  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`,'_blank');
-}
-function closeModals(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('open'));}
-document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeModals();}));
 
+function selPayD(btn, method) {
+  document.querySelectorAll('#modal-digital .pay-opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel'); _digitalPay = method;
+}
+
+function openWADigital() {
+  const wa = (_data?.site?.whatsapp_number || DEFAULT_SITE.whatsapp_number).replace(/\D/g,'');
+  const nm = document.getElementById('md-name').value.trim() || '(tidak diisi)';
+  const desc = document.getElementById('md-desc').value.trim() || '(tidak diisi)';
+  const pay = _digitalPay || '(belum dipilih)';
+  const msg = `Halo Kawara Store, saya ingin memesan Jasa Digital:\n\n👤 Nama: ${nm}\n💼 Jasa: ${_digitalItem.name}\n📝 Kebutuhan: ${desc}\n💳 Pembayaran: ${pay}\n\nMohon diproses, terima kasih! 🙏`;
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function closeModals() {
+  document.querySelectorAll('.overlay').forEach(o => o.classList.remove('open'));
+}
+
+document.querySelectorAll('.overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) closeModals(); });
+});
+
+// INIT
 fetchData();
-setInterval(()=>{if(!document.hidden)fetchData();},5*60*1000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)fetchData();});
+setInterval(() => { if (!document.hidden) fetchData(); }, 5 * 60 * 1000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) fetchData(); });
 </script>
 </body>
 </html>
