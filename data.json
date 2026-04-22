@@ -583,7 +583,104 @@
       "label": "🏍️ Drag Drive Simulator",
       "icon": "🏍️",
       "type": "grid",
-      "items": []
+      "items": [
+        {
+          "id": "gi_1776874254906",
+          "name": "Suspension Pro",
+          "harga": "2K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874255591",
+          "name": "Boombox Radio",
+          "harga": "2K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874256250",
+          "name": "Advance Paint",
+          "harga": "5K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874256850",
+          "name": "Exclusive Rims",
+          "harga": "6K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874257429",
+          "name": "Custom Plate",
+          "harga": "6K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874258040",
+          "name": "Slot Expansion Pass",
+          "harga": "7K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874258704",
+          "name": "DragSpec",
+          "harga": "9K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874259354",
+          "name": "Luxury",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874260019",
+          "name": "Police",
+          "harga": "12K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874260631",
+          "name": "2x Paycheck",
+          "harga": "43K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874266671",
+          "name": "1 Juta Cash",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874267271",
+          "name": "5 Juta Cash",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874267843",
+          "name": "10 Juta Cash",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874268530",
+          "name": "50 Juta Cash",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874269134",
+          "name": "100 Juta Cash",
+          "harga": "10K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1776874269833",
+          "name": "500 Juta Cash",
+          "harga": "10K",
+          "stock": 10
+        }
+      ]
     }
   ],
   "digital_catalogs": [
