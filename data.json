@@ -444,6 +444,10 @@
         {
           "label": "Hapus background",
           "val": "Rp5.000"
+        },
+        {
+          "label": "Tambah efek (hujan, glow, dll)",
+          "val": "Rp10.000"
         }
       ]
     }
