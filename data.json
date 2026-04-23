@@ -801,7 +801,12 @@
             "🎁 Bonus 10 Animasi Keren Siap Pakai"
           ],
           "tiktok_url": "https://www.tiktok.com/@calonsuksesakherat/video/7628225746632232209",
-          "prices": []
+          "prices": [
+            {
+              "label": "Harga",
+              "val": "Rp400.000"
+            }
+          ]
         }
       ]
     }
