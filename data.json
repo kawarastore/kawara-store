@@ -721,31 +721,37 @@
           "id": "gi_1776916911899",
           "name": "SYSTEM SAWERIA",
           "harga": "200K",
-          "stock": 10
+          "stock": 999
         },
         {
           "id": "gi_1776916915201",
           "name": "SYSTEM OVERHEAD",
           "harga": "100K",
-          "stock": 10
+          "stock": 999
         },
         {
           "id": "gi_1776916917590",
           "name": "SYSTEM ROOM PRIVATE",
           "harga": "400K",
-          "stock": 10
+          "stock": 999
         },
         {
           "id": "gi_1776916919393",
           "name": "SYSTEM DANCE + LIKE",
           "harga": "250K",
-          "stock": 10
+          "stock": 999
         },
         {
           "id": "gi_1776916921090",
           "name": "SYSTEM COMMAND BAR",
           "harga": "80K",
-          "stock": 10
+          "stock": 999
+        },
+        {
+          "id": "gi_1776917057799",
+          "name": "ANIMATION 18+",
+          "harga": "150K",
+          "stock": 999
         }
       ]
     }
