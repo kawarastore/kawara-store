@@ -802,6 +802,32 @@
           ]
         }
       ]
+    },
+    {
+      "id": "devcat_1776920837746",
+      "icon": "⚙️",
+      "label": "PRIVATE ROOM",
+      "systems": [
+        {
+          "id": "devsys_1776920845002",
+          "name": "PRIVATE ROOM",
+          "preview_url": "https://media.discordapp.net/attachments/1440532658873565305/1496132020223348846/image.png?ex=69eabf46&is=69e96dc6&hm=adf5c1aa2242c18193f2df478e9795f0e5e4800b837137f2811018002f003c5b&=&format=webp&quality=lossless&width=1554&height=874",
+          "features": [
+            "Bisa Atur Jumlah Digit Kode Room",
+            "Akses Room Lebih Aman & Eksklusif",
+            "Sistem Kode Unik Otomatis",
+            "Akses Khusus untuk VIP / VVIP",
+            "Admin Bisa Melihat Kode Semua Room",
+            "Setiap Room Menggunakan Map / Place Terpisah",
+            "Lebih Aman dari Exploit / Cheater",
+            "Script Ringan & Optimal",
+            "Script Ini Menggunakan License",
+            "🎁 Bonus 10 Animasi Keren Siap Pakai"
+          ],
+          "tiktok_url": "https://www.tiktok.com/@calonsuksesakherat/video/7628225746632232209",
+          "prices": []
+        }
+      ]
     }
   ]
 }
