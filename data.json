@@ -839,6 +839,35 @@
           ]
         }
       ]
+    },
+    {
+      "id": "devcat_1776921246610",
+      "icon": "⚙️",
+      "label": "OVERHEAD",
+      "systems": [
+        {
+          "id": "devsys_1776921251805",
+          "name": "OVERHEAD",
+          "preview_url": "https://media.discordapp.net/attachments/1440532658873565305/1496132099168796732/image.png?ex=69eabf59&is=69e96dd9&hm=4ef45796539249adc039e04429ed927034a432ff506c2a1687ad435d93f8272e&=&format=webp&quality=lossless&width=1554&height=874",
+          "features": [
+            "Bisa Custom Text Sesuka Hati",
+            "Tampilan Rapi & Modern",
+            "Ada Bendera Dan Level",
+            "Top Leaderboard Level",
+            "Title Custom Rainbow",
+            "Banyak Pilihan Status",
+            "Ringan & Optimal",
+            "Script Ini Menggunakan License"
+          ],
+          "tiktok_url": "https://www.tiktok.com/@calonsuksesakherat/video/7628262028397858064",
+          "prices": [
+            {
+              "label": "Harga",
+              "val": "Rp100.000"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
