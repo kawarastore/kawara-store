@@ -809,6 +809,36 @@
           ]
         }
       ]
+    },
+    {
+      "id": "devcat_1776921052953",
+      "icon": "⚙️",
+      "label": "PLAYER MENU",
+      "systems": [
+        {
+          "id": "devsys_1776921061269",
+          "name": "PLAYER MENU",
+          "preview_url": "https://media.discordapp.net/attachments/1440532658873565305/1496131918008287362/image.png?ex=69eabf2e&is=69e96dae&hm=95f6862ab4fde657867c5eb31e3d45a6469c9b3a29d1a367a8102b83cbb55565&=&format=webp&quality=lossless&width=1554&height=874",
+          "features": [
+            "Bisa Like Player Lain",
+            "Leaderboard Like",
+            "Sinkronisasi Animasi Presisi",
+            "Sinkronisasi Kecepatan Real-time",
+            "Animasi Dikontrol Server",
+            "Maksimal Carry 1/1",
+            "Bio / Deskripsi Custom",
+            "Auto Cleanup (Keluar / Respawn)",
+            "Script Ini Menggunakan License"
+          ],
+          "tiktok_url": "https://www.tiktok.com/@calonsuksesakherat/video/7628225577480195344",
+          "prices": [
+            {
+              "label": "Harga",
+              "val": "Rp250.000"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
