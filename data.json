@@ -776,8 +776,32 @@
     {
       "id": "devcat_1776920612440",
       "icon": "⚙️",
-      "label": "Katalog Baru",
-      "systems": []
+      "label": "SAWERIA",
+      "systems": [
+        {
+          "id": "devsys_1776920636653",
+          "name": "System Baru",
+          "preview_url": "",
+          "features": [
+            "Efek animasi saat donasi masuk",
+            "Tampilan eye-catching langsung di game",
+            "Notifikasi otomatis saat donasi diterima",
+            "Tampil nama donatur & nominal donasi",
+            "Update real-time tanpa delay",
+            "Setiap donasi langsung masuk di Discord",
+            "Rapi, terstruktur, mudah dipantau",
+            "Tidak membebani performa game",
+            "Script Ini Menggunakan License"
+          ],
+          "tiktok_url": "",
+          "prices": [
+            {
+              "label": "Paket",
+              "val": "Rp0"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
