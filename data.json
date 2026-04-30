@@ -821,9 +821,17 @@
           "prices": [
             {
               "label": "Harga",
-              "val": "Rp150.000"
+              "val": "Rp100.000"
             }
           ]
+        },
+        {
+          "id": "devsys_1777552229451",
+          "name": "System Baru",
+          "preview_url": "",
+          "features": [],
+          "tiktok_url": "",
+          "prices": []
         }
       ]
     },
