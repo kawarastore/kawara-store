@@ -893,6 +893,38 @@
           ]
         }
       ]
+    },
+    {
+      "id": "devcat_1777613816171",
+      "icon": "🍻",
+      "label": "BARTINDER",
+      "systems": [
+        {
+          "id": "devsys_1777613842980",
+          "name": "System Baru",
+          "preview_url": "https://media.discordapp.net/attachments/1483443093108690994/1499366484798079057/image.png?ex=69f5321a&is=69f3e09a&hm=df0ab477b7079373257a8f41c7e44b91c451a49a1a98989a5edfd5471a100a8e&=&format=webp&quality=lossless&width=1553&height=874",
+          "features": [
+            "bisa gift uang lewat shop (pakai Robux)",
+            "bisa transfer uang antar player",
+            "system trade (uang & item yang dibeli)",
+            "sudah include system uang",
+            "player bisa topup uang via Robux",
+            "bisa tambah / hapus menu jualan",
+            "bisa atur harga sesuai keinginan",
+            "whitelist bartender (akses khusus)",
+            "progress pembuatan minuman lebih seru",
+            "effect minum bisa custom animasi",
+            "Script Ini Menggunakan License"
+          ],
+          "tiktok_url": "https://www.tiktok.com/@calonsuksesakherat/video/7634791363518795026",
+          "prices": [
+            {
+              "label": "Harga",
+              "val": "Rp350.000"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
