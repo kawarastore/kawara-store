@@ -422,33 +422,9 @@
           "stock": 10
         },
         {
-          "id": "gi_1776873361742",
-          "name": "Voidcraft Boat",
-          "harga": "47K",
-          "stock": 10
-        },
-        {
-          "id": "gi_1776873362397",
-          "name": "Easter Parasol",
-          "harga": "78K",
-          "stock": 10
-        },
-        {
-          "id": "gi_1776873363919",
-          "name": "Bunny Staff",
-          "harga": "78K",
-          "stock": 10
-        },
-        {
           "id": "gi_1776873364558",
           "name": "Golden Clockwork",
           "harga": "78K",
-          "stock": 10
-        },
-        {
-          "id": "gi_1776873364964",
-          "name": "Easter Pack",
-          "harga": "21K",
           "stock": 10
         }
       ]
