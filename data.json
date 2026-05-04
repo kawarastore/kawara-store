@@ -426,6 +426,30 @@
           "name": "Golden Clockwork",
           "harga": "78K",
           "stock": 10
+        },
+        {
+          "id": "gi_1777928136348",
+          "name": "Void Guitar",
+          "harga": "80K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1777928137231",
+          "name": "Empyrean Staff",
+          "harga": "80K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1777928137971",
+          "name": "Body Swap",
+          "harga": "45K",
+          "stock": 10
+        },
+        {
+          "id": "gi_1777928143904",
+          "name": "High Tech Speedcarft",
+          "harga": "10K",
+          "stock": 10
         }
       ]
     },
