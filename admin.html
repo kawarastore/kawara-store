@@ -73,9 +73,6 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .atab.active{color:var(--gold);border-bottom-color:var(--gold);}
 .atab.dev-atab.active{color:#a78bfa;border-bottom-color:#a78bfa;}
 
-.store-closed-banner{background:rgba(231,76,60,0.15);border-bottom:1px solid rgba(231,76,60,0.3);padding:8px 14px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:0.78rem;font-weight:700;color:var(--red);position:sticky;top:var(--nav-h);z-index:198;}
-.store-closed-banner.hidden{display:none;}
-
 .sec-label{font-family:'Rajdhani',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
 .sec-ttl{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
 .sec-label.dev-lbl{color:#a78bfa;}
@@ -115,6 +112,36 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 @media(min-width:480px){.form-grid{grid-template-columns:1fr 1fr;}}
 .form-submit,.save-section-btn,.d-save{width:100%;padding:11px;background:var(--grad);border:none;border-radius:9px;color:#000;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;min-height:44px;margin-bottom:4px;}
 .d-save-ghost{background:rgba(245,196,0,0.12);color:var(--gold);padding:11px;border:1px solid rgba(245,196,0,0.3);border-radius:9px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;min-height:44px;margin-bottom:4px;}
+
+/* ── KOMUNITAS INFO BOX di admin ── */
+.komunitas-info-box {
+  background:rgba(245,196,0,0.06);
+  border:1px solid rgba(245,196,0,0.28);
+  border-radius:10px;
+  padding:12px 14px;
+  margin-bottom:14px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.komunitas-info-box .k-label {
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);
+}
+.komunitas-info-box .k-text {
+  font-size:0.8rem;color:var(--muted);line-height:1.65;
+}
+.komunitas-info-box .k-text strong { color:var(--text); }
+.komunitas-link-admin {
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;background:var(--gold-dim);
+  border:1px solid rgba(245,196,0,0.3);border-radius:7px;
+  color:var(--gold);font-family:'Outfit',sans-serif;font-size:0.75rem;font-weight:700;
+  text-decoration:none;cursor:pointer;transition:all 0.2s;
+  width:fit-content;
+}
+.komunitas-link-admin:hover { background:rgba(245,196,0,0.25); }
 
 /* Roblox table */
 .tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:6px;backdrop-filter:blur(12px);}
@@ -172,92 +199,35 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .robux-item-row:last-child{border-bottom:none;}
 
 /* ===== DEVELOPER SECTION STYLES ===== */
-.dev-catalog-card {
-  background:rgba(10,6,20,0.85);
-  border:1px solid rgba(124,58,237,0.25);
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:12px;
-  backdrop-filter:blur(16px);
-}
-.dev-catalog-header {
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:14px;flex-wrap:wrap;gap:8px;
-}
-.dev-catalog-title-group {display:flex;align-items:center;gap:8px;}
-.dev-cat-icon-inp {
-  background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.3);
-  border-radius:7px;padding:6px 8px;color:var(--text);font-family:'Outfit',sans-serif;
-  font-size:0.88rem;outline:none;width:46px;text-align:center;
-}
-.dev-cat-label-inp {
-  flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.2);
-  border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Outfit',sans-serif;
-  font-size:0.88rem;outline:none;margin-bottom:0;transition:border-color 0.2s;
-}
-.dev-cat-label-inp:focus {border-color:rgba(124,58,237,0.5);}
-.dev-catalog-actions {display:flex;gap:6px;}
-.dev-systems-list {display:flex;flex-direction:column;gap:10px;margin-top:10px;}
-
-/* Developer system row */
-.dev-system-row {
-  background:rgba(124,58,237,0.05);
-  border:1px solid rgba(124,58,237,0.15);
-  border-radius:10px;
-  padding:14px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.dev-sys-field {
-  width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.2);
-  border-radius:8px;padding:9px 12px;color:var(--text);font-family:'Outfit',sans-serif;
-  font-size:0.82rem;outline:none;transition:border-color 0.2s;
-}
-.dev-sys-field:focus {border-color:rgba(124,58,237,0.5);}
-.dev-sys-field-sm {
-  background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.2);
-  border-radius:7px;padding:6px 9px;color:var(--text);font-family:'Outfit',sans-serif;
-  font-size:0.78rem;outline:none;flex:1;min-width:0;transition:border-color 0.2s;
-}
-.dev-sys-field-sm:focus {border-color:rgba(124,58,237,0.5);}
-.dev-sys-row-header {display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.dev-sys-name-row {display:flex;align-items:center;gap:6px;flex:1;}
-.dev-flbl {font-size:0.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(167,139,250,0.7);margin-bottom:5px;}
-.dev-section-box {background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.12);border-radius:8px;padding:10px;}
-/* Bullets editor */
-.dev-bullet-list {display:flex;flex-direction:column;gap:5px;margin-bottom:6px;}
-.dev-bullet-row {display:flex;gap:5px;align-items:center;}
-.del-bullet-btn {padding:4px 8px;background:rgba(231,76,60,0.08);border:none;border-radius:5px;color:var(--red);cursor:pointer;font-size:0.75rem;flex-shrink:0;}
-.add-bullet-btn {width:100%;padding:5px;background:rgba(124,58,237,0.08);border:1px dashed rgba(124,58,237,0.25);border-radius:6px;color:#a78bfa;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;margin-top:3px;}
-/* Price editor */
-.dev-price-row {display:flex;gap:5px;align-items:center;margin-bottom:5px;}
-.dev-add-price-btn {width:100%;padding:5px;background:rgba(124,58,237,0.08);border:1px dashed rgba(124,58,237,0.25);border-radius:6px;color:#a78bfa;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;margin-top:3px;}
-/* Add system button */
-.add-dev-system-btn {
-  width:100%;padding:10px;background:rgba(124,58,237,0.08);
-  border:1px dashed rgba(124,58,237,0.3);border-radius:9px;
-  color:#a78bfa;font-family:'Outfit',sans-serif;font-size:0.78rem;
-  font-weight:700;cursor:pointer;margin-top:10px;transition:all 0.2s;
-}
-.add-dev-system-btn:hover {background:rgba(124,58,237,0.14);border-color:rgba(124,58,237,0.5);}
-/* Dev save btn */
-.dev-save-btn {
-  padding:8px 14px;background:var(--dev-grad);border:none;border-radius:8px;
-  color:#fff;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;
-  white-space:nowrap;
-}
-.dev-del-btn {
-  padding:8px 12px;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.25);
-  border-radius:8px;color:var(--red);font-family:'Outfit',sans-serif;font-size:0.78rem;
-  font-weight:700;cursor:pointer;
-}
-/* Preview image field */
-.dev-img-preview {
-  width:100%;max-height:120px;object-fit:cover;border-radius:7px;
-  border:1px solid rgba(124,58,237,0.25);display:block;margin-top:6px;
-}
-.dev-img-preview.hidden {display:none;}
+.dev-catalog-card{background:rgba(10,6,20,0.85);border:1px solid rgba(124,58,237,0.25);border-radius:14px;padding:16px;margin-bottom:12px;backdrop-filter:blur(16px);}
+.dev-catalog-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.dev-catalog-title-group{display:flex;align-items:center;gap:8px;}
+.dev-cat-icon-inp{background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.3);border-radius:7px;padding:6px 8px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;width:46px;text-align:center;}
+.dev-cat-label-inp{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.2);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;margin-bottom:0;transition:border-color 0.2s;}
+.dev-cat-label-inp:focus{border-color:rgba(124,58,237,0.5);}
+.dev-catalog-actions{display:flex;gap:6px;}
+.dev-systems-list{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+.dev-system-row{background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.15);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px;}
+.dev-sys-field{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.2);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.82rem;outline:none;transition:border-color 0.2s;}
+.dev-sys-field:focus{border-color:rgba(124,58,237,0.5);}
+.dev-sys-field-sm{background:rgba(255,255,255,0.04);border:1px solid rgba(124,58,237,0.2);border-radius:7px;padding:6px 9px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.78rem;outline:none;flex:1;min-width:0;transition:border-color 0.2s;}
+.dev-sys-field-sm:focus{border-color:rgba(124,58,237,0.5);}
+.dev-sys-row-header{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.dev-sys-name-row{display:flex;align-items:center;gap:6px;flex:1;}
+.dev-flbl{font-size:0.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(167,139,250,0.7);margin-bottom:5px;}
+.dev-section-box{background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.12);border-radius:8px;padding:10px;}
+.dev-bullet-list{display:flex;flex-direction:column;gap:5px;margin-bottom:6px;}
+.dev-bullet-row{display:flex;gap:5px;align-items:center;}
+.del-bullet-btn{padding:4px 8px;background:rgba(231,76,60,0.08);border:none;border-radius:5px;color:var(--red);cursor:pointer;font-size:0.75rem;flex-shrink:0;}
+.add-bullet-btn{width:100%;padding:5px;background:rgba(124,58,237,0.08);border:1px dashed rgba(124,58,237,0.25);border-radius:6px;color:#a78bfa;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;margin-top:3px;}
+.dev-price-row{display:flex;gap:5px;align-items:center;margin-bottom:5px;}
+.dev-add-price-btn{width:100%;padding:5px;background:rgba(124,58,237,0.08);border:1px dashed rgba(124,58,237,0.25);border-radius:6px;color:#a78bfa;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;margin-top:3px;}
+.add-dev-system-btn{width:100%;padding:10px;background:rgba(124,58,237,0.08);border:1px dashed rgba(124,58,237,0.3);border-radius:9px;color:#a78bfa;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;margin-top:10px;transition:all 0.2s;}
+.add-dev-system-btn:hover{background:rgba(124,58,237,0.14);border-color:rgba(124,58,237,0.5);}
+.dev-save-btn{padding:8px 14px;background:var(--dev-grad);border:none;border-radius:8px;color:#fff;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.dev-del-btn{padding:8px 12px;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.25);border-radius:8px;color:var(--red);font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;}
+.dev-img-preview{width:100%;max-height:120px;object-fit:cover;border-radius:7px;border:1px solid rgba(124,58,237,0.25);display:block;margin-top:6px;}
+.dev-img-preview.hidden{display:none;}
 
 /* Dashboard */
 .dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
@@ -333,14 +303,13 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
 .modal-action{width:100%;padding:13px;background:var(--grad);border:none;border-radius:10px;color:#000;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:6px;min-height:48px;}
 #lightbox-img{max-width:100%;max-height:65vh;border-radius:10px;object-fit:contain;display:block;}
 .empty{text-align:center;color:var(--muted);padding:28px;font-size:0.83rem;}
+.empty-section{text-align:center;padding:20px;color:var(--muted);font-size:0.78rem;border:1px dashed var(--border);border-radius:8px;margin-top:8px;}
+.empty-section.dev-empty{border-color:rgba(124,58,237,0.25);color:rgba(167,139,250,0.5);}
 
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:10px;font-size:0.8rem;font-weight:600;backdrop-filter:blur(16px);opacity:0;transition:all 0.28s;z-index:999;pointer-events:none;white-space:nowrap;max-width:calc(100% - 32px);}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 .toast.err{border-color:rgba(231,76,60,0.5);color:var(--red);}
 .toast.ok{border-color:rgba(16,185,129,0.4);color:var(--green);}
-
-.empty-section{text-align:center;padding:20px;color:var(--muted);font-size:0.78rem;border:1px dashed var(--border);border-radius:8px;margin-top:8px;}
-.empty-section.dev-empty{border-color:rgba(124,58,237,0.25);color:rgba(167,139,250,0.5);}
 
 @media(min-width:600px){.overlay{align-items:center;padding:20px;}.modal{border-radius:18px;}.modal::before{display:none;}.acontent{padding:18px 20px;}.dash-grid{grid-template-columns:repeat(4,1fr);}}
 </style>
@@ -464,8 +433,23 @@ header{background:rgba(6,4,0,0.97);backdrop-filter:blur(24px);border-bottom:1px 
       <div class="sec-label">Kelola</div>
       <div class="sec-ttl">🎮 Roblox — Game Categories</div>
       <div class="panel" style="margin-bottom:14px;">
-        <p style="font-size:0.8rem;color:var(--muted);line-height:1.65;">Kelola kategori game dan item. Setiap game bisa punya tipe <strong style="color:var(--gold);">robux_table</strong> (tabel robux) atau <strong style="color:var(--gold);">grid</strong> (kartu item). Klik <strong style="color:var(--gold);">💾 Simpan ke GitHub</strong> untuk publish.</p>
+        <p style="font-size:0.8rem;color:var(--muted);line-height:1.65;">
+          Kelola kategori game dan item. Tipe <strong style="color:var(--gold);">robux_table</strong> = tabel Robux via Komunitas, tipe <strong style="color:var(--gold);">grid</strong> = kartu item biasa.
+          Klik <strong style="color:var(--gold);">💾 Simpan ke GitHub</strong> untuk publish.
+        </p>
       </div>
+
+      <!-- ── INFO BOX KOMUNITAS untuk admin ── -->
+      <div class="komunitas-info-box">
+        <div class="k-label">🔗 Link Komunitas Roblox Kawara Store</div>
+        <div class="k-text">
+          Robux masuk langsung dalam <strong>1 hari</strong> setelah konfirmasi. Syarat pembeli: harus sudah <strong>join komunitas minimal 14 hari</strong> sebelum pembelian. Link komunitas sudah ditampilkan otomatis di halaman toko.
+        </div>
+        <a class="komunitas-link-admin" href="https://www.roblox.com/share/g/526892871" target="_blank" rel="noopener">
+          🔗 Buka Komunitas Roblox — kawara-store
+        </a>
+      </div>
+
       <div class="sec-head"><div></div><button class="add-btn" onclick="addRobloxGame()">+ Tambah Game</button></div>
       <div id="roblox-games-list"></div>
     </div>
@@ -634,8 +618,20 @@ async function testGHConnection(){
 // =====================================================
 // PRODUCT DATA
 // =====================================================
+const KOMUNITAS_LINK = 'https://www.roblox.com/share/g/526892871';
+
+// ── DEFAULT: label sudah "Robux via Komunitas", tidak ada gamepass ──
 const DEFAULT_SITE={store_closed:false,closed_message:'Store sedang tutup sementara. Silakan kembali lagi nanti ya! 🙏',hero_badge:'Kawara Store — Marketplace Terpercaya',hero_title:'Jual Beli Item',hero_title_em:'Roblox & Jasa Digital',hero_desc:'Robux, item game Roblox, dan berbagai layanan digital — semua tersedia.',how_to_buy:'1. Pilih item dari tab Roblox atau Digital → 2. Klik "Beli Sekarang" → 3. Isi username Roblox → 4. Pilih metode pembayaran → 5. Hubungi admin via WhatsApp.',site_description:'',discord_link:'https://discord.gg/AJBXUbwdhZ',whatsapp_number:'6287720254002',payment_methods:['SeaBank','DANA','GoPay','QRIS']};
-const DEFAULT_ROBLOX_GAMES=[{id:'robux',label:'💎 Robux via Gamepass',icon:'💎',type:'robux_table',items:[]},{id:'sawaindo',label:'🌾 Sawah Indo',icon:'🌾',type:'grid',items:[]},{id:'indohangout',label:'🏠 Indo Hangout',icon:'🏠',type:'grid',items:[]},{id:'cdi',label:'🗺️ CDI',icon:'🗺️',type:'grid',items:[]},{id:'dfisch',label:'🐟 DFISCH',icon:'🐟',type:'grid',items:[]},{id:'bloxfruit',label:'🍎 Blox Fruit',icon:'🍎',type:'grid',items:[]},{id:'brookhaven',label:'🏙️ Brookhaven',icon:'🏙️',type:'grid',items:[]}];
+
+const DEFAULT_ROBLOX_GAMES=[
+  {id:'robux',label:'💎 Robux via Komunitas',icon:'💎',type:'robux_table',items:[]},
+  {id:'sawaindo',label:'🌾 Sawah Indo',icon:'🌾',type:'grid',items:[]},
+  {id:'indohangout',label:'🏠 Indo Hangout',icon:'🏠',type:'grid',items:[]},
+  {id:'cdi',label:'🗺️ CDI',icon:'🗺️',type:'grid',items:[]},
+  {id:'dfisch',label:'🐟 DFISCH',icon:'🐟',type:'grid',items:[]},
+  {id:'bloxfruit',label:'🍎 Blox Fruit',icon:'🍎',type:'grid',items:[]},
+  {id:'brookhaven',label:'🏙️ Brookhaven',icon:'🏙️',type:'grid',items:[]}
+];
 const DEFAULT_DIGITAL_CATALOGS=[{id:'digitalcat1',label:'📄 Layanan Dokumen',icon:'📄',items:[]}];
 const DEFAULT_DEVELOPER_CATALOGS=[];
 
@@ -680,7 +676,6 @@ async function fetchTrxFromGitHub(manual=false){
   }catch(e){try{const s=localStorage.getItem('kawara_trx');if(s)_trxData=JSON.parse(s);}catch(e2){}setTrxSyncState('local');if(manual)toast('❌ '+e.message,true);}
   renderTrxList();renderDashboard();
 }
-
 async function ghPushFile(filename,content,commitMsg){
   const cfg=getGHConfig();if(!cfg.token)throw new Error('Token belum diset');
   const apiUrl=`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${filename}`;
@@ -735,7 +730,6 @@ async function initAdmin(){
   renderTrxList();renderDashboard();updateClosedBanner(_prodData?.site?.store_closed);
   document.getElementById('data-loading').classList.remove('show');document.getElementById('admin-panel').style.display='block';
 }
-
 function renderProductPanels(){
   if(!_prodData)return;
   renderRobloxGames(_prodData.roblox_games||DEFAULT_ROBLOX_GAMES);
@@ -760,37 +754,66 @@ function saveSiteInfo(){
 }
 
 // =====================================================
-// ROBLOX GAMES MANAGEMENT (preserved from original)
+// ROBLOX GAMES MANAGEMENT
+// — Kolom GP ID dihapus dari tabel robux_table
 // =====================================================
 function renderRobloxGames(games){document.getElementById('roblox-games-list').innerHTML=games.map((g,gi)=>renderRobloxGameCard(g,gi)).join('');}
 function renderRobloxGameCard(game,gi){
   const isRobux=game.type==='robux_table';const itemsHtml=isRobux?renderRobuxItems(game):renderGridItems(game);
-  return `<div class="game-card" id="game-card-${game.id}"><div class="game-card-header"><div class="game-card-title"><input class="game-card-icon-input" id="g-icon-${game.id}" value="${game.icon}" title="Ikon"><input class="finput" id="g-label-${game.id}" value="${game.label.replace(game.icon+' ','')}" placeholder="Nama game..." style="margin-bottom:0;flex:1;"></div><div class="game-card-actions"><select class="fselect" id="g-type-${game.id}" style="width:auto;padding:6px 8px;font-size:0.75rem;" onchange="changeGameType('${game.id}')"><option value="robux_table"${isRobux?' selected':''}>Robux Table</option><option value="grid"${!isRobux?' selected':''}>Grid Item</option></select><button class="ibtn del" onclick="deleteRobloxGame('${game.id}')">🗑️</button></div></div><div id="g-items-${game.id}">${itemsHtml}</div><div style="display:flex;gap:8px;margin-top:10px;"><button class="ibtn save" onclick="saveRobloxGame('${game.id}')">💾 Simpan & Publish</button><button class="add-btn" onclick="addItemToGame('${game.id}')" style="font-size:0.72rem;">+ Item</button></div></div>`;
+  return `<div class="game-card" id="game-card-${game.id}"><div class="game-card-header"><div class="game-card-title"><input class="game-card-icon-input" id="g-icon-${game.id}" value="${game.icon}" title="Ikon"><input class="finput" id="g-label-${game.id}" value="${game.label.replace(game.icon+' ','')}" placeholder="Nama game..." style="margin-bottom:0;flex:1;"></div><div class="game-card-actions"><select class="fselect" id="g-type-${game.id}" style="width:auto;padding:6px 8px;font-size:0.75rem;" onchange="changeGameType('${game.id}')"><option value="robux_table"${isRobux?' selected':''}>Robux via Komunitas</option><option value="grid"${!isRobux?' selected':''}>Grid Item</option></select><button class="ibtn del" onclick="deleteRobloxGame('${game.id}')">🗑️</button></div></div><div id="g-items-${game.id}">${itemsHtml}</div><div style="display:flex;gap:8px;margin-top:10px;"><button class="ibtn save" onclick="saveRobloxGame('${game.id}')">💾 Simpan & Publish</button><button class="add-btn" onclick="addItemToGame('${game.id}')" style="font-size:0.72rem;">+ Item</button></div></div>`;
 }
+
+// ── Tabel robux: tanpa kolom GP ID ──
 function renderRobuxItems(game){
-  const items=game.items||[];if(!items.length)return`<div class="empty-section">Belum ada item robux. Klik "+ Item" untuk menambah.</div>`;
-  return`<div style="overflow-x:auto;"><table class="atable" style="min-width:360px;"><thead><tr><th>Robux</th><th>Harga</th><th>GP ID</th><th>Status</th><th></th></tr></thead><tbody>${items.map(item=>`<tr><td><input class="e-input" id="ri-rbx-${item.id}" value="${item.robux}" style="width:60px;" inputmode="numeric"></td><td><input class="e-input" id="ri-h-${item.id}" value="${item.harga}" style="width:65px;"></td><td><input class="e-input" id="ri-gp-${item.id}" value="${item.gamepass||''}" style="width:70px;"></td><td><button class="stock-toggle-btn ${item.stock_on!==false?'on':'off'}" id="ri-tog-${item.id}" onclick="toggleRobuxStock('${game.id}','${item.id}',this)">${item.stock_on!==false?'✅ ON':'❌ OFF'}</button></td><td><button class="ibtn del" onclick="deleteRobloxItem('${game.id}','${item.id}')">🗑️</button></td></tr>`).join('')}</tbody></table></div>`;
+  const items=game.items||[];
+  if(!items.length)return`<div class="empty-section">Belum ada item robux. Klik "+ Item" untuk menambah.</div>`;
+  return`<div style="overflow-x:auto;"><table class="atable" style="min-width:280px;"><thead><tr><th>Robux</th><th>Harga</th><th>Status</th><th></th></tr></thead><tbody>${items.map(item=>`<tr><td><input class="e-input" id="ri-rbx-${item.id}" value="${item.robux}" style="width:70px;" inputmode="numeric"></td><td><input class="e-input" id="ri-h-${item.id}" value="${item.harga}" style="width:80px;"></td><td><button class="stock-toggle-btn ${item.stock_on!==false?'on':'off'}" id="ri-tog-${item.id}" onclick="toggleRobuxStock('${game.id}','${item.id}',this)">${item.stock_on!==false?'✅ ON':'❌ OFF'}</button></td><td><button class="ibtn del" onclick="deleteRobloxItem('${game.id}','${item.id}')">🗑️</button></td></tr>`).join('')}</tbody></table></div>`;
 }
+
 function renderGridItems(game){
   const items=game.items||[];if(!items.length)return`<div class="empty-section">Belum ada item. Klik "+ Item" untuk menambah.</div>`;
   return`<div style="overflow-x:auto;"><table class="atable" style="min-width:280px;"><thead><tr><th>Nama</th><th>Harga</th><th>Stok</th><th></th></tr></thead><tbody>${items.map(item=>`<tr><td style="max-width:160px;"><input class="e-input xwide" id="gi-n-${item.id}" value="${item.name.replace(/"/g,'&quot;')}"></td><td><input class="e-input" id="gi-h-${item.id}" value="${item.harga}" style="width:65px;"></td><td><input class="e-input" id="gi-s-${item.id}" type="number" value="${item.stock}" style="width:52px;"></td><td><button class="ibtn del" onclick="deleteRobloxItem('${game.id}','${item.id}')">🗑️</button></td></tr>`).join('')}</tbody></table></div>`;
 }
+
 function toggleRobuxStock(gameId,itemId,btn){const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;const item=game.items.find(i=>i.id===itemId);if(!item)return;item.stock_on=item.stock_on===false?true:false;if(item.stock_on===false){btn.className='stock-toggle-btn off';btn.textContent='❌ OFF';}else{btn.className='stock-toggle-btn on';btn.textContent='✅ ON';}markChanged();}
 function changeGameType(gameId){const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;game.type=document.getElementById('g-type-'+gameId).value;markChanged();renderRobloxGames(d.roblox_games);}
+
 function saveRobloxGame(gameId){
   const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;
   const iconEl=document.getElementById('g-icon-'+gameId);const labelEl=document.getElementById('g-label-'+gameId);const icon=iconEl?iconEl.value.trim():game.icon;const label=labelEl?labelEl.value.trim():game.label;game.icon=icon;game.label=icon+' '+label;
-  if(game.type==='robux_table'){(game.items||[]).forEach(item=>{const rbx=document.getElementById('ri-rbx-'+item.id);const h=document.getElementById('ri-h-'+item.id);const gp=document.getElementById('ri-gp-'+item.id);if(rbx)item.robux=parseInt(rbx.value)||item.robux;if(h)item.harga=h.value.trim();if(gp)item.gamepass=gp.value.trim();});}
-  else{(game.items||[]).forEach(item=>{const n=document.getElementById('gi-n-'+item.id);const h=document.getElementById('gi-h-'+item.id);const s=document.getElementById('gi-s-'+item.id);if(n)item.name=n.value.trim();if(h)item.harga=h.value.trim();if(s)item.stock=parseInt(s.value)||0;});}
+  if(game.type==='robux_table'){
+    // ── Simpan tanpa gamepass ──
+    (game.items||[]).forEach(item=>{
+      const rbx=document.getElementById('ri-rbx-'+item.id);
+      const h=document.getElementById('ri-h-'+item.id);
+      if(rbx)item.robux=parseInt(rbx.value)||item.robux;
+      if(h)item.harga=h.value.trim();
+      // hapus field gamepass jika ada dari data lama
+      delete item.gamepass;
+    });
+  }else{
+    (game.items||[]).forEach(item=>{const n=document.getElementById('gi-n-'+item.id);const h=document.getElementById('gi-h-'+item.id);const s=document.getElementById('gi-s-'+item.id);if(n)item.name=n.value.trim();if(h)item.harga=h.value.trim();if(s)item.stock=parseInt(s.value)||0;});
+  }
   markChanged();saveToGitHub();
 }
-function addItemToGame(gameId){const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;if(!game.items)game.items=[];if(game.type==='robux_table'){game.items.push({id:'ri_'+Date.now(),robux:100,harga:'10K',gamepass:'',stock_on:true});}else{game.items.push({id:'gi_'+Date.now(),name:'Item Baru',harga:'10K',stock:10});}markChanged();renderRobloxGames(d.roblox_games);toast('✅ Item ditambahkan!','ok');}
+
+function addItemToGame(gameId){
+  const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;if(!game.items)game.items=[];
+  if(game.type==='robux_table'){
+    // ── Tidak ada field gamepass ──
+    game.items.push({id:'ri_'+Date.now(),robux:100,harga:'10K',stock_on:true});
+  }else{
+    game.items.push({id:'gi_'+Date.now(),name:'Item Baru',harga:'10K',stock:10});
+  }
+  markChanged();renderRobloxGames(d.roblox_games);toast('✅ Item ditambahkan!','ok');
+}
+
 function deleteRobloxItem(gameId,itemId){if(!confirm('Hapus item ini?'))return;const d=getData();const game=d.roblox_games.find(g=>g.id===gameId);if(!game)return;game.items=(game.items||[]).filter(i=>i.id!==itemId);markChanged();renderRobloxGames(d.roblox_games);}
 function deleteRobloxGame(gameId){if(!confirm('Hapus game ini?'))return;const d=getData();d.roblox_games=d.roblox_games.filter(g=>g.id!==gameId);markChanged();renderRobloxGames(d.roblox_games);saveToGitHub();}
 function addRobloxGame(){const d=getData();if(!d.roblox_games)d.roblox_games=[];const ng={id:'game_'+Date.now(),label:'🎮 Game Baru',icon:'🎮',type:'grid',items:[]};d.roblox_games.push(ng);markChanged();renderRobloxGames(d.roblox_games);setTimeout(()=>{const el=document.getElementById('game-card-'+ng.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);toast('✅ Game ditambahkan!','ok');}
 
 // =====================================================
-// DIGITAL CATALOGS MANAGEMENT (preserved)
+// DIGITAL CATALOGS MANAGEMENT
 // =====================================================
 function renderDigitalCatalogs(cats){document.getElementById('digital-catalogs-list').innerHTML=cats.map((cat,ci)=>renderDigitalCatCard(cat,ci)).join('');}
 function renderDigitalCatCard(cat,ci){
@@ -813,219 +836,44 @@ function deleteDigitalItemPrice(catId,itemId,pi){collectDigitalCatalog(catId);co
 // =====================================================
 // ⚙️ DEVELOPER CATALOGS MANAGEMENT
 // =====================================================
-function renderDevCatalogs(cats) {
-  const container = document.getElementById('developer-catalogs-list');
-  if (!cats.length) {
-    container.innerHTML = `<div class="empty-section dev-empty">Belum ada katalog developer. Klik "+ Tambah Katalog" untuk mulai.</div>`;
-    return;
-  }
-  container.innerHTML = cats.map((cat, ci) => renderDevCatalogCard(cat, ci)).join('');
+function renderDevCatalogs(cats){
+  const container=document.getElementById('developer-catalogs-list');
+  if(!cats.length){container.innerHTML=`<div class="empty-section dev-empty">Belum ada katalog developer. Klik "+ Tambah Katalog" untuk mulai.</div>`;return;}
+  container.innerHTML=cats.map((cat,ci)=>renderDevCatalogCard(cat,ci)).join('');
 }
-
-function renderDevCatalogCard(cat, ci) {
-  const systems = cat.systems || [];
-  const systemsHtml = systems.length > 0
-    ? systems.map(sys => renderDevSystemRow(cat.id, sys)).join('')
-    : `<div class="empty-section dev-empty">Belum ada system. Klik "+" untuk menambah.</div>`;
-
-  return `<div class="dev-catalog-card" id="devcat-${cat.id}">
-    <div class="dev-catalog-header">
-      <div class="dev-catalog-title-group">
-        <input class="dev-cat-icon-inp" id="devcat-icon-${cat.id}" value="${cat.icon||'⚙️'}" title="Ikon">
-        <input class="dev-cat-label-inp" id="devcat-label-${cat.id}" value="${cat.label||''}" placeholder="Nama Katalog (contoh: System Saweria)">
-      </div>
-      <div class="dev-catalog-actions">
-        <button class="dev-save-btn" onclick="saveDevCatalog('${cat.id}')">💾 Simpan & Publish</button>
-        <button class="dev-del-btn" onclick="deleteDevCatalog('${cat.id}')">🗑️</button>
-      </div>
-    </div>
-    <div class="dev-systems-list" id="devcat-systems-${cat.id}">${systemsHtml}</div>
-    <button class="add-dev-system-btn" onclick="addDevSystem('${cat.id}')">+ Tambah System</button>
-  </div>`;
+function renderDevCatalogCard(cat,ci){
+  const systems=cat.systems||[];
+  const systemsHtml=systems.length>0?systems.map(sys=>renderDevSystemRow(cat.id,sys)).join(''):`<div class="empty-section dev-empty">Belum ada system. Klik "+" untuk menambah.</div>`;
+  return`<div class="dev-catalog-card" id="devcat-${cat.id}"><div class="dev-catalog-header"><div class="dev-catalog-title-group"><input class="dev-cat-icon-inp" id="devcat-icon-${cat.id}" value="${cat.icon||'⚙️'}" title="Ikon"><input class="dev-cat-label-inp" id="devcat-label-${cat.id}" value="${cat.label||''}" placeholder="Nama Katalog..."></div><div class="dev-catalog-actions"><button class="dev-save-btn" onclick="saveDevCatalog('${cat.id}')">💾 Simpan & Publish</button><button class="dev-del-btn" onclick="deleteDevCatalog('${cat.id}')">🗑️</button></div></div><div class="dev-systems-list" id="devcat-systems-${cat.id}">${systemsHtml}</div><button class="add-dev-system-btn" onclick="addDevSystem('${cat.id}')">+ Tambah System</button></div>`;
 }
-
-function renderDevSystemRow(catId, sys) {
-  const features = Array.isArray(sys.features) ? sys.features : [];
-  const prices = Array.isArray(sys.prices) ? sys.prices : [];
-
-  const bulletsHtml = features.map((f, fi) =>
-    `<div class="dev-bullet-row" id="devbullet-${catId}-${sys.id}-${fi}">
-      <input class="dev-sys-field-sm" id="devbullet-val-${catId}-${sys.id}-${fi}" value="${f.replace(/"/g,'&quot;')}" placeholder="Contoh: Support notification">
-      <button class="del-bullet-btn" onclick="devDeleteBullet('${catId}','${sys.id}',${fi})">✕</button>
-    </div>`
-  ).join('');
-
-  const pricesHtml = prices.map((p, pi) =>
-    `<div class="dev-price-row" id="devprice-${catId}-${sys.id}-${pi}">
-      <input class="dev-sys-field-sm" id="devpricelbl-${catId}-${sys.id}-${pi}" value="${p.label.replace(/"/g,'&quot;')}" placeholder="Label (misal: Basic)">
-      <input class="dev-sys-field-sm" id="devpriceval-${catId}-${sys.id}-${pi}" value="${p.val.replace(/"/g,'&quot;')}" placeholder="Harga (misal: Rp25.000)">
-      <button class="del-bullet-btn" onclick="devDeletePrice('${catId}','${sys.id}',${pi})">✕</button>
-    </div>`
-  ).join('');
-
-  // Check preview
-  const previewUrl = sys.preview_url || '';
-
-  return `<div class="dev-system-row" id="devsys-${catId}-${sys.id}">
-    <div class="dev-sys-row-header">
-      <div class="dev-sys-name-row">
-        <span style="font-size:0.7rem;color:rgba(167,139,250,0.7);font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;">SYSTEM NAME</span>
-        <input class="dev-sys-field" id="devsys-name-${catId}-${sys.id}" value="${sys.name.replace(/"/g,'&quot;')}" placeholder="Nama System..." style="margin-left:6px;">
-      </div>
-      <button class="dev-del-btn" style="padding:6px 10px;font-size:0.72rem;" onclick="deleteDevSystem('${catId}','${sys.id}')">🗑️</button>
-    </div>
-
-    <!-- Preview Image URL -->
-    <div class="dev-section-box">
-      <div class="dev-flbl">🖼️ Link Preview Image (copy dari Discord/CDN)</div>
-      <input class="dev-sys-field" id="devsys-img-${catId}-${sys.id}" value="${previewUrl.replace(/"/g,'&quot;')}" placeholder="https://cdn.discordapp.com/... atau link CDN lainnya" oninput="devPreviewImg('${catId}','${sys.id}',this.value)">
-      <img id="devsys-imgprev-${catId}-${sys.id}" class="dev-img-preview${previewUrl?'':' hidden'}" src="${previewUrl}" alt="Preview" onerror="this.classList.add('hidden')">
-    </div>
-
-    <!-- Bullet Points / Features -->
-    <div class="dev-section-box">
-      <div class="dev-flbl">✅ Bullet Fitur (tampil di kartu)</div>
-      <div class="dev-bullet-list" id="devbullets-${catId}-${sys.id}">${bulletsHtml}</div>
-      <button class="add-bullet-btn" onclick="devAddBullet('${catId}','${sys.id}')">+ Tambah Bullet</button>
-    </div>
-
-    <!-- TikTok Link -->
-    <div class="dev-section-box">
-      <div class="dev-flbl">▶️ Link TikTok Preview (opsional)</div>
-      <input class="dev-sys-field" id="devsys-tiktok-${catId}-${sys.id}" value="${(sys.tiktok_url||'').replace(/"/g,'&quot;')}" placeholder="https://www.tiktok.com/@kamu/video/...">
-    </div>
-
-    <!-- Prices -->
-    <div class="dev-section-box">
-      <div class="dev-flbl">💰 Daftar Harga</div>
-      <div id="devprices-${catId}-${sys.id}">${pricesHtml}</div>
-      <button class="dev-add-price-btn" onclick="devAddPrice('${catId}','${sys.id}')">+ Tambah Harga</button>
-    </div>
-  </div>`;
+function renderDevSystemRow(catId,sys){
+  const features=Array.isArray(sys.features)?sys.features:[];const prices=Array.isArray(sys.prices)?sys.prices:[];
+  const bulletsHtml=features.map((f,fi)=>`<div class="dev-bullet-row" id="devbullet-${catId}-${sys.id}-${fi}"><input class="dev-sys-field-sm" id="devbullet-val-${catId}-${sys.id}-${fi}" value="${f.replace(/"/g,'&quot;')}" placeholder="Contoh: Support notification"><button class="del-bullet-btn" onclick="devDeleteBullet('${catId}','${sys.id}',${fi})">✕</button></div>`).join('');
+  const pricesHtml=prices.map((p,pi)=>`<div class="dev-price-row" id="devprice-${catId}-${sys.id}-${pi}"><input class="dev-sys-field-sm" id="devpricelbl-${catId}-${sys.id}-${pi}" value="${p.label.replace(/"/g,'&quot;')}" placeholder="Label (misal: Basic)"><input class="dev-sys-field-sm" id="devpriceval-${catId}-${sys.id}-${pi}" value="${p.val.replace(/"/g,'&quot;')}" placeholder="Harga (misal: Rp25.000)"><button class="del-bullet-btn" onclick="devDeletePrice('${catId}','${sys.id}',${pi})">✕</button></div>`).join('');
+  const previewUrl=sys.preview_url||'';
+  return`<div class="dev-system-row" id="devsys-${catId}-${sys.id}"><div class="dev-sys-row-header"><div class="dev-sys-name-row"><span style="font-size:0.7rem;color:rgba(167,139,250,0.7);font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;">SYSTEM NAME</span><input class="dev-sys-field" id="devsys-name-${catId}-${sys.id}" value="${sys.name.replace(/"/g,'&quot;')}" placeholder="Nama System..." style="margin-left:6px;"></div><button class="dev-del-btn" style="padding:6px 10px;font-size:0.72rem;" onclick="deleteDevSystem('${catId}','${sys.id}')">🗑️</button></div><div class="dev-section-box"><div class="dev-flbl">🖼️ Link Preview Image (copy dari Discord/CDN)</div><input class="dev-sys-field" id="devsys-img-${catId}-${sys.id}" value="${previewUrl.replace(/"/g,'&quot;')}" placeholder="https://cdn.discordapp.com/..." oninput="devPreviewImg('${catId}','${sys.id}',this.value)"><img id="devsys-imgprev-${catId}-${sys.id}" class="dev-img-preview${previewUrl?'':' hidden'}" src="${previewUrl}" alt="Preview" onerror="this.classList.add('hidden')"></div><div class="dev-section-box"><div class="dev-flbl">✅ Bullet Fitur (tampil di kartu)</div><div class="dev-bullet-list" id="devbullets-${catId}-${sys.id}">${bulletsHtml}</div><button class="add-bullet-btn" onclick="devAddBullet('${catId}','${sys.id}')">+ Tambah Bullet</button></div><div class="dev-section-box"><div class="dev-flbl">▶️ Link TikTok Preview (opsional)</div><input class="dev-sys-field" id="devsys-tiktok-${catId}-${sys.id}" value="${(sys.tiktok_url||'').replace(/"/g,'&quot;')}" placeholder="https://www.tiktok.com/@kamu/video/..."></div><div class="dev-section-box"><div class="dev-flbl">💰 Daftar Harga</div><div id="devprices-${catId}-${sys.id}">${pricesHtml}</div><button class="dev-add-price-btn" onclick="devAddPrice('${catId}','${sys.id}')">+ Tambah Harga</button></div></div>`;
 }
-
-function devPreviewImg(catId, sysId, url) {
-  const img = document.getElementById(`devsys-imgprev-${catId}-${sysId}`);
-  if (!img) return;
-  if (url) {
-    img.src = url;
-    img.classList.remove('hidden');
-    img.onerror = () => img.classList.add('hidden');
-  } else {
-    img.classList.add('hidden');
-  }
-}
-
-function devAddBullet(catId, sysId) {
-  collectDevCatalog(catId);
-  const d = getData();
-  const cat = d.developer_catalogs.find(c => c.id === catId); if (!cat) return;
-  const sys = (cat.systems || []).find(s => s.id === sysId); if (!sys) return;
-  if (!sys.features) sys.features = [];
-  sys.features.push('Fitur baru');
-  markChanged(); renderDevCatalogs(d.developer_catalogs);
-}
-
-function devDeleteBullet(catId, sysId, fi) {
-  collectDevCatalog(catId);
-  const d = getData();
-  const cat = d.developer_catalogs.find(c => c.id === catId); if (!cat) return;
-  const sys = (cat.systems || []).find(s => s.id === sysId); if (!sys) return;
-  sys.features.splice(fi, 1);
-  markChanged(); renderDevCatalogs(d.developer_catalogs);
-}
-
-function devAddPrice(catId, sysId) {
-  collectDevCatalog(catId);
-  const d = getData();
-  const cat = d.developer_catalogs.find(c => c.id === catId); if (!cat) return;
-  const sys = (cat.systems || []).find(s => s.id === sysId); if (!sys) return;
-  if (!sys.prices) sys.prices = [];
-  sys.prices.push({ label: 'Paket', val: 'Rp0' });
-  markChanged(); renderDevCatalogs(d.developer_catalogs);
-}
-
-function devDeletePrice(catId, sysId, pi) {
-  collectDevCatalog(catId);
-  const d = getData();
-  const cat = d.developer_catalogs.find(c => c.id === catId); if (!cat) return;
-  const sys = (cat.systems || []).find(s => s.id === sysId); if (!sys) return;
-  sys.prices.splice(pi, 1);
-  markChanged(); renderDevCatalogs(d.developer_catalogs);
-}
-
-function collectDevCatalog(catId) {
-  const d = getData();
-  const cat = d.developer_catalogs.find(c => c.id === catId); if (!cat) return;
-  // Update catalog label/icon
-  const iconEl = document.getElementById('devcat-icon-' + catId);
-  const labelEl = document.getElementById('devcat-label-' + catId);
-  if (iconEl) cat.icon = iconEl.value.trim();
-  if (labelEl) cat.label = labelEl.value.trim();
-  // Update each system
-  (cat.systems || []).forEach(sys => {
-    const nameEl = document.getElementById(`devsys-name-${catId}-${sys.id}`);
-    const imgEl = document.getElementById(`devsys-img-${catId}-${sys.id}`);
-    const tiktokEl = document.getElementById(`devsys-tiktok-${catId}-${sys.id}`);
-    if (nameEl) sys.name = nameEl.value.trim();
-    if (imgEl) sys.preview_url = imgEl.value.trim();
-    if (tiktokEl) sys.tiktok_url = tiktokEl.value.trim();
-    // Collect bullets
-    const bulletRows = document.querySelectorAll(`[id^="devbullet-val-${catId}-${sys.id}-"]`);
-    sys.features = [];
-    bulletRows.forEach(el => { if (el.value.trim()) sys.features.push(el.value.trim()); });
-    // Collect prices
-    const priceLabels = document.querySelectorAll(`[id^="devpricelbl-${catId}-${sys.id}-"]`);
-    const priceVals = document.querySelectorAll(`[id^="devpriceval-${catId}-${sys.id}-"]`);
-    sys.prices = [];
-    priceLabels.forEach((el, i) => {
-      const valEl = priceVals[i];
-      if (el.value.trim()) sys.prices.push({ label: el.value.trim(), val: valEl ? valEl.value.trim() : '' });
-    });
+function devPreviewImg(catId,sysId,url){const img=document.getElementById(`devsys-imgprev-${catId}-${sysId}`);if(!img)return;if(url){img.src=url;img.classList.remove('hidden');img.onerror=()=>img.classList.add('hidden');}else{img.classList.add('hidden');}}
+function devAddBullet(catId,sysId){collectDevCatalog(catId);const d=getData();const cat=d.developer_catalogs.find(c=>c.id===catId);if(!cat)return;const sys=(cat.systems||[]).find(s=>s.id===sysId);if(!sys)return;if(!sys.features)sys.features=[];sys.features.push('Fitur baru');markChanged();renderDevCatalogs(d.developer_catalogs);}
+function devDeleteBullet(catId,sysId,fi){collectDevCatalog(catId);const d=getData();const cat=d.developer_catalogs.find(c=>c.id===catId);if(!cat)return;const sys=(cat.systems||[]).find(s=>s.id===sysId);if(!sys)return;sys.features.splice(fi,1);markChanged();renderDevCatalogs(d.developer_catalogs);}
+function devAddPrice(catId,sysId){collectDevCatalog(catId);const d=getData();const cat=d.developer_catalogs.find(c=>c.id===catId);if(!cat)return;const sys=(cat.systems||[]).find(s=>s.id===sysId);if(!sys)return;if(!sys.prices)sys.prices=[];sys.prices.push({label:'Paket',val:'Rp0'});markChanged();renderDevCatalogs(d.developer_catalogs);}
+function devDeletePrice(catId,sysId,pi){collectDevCatalog(catId);const d=getData();const cat=d.developer_catalogs.find(c=>c.id===catId);if(!cat)return;const sys=(cat.systems||[]).find(s=>s.id===sysId);if(!sys)return;sys.prices.splice(pi,1);markChanged();renderDevCatalogs(d.developer_catalogs);}
+function collectDevCatalog(catId){
+  const d=getData();const cat=d.developer_catalogs.find(c=>c.id===catId);if(!cat)return;
+  const iconEl=document.getElementById('devcat-icon-'+catId);const labelEl=document.getElementById('devcat-label-'+catId);
+  if(iconEl)cat.icon=iconEl.value.trim();if(labelEl)cat.label=labelEl.value.trim();
+  (cat.systems||[]).forEach(sys=>{
+    const nameEl=document.getElementById(`devsys-name-${catId}-${sys.id}`);const imgEl=document.getElementById(`devsys-img-${catId}-${sys.id}`);const tiktokEl=document.getElementById(`devsys-tiktok-${catId}-${sys.id}`);
+    if(nameEl)sys.name=nameEl.value.trim();if(imgEl)sys.preview_url=imgEl.value.trim();if(tiktokEl)sys.tiktok_url=tiktokEl.value.trim();
+    const bulletRows=document.querySelectorAll(`[id^="devbullet-val-${catId}-${sys.id}-"]`);sys.features=[];bulletRows.forEach(el=>{if(el.value.trim())sys.features.push(el.value.trim());});
+    const priceLabels=document.querySelectorAll(`[id^="devpricelbl-${catId}-${sys.id}-"]`);const priceVals=document.querySelectorAll(`[id^="devpriceval-${catId}-${sys.id}-"]`);sys.prices=[];priceLabels.forEach((el,i)=>{const valEl=priceVals[i];if(el.value.trim())sys.prices.push({label:el.value.trim(),val:valEl?valEl.value.trim():''});});
   });
 }
-
-function saveDevCatalog(catId) {
-  collectDevCatalog(catId);
-  markChanged();
-  saveToGitHub();
-}
-
-function deleteDevCatalog(catId) {
-  if (!confirm('Hapus katalog developer ini?')) return;
-  const d = getData();
-  d.developer_catalogs = d.developer_catalogs.filter(c => c.id !== catId);
-  markChanged(); renderDevCatalogs(d.developer_catalogs); saveToGitHub();
-}
-
-function addDevCatalog() {
-  const d = getData();
-  if (!d.developer_catalogs) d.developer_catalogs = [];
-  const nc = { id: 'devcat_' + Date.now(), icon: '⚙️', label: 'Katalog Baru', systems: [] };
-  d.developer_catalogs.push(nc);
-  markChanged(); renderDevCatalogs(d.developer_catalogs);
-  setTimeout(() => { const el = document.getElementById('devcat-' + nc.id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 100);
-  toast('✅ Katalog developer ditambahkan!', 'ok');
-}
-
-function addDevSystem(catId) {
-  collectDevCatalog(catId);
-  const d = getData();
-  const cat = d.developer_catalogs.find(c => c.id === catId); if (!cat) return;
-  if (!cat.systems) cat.systems = [];
-  cat.systems.push({ id: 'devsys_' + Date.now(), name: 'System Baru', preview_url: '', features: [], tiktok_url: '', prices: [] });
-  markChanged(); renderDevCatalogs(d.developer_catalogs);
-  toast('✅ System ditambahkan!', 'ok');
-}
-
-function deleteDevSystem(catId, sysId) {
-  if (!confirm('Hapus system ini?')) return;
-  collectDevCatalog(catId);
-  const d = getData();
-  const cat = d.developer_catalogs.find(c => c.id === catId); if (!cat) return;
-  cat.systems = (cat.systems || []).filter(s => s.id !== sysId);
-  markChanged(); renderDevCatalogs(d.developer_catalogs);
-}
+function saveDevCatalog(catId){collectDevCatalog(catId);markChanged();saveToGitHub();}
+function deleteDevCatalog(catId){if(!confirm('Hapus katalog developer ini?'))return;const d=getData();d.developer_catalogs=d.developer_catalogs.filter(c=>c.id!==catId);markChanged();renderDevCatalogs(d.developer_catalogs);saveToGitHub();}
+function addDevCatalog(){const d=getData();if(!d.developer_catalogs)d.developer_catalogs=[];const nc={id:'devcat_'+Date.now(),icon:'⚙️',label:'Katalog Baru',systems:[]};d.developer_catalogs.push(nc);markChanged();renderDevCatalogs(d.developer_catalogs);setTimeout(()=>{const el=document.getElementById('devcat-'+nc.id);if(el)el.scrollIntoView({behavior:'smooth'});},100);toast('✅ Katalog developer ditambahkan!','ok');}
+function addDevSystem(catId){collectDevCatalog(catId);const d=getData();const cat=d.developer_catalogs.find(c=>c.id===catId);if(!cat)return;if(!cat.systems)cat.systems=[];cat.systems.push({id:'devsys_'+Date.now(),name:'System Baru',preview_url:'',features:[],tiktok_url:'',prices:[]});markChanged();renderDevCatalogs(d.developer_catalogs);toast('✅ System ditambahkan!','ok');}
+function deleteDevSystem(catId,sysId){if(!confirm('Hapus system ini?'))return;collectDevCatalog(catId);const d=getData();const cat=d.developer_catalogs.find(c=>c.id===catId);if(!cat)return;cat.systems=(cat.systems||[]).filter(s=>s.id!==sysId);markChanged();renderDevCatalogs(d.developer_catalogs);}
 
 // =====================================================
 // TRANSAKSI
