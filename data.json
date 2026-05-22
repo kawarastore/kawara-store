@@ -28,77 +28,66 @@
           "id": "ri_1776871961698",
           "robux": 50,
           "harga": "Rp 6.000",
-          "gamepass": "72",
           "stock_on": true
         },
         {
           "id": "ri_1776871963460",
           "robux": 100,
           "harga": "Rp 11.500",
-          "gamepass": "143",
           "stock_on": true
         },
         {
           "id": "ri_1776871964135",
           "robux": 200,
           "harga": "Rp 22.500",
-          "gamepass": "286",
           "stock_on": true
         },
         {
           "id": "ri_1776871964662",
           "robux": 300,
           "harga": "Rp 33.500",
-          "gamepass": "429",
           "stock_on": true
         },
         {
           "id": "ri_1776871965086",
           "robux": 400,
           "harga": "Rp 44.500",
-          "gamepass": "572",
           "stock_on": true
         },
         {
           "id": "ri_1776871980221",
           "robux": 500,
           "harga": "Rp 55.000",
-          "gamepass": "715",
           "stock_on": true
         },
         {
           "id": "ri_1776875933130",
           "robux": 600,
           "harga": "Rp 65.500",
-          "gamepass": "858",
           "stock_on": true
         },
         {
           "id": "ri_1776875933759",
           "robux": 700,
           "harga": "Rp 76.000",
-          "gamepass": "1000",
           "stock_on": true
         },
         {
           "id": "ri_1776875934244",
           "robux": 800,
           "harga": "Rp 86.000",
-          "gamepass": "1143",
           "stock_on": true
         },
         {
           "id": "ri_1776875934837",
           "robux": 900,
           "harga": "Rp 96.000",
-          "gamepass": "1286",
           "stock_on": true
         },
         {
           "id": "ri_1776875935438",
           "robux": 1000,
           "harga": "Rp 105.000",
-          "gamepass": "1430",
           "stock_on": true
         }
       ]
