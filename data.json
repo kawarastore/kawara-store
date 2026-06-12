@@ -1,6 +1,6 @@
 {
   "site": {
-    "store_closed": false,
+    "store_closed": true,
     "closed_message": "Store sedang tutup, silakan kembali besok terima kasih 🙏",
     "hero_badge": "Kawara Store — Marketplace Terpercaya",
     "hero_title": "Jual Beli Item",
